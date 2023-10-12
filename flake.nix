@@ -3,6 +3,10 @@
     #Important inputs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
+
     ruby-nix = {
       url = "github:inscapist/ruby-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,6 +87,7 @@
   };
 
   outputs = inputs@{ self, ... }:
+
     let
       inherit (builtins) attrNames readDir listToAttrs;
       inherit (inputs.nixpkgs) lib;
@@ -205,49 +210,84 @@
           (attrNames (readDir dir)));
 
     in
-    {
-      nixosConfigurations = mkHosts ./hosts;
+    inputs.flake-parts.lib.mkFlake { inherit inputs; }
+      {
+        imports = [
+          inputs.pre-commit-hooks-nix.flakeModule
+        ];
+        systems = [
+          # systems for which you want to build the `perSystem` attributes
+          "x86_64-linux"
+        ];
+        # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
+        perSystem = { config, pkgs, ... }: {
+          devShells.default = config.pre-commit.devShell;
+          pre-commit.settings.hooks = {
+            nixpkgs-fmt.enable = true;
+            statix.enable = true;
+            deadnix = {
+              enable = true;
+            };
 
-      deploy.nodes =
-        let
-          deploy-rs-activate = inputs.deploy-rs.lib.x86_64-linux.activate.nixos;
+            gitleaks = {
+              enable = true;
+              name = "gitleaks";
+              description = "Prevents commiting secrets";
+              entry = "${pkgs.gitleaks}/bin/gitleaks protect --verbose --redact --staged";
+              pass_filenames = false;
+            };
 
-        in
-        {
-          scout = {
-            sshUser = "root";
-            hostname = "192.168.10.1";
-            profiles.system.path =
-              deploy-rs-activate self.nixosConfigurations.scout;
+
           };
-          engie = {
-            sshUser = "root";
-            hostname = "192.168.10.3";
-            profiles.system.path =
-              deploy-rs-activate self.nixosConfigurations.engie;
-          };
-          spy = {
-            sshUser = "root";
-            hostname = "192.168.10.6";
-            profiles.system.path =
-              deploy-rs-activate self.nixosConfigurations.spy;
-          };
-          # sniper = {
-          #   sshUser = "root";
-          #   hostname = "192.168.10.8";
-          #   profiles.system.path =
-          #     deploy-rs-activate self.nixosConfigurations.sniper;
-          # };
-          medic = {
-            sshUser = "root";
-            hostname = "192.168.10.5";
-            profiles.system.path =
-              deploy-rs-activate self.nixosConfigurations.medic;
+          pre-commit.settings.settings = {
+            deadnix.edit = true;
           };
         };
-      # This is highly advised, and will prevent many possible mistakes
-      checks = builtins.mapAttrs
-        (_system: deployLib: deployLib.deployChecks self.deploy)
-        inputs.deploy-rs.lib;
-    };
+        flake = {
+          nixosConfigurations = mkHosts ./hosts;
+
+          deploy.nodes =
+            let
+              deploy-rs-activate = inputs.deploy-rs.lib.x86_64-linux.activate.nixos;
+
+            in
+            {
+              scout = {
+                sshUser = "root";
+                hostname = "192.168.10.1";
+                profiles.system.path =
+                  deploy-rs-activate self.nixosConfigurations.scout;
+              };
+              engie = {
+                sshUser = "root";
+                hostname = "192.168.10.3";
+                profiles.system.path =
+                  deploy-rs-activate self.nixosConfigurations.engie;
+              };
+              spy = {
+                sshUser = "root";
+                hostname = "192.168.10.6";
+                profiles.system.path =
+                  deploy-rs-activate self.nixosConfigurations.spy;
+              };
+              # sniper = {
+              #   sshUser = "root";
+              #   hostname = "192.168.10.8";
+              #   profiles.system.path =
+              #     deploy-rs-activate self.nixosConfigurations.sniper;
+              # };
+              medic = {
+                sshUser = "root";
+                hostname = "192.168.10.5";
+                profiles.system.path =
+                  deploy-rs-activate self.nixosConfigurations.medic;
+              };
+            };
+          # This is highly advised, and will prevent many possible mistakes
+          checks = builtins.mapAttrs
+            (_system: deployLib: deployLib.deployChecks self.deploy)
+            inputs.deploy-rs.lib;
+        };
+
+      };
 }
