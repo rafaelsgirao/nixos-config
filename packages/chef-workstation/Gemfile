@@ -1,0 +1,142 @@
+#
+# Copyright:: Copyright (c) Chef Software Inc.
+# License:: Apache License, Version 2.0
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+source "https://rubygems.org"
+
+group(:omnibus_package, :development, :test) do
+  # Require a minimum version that is packaged in the Ruby install, so we do
+  # not install old unecessary versions. When we bump Ruby we need to look
+  # at these pins and adjust them.
+  gem "minitest", "~> 5.16", ">= 5.16.3"
+
+  gem "rake", "= 13.0.1" # prevent double rake as of 12.2020
+  gem "guard"
+  gem "cookstyle", ">= 7.8"
+  gem "ffi-libarchive"
+end
+
+group(:dep_selector) do
+  gem "dep_selector"
+  gem "dep-selector-libgecode"
+end
+
+# We tend to track latest stable release without pinning.
+# In order to prevent the depsolver from downgrading we pin some floors with ">=".
+# We should only be using "~>" to work around bugs, or temporarily pinning some tech debt.
+# We equality pin the chef gem itself to assert which version we're shipping.
+group(:omnibus_package) do
+  # add small binaries that warn against the use of legacy apps. For now this is foodcritic/stove
+  gem "chef_deprecations", ">= 0.1.2"
+
+  # avoid failures running 0.0.7.7 on windows
+  gem "unf_ext", ">= 0.0.8.2"
+
+  gem "appbundler"
+
+  # Expeditor manages the version of chef released to Rubygems. We only release 'stable' chef
+  # gems to Rubygems now, so letting this float on latest should always give us the latest
+  # stable release. May have to re-pin around major version bumping time, or during patch
+  # fixes.
+
+  gem "chef", ">= 18.2"
+  gem "chef-bin", ">= 18.2"
+  gem "chef-utils", ">= 18.2"
+  gem "ohai", ">= 18.1"
+
+  gem "cheffish", ">= 17.0"
+
+  gem "inspec-bin", "~> 5"
+
+  # chefspec & fauxhai, now forked into https://github.com/chef
+  gem "chefspec", ">= 9.3"
+  gem "fauxhai-chef", ">= 9.3"
+
+  # test-kitchen and plugins
+  gem "test-kitchen", ">= 3.0"
+  # gem "kitchen-azurerm", ">= 1.12.0"
+  # gem "kitchen-ec2", ">= 3.10"
+  # gem "kitchen-digitalocean", ">= 0.13"
+  gem "kitchen-dokken", ">= 2.14"
+  gem "docker-api", ">= 2.0" # make sure we get the Ruby 2.7+ compatible release
+  gem "kitchen-google", ">= 2.2"
+  # gem "kitchen-hyperv", ">= 0.6"
+  gem "kitchen-inspec", ">= 2.5"
+  gem "kitchen-openstack", ">= 5.0"
+  # gem "kitchen-vagrant", ">= 1.9"
+  # gem "kitchen-vcenter", ">= 2.8"
+  # gem "kitchen-vra", ">= 3.0"
+
+  # knife & plugins
+  gem "knife", ">= 18.2"
+  # gem "knife-azure", ">= 3.0.0"
+  # gem "knife-ec2", ">= 1.0.28"
+  # gem "knife-google", ">= 4.2.7"
+  # gem "knife-tidy", ">= 2.0.9"
+  # gem "knife-windows", ">= 3.0.11"
+  # gem "knife-vcenter", ">= 3.0.1"
+  # gem "knife-vsphere", ">= 4.1.1"
+  # gem "knife-vrealize", ">= 7.0.0"
+
+  # ed25519 ssh key support done here as it's a native gem we can't put in train
+  gem "ed25519"
+  gem "bcrypt_pbkdf", ">= 1.1.0.rc1"
+  gem "chef-cli", ">= 5.3.1"
+  gem "chef-apply", ">= 0.4.16"
+
+  # chef-telemetry previously pulled in an unecessary library (http)
+#  gem "chef-telemetry", ">= 1.0.8"
+
+  gem "artifactory"
+  gem "mixlib-archive", ">= 1.0"
+  gem "net-ssh", ">= 4.2.0"
+  gem "listen"
+  gem "mixlib-install"
+  gem "nokogiri", ">= 1.11.7"
+  # Locked because pry-byebug is broken with 13+
+  # some work is ongoing? https://github.com/deivid-rodriguez/pry-byebug/issues/343
+  gem "pry", "= 0.13.0"
+  gem "pry-byebug"
+  gem "pry-remote"
+  gem "pry-stack_explorer", ">= 0.5.1"
+  gem "rb-readline"
+  gem "winrm-fs"
+  gem "winrm-elevated"
+  gem "berkshelf", ">= 8.0"
+  gem "mdl", ">= 0.7.0"
+end
+
+# Everything except Windows
+group(:ruby_shadow) do
+  # if ruby-shadow does a release that supports ruby-3.0 this can be removed
+  gem "ruby-shadow", git: "https://github.com/chef/ruby-shadow", branch: "lcg/ruby-3.0", platforms: :ruby unless RUBY_PLATFORM == "x64-mingw-ucrt"
+end
+
+gem "chefstyle", group: :test
+
+# Ensure support for push-client on Windows
+# platforms :mswin, :mswin64, :mingw, :x64_mingw do
+  # gem "win32-api"
+#   gem "rdp-ruby-wmi"
+#   gem "windows-pr"
+#   gem "win32-dir"
+#   gem "win32-event"
+#   gem "win32-mutex"
+#   gem "win32-process", ">= 0.9.0" # resolves Ruby 2.7+ warnings
+#   gem "win32-service", ">= 2.1.5" # 2.1.5 resolves ffi warnings
+#   gem "win32-security" # remove this once https://github.com/eitoball/net-ping/pull/32 is merged
+# end
+
