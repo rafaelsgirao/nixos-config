@@ -170,6 +170,7 @@ in
     # };
   };
 
+  environment.etc."machine-id".source = "/state/etc/machine-id";
   environment.persistence."/pst" = {
     hideMounts = true;
     directories =

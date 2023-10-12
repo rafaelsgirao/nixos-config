@@ -1,4 +1,10 @@
-{ config, ... }: {
+{ config, ... }:
+
+let
+  inherit (config.networking) fqdn;
+  inherit (config.rg) domain;
+in
+{
 
   #ACME + Caddy
   security.acme.certs."${domain}" = {

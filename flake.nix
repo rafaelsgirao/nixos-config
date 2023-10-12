@@ -111,15 +111,10 @@
     # };
     #---------------------
 
-    #Important for checks flake output.
-    deploy-rs.url = "github:serokell/deploy-rs";
-    deploy-rs.inputs = {
-      nixpkgs.follows = "nixpkgs";
-      flake-compat.follows = "flake-compat";
-    };
     #---------------------
     # Other non-flake inputs.
     #---------------------
+
     dsi-setupsecrets = {
       url = "git+ssh://git@git.spy.rafael.ovh:4222/mirrors/setup-secrets.git";
       flake = false;
@@ -270,49 +265,9 @@
           };
         };
         flake = {
+          apps = inputs.nixinate.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;
 
-          deploy.nodes =
-            let
-              deploy-rs-activate = inputs.deploy-rs.lib.x86_64-linux.activate.nixos;
-
-            in
-            {
-              scout = {
-                sshUser = "root";
-                hostname = "192.168.10.1";
-                profiles.system.path =
-                  deploy-rs-activate self.nixosConfigurations.scout;
-              };
-              # engie = {
-              #   sshUser = "root";
-              #   hostname = "192.168.10.3";
-              #   profiles.system.path =
-              #     deploy-rs-activate self.nixosConfigurations.engie;
-              # };
-              spy = {
-                sshUser = "root";
-                hostname = "192.168.10.6";
-                profiles.system.path =
-                  deploy-rs-activate self.nixosConfigurations.spy;
-              };
-              # sniper = {
-              #   sshUser = "root";
-              #   hostname = "192.168.10.8";
-              #   profiles.system.path =
-              #     deploy-rs-activate self.nixosConfigurations.sniper;
-              # };
-              medic = {
-                sshUser = "root";
-                hostname = "192.168.10.5";
-                profiles.system.path =
-                  deploy-rs-activate self.nixosConfigurations.medic;
-              };
-            };
-          # This is highly advised, and will prevent many possible mistakes
-          checks = builtins.mapAttrs
-            (_system: deployLib: deployLib.deployChecks self.deploy)
-            inputs.deploy-rs.lib;
         };
 
       };

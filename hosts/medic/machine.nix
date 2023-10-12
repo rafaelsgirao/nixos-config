@@ -95,7 +95,6 @@
 
   #Additional packages
   environment.systemPackages = with pkgs; [
-    deploy-rs
     chef-workstation
     # simple-scan
     # rustdesk

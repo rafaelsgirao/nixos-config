@@ -164,7 +164,6 @@
     # autenticacao-gov
     #FIXME
     # remarkable-rcu
-    deploy-rs
     ffmpeg
     gcc
     chef-workstation

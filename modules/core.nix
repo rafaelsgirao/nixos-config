@@ -1,4 +1,4 @@
-{ config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }: {
+{ _module, config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }: {
   imports = [
     ./nebula.nix
     ./networking.nix
@@ -15,6 +15,15 @@
     domain = "rafael.ovh";
   };
   zramSwap.memoryPercent = 25;
+
+  #nixinate
+  _module.args.nixinate = {
+    host = "${config.rg.ip}";
+    sshUser = "rg";
+    buildOn = "remote";
+    substituteOnTarget = true;
+    hermetic = false;
+  };
 
   boot = {
     kernelParams = [ "quiet" ];
@@ -169,18 +178,9 @@
       UseDns = false;
       # unbind gnupg sockets if they exists
 
-      #For now, root login is needed for deploy-rs.
-      #Will try to harden.
-      PermitRootLogin = "prohibit-password";
+      PermitRootLogin = false;
     };
     hostKeys = [
-      # {
-      #   path = "/pst/etc/ssh/ssh_host_rsa_key";
-      #   type = "rsa";
-      #   rounds = 100;
-      #   OpenSSHFormat = true;
-      #   bits = 4096;
-      # }
       {
         path = "/pst/etc/ssh/ssh_host_ed25519_key";
         type = "ed25519";
