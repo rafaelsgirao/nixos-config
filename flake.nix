@@ -1,27 +1,13 @@
 {
   inputs = {
+    #--------------
     #Important inputs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    #---------------
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
-
-    ruby-nix = {
-      url = "github:inscapist/ruby-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    simple-nixos-mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.05";
-      inputs.nixpkgs-23_05.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
-      inputs.flake-compat.follows = "flake-utils";
-    };
-    home = {
-      url = "github:nix-community/home-manager/release-23.05";
-      # url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #--------------------
+    #Inputs that other inputs depend on
 
     # Not using flake-compat directly, but useful to get the other inputs to follow this
     flake-compat = {
@@ -31,10 +17,70 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    #-------------------
+
+
+    # -----------------------
+    # Utilities.
+    nixinate = {
+      url = "github:matthewcroughan/nixinate";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    pre-commit-hooks-nix =
+      {
+        url = "github:cachix/pre-commit-hooks.nix";
+
+        inputs = {
+          flake-utils.follows = "flake-utils";
+          flake-compat.follows = "flake-compat";
+          nixpkgs.follows = "nixpkgs";
+          nixpkgs-stable.follows = "nixpkgs";
+        };
+      };
+
+    ruby-nix = {
+      url = "github:inscapist/ruby-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    # ------------------------
+
+
+    # ----------------------
+    # Inputs that add notable features.
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    impermanence.url = "github:nix-community/impermanence/master";
+
+    simple-nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-22_11.follows = "nixpkgs";
+      inputs.nixpkgs-23_05.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
+      inputs.flake-compat.follows = "flake-utils";
+    };
+
+    home = {
+      url = "github:nix-community/home-manager/release-23.05";
+      # url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     bolsas-scraper =
       {
         url = "github:ist-bot-team/bolsas-scraper";
         inputs.nixpkgs.follows = "nixpkgs";
+        inputs = {
+          flake-parts.follows = "flake-parts";
+        };
       };
     sirpt-feed =
       {
@@ -49,10 +95,6 @@
         home-manager.follows = "home";
       };
     };
-    trackerslist = {
-      url = "github:ngosang/trackerslist";
-      flake = false;
-    };
 
     lanzaboote = {
       url = "github:nix-community/lanzaboote?ref=v0.3.0";
@@ -60,13 +102,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
+      inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
     };
 
     # microvm = {
     #     url = "github:astro/microvm.nix";
     #     inputs.nixpkgs.follows = "nixpkgs";
     # };
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    #---------------------
 
     #Important for checks flake output.
     deploy-rs.url = "github:serokell/deploy-rs";
@@ -74,16 +117,14 @@
       nixpkgs.follows = "nixpkgs";
       flake-compat.follows = "flake-compat";
     };
-    impermanence.url = "github:nix-community/impermanence/master";
+    #---------------------
+    # Other non-flake inputs.
+    #---------------------
     dsi-setupsecrets = {
       url = "git+ssh://git@git.spy.rafael.ovh:4222/mirrors/setup-secrets.git";
       flake = false;
     };
 
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs@{ self, ... }:
@@ -107,22 +148,7 @@
         let
           args = {
             inherit (final) system;
-            # config.allowUnfree = true;
-            config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-              # "osu-lazer"
-              # "flashplayer"
-              "vscode"
-              "code"
-              # "cnijfilter2" # canon printer
-              # "font-bh-lucidatypewriter-75dpi" # https://github.com/NixOS/nixpkgs/issues/99014
-              "steam-run"
-              "intel-ocl"
-              "steam-original"
-              "anydesk"
-              "burpsuite"
-              "nvidia-x11"
-              # "corefonts"
-            ];
+            config.allowUnfree = true;
             # config.contentAddressedByDefault = true;
           };
         in
