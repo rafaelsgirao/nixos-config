@@ -1,8 +1,5 @@
 { lib, modulesPath, ... }:
-
 {
-
-
   imports =
     [
       (modulesPath + "/profiles/qemu-guest.nix")
@@ -24,72 +21,72 @@
 
 
   #TODO: FINISH
-  # disko.devices = {
-  #   disk.main = {
-  #     type = "disk";
-  #     device = "/dev/sda";
-  #     size = "512M";
-  #     type = "EF00";
-  #     content = {
-  #       type = "filesystem";
-  #       format = "fat32";
-  #       mountpoint = "/boot";
-  #     };
-  #     zfs = {
-  #       size = "100%";
-  #       content = {
-  #         type = "zfs";
-  #         pool = "saxton";
-  #       };
-  #     };
-  #   };
-  #   zpool.zaxton = {
-  #     type = "zpool";
-  #     mode = "TODO"; #TODO
-  #     options = {
-  #       ashift = 12;
-  #     };
-  #     rootFsOptions = {
-  #       acltype = "posixacl";
-  #       atime = "off";
-  #       canmount = "off";
-  #       compression = "zstd";
-  #       dnodesize = "auto";
-  #       normalization = "formD";
-  #       xattr = "sa";
-  #       mountpoint = "none";
-  #       ;
-  #       };
-  #       datasets = {
-  #         "local/root" = {
-  #           type = "zfs_fs";
-  #           mountpoint = "/"
-  #             postCreateHook = "zfs snapshot saxton/local/root@blank"
-  #           };
-  #           "local/nix" = {
-  #             type = "zfs_fs";
-  #             mountpoint = "/nix"
-  #               };
-  #             "local/reserved" = {
-  #               type = "zfs_fs";
-  #               options = {
-  #                 mountpoint = "none";
-  #                 refreservation = "2G";
-  #               };
-  #             };
-  #             "local/state" = {
-  #               type = "zfs_fs";
-  #               mountpoint = "/state";
-  #             };
-  #             "safe/persist" = {
-  #               type = "zfs_fs";
-  #               mountpoint = "/pst";
-  #             };
-  #           };
-  #         };
-  #         # nodev."/" = {
-  #         #     fsType = "tmpfs";
-  #         #     mountOptions = [ "size=2G" "defaults" "mode=755" ];
-  #         # };
-  #       };
+  disko.devices = {
+    disk.main = {
+      type = "disk";
+      device = "/dev/sda";
+      content.type = "gpt";
+      content.partitions = {
+        ESP = {
+          size = "512M";
+          type = "EF00";
+          content = {
+            type = "filesystem";
+            format = "fat32";
+            mountpoint = "/boot";
+          };
+        };
+      };
+    };
+    zpool.zaxton = {
+      type = "zpool";
+      # mode = "TODO"; #TODO
+      options = {
+        ashift = "12";
+      };
+      rootFsOptions = {
+        acltype = "posixacl";
+        atime = "off";
+        canmount = "off";
+        compression = "zstd";
+        dnodesize = "auto";
+        normalization = "formD";
+        xattr = "sa";
+        mountpoint = "none";
+
+      };
+      datasets = {
+        "local/root" = {
+          type = "zfs_fs";
+          mountpoint = "/";
+          postCreateHook = "zfs snapshot saxton/local/root@blank";
+        };
+        "local/nix" = {
+          type = "zfs_fs";
+          mountpoint = "/nix";
+        };
+        "local/reserved" = {
+          type = "zfs_fs";
+          options = {
+            mountpoint = "none";
+            refreservation = "2G";
+          };
+        };
+        "local/state" = {
+          type = "zfs_fs";
+          mountpoint = "/state";
+        };
+        "safe/persist" = {
+          type = "zfs_fs";
+          mountpoint = "/pst";
+        };
+      };
+    };
+    # nodev."/" = {
+    #     fsType = "tmpfs";
+    #     mountOptions = [ "size=2G" "defaults" "mode=755" ];
+    # };
+  };
+  fileSystems."/pst".neededForBoot = true;
+  fileSystems."/state".neededForBoot = true;
 }

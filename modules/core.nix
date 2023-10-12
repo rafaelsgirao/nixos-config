@@ -285,7 +285,7 @@
     protocol = "ssh-ng";
     # publicHostKey = "bla";
     hostName = "192.168.10.6";
-    system = "x86_64-linux";
+    systems = [ "x86_64-linux" "aarch64-linux" ];
     maxJobs = 4;
     speedFactor = 2;
     supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];

@@ -13,9 +13,9 @@ in
   environment.persistence."/state" = {
     hideMounts = true;
     users.rg = {
-      files = [
-        ".wakatime.bdb"
-      ];
+      # files = [
+      #   # ".wakatime.bdb"
+      # ];
       directories = [
         ".wakatime"
       ];
@@ -27,6 +27,12 @@ in
       # source = lib.file.mkOutOfStoreSymlink config.age.secrets.wakatime-cfg.path;
       source = config.lib.file.mkOutOfStoreSymlink agePath;
       target = ".wakatime.cfg";
+    };
+    home.file.wakatime-dbd = {
+      enable = true;
+      # source = lib.file.mkOutOfStoreSymlink config.age.secrets.wakatime-cfg.path;
+      source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.wakatime.bdb";
+      target = ".wakatime.bdb";
     };
     home.packages = [
       pkgs.wakatime
