@@ -10,7 +10,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  imports = [ ./chromium.nix ];
+  # imports = [ ./chromium.nix ];
   # improve desktop responsiveness when updating the system
   nix.daemonCPUSchedPolicy = "idle";
   networking.hosts."192.168.10.3" = [ "mx.rafael.ovh" ];

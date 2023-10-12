@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
 in

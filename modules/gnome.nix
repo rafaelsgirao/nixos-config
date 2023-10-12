@@ -35,7 +35,7 @@
   ];
   services.gnome.gnome-browser-connector.enable = true;
 
-  services.gnome-terminal.enable = false;
+  programs.gnome-terminal.enable = false;
 
   #Open port for KDE Connect.
   #networking.firewall = lib.mkIf (config.networking.hostName != "medic") {

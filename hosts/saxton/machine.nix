@@ -1,7 +1,8 @@
-{ config, hostSecretsDir, ... }:
+{ config, hostSecretsDir, lib, ... }:
 
 let
   inherit (config.rg) domain;
+
 in
 {
   imports = [
@@ -67,7 +68,7 @@ in
 
   #Root as 'tmpfs'.
   boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r ${config.networking.hostname}/local/root@blank
+    zfs rollback -r ${config.networking.hostName}/local/root@blank
   '';
 
   environment.persistence."/pst" = {

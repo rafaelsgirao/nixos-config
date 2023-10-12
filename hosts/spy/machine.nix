@@ -2,9 +2,10 @@
 let
   hostname = config.networking.hostName;
   inherit (config.rg) ip;
-  inherit (config.rg) fqdn;
+  inherit (config.networking) fqdn;
 in
 {
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   services.udisks2.enable = lib.mkDefault false;
   imports = [
     ./library.nix

@@ -87,7 +87,6 @@ in
           #Ugly but idc atm
           ".local/bin/portcheck".source = pkgs.copyPathToStore ../files/portcheck;
           ".local/bin/randomport".source = pkgs.copyPathToStore ../files/randomport;
-          ".local/bin/sway_timer.py".source = pkgs.copyPathToStore ../files/sway_timer.py;
         } // lib.optionalAttrs isWorkstation {
           ".config/mimeapps.list".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
           ".config/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/Code/User/settings.json";

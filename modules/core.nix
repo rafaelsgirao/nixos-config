@@ -29,6 +29,7 @@
     '';
   };
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   #Enable use of Flakes.
   nix.package = pkgs.nixFlakes;
   nix.settings = {

@@ -163,7 +163,7 @@
           # "corefonts"
         ];
         # config.contentAddressedByDefault = true;
-        # config.allowUnfree = true;
+        config.allowUnfree = true;
       };
 
       # Imports every host defined in a directory.
@@ -258,12 +258,12 @@
                 profiles.system.path =
                   deploy-rs-activate self.nixosConfigurations.scout;
               };
-              engie = {
-                sshUser = "root";
-                hostname = "192.168.10.3";
-                profiles.system.path =
-                  deploy-rs-activate self.nixosConfigurations.engie;
-              };
+              # engie = {
+              #   sshUser = "root";
+              #   hostname = "192.168.10.3";
+              #   profiles.system.path =
+              #     deploy-rs-activate self.nixosConfigurations.engie;
+              # };
               spy = {
                 sshUser = "root";
                 hostname = "192.168.10.6";
