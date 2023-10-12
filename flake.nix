@@ -101,7 +101,7 @@
       pkgs-sets = final: _prev:
         let
           args = {
-            system = final.system;
+            inherit (final) system;
             # config.allowUnfree = true;
             config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
               # "osu-lazer"

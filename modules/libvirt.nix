@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   #Enable libvirtd
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd = {

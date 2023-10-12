@@ -1,8 +1,8 @@
-{ config, pkgs, inputs, hostSecretsDir, ... }:
+{ config, pkgs, hostSecretsDir, ... }:
 let
-  ip = config.rg.ip;
-  domain = config.rg.domain;
-  fqdn = config.networking.fqdn;
+  inherit (config.rg) ip;
+  inherit (config.rg) domain;
+  inherit (config.networking) fqdn;
   dotnetHardening = {
     CapabilityBoundingSet = [ "" ];
     SystemCallArchitectures = "native";

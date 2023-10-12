@@ -319,7 +319,7 @@ in
   #--------------------------------------------
   #
 
-  programs.nm-applet.enable = lib.mkIf !isGnome true;
+  programs.nm-applet.enable = lib.mkIf (!isGnome) true;
 
   # hm.services.network-manager-applet.enable = true;
   #AppArmor is recommended for Firejail
@@ -392,7 +392,7 @@ in
       };
   };
 
-  hm.services.flameshot.enable = lib.mkIf !isGnome true;
+  hm.services.flameshot.enable = lib.mkIf (!isGnome) true;
 
   #Enable XDG Desktop Portals
   # Needed for flameshot:
@@ -409,7 +409,7 @@ in
   };
 
   #Required for GNOME trash to work
-  services.gvfs.enable = mkIf !isGnome true;
+  services.gvfs.enable = mkIf (!isGnome) true;
 
   #Attempt to fix tray icons (Jellyfin-mpv-shim and udiskie in particular)
   services.udev.packages = with pkgs; lib.optionals (!isGnome) [ gnome.gnome-settings-daemon ];

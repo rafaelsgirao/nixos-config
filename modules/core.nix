@@ -94,7 +94,7 @@
   security.sudo.execWheelOnly = true;
 
   networking = {
-    domain = config.rg.domain;
+    inherit (config.rg) domain;
     usePredictableInterfaceNames = false;
     interfaces.eth0.useDHCP = lib.mkDefault true;
     firewall = {

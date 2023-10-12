@@ -1,4 +1,4 @@
-{ ... }:
+_:
 _final: prev:
 let
   ferdium-wrapper = prev.writeShellScriptBin "ferdium" ''

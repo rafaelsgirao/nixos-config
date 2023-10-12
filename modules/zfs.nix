@@ -21,5 +21,5 @@
   # Instead, we add mail notifications w/ an alternative method above
   services.zfs.zed.enableMail = false;
 
-  services.zfs.trim.enable = (config.rg.machineType != "virt");
+  services.zfs.trim.enable = config.rg.machineType != "virt";
 }

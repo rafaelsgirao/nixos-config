@@ -1,7 +1,7 @@
 { lib, pkgs, config, ... }:
 let
-  fqdn = config.networking.fqdn;
-  isWorkstation = (config.rg.class == "workstation");
+  inherit (config.networking) fqdn;
+  isWorkstation = config.rg.class == "workstation";
 in
 {
   #Sysctl rules

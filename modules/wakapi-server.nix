@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  fqdn = config.networking.fqdn;
+  inherit (config.networking) fqdn;
   host = "https://wakapi.${fqdn}";
   port = 32778;
   format = pkgs.formats.yaml { };

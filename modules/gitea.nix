@@ -1,8 +1,8 @@
 { config, lib, ... }:
 let
   hostname = config.networking.hostName;
-  ip = config.rg.ip;
-  fqdn = config.networking.fqdn;
+  inherit (config.rg) ip;
+  inherit (config.networking) fqdn;
   appName = "Gitea RG";
 in
 {

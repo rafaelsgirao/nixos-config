@@ -1,7 +1,7 @@
 { config, pkgs, lib, user, options, hostSecretsDir, inputs, file, ... }:
 let
   inherit (lib) mkAliasDefinitions mkOption types mkEnableOption;
-  isWorkstation = (config.rg.class == "workstation");
+  isWorkstation = config.rg.class == "workstation";
   config' = config;
 in
 {
@@ -36,7 +36,7 @@ in
     assertions =
       let
         rgMsg = x: "The option ${x} must have a value!";
-        assertRgNotNull = x: ({ assertion = (x != null); message = rgMsg x; });
+        assertRgNotNull = x: { assertion = x != null; message = rgMsg x; };
       in
       [
         (assertRgNotNull config.rg.domain)
@@ -49,9 +49,9 @@ in
         (assertRgNotNull config.rg.class)
 
       ];
-    nixpkgs.config.allowUnfree = lib.mkIf (isWorkstation) true;
+    nixpkgs.config.allowUnfree = lib.mkIf isWorkstation true;
 
-    age.secrets.ssh-config = lib.mkIf (isWorkstation) {
+    age.secrets.ssh-config = lib.mkIf isWorkstation {
       file = "${hostSecretsDir}/../SSH-config.age";
       owner = "rg";
     };
@@ -61,7 +61,7 @@ in
         ".local/share/atuin"
         ".local/share/fish"
         ".local/share/zoxide"
-      ] ++ lib.optionals (isWorkstation) [
+      ] ++ lib.optionals isWorkstation [
         ".ssh"
         ".local/share/keyrings"
       ];
@@ -88,7 +88,7 @@ in
           ".local/bin/portcheck".source = pkgs.copyPathToStore ../files/portcheck;
           ".local/bin/randomport".source = pkgs.copyPathToStore ../files/randomport;
           ".local/bin/sway_timer.py".source = pkgs.copyPathToStore ../files/sway_timer.py;
-        } // lib.optionalAttrs (isWorkstation) {
+        } // lib.optionalAttrs isWorkstation {
           ".config/mimeapps.list".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
           ".config/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/Code/User/settings.json";
         };
@@ -96,7 +96,7 @@ in
         programs.ssh =
           {
             enable = true;
-            extraConfig = lib.mkIf (isWorkstation)
+            extraConfig = lib.mkIf isWorkstation
               ''
                 AddKeysToAgent yes
                 Include ${config'.age.secrets.ssh-config.path}
@@ -253,9 +253,9 @@ in
             "_" = "sudo";
           };
           plugins = with pkgs.fishPlugins; [
-            { name = "wakatime-fish"; src = wakatime-fish.src; }
-            { name = "done"; src = done.src; }
-            { name = "bass"; src = bass.src; }
+            { name = "wakatime-fish"; inherit (wakatime-fish) src; }
+            { name = "done"; inherit (done) src; }
+            { name = "bass"; inherit (bass) src; }
           ];
           shellAliases = rec {
             # ls = "exa";

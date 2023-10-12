@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, ... }: {
   imports = [
     ./pop-shell.nix
     ./wayland.nix

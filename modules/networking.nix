@@ -4,7 +4,7 @@ let
 in
 {
 
-  networking.networkmanager = lib.mkIf (isWorkstation) {
+  networking.networkmanager = lib.mkIf isWorkstation {
     enable = true;
     unmanaged = [ "nebula0" ];
     dns = "systemd-resolved"; #this is done upstream.

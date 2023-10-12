@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
 
   environment.persistence."/persist".directories = [
     "/var/rss2email"

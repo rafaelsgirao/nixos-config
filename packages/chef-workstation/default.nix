@@ -1,4 +1,4 @@
-{ rubyNix, openssl }:
+{ rubyNix }:
 
 rubyNix {
   name = "chef-workstation";
@@ -6,6 +6,7 @@ rubyNix {
 }
 
 
+#{ (other-stuff), openssl }:
 #bundlerEnv {
 #  name = "chef-workstation";
 #  # nix-shell -p bundix zlib libiconv --run 'bundix --magic'

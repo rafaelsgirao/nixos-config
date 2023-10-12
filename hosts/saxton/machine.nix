@@ -1,8 +1,7 @@
-{ config, pkgs, hostSecretsDir, ... }:
+{ config, hostSecretsDir, ... }:
 
 let
-  domain = config.rg.domain;
-  fqdn = config.networking.fqdn;
+  inherit (config.rg) domain;
 in
 {
   imports = [

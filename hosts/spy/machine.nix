@@ -1,8 +1,8 @@
 { config, pkgs, lib, hostSecretsDir, ... }:
 let
   hostname = config.networking.hostName;
-  ip = config.rg.ip;
-  fqdn = config.rg.fqdn;
+  inherit (config.rg) ip;
+  inherit (config.rg) fqdn;
 in
 {
   services.udisks2.enable = lib.mkDefault false;

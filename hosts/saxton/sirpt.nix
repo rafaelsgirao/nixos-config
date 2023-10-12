@@ -16,7 +16,7 @@ in
 
   users.users = {
     sirpt-dnsbl = {
-      group = group;
+      inherit group;
       isSystemUser = true;
     };
   };

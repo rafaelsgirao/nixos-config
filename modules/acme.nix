@@ -1,7 +1,7 @@
 { config, hostSecretsDir, ... }:
 let
-  domain = config.rg.domain;
-  fqdn = config.networking.fqdn;
+  inherit (config.rg) domain;
+  inherit (config.networking) fqdn;
 in
 {
   environment.persistence."/state".directories = [ "/var/lib/acme" ];

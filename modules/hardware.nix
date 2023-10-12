@@ -5,7 +5,6 @@ let
   # isAMD = config.rg.machineType == "amd";
   isWorkstation = config.rg.class == "workstation";
   inherit (lib) mkIf optional optionals;
-  domain = config.rg.domain;
 in
 {
 
@@ -44,6 +43,6 @@ in
 
   services.xserver.videoDrivers = lib.mkIf (isWorkstation && isIntel) [ "intel" ];
 
-  boot.kernelModules = optionals (isIntel) [ "kvm-intel" ];
+  boot.kernelModules = optionals isIntel [ "kvm-intel" ];
 
 }
