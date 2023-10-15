@@ -9,13 +9,13 @@ let
 
   spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
 
-  engie = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDHPoJmEzz1fs+KPDQh0E+Py3yb9cTzEd3E4gVLai2/i";
+  saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH4lpVgsqEkErMz64A8EoV+TtQUy1PcoKhuAosDvFETA";
 
   systems = [
     scout
     medic
     spy
-    engie
+    saxton
   ];
 in
 {
@@ -26,8 +26,8 @@ in
   "sendmail-pass.age".publicKeys = systems ++ users;
   "RGNet-CA.age".publicKeys = systems ++ users;
   "rclone-config.age".publicKeys = systems ++ users;
-  "restic-env.age".publicKeys = [ engie spy ] ++ users;
-  "restic-password.age".publicKeys = [ engie spy ] ++ users;
+  "restic-env.age".publicKeys = [ saxton spy ] ++ users;
+  "restic-password.age".publicKeys = [ saxton spy ] ++ users;
   "SSH-config.age".publicKeys = [ scout medic ] ++ users;
 
   #Scout secrets
@@ -51,17 +51,17 @@ in
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
 
-  #Engie secrets
-  "engie/ENV-WCBot.age".publicKeys = [ engie ] ++ users;
-  "engie/RGNet-key.age".publicKeys = [ engie ] ++ users;
-  "engie/RGNet-cert.age".publicKeys = [ engie ] ++ users;
-  "engie/ENV-bolsas-scraper.age".publicKeys = [ engie ] ++ users;
-  "engie/HC-alive.age".publicKeys = [ engie ] ++ users;
-  "engie/HC-bolsas.age".publicKeys = [ engie ] ++ users;
-  # "engie/HC-sirpt.age".publicKeys = [ engie ] ++ users;
-  "engie/ENV-sirptDNSBL.age".publicKeys = [ engie ] ++ users;
-  "engie/ENV-vaultwarden.age".publicKeys = [ engie ] ++ users;
-  "engie/Mailserver-pwd-rafael.age".publicKeys = [ engie ] ++ users;
-  "engie/Mailserver-pwd-machines.age".publicKeys = [ engie ] ++ users;
+  #saxton secrets
+  "saxton/ENV-WCBot.age".publicKeys = [ saxton ] ++ users;
+  "saxton/RGNet-key.age".publicKeys = [ saxton ] ++ users;
+  "saxton/RGNet-cert.age".publicKeys = [ saxton ] ++ users;
+  "saxton/ENV-bolsas-scraper.age".publicKeys = [ saxton ] ++ users;
+  "saxton/HC-alive.age".publicKeys = [ saxton ] ++ users;
+  "saxton/HC-bolsas.age".publicKeys = [ saxton ] ++ users;
+  # "saxton/HC-sirpt.age".publicKeys = [ saxton ] ++ users;
+  "saxton/ENV-sirptDNSBL.age".publicKeys = [ saxton ] ++ users;
+  "saxton/ENV-vaultwarden.age".publicKeys = [ saxton ] ++ users;
+  "saxton/Mailserver-pwd-rafael.age".publicKeys = [ saxton ] ++ users;
+  "saxton/Mailserver-pwd-machines.age".publicKeys = [ saxton ] ++ users;
 
 }
