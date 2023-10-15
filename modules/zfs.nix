@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   #ZFS configs so pool works as root
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.devNodes = "/dev/disk/by-path";
@@ -21,5 +21,9 @@
   # Instead, we add mail notifications w/ an alternative method above
   services.zfs.zed.enableMail = false;
 
+  services.zfs.autoScrub = lib.mkIf (config.rg.machineType != "virt") {
+    enable = true;
+    interval = "2 weeks";
+  };
   services.zfs.trim.enable = config.rg.machineType != "virt";
 }
