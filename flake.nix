@@ -95,7 +95,6 @@
         home-manager.follows = "home";
       };
     };
-
     lanzaboote = {
       url = "github:nix-community/lanzaboote?ref=v0.3.0";
       # Optional but recommended to limit the size of your system closure.
@@ -137,7 +136,8 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJNh9R6uSjnGxHwxul87AcXs4mzEMSOcjubmuMzO/OkQ demo"
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPPsEKHGmtdhA+uqziPEGnJirEXfFQdqCDyIFJ2z1MKgAAAABHNzaDo= Yubikey-U2F"
       ];
-      system = "x86_64-linux";
+      # system = "aarch64-linux";
+      # system = "x86_64-linux";
 
       pkgs-sets = final: _prev:
         let
@@ -149,7 +149,7 @@
         in
         {
           unstable = import inputs.nixpkgs-unstable args;
-          old = import inputs.nixpkgs-old args;
+          packages = import self.packages args;
           # latest = import inputs.nixpkgs-latest args;
         };
 
@@ -161,39 +161,27 @@
         (readDir overlaysDir);
 
       overlays = [
-        # inputs.swayfx.overlays.default
         pkgs-sets
       ] ++ myOverlays;
 
-      pkgs = import inputs.nixpkgs {
-        inherit system overlays;
-        config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-          # "osu-lazer"
-          # "flashplayer"
-          "code"
-          "vscode"
-          "vscode-fhs"
-          # "cnijfilter2" # canon printer
-          # "font-bh-lucidatypewriter-75dpi" # https://github.com/NixOS/nixpkgs/issues/99014
-          "steam-run"
-          "intel-ocl"
-          "steam-original"
-          "anydesk"
-          "burpsuite"
-          "nvidia-x11"
-          # "corefonts"
-        ];
-        # config.contentAddressedByDefault = true;
-        config.allowUnfree = true;
-      };
+      # pkgs = import inputs.nixpkgs {
+      #   inherit system overlays;
+      #   # config.contentAddressedByDefault = true;
+      #   config.allowUnfree = true;
+      # };
 
       # Imports every host defined in a directory.
       mkHosts = dir:
         listToAttrs (map
           (name: {
             inherit name;
-            value = inputs.nixpkgs.lib.nixosSystem {
-              inherit system pkgs;
+            value = inputs.nixpkgs.lib.nixosSystem rec {
+              system = if (name != "saxton") then "x86_64-linux" else "aarch64-linux";
+              pkgs = import inputs.nixpkgs {
+                inherit system overlays;
+                config.allowUnfree = true;
+              };
+              # inherit pkgs;
               specialArgs = {
                 inherit sshKeys;
                 inherit inputs;

@@ -13,6 +13,8 @@ in
   # remarkable-rcu = pkgs.callPackage ./rcu {};
 
   #Packages defined in this repo.
+  fakepkg = pkgs.callPackage ./dummy { };
+
   go-vod = callPackage ./go-vod { };
   # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
   chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
