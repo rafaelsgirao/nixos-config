@@ -239,9 +239,10 @@
         systems = [
           # systems for which you want to build the `perSystem` attributes
           "x86_64-linux"
+          "aarch64-linux"
         ];
         # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
-        perSystem = { config, pkgs, ... }: {
+        perSystem = { config, pkgs, inputs', ... }: {
           devShells.default = config.pre-commit.devShell;
           pre-commit.settings.hooks = {
             nixpkgs-fmt.enable = true;
@@ -249,7 +250,6 @@
             deadnix = {
               enable = true;
             };
-
             gitleaks = {
               enable = true;
               name = "gitleaks";
@@ -257,18 +257,15 @@
               entry = "${pkgs.gitleaks}/bin/gitleaks protect --verbose --redact --staged";
               pass_filenames = false;
             };
-
-
           };
           pre-commit.settings.settings = {
             deadnix.edit = true;
           };
+          packages = import ./packages { inherit pkgs; inherit inputs; inherit inputs'; };
         };
         flake = {
           apps = inputs.nixinate.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;
-
         };
-
       };
 }
