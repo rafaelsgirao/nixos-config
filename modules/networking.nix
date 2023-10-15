@@ -17,7 +17,7 @@ in
     '';
   };
 
-  networking.nameservers = [ "${config.rg.ip}" "192.168.10.3" ];
+  networking.nameservers = [ "192.168.10.5" "192.168.10.3" ];
 
   #resolved allows us to have less processes running:
   services.resolved = {

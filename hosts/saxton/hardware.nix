@@ -32,13 +32,20 @@
           type = "EF00";
           content = {
             type = "filesystem";
-            format = "fat32";
+            format = "vfat";
             mountpoint = "/boot";
+          };
+        };
+        saxtonpool = {
+          size = "100%";
+          content = {
+            type = "zfs";
+            pool = "saxton";
           };
         };
       };
     };
-    zpool.zaxton = {
+    zpool.saxton = {
       type = "zpool";
       # mode = "TODO"; #TODO
       options = {

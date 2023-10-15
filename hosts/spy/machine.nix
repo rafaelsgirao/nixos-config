@@ -52,7 +52,7 @@ in
 
   services.postgresqlBackup = {
     enable = true;
-    location = "/state/backups/postgres";
+    location = "/state-heavy/backups/postgres";
     compression = "zstd";
     backupAll = true;
   };

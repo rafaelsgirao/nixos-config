@@ -178,7 +178,7 @@
       UseDns = false;
       # unbind gnupg sockets if they exists
 
-      PermitRootLogin = false;
+      PermitRootLogin = "no";
     };
     hostKeys = [
       {
@@ -302,6 +302,7 @@
     viu
     just
     cloc
+    dmidecode
     rsync
     nebula
     qrencode

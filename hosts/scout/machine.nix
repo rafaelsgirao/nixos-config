@@ -21,6 +21,7 @@
     # Add configs later as needed
   ];
 
+  services.zfs.expandOnBoot = "all";
 
   rg = {
     ip = "192.168.10.1";
