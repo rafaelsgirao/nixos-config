@@ -16,14 +16,14 @@
   };
   zramSwap.memoryPercent = 25;
 
-  #nixinate
   _module.args.nixinate = {
-    host = "${config.rg.ip}";
+    host = config.rg.ip;
     sshUser = "rg";
     buildOn = "remote";
-    substituteOnTarget = true;
     hermetic = false;
+    substituteOnTarget = true;
   };
+
 
   boot = {
     kernelParams = [ "quiet" ];
