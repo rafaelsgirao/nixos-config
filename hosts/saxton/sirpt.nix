@@ -43,7 +43,7 @@ in
         OUT_FILE = outFile;
       };
       script =
-        "${pkgs.sirpt-dnsbl}/bin/gen-dnsbl && ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null $HC_URL";
+        "${pkgs.mypkgs.sirpt-dnsbl}/bin/gen-dnsbl && ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null $HC_URL";
       postStop = "${pkgs.blocky}/bin/blocky refresh";
     };
 

@@ -17,7 +17,7 @@
   networking.useDHCP = lib.mkDefault false;
   networking.interfaces.eth0.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  nixpkgs.hostPlatform = "aarch64-linux";
 
 
   #TODO: FINISH

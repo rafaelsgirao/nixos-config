@@ -11,7 +11,7 @@
     # ../../modules/laptop.nix
     ../../modules/zfs.nix
     ../../modules/zfs-unlock.nix
-    ../../modules/ist.nix
+    ../../modules/dsi.nix
     ../../modules/syncthing.nix
     ../../modules/libvirt.nix
     #      ../../modules/nvidia.nix
@@ -95,15 +95,11 @@
 
   #Additional packages
   environment.systemPackages = with pkgs; [
-    chef-workstation
-    # simple-scan
-    # rustdesk
     lm_sensors
     libreoffice
     poetry
     hyperfine
     colordiff
-    setupSecrets
   ];
 
   zramSwap.enable = true;

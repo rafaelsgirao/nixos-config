@@ -13,12 +13,13 @@ in
   # remarkable-rcu = pkgs.callPackage ./rcu {};
 
   #Packages defined in this repo.
-  fakepkg = pkgs.callPackage ./dummy { };
+  fakepkg = pkgs.callPackage ./fakepkg { };
 
   go-vod = callPackage ./go-vod { };
   # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
   chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
 
+  wc-bot = callPackage ./wc-bot { };
   #NOTE: I don't think creating packages that call inputs is good practice,
   #But I don't know how to do better
   # setupSecrets = callPackage ./setupsecrets { inherit inputs; };

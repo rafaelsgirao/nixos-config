@@ -5,7 +5,7 @@
   hm.programs.firefox = {
     enable = true;
 
-    package = pkgs.fakepkg;
+    package = pkgs.mypkgs.fakepkg;
     profiles."rg" = {
       #   extraConfig = ''
       # '';

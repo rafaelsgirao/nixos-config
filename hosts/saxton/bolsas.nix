@@ -17,7 +17,7 @@
       EnvironmentFile = config.age.secrets.ENV-bolsas-scraper.path;
     };
     script =
-      "${pkgs.bolsas-scraper}/bin/bolsas-scraper && ${pkgs.curl}/bin/curl -fsS -m 10 -retry 5 -o /dev/null $HC_URL";
+      "${pkgs.mypkgs.bolsas-scraper}/bin/bolsas-scraper && ${pkgs.curl}/bin/curl -fsS -m 10 -retry 5 -o /dev/null $HC_URL";
   };
 
   systemd.timers.bolsas-scraper-trigger = {

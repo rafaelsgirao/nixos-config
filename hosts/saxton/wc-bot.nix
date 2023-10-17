@@ -19,7 +19,7 @@
     serviceConfig = {
       DynamicUser = true;
       User = "wc-bot";
-      ExecStart = "${pkgs.nodejs}/bin/node ${pkgs.wc-bot}/lib/node_modules/ist-chan-bot/bot.js";
+      ExecStart = "${pkgs.nodejs}/bin/node ${pkgs.mypkgs.wc-bot}/lib/node_modules/ist-chan-bot/bot.js";
 
       EnvironmentFile = config.age.secrets.ENV-wc-bot.path;
       SupplementaryGroups = "wc-bot-env";

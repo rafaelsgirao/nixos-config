@@ -7,7 +7,14 @@ let
   };
 in
 # adds symlinks of hello and stack to current build and prints "links added"
-symlinkJoin { name = "chef-workstation"; paths = [ chefWorkstationEnv.envMinimal ]; postBuild = "echo links added"; }
+symlinkJoin {
+  name = "chef-workstation";
+  paths = [ chefWorkstationEnv.envMinimal ];
+  postBuild = "echo links added";
+
+  inherit (chefWorkstationEnv) env;
+  inherit (chefWorkstationEnv) ruby;
+}
 
 
 #{ (other-stuff), openssl }:

@@ -11,7 +11,7 @@
     # ../../modules/xorg.nix
     ../../modules/laptop.nix
     ../../modules/zfs.nix
-    ../../modules/ist.nix
+    ../../modules/dsi.nix
     ../../modules/syncthing.nix
     ../../modules/libvirt.nix
     # ../../modules/docker.nix
@@ -167,7 +167,6 @@
     # remarkable-rcu
     ffmpeg
     gcc
-    chef-workstation
     # rustdesk
     appimage-run
     simple-scan

@@ -124,9 +124,10 @@
   outputs = inputs@{ self, ... }:
 
     let
+      inherit (self) outputs;
       inherit (builtins) attrNames readDir listToAttrs;
-      inherit (inputs.nixpkgs) lib;
-      inherit (lib) mapAttrsToList;
+      # inherit (inputs.nixpkgs) lib;
+      lib = inputs.nixpkgs.lib // inputs.flake-parts.lib // inputs.home.lib;
 
       user = "rg";
 
@@ -136,39 +137,8 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJNh9R6uSjnGxHwxul87AcXs4mzEMSOcjubmuMzO/OkQ demo"
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPPsEKHGmtdhA+uqziPEGnJirEXfFQdqCDyIFJ2z1MKgAAAABHNzaDo= Yubikey-U2F"
       ];
-      # system = "aarch64-linux";
-      # system = "x86_64-linux";
-
-      pkgs-sets = final: _prev:
-        let
-          args = {
-            inherit (final) system;
-            config.allowUnfree = true;
-            # config.contentAddressedByDefault = true;
-          };
-        in
-        {
-          unstable = import inputs.nixpkgs-unstable args;
-          packages = import self.packages args;
-          # latest = import inputs.nixpkgs-latest args;
-        };
 
       secretsDir = self + "/secrets";
-      overlaysDir = ./overlays;
-
-      myOverlays = mapAttrsToList
-        (name: _: import "${overlaysDir}/${name}" { inherit inputs; inherit self; })
-        (readDir overlaysDir);
-
-      overlays = [
-        pkgs-sets
-      ] ++ myOverlays;
-
-      # pkgs = import inputs.nixpkgs {
-      #   inherit system overlays;
-      #   # config.contentAddressedByDefault = true;
-      #   config.allowUnfree = true;
-      # };
 
       # Imports every host defined in a directory.
       mkHosts = dir:
@@ -176,12 +146,6 @@
           (name: {
             inherit name;
             value = inputs.nixpkgs.lib.nixosSystem rec {
-              system = if (name != "saxton") then "x86_64-linux" else "aarch64-linux";
-              pkgs = import inputs.nixpkgs {
-                inherit system overlays;
-                config.allowUnfree = true;
-              };
-              # inherit pkgs;
               specialArgs = {
                 inherit sshKeys;
                 inherit inputs;
@@ -190,6 +154,14 @@
                 hostSecretsDir = "${secretsDir}/${name}";
               };
               modules = [
+                {
+                  nixpkgs = {
+                    overlays = builtins.attrValues outputs.overlays;
+                    config = {
+                      allowUnfree = true;
+                    };
+                  };
+                }
                 { networking.hostName = name; }
                 ./modules/core.nix
                 ./modules/hardware.nix
@@ -251,9 +223,26 @@
           };
           packages = import ./packages { inherit pkgs; inherit inputs; inherit inputs'; };
         };
+
         flake = {
           apps = inputs.nixinate.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;
+          overlays = {
+
+            pkgs-sets = final: _prev:
+              let
+                args = {
+                  inherit (final) system;
+                  config.allowUnfree = true;
+                  # config.contentAddressedByDefault = true;
+                };
+              in
+              {
+                unstable = import inputs.nixpkgs-unstable args;
+                mypkgs = outputs.packages.${final.system};
+              };
+          };
         };
       };
 }
+
