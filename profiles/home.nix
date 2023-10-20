@@ -1,9 +1,11 @@
-{ config, pkgs, lib, hostSecretsDir, inputs, file, ... }:
+{ config, pkgs, lib, hostSecretsDir, inputs, user, file, options, ... }:
 let
   isWorkstation = config.rg.class == "workstation";
   config' = config;
 in
 {
+
+  home-manager.users.${user} = lib.mkAliasDefinitions options.hm;
 
   age.secrets.ssh-config = lib.mkIf isWorkstation {
     file = "${hostSecretsDir}/../SSH-config.age";
@@ -21,7 +23,7 @@ in
     ];
 
   };
-  hm = {
+  hm = { config, ... }: {
     imports = [ (inputs.impermanence + "/home-manager.nix") ];
     home.homeDirectory = "/home/rg";
     home.username = "rg";

@@ -1,8 +1,15 @@
-{ _module, config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }: {
-  imports = [
-    ./nebula.nix
-    ./networking.nix
-    ./wakapi-client.nix
+{ _module, profiles, config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }: {
+  imports = with profiles; [
+    # ./nebula.nix
+    # ./networking.nix
+    # ./wakapi-client.nix
+    # ./nix.nix
+    core.nebula
+    core.networking
+    core.wakapi-client
+    core.nix
+    home
+    options
   ];
 
   #--------------------------------------------
@@ -25,6 +32,7 @@
   };
 
 
+
   boot = {
     kernelParams = [ "quiet" ];
     initrd.preDeviceCommands = ''
@@ -38,33 +46,6 @@
     '';
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  #Enable use of Flakes.
-  nix.package = pkgs.nixFlakes;
-  nix.settings = {
-    # Enable flakes
-    experimental-features = [
-      "nix-command"
-      "flakes"
-      "ca-derivations"
-    ];
-
-    allowed-users = [ "@wheel" ];
-    trusted-users = [ "rg" "root" ];
-
-    # Fallback quickly if substituters are not available.
-    connect-timeout = 5;
-
-    # The default at 10 is rarely enough.
-    log-lines = lib.mkDefault 30;
-
-    # Avoid disk full issues
-    max-free = lib.mkDefault (3000 * 1024 * 1024);
-    min-free = lib.mkDefault (512 * 1024 * 1024);
-
-    # Avoid copying unnecessary stuff over SSH
-    builders-use-substitutes = true;
-  };
 
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;
@@ -76,28 +57,11 @@
     "net.ipv4.ip_unprivileged_port_start" = 0;
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
 
   zramSwap.enable = lib.mkDefault true;
   #--------------------------------------------
   #-------------Basic Settings-----------------
   #--------------------------------------------
-
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  nix.registry.flake-utils.flake = inputs.flake-utils;
-  nix.registry.nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
-  nix.registry.unstable.flake = inputs.nixpkgs-unstable;
-
-  nix.nixPath = [
-    "nixpkgs=/etc/channels/nixpkgs"
-    "nixos-config=/etc/nixos/configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-  ];
-  environment.etc."channels/nixpkgs".source = inputs.nixpkgs.outPath;
 
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
@@ -195,10 +159,6 @@
     extraArgs = [ "--avoid '(^|/)(code|chromium|ferdium|thunderbird)$'" ];
   };
 
-  #Automatically saves up space in nix-store by hardlinking
-  #files with identical content
-  #This is apparently a costly operation in HDDs, so only enabled per-machine
-  #  nix.settings.auto-optimise-store = false;
 
   # 'to enable vendor fish completions provided by Nixpkgs you will also want to enable the fish shell in /etc/nixos/configuration.nix:'
   programs.fish.enable = true;
@@ -258,39 +218,8 @@
         "repo.dsi.tecnico.ulisboa.pt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAwJLvpcT0ZAZXzxFgvNPr8uwAg4EEAH2eSvPoeL+jX";
     };
   };
-  #Security implications if true
-  #... but with nix.settings.sandbox requires it....
-  # security.allowUserNamespaces = lib.mkForce false;
 
-  nix.distributedBuilds = !config.rg.isBuilder;
 
-  programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
-    # Host medicbuilder
-    #   HostName 192.168.10.5
-    #   Port 22
-    #   User root
-    #   # IdentitiesOnly yes
-    #   # IdentityFile /root/.ssh/id_builder
-    Host spybuilder
-      HostName 192.168.10.6
-      Port 22
-      User root
-      # IdentitiesOnly yes
-      # IdentityFile /root/.ssh/id_builder
-  '';
-
-  nix.buildMachines = lib.mkIf (!config.rg.isBuilder) [{
-    sshUser = "root";
-    sshKey = "/home/rg/.ssh/id_ed25519";
-    protocol = "ssh-ng";
-    # publicHostKey = "bla";
-    hostName = "192.168.10.6";
-    systems = [ "x86_64-linux" "aarch64-linux" ];
-    maxJobs = 4;
-    speedFactor = 2;
-    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-    mandatoryFeatures = [ ];
-  }];
 
   # Stop using nscd, was eating my CPU for no reason
   services.nscd.enableNsncd = true;

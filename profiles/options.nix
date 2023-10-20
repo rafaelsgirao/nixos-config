@@ -1,6 +1,6 @@
 { config, options, lib, ... }:
 let
-  inherit (lib) mkAliasDefinitions mkOption types mkEnableOption;
+  inherit (lib) mkOption types mkEnableOption;
 in
 {
   options = {
@@ -26,7 +26,6 @@ in
 
   };
   config = {
-    home-manager.users.${user} = mkAliasDefinitions options.hm;
 
     assertions =
       let

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, hostSecretsDir, ... }:
+{ config, pkgs, lib, profiles, hostSecretsDir, ... }:
 let
   hostname = config.networking.hostName;
   inherit (config.rg) ip;
@@ -7,26 +7,23 @@ in
 {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   services.udisks2.enable = lib.mkDefault false;
-  imports = [
+  imports = with profiles; [
     ./library.nix
-    # ../../modules/cups.nix
-    ../../modules/acme.nix
-    ../../modules/caddy.nix
-    ../../modules/healthchecks.nix
-    ../../modules/nextcloud.nix
-    ../../modules/rss2email.nix
-    ../../modules/gitea.nix
-    ../../modules/monero.nix
-    # ./privacy-proxies.nix
-    ../../modules/lanzaboote.nix
-    ../../modules/nvidia.nix
-    ../../modules/headless.nix
-    ../../modules/zfs.nix
-    ../../modules/zfs-unlock.nix
-    # ../../modules/docker.nix
-    ../../modules/blocky.nix
-    ../../modules/uefi.nix
-    ../../modules/wakapi-server.nix
+    acme.nix
+    caddy.nix
+    healthchecks.nix
+    nextcloud.nix
+    rss2email.nix
+    gitea.nix
+    monero.nix
+    lanzaboote.nix
+    nvidia.nix
+    headless.nix
+    zfs.nix
+    zfs-unlock.nix
+    blocky.nix
+    uefi.nix
+    wakapi-server.nix
   ];
 
   services.nextcloud.home = "/data-spy/nextcloud-nixos";

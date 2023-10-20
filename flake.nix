@@ -131,8 +131,12 @@
     let
       inherit (self) outputs;
       inherit (builtins) attrNames readDir listToAttrs;
+
+      profiles = lib.rakeLeaves ./profiles;
       # inherit (inputs.nixpkgs) lib;
-      lib = inputs.nixpkgs.lib // inputs.flake-parts.lib // inputs.home.lib;
+      myLib = import ./lib/functions.nix;
+      # myLib = (import ./lib { inherit lib; }).myLib; 
+      lib = inputs.nixpkgs.lib // inputs.flake-parts.lib // inputs.home.lib // myLib;
 
       user = "rg";
 
@@ -156,9 +160,10 @@
                 inherit inputs;
                 inherit user;
                 inherit secretsDir;
+                inherit profiles;
                 hostSecretsDir = "${secretsDir}/${name}";
               };
-              modules = [
+              modules = with profiles; [
                 {
                   nixpkgs = {
                     overlays = builtins.attrValues outputs.overlays;
@@ -168,9 +173,7 @@
                   };
                 }
                 { networking.hostName = name; }
-                ./modules/core.nix
-                ./modules/hardware.nix
-                ./modules/home.nix
+                core
                 inputs.simple-nixos-mailserver.nixosModule
                 inputs.agenix.nixosModules.default
                 inputs.lanzaboote.nixosModules.lanzaboote
@@ -188,7 +191,6 @@
                     # users.${user} = import ./modules/home.nix;
                   };
                 }
-                # ( inputs.impermanence + "/home-manager.nix" )
                 inputs.impermanence.nixosModules.impermanence
               ];
             };
@@ -239,7 +241,7 @@
         };
 
         flake = {
-          apps = inputs.nixinate.nixinate.x86_64-linux self;
+          # apps = inputs.nixinate.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;
           overlays = {
 

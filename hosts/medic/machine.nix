@@ -1,23 +1,23 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, profiles, lib, ... }:
 
 {
-  imports = [
-    ../../modules/firefox.nix
-    ../../modules/graphical.nix
-    ../../modules/healthchecks.nix
-    # ../../modules/sway.nix
-    ../../modules/gnome.nix
-    ../../modules/lanzaboote.nix
-    # ../../modules/laptop.nix
-    ../../modules/zfs.nix
-    ../../modules/zfs-unlock.nix
-    ../../modules/dsi.nix
-    ../../modules/syncthing.nix
-    ../../modules/libvirt.nix
-    #      ../../modules/nvidia.nix
-    ../../modules/blocky.nix
-    ../../modules/uefi.nix
-    ../../modules/sshguard.nix
+  imports = with profiles; [
+    firefox.nix
+    graphical.nix
+    healthchecks.nix
+    # s/sway.nix
+    gnome.nix
+    lanzaboote.nix
+    # s/laptop.nix
+    zfs.nix
+    zfs-unlock.nix
+    dsi.nix
+    syncthing.nix
+    libvirt.nix
+    # odules/nvidia.nix
+    blocky.nix
+    uefi.nix
+    sshguard.nix
     # Add configs later as needed
   ];
   #

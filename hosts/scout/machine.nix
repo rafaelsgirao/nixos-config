@@ -1,23 +1,19 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, profiles, ... }:
 {
 
-  imports = [
-    ../../modules/firefox.nix
-    ../../modules/graphical.nix
-    # ../../modules/sway.nix
-    ../../modules/lanzaboote.nix
-    ../../modules/gnome.nix
+  imports = with profiles; [
+    firefox.nix
+    graphical.nix
+    lanzaboote.nix
+    gnome.nix
 
-    # ../../modules/xorg.nix
-    ../../modules/laptop.nix
-    ../../modules/zfs.nix
-    ../../modules/dsi.nix
-    ../../modules/syncthing.nix
-    ../../modules/libvirt.nix
-    # ../../modules/docker.nix
-    #      ../../modules/nvidia.nix
-    ../../modules/blocky.nix
-    ../../modules/uefi.nix
+    laptop.nix
+    zfs.nix
+    dsi.nix
+    syncthing.nix
+    libvirt.nix
+    blocky.nix
+    uefi.nix
     # Add configs later as needed
   ];
 

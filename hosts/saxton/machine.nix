@@ -1,11 +1,11 @@
-{ config, hostSecretsDir, lib, ... }:
+{ config, hostSecretsDir, lib, profiles, ... }:
 
 let
   inherit (config.rg) domain;
 
 in
 {
-  imports = [
+  imports = with profiles; [
     # Include the results of the hardware scan.
     #      ./hardware-configuration.nix
     # (inputs.nixpkgs-unstable + "/nixos/modules/services/security/authelia.nix")
@@ -16,15 +16,15 @@ in
     ./mailserver.nix
     ./caddy.nix
     # ./maddy.nix
-    ../../modules/caddy.nix
-    ../../modules/healthchecks.nix
-    ../../modules/acme.nix
-    ../../modules/blocky.nix
-    ../../modules/zfs.nix
-    ../../modules/docker.nix
-    ../../modules/headless.nix
-    ../../modules/sshguard.nix
-    ../../modules/uefi.nix
+    caddy.nix
+    healthchecks.nix
+    acme.nix
+    blocky.nix
+    zfs.nix
+    docker.nix
+    headless.nix
+    sshguard.nix
+    uefi.nix
   ];
 
   rg = {
