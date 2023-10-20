@@ -5,16 +5,13 @@
     firefox.nix
     graphical.nix
     healthchecks.nix
-    # s/sway.nix
     gnome.nix
     lanzaboote.nix
-    # s/laptop.nix
     zfs.nix
     zfs-unlock.nix
     dsi.nix
     syncthing.nix
     libvirt.nix
-    # odules/nvidia.nix
     blocky.nix
     uefi.nix
     sshguard.nix

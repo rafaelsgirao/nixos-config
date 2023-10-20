@@ -173,7 +173,7 @@
                   };
                 }
                 { networking.hostName = name; }
-                core
+                ./profiles/core.nix
                 inputs.simple-nixos-mailserver.nixosModule
                 inputs.agenix.nixosModules.default
                 inputs.lanzaboote.nixosModules.lanzaboote

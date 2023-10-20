@@ -3,13 +3,12 @@
     # ./nebula.nix
     # ./networking.nix
     # ./wakapi-client.nix
-    # ./nix.nix
-    core.nebula
-    core.networking
-    core.wakapi-client
-    core.nix
-    home
-    options
+    nix.nix
+    nebula.nix
+    networking.nix
+    wakapi-client.nix
+    home.nix
+    options.nix
   ];
 
   #--------------------------------------------
