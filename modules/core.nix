@@ -264,7 +264,7 @@
 
   nix.distributedBuilds = !config.rg.isBuilder;
 
-  programs.ssh.extraConfig = ''
+  programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
     # Host medicbuilder
     #   HostName 192.168.10.5
     #   Port 22
