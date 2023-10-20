@@ -29,6 +29,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     pre-commit-hooks-nix =
       {
         url = "github:cachix/pre-commit-hooks.nix";
@@ -195,6 +200,7 @@
       {
         imports = [
           inputs.pre-commit-hooks-nix.flakeModule
+          inputs.treefmt-nix.flakeModule
         ];
         systems = [
           # systems for which you want to build the `perSystem` attributes
@@ -220,6 +226,14 @@
           };
           pre-commit.settings.settings = {
             deadnix.edit = true;
+          };
+          treefmt.projectRootFile = ./flake.nix;
+          treefmt.programs = {
+            nixpkgs-fmt.enable = true;
+            shellcheck.enable = true;
+            shfmt.enable = true;
+            mdformat.enable = true;
+
           };
           packages = import ./packages { inherit pkgs; inherit inputs; inherit inputs'; };
         };
