@@ -26,7 +26,7 @@ in
 
   };
   config = {
-    home-manager.users.${user} = mkAliasDefinitions options.hm;
+    home-manager.users."rg" = mkAliasDefinitions options.hm;
 
     assertions =
       let
