@@ -240,7 +240,7 @@
         };
 
         flake = {
-          apps = inputs.nixinate.nixinate.x86_64-linux self;
+          # apps = inputs.nixinate.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;
           overlays = {
 
