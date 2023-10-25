@@ -10,7 +10,9 @@
   # systemd.services."autovt@".enable = false;
 
   #Causes too many things to get recompiled, beware
-  environment.noXlibs = true;
+  # Warning: do NOT use this. spy's openGL drivers will fail to build if true.
+  # When this isn't enabled, there's not even a need to build it locally.
+  # environment.noXlibs = true;
 
   #fwupd needs udisks2. udisks2 needs polkit...
   # security.polkit.enable = false;
@@ -18,10 +20,6 @@
 
   networking.networkmanager.enable = false;
 
-  # # Use networkd instead of the pile of shell scripts
-  #TODO: engie's config is incompatible with networkd ATM.
-  # useNetworkd = lib.mkDefault true;
-  # useDHCP = lib.mkDefault false;
 
   programs.command-not-found.enable = lib.mkDefault false;
 

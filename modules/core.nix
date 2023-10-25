@@ -21,7 +21,7 @@
     enable = true;
     host = config.rg.ip;
     sshUser = "rg";
-    buildOn = "local";
+    buildOn = "remote";
     #  Build the config with the nixos-rebuild command from your flakes nixpkgs,
     # instead of the hosts nixpkgs.
     hermetic = true;

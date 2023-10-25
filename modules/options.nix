@@ -18,6 +18,19 @@ in
         type = types.bool;
         default = false;
       };
+      # state = {
+      #     enable = mkEnableOption "rg.state";
+      #     stateDir = mkOption { type = types.str; };
+      #     dirs = mkOption { type = types.listOf types.str };
+      #     homeDirs = mkOption { type = types.listOf types.str };
+      # };
+      # persist = {
+      #     enable = mkEnableOption "rg";
+      #     stateDir = mkOption { type = types.str; };
+      #     dirs = mkOption { type = types.listOf types.str };
+      #     homeDirs = mkOption { type = types.listOf types.str };
+      # };
+
       domain = mkOption { type = types.str; };
       ip = mkOption { type = types.str; };
       ipv4 = mkOption { type = types.str; };
@@ -26,6 +39,11 @@ in
 
   };
   config = {
+    # Impermanence.
+
+
+
+    # Others.
     home-manager.users."rg" = mkAliasDefinitions options.hm;
 
     assertions =
