@@ -1,4 +1,4 @@
-{ config, pkgs, lib, hostSecretsDir, ... }:
+{ config, pkgs, inputs, lib, hostSecretsDir, ... }:
 let
   hostname = config.networking.hostName;
   inherit (config.rg) ip;
@@ -27,6 +27,7 @@ in
     ../../modules/blocky.nix
     ../../modules/uefi.nix
     ../../modules/wakapi-server.nix
+    inputs.microvm.nixosModules.host
   ];
 
   services.nextcloud.home = "/data-spy/nextcloud-nixos";
@@ -61,6 +62,7 @@ in
     ip = "192.168.10.6";
     machineType = "intel";
     class = "server";
+    isBuilder = true;
   };
   #Blocky - no blocklist by default
   # services.blocky.settings.blocking.clientGroupsBlock."default" = [ "none" ];

@@ -20,8 +20,8 @@
 
   # # Use networkd instead of the pile of shell scripts
   #TODO: engie's config is incompatible with networkd ATM.
-  # useNetworkd = lib.mkDefault true;
-  # useDHCP = lib.mkDefault false;
+  useNetworkd = lib.mkDefault true;
+  useDHCP = lib.mkDefault false;
 
   programs.command-not-found.enable = lib.mkDefault false;
 

@@ -64,6 +64,10 @@
 
     impermanence.url = "github:nix-community/impermanence/master";
 
+    inputs.microvm.url = "github:astro/microvm.nix";
+    inputs.microvm.inputs.nixpkgs.follows = "nixpkgs";
+
+
     simple-nixos-mailserver = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -240,7 +244,7 @@
         };
 
         flake = {
-          # apps = inputs.nixinate.nixinate.x86_64-linux self;
+          apps = inputs.nixinate.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;
           overlays = {
 
