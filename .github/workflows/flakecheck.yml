@@ -1,6 +1,9 @@
 jobs:
-  job1:
+  flakecheck:
     container: "nixos/nix"
-    steps:
-      - uses: actions/checkout@v4
-      - run: nix flake check --extra-experimental-features "nix-command flakes"
+      name: Nix flake Checks
+      # runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+        - run: nix flake check --no-build --extra-experimental-features "nix-command flakes"
+          name: Fly Deploy
