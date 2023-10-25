@@ -2,7 +2,7 @@ jobs:
   flakecheck:
     container: "nixos/nix"
       name: Nix flake Checks
-      # runs-on: ubuntu-latest
+      runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v4
         - run: nix flake check --no-build --extra-experimental-features "nix-command flakes"
