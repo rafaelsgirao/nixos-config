@@ -184,7 +184,7 @@ in
     ProtectClock = true;
     ProcSubset = "pid";
     SupplementaryGroups = [ "render" "video" "library" ];
-    DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/card0" ];
+    DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" "/dev/dri/card0" "/dev/dri/card1" ];
   };
 
   #hardware accelerated Playback
@@ -192,13 +192,20 @@ in
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
   };
+  environment.systemPackages = with pkgs; [
+    glxinfo
+    libva-utils #libva-utils --run vainfo
+
+
+  ];
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
+      # mesa.drivers
       intel-media-driver
       vaapiIntel
-      vaapiVdpau
-      libvdpau-va-gl
+      # vaapiVdpau
+      # libvdpau-va-gl
       intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
     ];
   };

@@ -21,7 +21,7 @@ in
     ];
 
   };
-  hm = {
+  hm = { config, ... }: {
     imports = [ (inputs.impermanence + "/home-manager.nix") ];
     home.homeDirectory = "/home/rg";
     home.username = "rg";
@@ -41,8 +41,8 @@ in
       ".local/bin/portcheck".source = pkgs.copyPathToStore ../files/portcheck;
       ".local/bin/randomport".source = pkgs.copyPathToStore ../files/randomport;
     } // lib.optionalAttrs isWorkstation {
-      ".config/mimeapps.list".source = lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
-      ".config/Code/User/settings.json".source = lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/Code/User/settings.json";
+      ".config/mimeapps.list".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
+      ".config/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/Code/User/settings.json";
     };
 
     programs.ssh =

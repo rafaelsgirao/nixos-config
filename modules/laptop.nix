@@ -4,7 +4,9 @@ let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
 in
 {
-  imports = [ ./cups.nix ];
+  # imports = 
+  # [  ]
+  # ++ lib.optionals (isWorkstation) [ ./cups.nix ];
 
   #systemd.services."touchegg".serviceConfig = {
   #  MemoryDenyWriteExecute = true;

@@ -17,7 +17,10 @@
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
-    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
     #-------------------
 
@@ -25,8 +28,10 @@
     # -----------------------
     # Utilities.
     nixinate = {
-      url = "github:matthewcroughan/nixinate";
+      # url = "github:matthewcroughan/nixinate";
+      url = "github:maxaudron/nixinate";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
 
     treefmt-nix = {
@@ -173,6 +178,7 @@
                 ./modules/hardware.nix
                 ./modules/home.nix
                 inputs.simple-nixos-mailserver.nixosModule
+                inputs.nixinate.nixosModule
                 inputs.agenix.nixosModules.default
                 inputs.lanzaboote.nixosModules.lanzaboote
                 inputs.home.nixosModules.home-manager
@@ -202,6 +208,7 @@
         imports = [
           inputs.pre-commit-hooks-nix.flakeModule
           inputs.treefmt-nix.flakeModule
+          inputs.nixinate.flakeModule
         ];
         systems = [
           # systems for which you want to build the `perSystem` attributes
@@ -211,6 +218,7 @@
         # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
         perSystem = { config, pkgs, inputs', ... }: {
           devShells.default = config.pre-commit.devShell;
+          # apps = inputs.nixinate.nixinate self;
           pre-commit.settings.hooks = {
             nixpkgs-fmt.enable = true;
             statix.enable = true;
@@ -240,7 +248,7 @@
         };
 
         flake = {
-          # apps = inputs.nixinate.nixinate.x86_64-linux self;
+          # apps = inputs.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;
           overlays = {
 

@@ -1,4 +1,4 @@
-{ _module, config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }: {
+{ config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }: {
   imports = [
     ./nebula.nix
     ./networking.nix
@@ -16,11 +16,15 @@
   };
   zramSwap.memoryPercent = 25;
 
-  _module.args.nixinate = {
+  # Nixinate options
+  deploy = {
+    enable = true;
     host = config.rg.ip;
     sshUser = "rg";
-    buildOn = "remote";
-    hermetic = false;
+    buildOn = "local";
+    #  Build the config with the nixos-rebuild command from your flakes nixpkgs,
+    # instead of the hosts nixpkgs.
+    hermetic = true;
     substituteOnTarget = true;
   };
 
