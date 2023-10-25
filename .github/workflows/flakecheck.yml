@@ -1,0 +1,6 @@
+jobs:
+  job1:
+    container: "nixos/nix"
+    steps:
+      - uses: actions/checkout@v4
+      - run: nix flake check --extra-experimental-features "nix-command flakes"
