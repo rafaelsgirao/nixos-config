@@ -34,6 +34,15 @@ in
   };
   services.avahi.enable = false;
 
+  # # Use networkd instead of the pile of shell scripts
+  #TODO: engie's config is incompatible with networkd ATM.
+  networking = {
+    useNetworkd = lib.mkDefault true;
+    useDHCP = lib.mkDefault false;
+
+  };
+  systemd.network.enable = config.rg.class == "server";
+
   #Arch wiki recommends opening these ports for mDNS and LLMNR
   networking.firewall.allowedUDPPorts = [ 5353 5355 ];
   networking.firewall.allowedTCPPorts = [ 5353 5355 ];
