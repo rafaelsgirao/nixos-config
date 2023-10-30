@@ -1,8 +1,10 @@
 { lib, modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
+  environment.etc.machineId.text = "c2472bd717a44486adfdbc8e2f00199d";
+
   boot.initrd.availableKernelModules =
-    [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+    [ "xhci_pci" "ahci" "nvme" "usb_storage" "uas" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
@@ -12,7 +14,7 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/CBD4-F1ED";
+    device = "/dev/disk/by-uuid/DD26-F010";
     fsType = "vfat";
   };
 
@@ -106,5 +108,7 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
+

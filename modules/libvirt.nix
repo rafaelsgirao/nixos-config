@@ -10,6 +10,7 @@ _: {
     };
   };
 
+  environment.persistence."/state".directories = [ "/var/lib/libvirt" ];
   #-----
   #Libvirt jail
   #-----

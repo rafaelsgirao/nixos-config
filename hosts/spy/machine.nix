@@ -17,6 +17,7 @@ in
     ../../modules/rss2email.nix
     ../../modules/gitea.nix
     ../../modules/monero.nix
+    ../../modules/impermanence.nix
     # ./privacy-proxies.nix
     ../../modules/lanzaboote.nix
     ../../modules/nvidia.nix
@@ -63,6 +64,7 @@ in
     class = "server";
     isBuilder = true;
   };
+
   #Blocky - no blocklist by default
   # services.blocky.settings.blocking.clientGroupsBlock."default" = [ "none" ];
   services.blocky.settings = {
@@ -171,14 +173,12 @@ in
     # };
   };
 
-  environment.etc."machine-id".source = "/state/etc/machine-id";
   environment.persistence."/pst" = {
     hideMounts = true;
     directories =
       [
         # "/root/.config/rclone"
       ];
-    files = [ "/etc/machine-id" ];
     users.rg = {
       directories = [
         # ".config/rclone"

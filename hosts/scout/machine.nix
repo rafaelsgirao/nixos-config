@@ -7,6 +7,7 @@
     # ../../modules/sway.nix
     ../../modules/lanzaboote.nix
     ../../modules/gnome.nix
+    ../../modules/flatpak.nix
 
     # ../../modules/xorg.nix
     ../../modules/laptop.nix
@@ -29,24 +30,15 @@
     class = "workstation";
   };
 
-  hm.home.packages = with pkgs; [ anki-bin ];
-
-  #Home as tmpfs.
-  systemd.tmpfiles.rules = [ "d /home/rg 0755 rg users" ];
-
-  services.flatpak.enable = true;
+  # hm.home.packages = with pkgs; [ anki-bin ];
 
   environment.persistence."/state" = {
     hideMounts = true;
-    directories = [ "/var/lib/libvirt" "/var/db/sudo/lectured" "/var/lib/flatpak" ];
+    directories = [ "/var/db/sudo/lectured" ];
     users.rg = {
       files = [
       ];
       directories = [
-        ".cache"
-        ".cargo"
-        ".rustup"
-        ".cert"
         ".fly"
         ".vscode"
         ".config/Ferdium"
@@ -57,10 +49,8 @@
         "studymusic"
         ".local/share/ykman"
         ".local/share/Anki2"
-        ".local/share/flatpak"
         #        ".local/share/Trash"  - Trashing on system internal mounts is not supported
 
-        ".var"
 
       ];
     };
@@ -183,6 +173,8 @@
     burpsuite
     gnome.gnome-tweaks
     unstable.webcord
+    easyeffects
+    #TODO: electronmail?
   ];
 
   zramSwap.enable = true;
