@@ -7,7 +7,7 @@ buildGoModule rec {
     owner = "pulsejet";
     repo = pname;
     rev = "${version}";
-    hash = "sha256-7HT/LZp6sViVlekvONapi0iN/g0+clVc8q12ekFNDNA=";
+    hash = "sha256-OTi1ouMLHOrCIg1HL6I7tLz/p6y5uE8GQxL3jFSuKB0=";
   };
 
   deleteVendor = true;
