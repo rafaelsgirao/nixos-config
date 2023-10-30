@@ -51,17 +51,6 @@ in
 
   networking.nameservers = [ config.rg.ip "1.1.1.1" ];
 
-  environment.persistence."/state" = {
-    hideMounts = true;
-    directories = [
-      "/var/db/sudo/lectured"
-      "/var/log/journal"
-    ];
-    # users.rg = {
-    #   directories = [
-    #   ];
-    # };
-  };
 
   #Home as tmpfs.
   # systemd.tmpfiles.rules = [ "d /home/rg 0755 rg users" ];
@@ -91,31 +80,11 @@ in
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
-    443 # Caddy-Public
-    80 # caddy-public
-    25 # Docker-mailserver
-    143 # Docker-mailserver
-    465 # Docker-mailserver
-    587 # Docker-mailserver
-    993 # Docker-mailserver
     4242 # Nebula lighthouse
     853 # blocky DNS over TLS
-
-
-    4425 # Docker-mailserver
-    44143 # Docker-mailserver
-    44465 # Docker-mailserver
-    44587 # Docker-mailserver
-    44993 # Docker-mailserver
   ];
   networking.firewall.allowedUDPPorts = [
-    443 #Caddy may eventually support QUIC
     853 # blocky DNS over TLS - should this be here?
-    25 # Docker-mailserver
-    143 # Docker-mailserver
-    465 # Docker-mailserver
-    587 # Docker-mailserver
-    993 # Docker-mailserver
     4242 # Nebula lighthouse
   ];
 

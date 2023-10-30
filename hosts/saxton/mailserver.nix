@@ -83,4 +83,26 @@ in
     NoNewPrivileges = "yes";
 
   };
+  # Open ports in the firewall.
+  networking.firewall.allowedTCPPorts = [
+    25 # Docker-mailserver
+    143 # Docker-mailserver
+    465 # Docker-mailserver
+    587 # Docker-mailserver
+    993 # Docker-mailserver
+
+
+    4425 # Docker-mailserver
+    44143 # Docker-mailserver
+    44465 # Docker-mailserver
+    44587 # Docker-mailserver
+    44993 # Docker-mailserver
+  ];
+  networking.firewall.allowedUDPPorts = [
+    25 # Docker-mailserver
+    143 # Docker-mailserver
+    465 # Docker-mailserver
+    587 # Docker-mailserver
+    993 # Docker-mailserver
+  ];
 }

@@ -9,11 +9,14 @@ in
 
 
   environment.persistence."/state" = {
-    directories = lib.mkIf isWorkstation [
+    hideMounts = true;
+    directories = [
+      "/var/log/journal"
+    ]
+    ++ lib.optionals isWorkstation [
       ".cache"
       ".cargo"
       ".rustup"
       ".cert"
     ];
   };
-}

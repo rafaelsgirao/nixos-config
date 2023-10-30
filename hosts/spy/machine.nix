@@ -161,36 +161,6 @@ in
     enable = true;
   };
 
-  environment.persistence."/state" = {
-    hideMounts = true;
-    directories = [
-      "/var/db/sudo/lectured"
-      "/var/log/journal"
-    ];
-    # users.rg = {
-    #   directories = [
-    #   ];
-    # };
-  };
-
-  environment.persistence."/pst" = {
-    hideMounts = true;
-    directories =
-      [
-        # "/root/.config/rclone"
-      ];
-    users.rg = {
-      directories = [
-        # ".config/rclone"
-      ];
-      files = [
-        #see above comment
-        # ".local/share/fish/fish_history"
-        # ".local/share/zoxide/db.zo"
-      ];
-    };
-  };
-
 
   services.gitea = {
     stateDir = "/data/gitea-nixos";

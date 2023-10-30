@@ -11,6 +11,7 @@
 
     # ../../modules/xorg.nix
     ../../modules/laptop.nix
+    ../../modules/impermanence.nix
     ../../modules/zfs.nix
     ../../modules/dsi.nix
     ../../modules/syncthing.nix
@@ -34,7 +35,7 @@
 
   environment.persistence."/state" = {
     hideMounts = true;
-    directories = [ "/var/db/sudo/lectured" ];
+    directories = [ ];
     users.rg = {
       files = [
       ];
