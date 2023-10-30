@@ -43,32 +43,6 @@
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  #Enable use of Flakes.
-  nix.package = pkgs.nixFlakes;
-  nix.settings = {
-    # Enable flakes
-    experimental-features = [
-      "nix-command"
-      "flakes"
-      "ca-derivations"
-    ];
-
-    allowed-users = [ "@wheel" ];
-    trusted-users = [ "rg" "root" ];
-
-    # Fallback quickly if substituters are not available.
-    connect-timeout = 5;
-
-    # The default at 10 is rarely enough.
-    log-lines = lib.mkDefault 30;
-
-    # Avoid disk full issues
-    max-free = lib.mkDefault (3000 * 1024 * 1024);
-    min-free = lib.mkDefault (512 * 1024 * 1024);
-
-    # Avoid copying unnecessary stuff over SSH
-    builders-use-substitutes = true;
-  };
 
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;
@@ -80,28 +54,8 @@
     "net.ipv4.ip_unprivileged_port_start" = 0;
   };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
 
   zramSwap.enable = lib.mkDefault true;
-  #--------------------------------------------
-  #-------------Basic Settings-----------------
-  #--------------------------------------------
-
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  nix.registry.flake-utils.flake = inputs.flake-utils;
-  nix.registry.nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
-  nix.registry.unstable.flake = inputs.nixpkgs-unstable;
-
-  nix.nixPath = [
-    "nixpkgs=/etc/channels/nixpkgs"
-    "nixos-config=/etc/nixos/configuration.nix"
-    "/nix/var/nix/profiles/per-user/root/channels"
-  ];
-  environment.etc."channels/nixpkgs".source = inputs.nixpkgs.outPath;
 
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
