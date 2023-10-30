@@ -106,6 +106,9 @@
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
   security.sudo.execWheelOnly = true;
+  security.sudo.extraConfig = ''
+    Defaults lecture="never"
+  '';
 
   networking = {
     inherit (config.rg) domain;
@@ -192,7 +195,7 @@
       }
     ];
   };
-  hardware.nvidia.nvidiaSettings = lib.mkForce false;
+  hardware.nvidia.nvidiaSettings = lib.mkDefault false;
 
   services.earlyoom = {
     enable = lib.mkDefault true;

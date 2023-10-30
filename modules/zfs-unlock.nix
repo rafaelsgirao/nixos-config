@@ -10,7 +10,7 @@
 
     # README: set this parameter on machines you import this file!
     # kernelParams = [ "ip=192.168.1.80::192.168.1.1:255.255.255.0::eth0:none" ];
-    initrd.kernelModules = [ "r8169" "e1000e" "uas" "atkbd" ];
+    initrd.kernelModules = [ "r8169" "e1000e" "uas" "atkbd" "usbhid" ];
     initrd.supportedFilesystems = [ "zfs" ];
     initrd.network = {
       enable = true;
@@ -18,6 +18,7 @@
         enable = true;
         port = 2222;
         hostKeys = [ /pst/etc/ssh-initrd/ssh_host_ed25519_key ];
+        #TODO: come from agenix?
         authorizedKeys = sshKeys;
       };
       # this will automatically load the zfs password prompt on login
