@@ -21,4 +21,8 @@ in
         ".cert"
       ];
   };
+
+  environment.persistence."/pst" = {
+    hideMounts = true;
+  };
 }

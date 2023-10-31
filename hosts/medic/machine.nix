@@ -5,18 +5,15 @@
     ../../modules/firefox.nix
     ../../modules/graphical.nix
     ../../modules/healthchecks.nix
-    # ../../modules/sway.nix
     ../../modules/gnome.nix
     ../../modules/lanzaboote.nix
-    # ../../modules/laptop.nix
     ../../modules/zfs.nix
     ../../modules/zfs-unlock.nix
     ../../modules/dsi.nix
     ../../modules/syncthing.nix
     ../../modules/libvirt.nix
-    #      ../../modules/nvidia.nix
     ../../modules/blocky.nix
-    ../../modules/uefi.nix
+    ../../modules/hardware/uefi.nix
     ../../modules/sshguard.nix
     ../../modules/flatpak.nix
     ../../modules/impermanence.nix
@@ -37,6 +34,13 @@
 
   networking.interfaces.eth0.wakeOnLan.enable = true;
 
+  # environment.persistence."/pst" = {
+  #   directories =
+  #     # [
+  #     # ];
+  #   # files = [ "/etc/machine-id" ];
+  #   users.rg.directories = [];
+  # };
 
   services.blocky.settings.conditional.mapping = {
     "tecnico.ulisboa.pt" = "193.136.152.81,193.136.152.82";

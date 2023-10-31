@@ -1,7 +1,7 @@
 { config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }: {
   imports = [
     ./nebula.nix
-    ./networking.nix
+    ./hardware/networking.nix
     ./wakapi-client.nix
   ];
 

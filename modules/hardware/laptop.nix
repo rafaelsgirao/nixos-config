@@ -4,8 +4,7 @@ let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
 in
 {
-  # imports = 
-  # [  ]
+  imports = [ ./bluetooth.nix ];
   # ++ lib.optionals (isWorkstation) [ ./cups.nix ];
 
   #systemd.services."touchegg".serviceConfig = {
@@ -56,6 +55,7 @@ in
   '';
 
   #Battery life thingy
+  #TODO: does HP omen support tlp?
   services.tlp = lib.mkIf (!isGnome) {
     enable = true;
     settings = {
@@ -71,29 +71,6 @@ in
   #Enable upower
   services.upower.enable = true;
 
-  #Enable bluetooth
-  hardware.bluetooth.enable = true;
-  systemd.services."bluetooth".serviceConfig = {
-    RestrictAddressFamilies = [ "AF_UNIX AF_BLUETOOTH" ];
-    IPAddressDeny = "any";
-
-    ProtectProc = "ptraceable";
-    ProcSubset = "pid";
-    # DevicePolicy = "clos
-    # ProtectKernelTunables = true;
-    ProtectKernelModules = true;
-    ProtectKernelLogs = true;
-    ProtectHostname = true;
-    ProtectClock = true;
-    RestrictNamespaces = true;
-    LockPersonality = true;
-    RestrictSUIDSGID = true;
-    NoNewPrivileges = true;
-
-    SystemCallFilter = [ "@system-service" "~@resources @privileged" ];
-
-    SystemCallArchitecture = "native";
-  };
 
 
   #Enable Scanning

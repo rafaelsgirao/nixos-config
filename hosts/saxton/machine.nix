@@ -24,7 +24,7 @@ in
     ../../modules/docker.nix
     ../../modules/headless.nix
     ../../modules/sshguard.nix
-    ../../modules/uefi.nix
+    ../../modules/hardware/uefi.nix
   ];
 
   rg = {

@@ -4,22 +4,18 @@
   imports = [
     ../../modules/firefox.nix
     ../../modules/graphical.nix
-    # ../../modules/sway.nix
     ../../modules/lanzaboote.nix
     ../../modules/gnome.nix
     ../../modules/flatpak.nix
-
-    # ../../modules/xorg.nix
-    ../../modules/laptop.nix
+    ../../modules/hardware/laptop.nix
     ../../modules/impermanence.nix
     ../../modules/zfs.nix
     ../../modules/dsi.nix
     ../../modules/syncthing.nix
     ../../modules/libvirt.nix
     # ../../modules/docker.nix
-    #      ../../modules/nvidia.nix
     ../../modules/blocky.nix
-    ../../modules/uefi.nix
+    ../../modules/hardware/uefi.nix
     # Add configs later as needed
   ];
 
@@ -34,7 +30,6 @@
   # hm.home.packages = with pkgs; [ anki-bin ];
 
   environment.persistence."/state" = {
-    hideMounts = true;
     # directories = [ ];
     users.rg = {
       files = [
@@ -57,12 +52,10 @@
     };
   };
 
-  environment.persistence."/persist" = {
-    hideMounts = true;
+  environment.persistence."/pst" = {
     directories =
       [
         "/etc/NetworkManager/system-connections"
-        "/var/lib/bluetooth"
       ];
     files = [ "/etc/machine-id" ];
     users.rg = {

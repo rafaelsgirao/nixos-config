@@ -20,13 +20,13 @@ in
     ../../modules/impermanence.nix
     # ./privacy-proxies.nix
     ../../modules/lanzaboote.nix
-    ../../modules/nvidia.nix
+    ../../modules/hardware/nvidia.nix
     ../../modules/headless.nix
     ../../modules/zfs.nix
     ../../modules/zfs-unlock.nix
     # ../../modules/docker.nix
     ../../modules/blocky.nix
-    ../../modules/uefi.nix
+    ../../modules/hardware/uefi.nix
     ../../modules/wakapi-server.nix
   ];
 

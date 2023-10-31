@@ -176,7 +176,7 @@
                 { networking.hostName = name; }
                 ./modules/core.nix
                 ./modules/options.nix
-                ./modules/hardware.nix
+                ./modules/hardware/default.nix
                 ./modules/home.nix
                 inputs.simple-nixos-mailserver.nixosModule
                 inputs.nixinate.nixosModule
