@@ -18,6 +18,8 @@
     ../../modules/blocky.nix
     ../../modules/uefi.nix
     ../../modules/sshguard.nix
+    ../../modules/flatpak.nix
+    ../../modules/impermanence.nix
     # Add configs later as needed
   ];
   #
@@ -33,18 +35,8 @@
   hm.home.stateVersion = "23.05";
   system.stateVersion = "23.05";
 
-  environment.persistence."/state" = {
-    hideMounts = true;
-    # directories = [
-    #   "/opt/chef-workstation"
-    # ];
-  };
-
   networking.interfaces.eth0.wakeOnLan.enable = true;
 
-  environment.persistence."/pst" = {
-    hideMounts = true;
-  };
 
   services.blocky.settings.conditional.mapping = {
     "tecnico.ulisboa.pt" = "193.136.152.81,193.136.152.82";
@@ -89,9 +81,6 @@
   #ZFS Remote unlocking
   boot.kernelParams =
     [ "ip=193.136.132.93::193.136.132.254:255.255.255.0::eth0:none" ];
-
-  #Infinite loop.
-  programs.ssh.knownHosts."192.168.10.5".publicKey = lib.mkForce "";
 
   #Additional packages
   environment.systemPackages = with pkgs; [

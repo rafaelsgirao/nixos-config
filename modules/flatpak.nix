@@ -6,7 +6,6 @@ _: {
     directories = [ "/var/lib/flatpak" ];
     users.rg.directories = [
       ".var"
-
       ".local/share/flatpak"
     ];
 
