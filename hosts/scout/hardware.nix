@@ -65,4 +65,9 @@
   swapDevices = [ ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
+
+  #Undervolt CPU
+  services.undervolt.enable = true;
+  services.undervolt.coreOffset = -80;
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

@@ -143,6 +143,7 @@ in
       ExecStart = "${pkgs.mypkgs.go-vod}/bin/go-vod";
       DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" ];
       ReadOnlyPaths = config.services.nextcloud.home;
+      SupplementaryGroups = [ "nextcloud" ];
     };
   };
 

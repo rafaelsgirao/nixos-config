@@ -13,6 +13,17 @@
     fsType = "zfs";
   };
 
+  fileSystems."/root-state" = {
+    device = "spypool/local/root";
+    fsType = "zfs";
+  };
+
+  fileSystems."/home" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "defaults" "size=512M" "mode=755" ];
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/DD26-F010";
     fsType = "vfat";

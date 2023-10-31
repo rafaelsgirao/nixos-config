@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 {
 
   imports = [
@@ -35,7 +35,7 @@
 
   environment.persistence."/state" = {
     hideMounts = true;
-    directories = [ ];
+    # directories = [ ];
     users.rg = {
       files = [
       ];
@@ -119,13 +119,9 @@
 
   #SSH daemon only inside Nebula
   services.openssh.listenAddresses = [{
-    addr = "192.168.10.1";
+    addr = config.rg.ip;
     port = 22;
   }];
-
-  #Undervolt CPU
-  services.undervolt.enable = true;
-  services.undervolt.coreOffset = -80;
 
   # Systemd timer so I go to sleep at decent hours
   # Thanks to abread on #JustNixThings https://discord.com/channels/759576132227694642/874345962515071026/923166110759677992
