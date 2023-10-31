@@ -13,4 +13,12 @@ in
     directories = [
       "/var/log/journal"
     ];
-  }
+    users.rg.directories = lib.mkIf isWorkstation
+      [
+        ".cache"
+        ".cargo"
+        ".rustup"
+        ".cert"
+      ];
+  };
+}

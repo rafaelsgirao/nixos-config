@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
-  isWorkstation = config.rg.class == "workstation";
   #handlr is SO much better.
   handlrXdg = pkgs.writeShellScriptBin "xdg-open" ''
     #!${pkgs.bash}/bin/bash
@@ -467,12 +466,6 @@ in
     };
   };
 
-  environment.persistence."/state".directories = lib.mkIf isWorkstation [
-    ".cache"
-    ".cargo"
-    ".rustup"
-    ".cert"
-  ];
 
   environment.systemPackages = with pkgs; [
     nix-index

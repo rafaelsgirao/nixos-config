@@ -8,7 +8,7 @@
     krb5
     mypkgs.chef-workstation
     mypkgs.setupSecrets
-
+    vault
   ];
 
   #--------------------------------------------
