@@ -450,15 +450,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1696944707,
-        "narHash": "sha256-/3mkN7ikzP89G3LqYnZ4jXw1AurEKr1xKkXtA2/WG88=",
-        "owner": "maxaudron",
+        "lastModified": 1698704982,
+        "narHash": "sha256-24q72jmKv0paWOTa2HeO48VSHw+ElHs1uMrBPmdkAgg=",
+        "owner": "rafaelsgirao",
         "repo": "nixinate",
-        "rev": "09cbd84c8595f7ca10cf5c1b8adcad9ba732a565",
+        "rev": "6cfe73a5c7d13d7323430d299caa909ae2d31215",
         "type": "github"
       },
       "original": {
-        "owner": "maxaudron",
+        "owner": "rafaelsgirao",
+        "ref": "feat/test-2",
         "repo": "nixinate",
         "type": "github"
       }
