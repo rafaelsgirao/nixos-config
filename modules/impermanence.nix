@@ -12,11 +12,5 @@ in
     hideMounts = true;
     directories = [
       "/var/log/journal"
-    ]
-    ++ lib.optionals isWorkstation [
-      ".cache"
-      ".cargo"
-      ".rustup"
-      ".cert"
     ];
-  };
+  }
