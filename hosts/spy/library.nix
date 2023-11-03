@@ -7,7 +7,7 @@ let
     CapabilityBoundingSet = [ "" ];
     SystemCallArchitectures = "native";
     SystemCallFilter =
-      [ "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation" ];
+      [ "~@reboot  @obsolete @raw-io @mount @debug @cpu-emulation" ];
     PrivateDevices = true;
     PrivateIPC = true;
     ProtectProc = "invisible";

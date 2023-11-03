@@ -1,4 +1,8 @@
-{ config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }: {
+{ config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }:
+let
+  isVirt = config.rg.machineType == "virt";
+in
+{
   imports = [
     ./nebula.nix
     ./nix.nix
@@ -227,12 +231,6 @@
   nix.distributedBuilds = !config.rg.isBuilder;
 
   programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
-    # Host medicbuilder
-    #   HostName 192.168.10.5
-    #   Port 22
-    #   User root
-    #   # IdentitiesOnly yes
-    #   # IdentityFile /root/.ssh/id_builder
     Host spybuilder
       HostName 192.168.10.6
       Port 22
@@ -259,12 +257,10 @@
 
   environment.systemPackages = with pkgs; [
     #Basic utils
-    ethtool
     tcpdump
     viu
     just
     cloc
-    dmidecode
     rsync
     nebula
     qrencode
@@ -280,8 +276,6 @@
     zip
     whois
     ncdu
-    #Provides `lspci` command
-    pciutils
     killall
     ripgrep
     btop
@@ -309,9 +303,18 @@
     traceroute
     iperf3
     nmap
-    nvme-cli
     ruff
     black
     nload
-  ];
+  ]
+  ++ lib.optionals (!isVirt)
+    [
+      usbutils #Provides lsusb
+      nvme-cli
+      dmidecode
+      ethtool
+
+      pciutils #Provides `lspci` command
+
+    ];
 }
