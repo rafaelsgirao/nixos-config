@@ -35,8 +35,20 @@
             "browser-tabs@com.github.harshadgavali"
           ];
         };
+        # Use `dconf watch /` to track stateful changes you are doing, then set them here.
+        "org/gnome/desktop/input-sources" = {
+          sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us+altgr-intl" ]) ];
+          xkb-options = [ "lv3:ralt_switch" "ctrl:nocaps" ];
 
+        };
+        "org/gnome/settings-daemon/plugins/color" = {
+          night-light-enabled = true;
+          night-light-temperature = lib.hm.gvariant.mkUint32 1700;
+          night-light-schedule-automatic = true;
+        };
         "org/gnome/shell/app-switcher" = { current-workspace-only = false; };
+
+        "org/gnome/eog/ui" = { image-gallery = true; };
 
         "org/gnome/mutter" = {
           edge-tiling = true;
