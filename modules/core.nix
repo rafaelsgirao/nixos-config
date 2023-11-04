@@ -25,6 +25,7 @@ in
   deploy = {
     enable = true;
     host = config.rg.ip;
+    archiveFlake = (config.rg.class != "workstation");
     sshUser = "rg";
     buildOn = "remote";
     #  Build the config with the nixos-rebuild command from your flakes nixpkgs,

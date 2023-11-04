@@ -450,11 +450,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1698704982,
-        "narHash": "sha256-24q72jmKv0paWOTa2HeO48VSHw+ElHs1uMrBPmdkAgg=",
+        "lastModified": 1699119497,
+        "narHash": "sha256-JOaEVuHFUaDfS4s0j6FE8CLznS3Sq0MCgANHE2uOx10=",
         "owner": "rafaelsgirao",
         "repo": "nixinate",
-        "rev": "6cfe73a5c7d13d7323430d299caa909ae2d31215",
+        "rev": "d9e5eca4ee9d366b49bcb3f39cddfefbeb013fc0",
         "type": "github"
       },
       "original": {
