@@ -466,12 +466,12 @@ in
     };
   };
 
-  environment.persistence."/state".users.rg.directories = lib.mkIf isWorkstation [
-    ".cache"
-    ".cargo"
-    ".rustup"
-    ".cert"
-  ];
+  # environment.persistence."/state".users.rg.directories = lib.mkIf isWorkstation [
+  #   ".cache"
+  #   ".cargo"
+  #   ".rustup"
+  #   ".cert"
+  # ];
 
   environment.systemPackages = with pkgs; [
     nix-index

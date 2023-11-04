@@ -44,21 +44,8 @@
     fsType = "zfs";
   };
 
-  fileSystems."/home/rg/.config/rclone" = {
-    device = "/persist/rclone-rg";
-    fsType = "none";
-    options = [ "bind" ];
-  };
-
-
   fileSystems."/var/lib/private/uptime-kuma" = {
     device = "/data/uptime-kuma-nixos";
-    fsType = "none";
-    options = [ "bind" ];
-  };
-
-  fileSystems."/root/.config/rclone" = {
-    device = "/persist/rclone-root";
     fsType = "none";
     options = [ "bind" ];
   };
