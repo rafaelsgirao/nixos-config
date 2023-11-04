@@ -430,7 +430,7 @@ in
           ritwickdey.liveserver
 
           nvarner.typst-lsp
-          # pkgs.pre-commit
+          mgt19937.typst-preview
 
           # ];
         ] ++ p.vscode-utils.extensionsFromVscodeMarketplace [{
