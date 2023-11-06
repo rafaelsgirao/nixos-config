@@ -237,13 +237,13 @@ in
     Host spybuilder
       HostName 192.168.10.6
       Port 22
-      User root
+      User rg
       # IdentitiesOnly yes
       # IdentityFile /root/.ssh/id_builder
   '';
 
   nix.buildMachines = lib.mkIf (!config.rg.isBuilder) [{
-    sshUser = "root";
+    sshUser = "rg";
     sshKey = "/home/rg/.ssh/id_ed25519";
     protocol = "ssh-ng";
     # publicHostKey = "bla";

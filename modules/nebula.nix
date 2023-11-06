@@ -56,4 +56,6 @@
     ];
   };
   networking.firewall.trustedInterfaces = [ "nebula0" ];
+  # systemd.services."nebula@rgnet".unitConfig.StartLimitIntervalSec = lib.mkIf (config.rg.class == "workstation") 20; # ensure Restart=always is always honoured (networks can go down for arbitrarily long)
+  systemd.services."nebula@rgnet".unitConfig.StartLimitIntervalSec = lib.mkForce (if (config.rg.class == "workstation") then 20 else 10);
 }
