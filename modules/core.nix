@@ -30,7 +30,9 @@ in
     buildOn = "remote";
     #  Build the config with the nixos-rebuild command from your flakes nixpkgs,
     # instead of the hosts nixpkgs.
-    hermetic = true;
+    # This makes cross-platform deployment fail, as it'll ignore the target's build platform
+    # And always build derivations with the local system's architecture/nixpkgs.
+    hermetic = false;
     substituteOnTarget = true;
   };
 

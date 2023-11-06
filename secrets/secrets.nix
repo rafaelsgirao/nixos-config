@@ -9,7 +9,7 @@ let
 
   spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
 
-  saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH4lpVgsqEkErMz64A8EoV+TtQUy1PcoKhuAosDvFETA";
+  saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
 
   systems = [
     scout

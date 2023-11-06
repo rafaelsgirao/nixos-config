@@ -9,7 +9,7 @@ in
     # Include the results of the hardware scan.
     #      ./hardware-configuration.nix
     # (inputs.nixpkgs-unstable + "/nixos/modules/services/security/authelia.nix")
-    ./wc-bot.nix
+    # ./wc-bot.nix
     ./vaultwarden.nix
     ./sirpt.nix
     ./bolsas.nix
@@ -31,15 +31,15 @@ in
     class = "server";
     machineType = "virt";
     ip = "192.168.10.9";
-    ipv4 = "49.13.70.201";
-    ipv6 = "2a01:4f8:c17:f044::1";
+    ipv4 = "128.140.110.89";
+    ipv6 = "2a01:4f8:1c1e:aead::1";
   };
 
   networking = {
     hostId = "f46e55a8";
     interfaces."eth0".ipv6 = {
       addresses = [{
-        address = "2a01:4f8:c17:f044::1";
+        address = config.rg.ipv6;
         prefixLength = 64;
       }];
     };
