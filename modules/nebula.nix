@@ -1,4 +1,8 @@
-{ lib, hostSecretsDir, config, ... }: {
+{ lib, hostSecretsDir, config, ... }:
+let
+  inherit (config.rg) isLighthouse;
+in
+{
 
 
   age.secrets = {
@@ -18,12 +22,13 @@
 
   users.users."nebula-rgnet".uid = 990;
   services.nebula.networks."rgnet" = {
+    inherit isLighthouse;
     enable = true;
     cert = config.age.secrets.RGNet-cert.path;
     key = config.age.secrets.RGNet-key.path;
     tun.device = "nebula0";
     ca = config.age.secrets.RGNet-CA.path;
-    lighthouses = lib.mkDefault [ "192.168.10.3" "192.168.10.5" "192.168.10.9" ];
+    lighthouses = if isLighthouse then (lib.mkDefault [ "192.168.10.3" "192.168.10.5" "192.168.10.9" ]) else [ ];
     settings = { cipher = "aes"; };
     listen.host = "[::]";
     staticHostMap = {
@@ -55,7 +60,16 @@
       }
     ];
   };
-  networking.firewall.trustedInterfaces = [ "nebula0" ];
-  # systemd.services."nebula@rgnet".unitConfig.StartLimitIntervalSec = lib.mkIf (config.rg.class == "workstation") 20; # ensure Restart=always is always honoured (networks can go down for arbitrarily long)
   systemd.services."nebula@rgnet".unitConfig.StartLimitIntervalSec = lib.mkForce (if (config.rg.class == "workstation") then 20 else 10);
+
+  #Firewall rule for Nebula Lighthouse.
+  networking.firewall =
+    {
+      trustedInterfaces = [ "nebula0" ];
+    }
+    // lib.optionalAttrs config.rg.isLighthouse {
+      allowedTCPPorts = [ 4242 ];
+      allowedUDPPorts = [ 4242 ];
+    };
+
 }

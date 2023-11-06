@@ -23,6 +23,7 @@ in
     ../../modules/zfs.nix
     ../../modules/docker.nix
     ../../modules/headless.nix
+    ../../modules/impermanence.nix
     ../../modules/sshguard.nix
     ../../modules/hardware/uefi.nix
   ];
@@ -33,6 +34,8 @@ in
     ip = "192.168.10.9";
     ipv4 = "128.140.110.89";
     ipv6 = "2a01:4f8:1c1e:aead::1";
+    isLighthouse = true;
+    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
   };
 
   networking = {
@@ -51,41 +54,30 @@ in
 
   networking.nameservers = [ config.rg.ip "1.1.1.1" ];
 
-
-  #Home as tmpfs.
-  # systemd.tmpfiles.rules = [ "d /home/rg 0755 rg users" ];
-
   #Root as 'tmpfs'.
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     zfs rollback -r ${config.networking.hostName}/local/root@blank
   '';
 
   environment.persistence."/pst" = {
-    hideMounts = true;
-    directories =
-      [
-      ];
     files = [ "/etc/machine-id" ];
-    users.rg = {
-      directories = [
-        # ".config/rclone"
-      ];
-      files = [
-        #see above comment
-        # ".local/share/fish/fish_history"
-        # ".local/share/zoxide/db.zo"
-      ];
-    };
+    #users.rg = {
+    #  directories = [
+    #  ];
+    #  files = [
+    #    #see above comment
+    #    # ".local/share/fish/fish_history"
+    #    # ".local/share/zoxide/db.zo"
+    #  ];
+    #};
   };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
-    4242 # Nebula lighthouse
     853 # blocky DNS over TLS
   ];
   networking.firewall.allowedUDPPorts = [
     853 # blocky DNS over TLS - should this be here?
-    4242 # Nebula lighthouse
   ];
 
 
@@ -110,12 +102,6 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.05"; # Did you read the comment?
-
-  services.nebula.networks."rgnet" = {
-    isLighthouse = true;
-    lighthouses = [ ];
-  };
-
 
   age.secrets = {
     rclone-config = {

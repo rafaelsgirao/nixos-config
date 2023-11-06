@@ -27,20 +27,14 @@
     ip = "192.168.10.5";
     machineType = "intel";
     class = "workstation";
+    isLighthouse = true;
+    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGItSBTrnu+uZYRbvy9HZO3zGS5Mrdozk8Imjit3/zZV";
   };
 
   hm.home.stateVersion = "23.05";
   system.stateVersion = "23.05";
 
   networking.interfaces.eth0.wakeOnLan.enable = true;
-
-  # environment.persistence."/pst" = {
-  #   directories =
-  #     # [
-  #     # ];
-  #   # files = [ "/etc/machine-id" ];
-  #   users.rg.directories = [];
-  # };
 
   services.blocky.settings.conditional.mapping = {
     "tecnico.ulisboa.pt" = "193.136.152.81,193.136.152.82";
@@ -68,19 +62,10 @@
     hostId = "71b26626";
   };
 
-  networking.firewall.allowedTCPPorts = [
-    4242 # Nebula lighthouse
-  ];
   networking.firewall.allowedUDPPorts = [
     9 #Wake-on-LAN (debugging, actual wake-on-lan doesn't care about firewall)
-    4242 # Nebula lighthouse
   ];
 
-
-  services.nebula.networks."rgnet" = {
-    isLighthouse = true;
-    lighthouses = [ ];
-  };
 
   #ZFS Remote unlocking
   boot.kernelParams =

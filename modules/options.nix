@@ -18,19 +18,14 @@ in
         type = types.bool;
         default = false;
       };
-      # state = {
-      #     enable = mkEnableOption "rg.state";
-      #     stateDir = mkOption { type = types.str; };
-      #     dirs = mkOption { type = types.listOf types.str };
-      #     homeDirs = mkOption { type = types.listOf types.str };
-      # };
-      # persist = {
-      #     enable = mkEnableOption "rg";
-      #     stateDir = mkOption { type = types.str; };
-      #     dirs = mkOption { type = types.listOf types.str };
-      #     homeDirs = mkOption { type = types.listOf types.str };
-      # };
-
+      isLighthouse = mkOption {
+        type = types.bool;
+        default = false;
+      };
+      pubKey = mkOption {
+        type = types.str;
+        default = null;
+      };
       domain = mkOption { type = types.str; };
       ip = mkOption { type = types.str; };
       ipv4 = mkOption { type = types.str; };
@@ -39,11 +34,6 @@ in
 
   };
   config = {
-    # Impermanence.
-
-
-
-    # Others.
     home-manager.users."rg" = mkAliasDefinitions options.hm;
 
     assertions =
@@ -60,6 +50,7 @@ in
         # (assertRgNotNull config.rg.ipv6)
         (assertRgNotNull config.rg.machineType)
         (assertRgNotNull config.rg.class)
+        (assertRgNotNull config.rg.pubKey)
 
       ];
   };

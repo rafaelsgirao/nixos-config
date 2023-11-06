@@ -25,6 +25,7 @@
     ip = "192.168.10.1";
     machineType = "intel";
     class = "workstation";
+    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
   };
 
   # hm.home.packages = with pkgs; [ anki-bin ];

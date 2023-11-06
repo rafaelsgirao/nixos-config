@@ -1,11 +1,13 @@
 { config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }:
 let
   isVirt = config.rg.machineType == "virt";
+  # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 in
 {
   imports = [
     ./nebula.nix
     ./nix.nix
+    ./ssh.nix
     ./hardware/networking.nix
     ./wakapi-client.nix
   ];
@@ -25,7 +27,7 @@ in
   deploy = {
     enable = true;
     host = config.rg.ip;
-    archiveFlake = (config.rg.class != "workstation");
+    archiveFlake = config.rg.class != "workstation";
     sshUser = "rg";
     buildOn = "remote";
     #  Build the config with the nixos-rebuild command from your flakes nixpkgs,
@@ -50,7 +52,6 @@ in
     '';
   };
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;
@@ -122,41 +123,9 @@ in
       "$6$zlh2QjXj/r3oHlO$oxqRDXvfm2EKyZN5wwjCzvTroZKzwwR3G/sJKOfun1UssUANPpg8AVSx6ILQSEDoIolMGbRkS76GdlP3g0Unf/";
     openssh.authorizedKeys.keys = sshKeys;
   };
-  #Needed for Colmena, for now.
-  users.users.root.openssh.authorizedKeys.keys = sshKeys;
   users.users.root.hashedPassword = config.users.users.rg.hashedPassword;
-  # users.users.root.openssh.authorizedKeys.keys = [
-  #   "no-agent-forwarding,no-port-forwarding,no-pty,no-user-rc,no-x11-forwarding sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPPsEKHGmtdhA+uqziPEGnJirEXfFQdqCDyIFJ2z1MKgAAAABHNzaDo= Yubikey-U2F"
-  # ];
 
 
-  #--------------------------------------------
-  #-------------OpenSSH Settings---------------
-  #--------------------------------------------
-  services.openssh = {
-    enable = true;
-    #Users shouldn't be able to add SSH keys outside this configuration
-    authorizedKeysFiles = lib.mkForce [ "/etc/ssh/authorized_keys.d/%u" ];
-    extraConfig = ''
-      StreamLocalBindUnlink yes
-    '';
-    settings = {
-      X11Forwarding = false;
-      KbdInteractiveAuthentication = false;
-      PasswordAuthentication = false;
-      UseDns = false;
-      # unbind gnupg sockets if they exists
-
-      PermitRootLogin = "no";
-    };
-    hostKeys = [
-      {
-        path = "/pst/etc/ssh/ssh_host_ed25519_key";
-        type = "ed25519";
-        rounds = 100;
-      }
-    ];
-  };
   hardware.nvidia.nvidiaSettings = lib.mkDefault false;
 
   services.earlyoom = {
@@ -164,10 +133,6 @@ in
     extraArgs = [ "--avoid '(^|/)(code|chromium|ferdium|thunderbird)$'" ];
   };
 
-  #Automatically saves up space in nix-store by hardlinking
-  #files with identical content
-  #This is apparently a costly operation in HDDs, so only enabled per-machine
-  #  nix.settings.auto-optimise-store = false;
 
   # 'to enable vendor fish completions provided by Nixpkgs you will also want to enable the fish shell in /etc/nixos/configuration.nix:'
   programs.fish.enable = true;
@@ -208,55 +173,6 @@ in
   };
 
   boot.blacklistedKernelModules = [ "mei_me" ];
-
-  programs.ssh = {
-    knownHosts = {
-      "github.com".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
-      "192.168.10.1".publicKey =
-        "192.168.10.1 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
-      "192.168.10.3".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDHPoJmEzz1fs+KPDQh0E+Py3yb9cTzEd3E4gVLai2/i";
-      "192.168.10.5".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGItSBTrnu+uZYRbvy9HZO3zGS5Mrdozk8Imjit3/zZV";
-      "192.168.10.6".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
-      "192.168.10.8".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDg6mKvXX9il6i2k3eG3o6Nkf/63EfMf35SYNOH+wXii";
-      "repo.dsi.tecnico.ulisboa.pt".publicKey =
-        "repo.dsi.tecnico.ulisboa.pt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAwJLvpcT0ZAZXzxFgvNPr8uwAg4EEAH2eSvPoeL+jX";
-    };
-  };
-  #Security implications if true
-  #... but with nix.settings.sandbox requires it....
-  # security.allowUserNamespaces = lib.mkForce false;
-
-  nix.distributedBuilds = !config.rg.isBuilder;
-
-  programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
-    Host spybuilder
-      HostName 192.168.10.6
-      Port 22
-      User rg
-      # IdentitiesOnly yes
-      # IdentityFile /root/.ssh/id_builder
-  '';
-
-  nix.buildMachines = lib.mkIf (!config.rg.isBuilder) [{
-    sshUser = "rg";
-    sshKey = "/home/rg/.ssh/id_ed25519";
-    protocol = "ssh-ng";
-    # publicHostKey = "bla";
-    hostName = "192.168.10.6";
-    systems = [ "x86_64-linux" "aarch64-linux" ];
-    maxJobs = 4;
-    speedFactor = 2;
-    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-    mandatoryFeatures = [ ];
-  }];
-
-  # Stop using nscd, was eating my CPU for no reason
-  services.nscd.enableNsncd = true;
 
   environment.systemPackages = with pkgs; [
     #Basic utils

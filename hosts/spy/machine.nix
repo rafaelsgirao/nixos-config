@@ -63,6 +63,7 @@ in
     machineType = "intel";
     class = "server";
     isBuilder = true;
+    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
   };
 
   #Blocky - no blocklist by default
