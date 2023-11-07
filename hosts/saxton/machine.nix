@@ -10,7 +10,7 @@ in
     #      ./hardware-configuration.nix
     # (inputs.nixpkgs-unstable + "/nixos/modules/services/security/authelia.nix")
     # ./wc-bot.nix
-    ../modules/vaultwarden.nix
+    ../../modules/vaultwarden.nix
     # ./sirpt.nix
     ./bolsas.nix
     ./mailserver.nix
