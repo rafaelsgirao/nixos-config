@@ -143,8 +143,8 @@ in
   # https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS/3-optional-configuration.html
   #Aliases to receive root mail
   environment.etc."aliases".text = ''
-    root: machine-alerts@rafael.ovh
-    rg: machine-alerts@rafael.ovh
+    root: rafaelgirao+machine-alerts@proton.me
+    rg: rafaelgirao+machine-alerts@proton.me
   '';
 
   age.secrets.sendmail-pass = {

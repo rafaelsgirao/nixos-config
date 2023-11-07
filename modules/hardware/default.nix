@@ -35,8 +35,8 @@ in
     notifications = {
       test = lib.mkDefault false;
       mail = {
-        sender = "smartd@rafael.ovh";
-        recipient = "smartd-recipient@rafael.ovh";
+        sender = "machines@rafael.ovh";
+        recipient = "rafaelgirao+smartd@proton.me";
       };
     };
   };
