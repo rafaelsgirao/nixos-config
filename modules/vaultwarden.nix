@@ -13,7 +13,6 @@ in
     group = config.users.groups.vaultwarden.name;
   };
 
-  #Home as tmpfs.
   systemd.tmpfiles.rules = lib.mkIf (config.services.vaultwarden.backupDir != null) [
     "d /state/backups 0700 root root -"
     "d /state/backups/vaultwarden 0700 vaultwarden vaultwarden -"
