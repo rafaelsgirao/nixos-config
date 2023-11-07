@@ -52,6 +52,8 @@
     };
   };
 
+  boot.initrd.systemd.enable = true;
+
   environment.persistence."/pst" = {
     directories =
       [

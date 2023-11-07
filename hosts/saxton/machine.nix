@@ -10,10 +10,12 @@ in
     #      ./hardware-configuration.nix
     # (inputs.nixpkgs-unstable + "/nixos/modules/services/security/authelia.nix")
     # ./wc-bot.nix
+    ../../modules/sshguard.nix
+    ../../modules/hardware/uefi.nix
     ../../modules/vaultwarden.nix
     # ./sirpt.nix
     ./bolsas.nix
-    ./mailserver.nix
+    # ./mailserver.nix
     ./caddy.nix
     # ./maddy.nix
     ../../modules/caddy.nix
@@ -21,11 +23,9 @@ in
     ../../modules/acme.nix
     ../../modules/blocky.nix
     ../../modules/zfs.nix
-    ../../modules/docker.nix
+    # ../../modules/docker.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix
-    ../../modules/sshguard.nix
-    ../../modules/hardware/uefi.nix
   ];
 
   rg = {

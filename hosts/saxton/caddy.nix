@@ -3,6 +3,7 @@
 let
   inherit (config.networking) fqdn;
   inherit (config.rg) domain;
+  siteDir = "/pst/site";
 in
 {
 
@@ -63,7 +64,7 @@ in
       extraConfig = ''
         encode zstd gzip
         respond /evil/.git* 404
-        root * /data/caddy-public/site/main/html
+        root * ${siteDir}/main/html
         file_server browse {
           hide .git
         }
@@ -79,7 +80,7 @@ in
       listenAddresses = [ config.rg.ip ];
       extraConfig = ''
         encode zstd gzip
-        root * /data/caddy-public/site/priv/html
+        root * ${siteDir}/priv/html
         file_server browse {
           hide .git
         }
@@ -89,7 +90,7 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        root * /data/caddy-public/site/main/html/evil
+        root * ${siteDir}/main/html/evil
         respond /.git* 404
         file_server {
           hide .git
