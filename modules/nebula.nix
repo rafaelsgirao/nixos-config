@@ -28,7 +28,7 @@ in
     key = config.age.secrets.RGNet-key.path;
     tun.device = "nebula0";
     ca = config.age.secrets.RGNet-CA.path;
-    lighthouses = if isLighthouse then (lib.mkDefault [ "192.168.10.3" "192.168.10.5" "192.168.10.9" ]) else [ ];
+    lighthouses = if (!isLighthouse) then (lib.mkDefault [ "192.168.10.3" "192.168.10.5" "192.168.10.9" ]) else [ ];
     settings = { cipher = "aes"; };
     listen.host = "[::]";
     staticHostMap = {

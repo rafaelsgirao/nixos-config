@@ -13,11 +13,11 @@ in
     };
     extraConfig = ''
       [global-dns-domain-*]
-      servers=${config.rg.ip},192.168.10.3
+      servers=192.168.10.9,192.168.10.5
     '';
   };
 
-  networking.nameservers = [ "192.168.10.5" "192.168.10.3" ];
+  networking.nameservers = [ "192.168.10.9" "192.168.10.5" ];
 
   #resolved allows us to have less processes running:
   services.resolved = {
@@ -27,7 +27,7 @@ in
     llmnr = "false";
     dnssec = "allow-downgrade";
     domains = [ config.rg.domain ];
-    fallbackDns = [ "192.168.10.3" "1.1.1.1#one.one.one.one" "9.9.9.9#dns.quad9.net" "2620:fe::9#dns.quad9.net" ];
+    fallbackDns = [ "1.1.1.1#one.one.one.one" "9.9.9.9#dns.quad9.net" "2620:fe::9#dns.quad9.net" ];
     extraConfig = ''
       DNSOverTLS=opportunistic
     '';

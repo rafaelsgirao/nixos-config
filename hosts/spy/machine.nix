@@ -60,6 +60,7 @@ in
 
   rg = {
     ip = "192.168.10.6";
+    ipv4 = "192.168.1.80";
     machineType = "intel";
     class = "server";
     isBuilder = true;
@@ -82,7 +83,7 @@ in
       interface = "eth0";
     };
     interfaces.eth0.ipv4.addresses = [{
-      address = "192.168.1.80";
+      address = config.rg.ipv4;
       prefixLength = 24;
     }];
     firewall = {
@@ -104,7 +105,7 @@ in
 
   #Remote ZFS pool unlock
   boot.kernelParams =
-    [ "ip=192.168.1.80::192.168.1.1:255.255.255.0::eth0:none" ];
+    [ "ip=${config.rg.ipv4}::192.168.1.1:255.255.255.0::eth0:none" ];
 
   boot.initrd.network.postCommands = ''
     cat << EOF > /root/.profile

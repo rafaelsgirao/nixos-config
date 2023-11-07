@@ -46,4 +46,13 @@ in
       "repo.dsi.tecnico.ulisboa.pt".publicKey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAwJLvpcT0ZAZXzxFgvNPr8uwAg4EEAH2eSvPoeL+jX";
     };
+  networking.hosts =
+
+    let
+      # allHosts = mapAttrs' (_: host: nameValuePair host.config.networking.hostName host.config.rg.ip) nixosConfigurations;
+      allHosts = mapAttrs' (_: host: nameValuePair host.config.rg.ip host.config.networking.hostName) nixosConfigurations;
+      myKnownHosts = mapAttrs (_: hostName: [ hostName ]) (allHosts);
+    in
+    myKnownHosts;
+
 }

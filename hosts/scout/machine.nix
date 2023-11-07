@@ -14,7 +14,6 @@
     ../../modules/syncthing.nix
     ../../modules/libvirt.nix
     # ../../modules/docker.nix
-    ../../modules/blocky.nix
     ../../modules/hardware/uefi.nix
     # Add configs later as needed
   ];
