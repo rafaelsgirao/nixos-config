@@ -3,7 +3,7 @@ let
   inherit (pkgs) callPackage;
   rubyNix = inputs.ruby-nix.lib pkgs;
 in
-{
+rec {
 
   #Packages from inputs.
   bolsas-scraper = inputs'.bolsas-scraper.packages.default;
@@ -19,6 +19,8 @@ in
   # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
   chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
 
+  octodns = pkgs.callPackage ./octodns { };
+  octodns-cloudflare = pkgs.callPackage ./octodns-cloudflare { inherit octodns; };
   wc-bot = callPackage ./wc-bot { };
   #NOTE: I don't think creating packages that call inputs is good practice,
   #But I don't know how to do better
