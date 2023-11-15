@@ -30,4 +30,7 @@ rec {
   #The code above doesn't work for some reason
   setupSecrets = pkgs.writeScriptBin "setupSecrets" (inputs.dsi-setupsecrets + "setupSecrets");
 
+  #For consistency's sake, both use python3 from unstable (but lyricsgenius doesn't need it)
+  lyricsgenius = pkgs.callPackage ./lyricsgenius { inherit (pkgs.unstable) python3; };
+  tidal-dl = pkgs.callPackage ./tidal-dl { inherit (pkgs.unstable) python3; inherit lyricsgenius; };
 }

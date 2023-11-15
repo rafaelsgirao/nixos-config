@@ -218,7 +218,7 @@
           "aarch64-linux"
         ];
         # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
-        perSystem = { config, pkgs, inputs', ... }: {
+        perSystem = { config, pkgs, inputs', system, ... }: {
           devShells.default = config.pre-commit.devShell;
           # apps = inputs.nixinate.nixinate self;
           pre-commit.settings.hooks = {
@@ -247,6 +247,13 @@
 
           };
           packages = import ./packages { inherit pkgs; inherit inputs; inherit inputs'; };
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [
+              outputs.overlays.pkgs-sets-unstable
+            ];
+            config = { };
+          };
         };
 
         flake = {
@@ -254,7 +261,7 @@
           nixosConfigurations = mkHosts ./hosts;
           overlays = {
 
-            pkgs-sets = final: _prev:
+            pkgs-sets-unstable = final: _prev:
               let
                 args = {
                   inherit (final) system;
@@ -264,6 +271,9 @@
               in
               {
                 unstable = import inputs.nixpkgs-unstable args;
+              };
+            pkgs-sets-mypkgs = final: _prev:
+              {
                 mypkgs = outputs.packages.${final.system};
               };
           };
