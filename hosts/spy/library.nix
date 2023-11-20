@@ -96,6 +96,10 @@ in
       rpc-host-whitelist = transmission-url;
       rpc-username = "rg";
       rpc-authentication-required = true;
+      ratio-limit = 12.0;
+      ratio-limit-enabled = true;
+      idle-seeding-limit = 10080;
+      idle-seeding-limit-enabled = true;
 
     };
   };

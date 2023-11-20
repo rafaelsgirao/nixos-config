@@ -19,8 +19,6 @@
 
   nixpkgs.hostPlatform = "aarch64-linux";
 
-
-  #TODO: FINISH
   disko.devices = {
     disk.main = {
       type = "disk";
@@ -71,6 +69,10 @@
         "local/nix" = {
           type = "zfs_fs";
           mountpoint = "/nix";
+          options = {
+            sync = "disabled";
+          };
+
         };
         "local/reserved" = {
           type = "zfs_fs";
