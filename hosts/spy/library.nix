@@ -180,17 +180,18 @@ in
   };
   #TODO: persistence /var/lib/jellyfin
   services.jellyfin.enable = true;
-  systemd.services.jellyfin.serviceConfig = {
-    ProtectHome = true;
-    ProtectSystem = "strict";
-    ReadWritePaths = [ "/library" ];
-    ProtectProc = "noaccess";
-    ProtectClock = true;
-    ProcSubset = "pid";
-    SupplementaryGroups = [ "render" "video" "library" ];
-    DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" "/dev/dri/card0" "/dev/dri/card1" ];
-  };
+  # systemd.services.jellyfin.serviceConfig = {
+  # ProtectHome = true;
+  # ProtectSystem = "strict";
+  # ReadWritePaths = [ "/library" ];
+  # ProtectProc = "noaccess";
+  # ProtectClock = true;
+  # ProcSubset = "pid";
+  # SupplementaryGroups = [ "render" "video" "library" ];
+  # DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" "/dev/dri/card0" "/dev/dri/card1" ];
+  # };
 
+  users.users.jellyfin.extraGroups = [ "render" "video" "library" ];
   #hardware accelerated Playback
   # 1. enable vaapi on OS-level
   nixpkgs.config.packageOverrides = pkgs: {
@@ -199,18 +200,16 @@ in
   environment.systemPackages = with pkgs; [
     glxinfo
     libva-utils #libva-utils --run vainfo
-
-
   ];
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [
-      # mesa.drivers
-      intel-media-driver
-      vaapiIntel
-      # vaapiVdpau
-      # libvdpau-va-gl
-      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
-    ];
-  };
+  # hardware.opengl = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [
+  #     # mesa.drivers
+  #     intel-media-driver
+  #     vaapiIntel
+  #     # vaapiVdpau
+  #     # libvdpau-va-gl
+  #     intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+  #   ];
+  # };
 }

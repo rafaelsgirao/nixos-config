@@ -112,6 +112,7 @@ in
     extraGroups = [
       "wheel"
       "video"
+      "render"
       "scanner"
       "lp"
       "adbusers"

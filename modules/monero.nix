@@ -1,6 +1,6 @@
 { config, ... }:
 let
-  dataDir = "/state-heavy/monero";
+  dataDir = "/var/monero";
 in
 {
 
@@ -25,7 +25,7 @@ in
       no-zmq=1
       no-igd=1
       #this is default sync mode.
-      db-sync-mode=fast:async:250000000bytes
+      db-sync-mode=fastest:async:250000000bytes
       out-peers=256
       in-peers=128             # The default is unlimited; we prefer to put a cap on this
       confirm-external-bind=1

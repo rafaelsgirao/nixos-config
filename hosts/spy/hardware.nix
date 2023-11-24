@@ -44,6 +44,11 @@
     fsType = "zfs";
   };
 
+  fileSystems."/var/monero" = {
+    device = "neonheavypool/local/monero";
+    fsType = "zfs";
+  };
+
   fileSystems."/var/lib/private/uptime-kuma" = {
     device = "/data/uptime-kuma-nixos";
     fsType = "none";
