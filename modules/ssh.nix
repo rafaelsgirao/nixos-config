@@ -51,7 +51,7 @@ in
     let
       # allHosts = mapAttrs' (_: host: nameValuePair host.config.networking.hostName host.config.rg.ip) nixosConfigurations;
       allHosts = mapAttrs' (_: host: nameValuePair host.config.rg.ip host.config.networking.hostName) nixosConfigurations;
-      myKnownHosts = mapAttrs (_: hostName: [ hostName ]) (allHosts);
+      myKnownHosts = mapAttrs (_: hostName: [ hostName ]) allHosts;
     in
     myKnownHosts;
 

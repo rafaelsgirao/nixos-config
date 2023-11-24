@@ -14,7 +14,7 @@ in
   # improve desktop responsiveness when updating the system
   nix.daemonCPUSchedPolicy = "idle";
   networking.hosts."192.168.10.3" = [ "mx.rafael.ovh" ];
-  hm.programs.thunderbird = lib.mkIf (config.networking.hostName != medic) {
+  hm.programs.thunderbird = lib.mkIf (config.networking.hostName != "medic") {
     enable = true;
     # package = null;
     profiles."rg" = {
