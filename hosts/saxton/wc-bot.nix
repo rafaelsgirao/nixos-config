@@ -26,7 +26,7 @@
 
       # https://ma.ttias.be/auto-restart-crashed-service-systemd/
       Restart = "on-failure";
-      RetartSec = "5s";
+      RestartSec = "5s";
 
       #Hardening
       CapabilityBoundingSet = [ "" ];
