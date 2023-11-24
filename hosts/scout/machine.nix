@@ -68,6 +68,7 @@
         ".anydesk"
         ".thunderbird"
         ".local/share/davisr"
+        ".config/davisr"
         "Music"
         "repos"
         "PX"
@@ -95,6 +96,7 @@
   #Blocky
   services.blocky.settings.customDNS.mapping = {
     "meerkat-mgmt.dsi.tecnico.ulisboa.pt" = "127.0.0.1";
+    "fw-poc-1-mgmt.dsi.tecnico.ulisboa.pt" = "127.0.0.1";
     "id.rafael.ovh" = "192.168.10.6";
   };
 

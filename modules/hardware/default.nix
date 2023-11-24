@@ -19,10 +19,11 @@ in
     ]
   ++ optional isIntel pkgs.intel-gpu-tools;
 
-  hardware.opengl = mkIf (isIntel && isWorkstation) {
+  hardware.opengl = mkIf (!isVirt) {
     enable = true;
     driSupport = true;
-    extraPackages = with pkgs; [
+    # driSupport32Bit = true;
+    extraPackages = with pkgs; lib.optionals (isIntel) [
       intel-media-driver
       intel-ocl
     ];
