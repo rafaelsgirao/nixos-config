@@ -65,6 +65,16 @@
           type = "zfs_fs";
           mountpoint = "/";
           postCreateHook = "zfs snapshot saxton/local/root@blank";
+          options = {
+            sync = "disabled";
+          };
+        };
+        "local/cache" = {
+          type = "zfs_fs";
+          mountpoint = "/var/cache";
+          options = {
+            sync = "disabled";
+          };
         };
         "local/nix" = {
           type = "zfs_fs";
@@ -84,6 +94,13 @@
         "local/state" = {
           type = "zfs_fs";
           mountpoint = "/state";
+        };
+        "local/cache" = {
+          type = "zfs_fs";
+          options = {
+            mountpoint = "none";
+            sync = "disabled";
+          };
         };
         "safe/persist" = {
           type = "zfs_fs";

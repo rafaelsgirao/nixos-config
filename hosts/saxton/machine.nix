@@ -9,12 +9,12 @@ in
     # Include the results of the hardware scan.
     #      ./hardware-configuration.nix
     # (inputs.nixpkgs-unstable + "/nixos/modules/services/security/authelia.nix")
-    # ./wc-bot.nix
+    ./wc-bot.nix
     ../../modules/sshguard.nix
     ../../modules/hardware/uefi.nix
     ../../modules/vaultwarden.nix
     # ./sirpt.nix
-    ./bolsas.nix
+    ../../modules/bolsas-scraper.nix
     # ./mailserver.nix
     ./caddy.nix
     # ./maddy.nix
@@ -61,15 +61,6 @@ in
 
   environment.persistence."/pst" = {
     files = [ "/etc/machine-id" ];
-    #users.rg = {
-    #  directories = [
-    #  ];
-    #  files = [
-    #    #see above comment
-    #    # ".local/share/fish/fish_history"
-    #    # ".local/share/zoxide/db.zo"
-    #  ];
-    #};
   };
 
   # Open ports in the firewall.
