@@ -134,17 +134,47 @@ in
     after = [ "postgresql.service" ];
   };
 
-  systemd.services."go-vod" = {
-    path = with pkgs; [
-      jellyfin-ffmpeg
-    ];
-    serviceConfig = {
-      DynamicUser = true;
-      ExecStart = "${pkgs.mypkgs.go-vod}/bin/go-vod";
-      DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" ];
-      ReadOnlyPaths = config.services.nextcloud.home;
-      SupplementaryGroups = [ "nextcloud" ];
+  users.groups.go-vod = { };
+  users.users = {
+    go-vod = {
+      group = "go-vod";
+      isSystemUser = true;
+      extraGroups = [ "render video" ];
     };
   };
+
+  systemd.services."go-vod" =
+    let
+      pkg = pkgs.jellyfin-ffmpeg;
+      goVodConfig = {
+        NVENC = true;
+        NVENCTemporalAQ = true;
+        NVENCScale = "npp";
+        FFmpeg = "${pkg}/bin/ffmpeg";
+        FFprobe = "${pkg}/bin/ffprobe";
+      };
+      GoVodConfigFile = pkgs.writeText "go-vod-config.json" (builtins.toJSON goVodConfig);
+    in
+    {
+      after = [ "network.target" ];
+      wantedBy = [ "network.target" ];
+      # path = with pkgs; [
+      #   jellyfin-ffmpeg
+      # ];
+      serviceConfig = {
+        User = "go-vod";
+        Group = "go-vod";
+
+        # https://ma.ttias.be/auto-restart-crashed-service-systemd/
+        Restart = "on-failure";
+        RestartSec = "5s";
+
+
+        ExecStart = "${pkgs.mypkgs.go-vod}/bin/go-vod ${GoVodConfigFile}";
+        DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" ];
+        ReadOnlyPaths = config.services.nextcloud.home;
+        SupplementaryGroups = [ "nextcloud" ];
+      };
+    };
 
 }
