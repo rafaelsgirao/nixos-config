@@ -490,7 +490,6 @@ in
     cinnamon.nemo
     gparted
     pavucontrol
-    yarn
     xorg.xlsclients
     xorg.xeyes
     #Utils

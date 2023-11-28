@@ -2,6 +2,8 @@
 
 let
   inherit (config.rg) domain;
+  inherit (config.networking) fqdn;
+  backupDir = "/pst/backups";
 
 in
 {
@@ -14,7 +16,7 @@ in
   };
 
   systemd.tmpfiles.rules = lib.mkIf (config.services.vaultwarden.backupDir != null) [
-    "d /state/backups 0700 root root -"
+    "d /state/backups 0705 root root -"
     "d /state/backups/vaultwarden 0700 vaultwarden vaultwarden -"
   ];
 
@@ -49,7 +51,29 @@ in
   ];
 
   services.caddy.virtualHosts = {
+    # "vault.${domain}" = {
+    #   useACMEHost = "${domain}";
+    #   extraConfig = ''
+    #     encode zstd gzip
+    #     # Notifications redirected to the WebSocket server
+    #     reverse_proxy /notifications/hub 127.0.0.1:3012
+
+    #     reverse_proxy http://127.0.0.1:52378
+    #   '';
+    # };
+
     "vault.${domain}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        # Notifications redirected to the WebSocket server
+        reverse_proxy /notifications/hub 127.0.0.1:3012
+
+        reverse_proxy http://127.0.0.1:52378
+      '';
+    };
+
+    "vault.${fqdn}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
