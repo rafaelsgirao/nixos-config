@@ -86,6 +86,9 @@ in
 
         "sniper" = "192.168.10.8";
         "sniper.rafael.ovh" = "192.168.10.8";
+
+        "saxton" = "192.168.10.9";
+        "saxton.rafael.ovh" = "192.168.10.9";
       };
     };
     blocking.blackLists = {
