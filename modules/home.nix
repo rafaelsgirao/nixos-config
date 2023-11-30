@@ -15,6 +15,7 @@ in
       ".local/share/atuin"
       ".local/share/fish"
       ".local/share/zoxide"
+      ".local/share/direnv"
     ] ++ lib.optionals isWorkstation [
       ".ssh"
       ".local/share/keyrings"

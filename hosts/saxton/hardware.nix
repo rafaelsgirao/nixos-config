@@ -95,13 +95,6 @@
           type = "zfs_fs";
           mountpoint = "/state";
         };
-        "local/cache" = {
-          type = "zfs_fs";
-          options = {
-            mountpoint = "none";
-            sync = "disabled";
-          };
-        };
         "safe/persist" = {
           type = "zfs_fs";
           mountpoint = "/pst";
