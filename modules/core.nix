@@ -200,7 +200,7 @@ in
     ripgrep
     btop
     #Nice utils
-    exa # managed by HM, but I might want to use this as root
+    eza # managed by HM, but I might want to use this as root
     bat
     fd
     pre-commit

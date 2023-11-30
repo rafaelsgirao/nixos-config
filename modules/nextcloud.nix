@@ -22,7 +22,6 @@ in
     webfinger = true;
     hostName = ncHost;
     configureRedis = true;
-    enableBrokenCiphersForSSE = false;
     enableImagemagick = false;
     #Makes sure that wherever this module is imported this variable is changed.
     home = lib.mkDefault null;

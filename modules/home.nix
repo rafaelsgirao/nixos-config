@@ -56,7 +56,7 @@ in
           '';
       };
 
-    programs.exa = {
+    programs.eza = {
       enable = true;
       enableAliases = true;
       git = true; #23.05
@@ -211,11 +211,8 @@ in
         { name = "bass"; inherit (bass) src; }
       ];
       shellAliases = rec {
-        # ls = "exa";
-        # ll = "exa -lhaH";
-        # l = ll;
         rg = "rg -i --hidden";
-        tree = "exa -T";
+        tree = "eza -T";
         zathura = "zathura --fork";
         nix-shell = "nix-shell --command 'fish'";
         ssh = "TERM=xterm-256color ${pkgs.openssh}/bin/ssh";
