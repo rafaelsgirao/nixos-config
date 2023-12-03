@@ -258,20 +258,21 @@
 
   programs.firefox =
     let
-      custom-firefox = pkgs.firefox.override {
-        # See nixpkgs' firefox/wrapper.nix to check which options you can use
-        cfg = {
-          # Gnome shell native connector
-          enableGnomeExtensions = true;
-        };
-      };
+      # custom-firefox = pkgs.firefox.override {
+      #   # See nixpkgs' firefox/wrapper.nix to check which options you can use
+      #   cfg = {
+      #     # Gnome shell native connector
+      #     enableGnomeExtensions = true;
+      #   };
+      # };
 
     in
     {
       # package = pkgs.fakepkg;
       # package = (pkgs.busybox +;
       enable = true;
-      package = custom-firefox;
+      package = pkgs.firefox;
+      # package = custom-firefox;
       policies = {
         "3rdparty".Extensions = {
           "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {

@@ -243,8 +243,8 @@ in
   location.provider = "manual";
 
   #Fonts
-  fonts.enableDefaultFonts = true;
-  fonts.fonts = with pkgs; [
+  fonts.enableDefaultPackages = true;
+  fonts.packages = with pkgs; [
     roboto
     noto-fonts-cjk
     noto-fonts-extra
