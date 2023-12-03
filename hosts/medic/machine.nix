@@ -10,7 +10,7 @@
     ../../modules/zfs.nix
     ../../modules/zfs-unlock.nix
     ../../modules/dsi.nix
-    ../../modules/syncthing.nix
+    # ../../modules/syncthing.nix
     ../../modules/libvirt.nix
     ../../modules/blocky.nix
     ../../modules/hardware/uefi.nix
