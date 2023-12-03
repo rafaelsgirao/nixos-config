@@ -9,6 +9,8 @@ rec {
   bolsas-scraper = inputs'.bolsas-scraper.packages.default;
   sirpt-dnsbl = inputs'.sirpt-feed.packages.default;
 
+  camunda-modeler-bin = callPackage ./camunda-modeler-bin { };
+
   #TODO.
   # remarkable-rcu = pkgs.callPackage ./rcu {};
 
