@@ -11,6 +11,7 @@ in
     ./library.nix
     # ../../modules/cups.nix
     ../../modules/acme.nix
+    ../../modules/binary-cache.nix
     ../../modules/caddy.nix
     ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix

@@ -20,6 +20,13 @@
 
     trusted-users = [ "@wheel" "root" ];
 
+    substituters = [
+      "https://cache.spy.rafael.ovh"
+    ];
+    trusted-public-keys = [
+      "cache.spy.rafael.ovh:5aGgIOEo7H004XtJq5Bob59PiISlNCNH+m0v4IVyyCA="
+    ];
+
     # Fallback quickly if substituters are not available.
     connect-timeout = 5;
 

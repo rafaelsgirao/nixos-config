@@ -257,16 +257,6 @@
   };
 
   programs.firefox =
-    let
-      # custom-firefox = pkgs.firefox.override {
-      #   # See nixpkgs' firefox/wrapper.nix to check which options you can use
-      #   cfg = {
-      #     # Gnome shell native connector
-      #     enableGnomeExtensions = true;
-      #   };
-      # };
-
-    in
     {
       # package = pkgs.fakepkg;
       # package = (pkgs.busybox +;

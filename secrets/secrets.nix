@@ -29,6 +29,7 @@ in
   "restic-env.age".publicKeys = [ saxton spy ] ++ users;
   "restic-password.age".publicKeys = [ saxton spy ] ++ users;
   "SSH-config.age".publicKeys = [ scout medic ] ++ users;
+  "BinaryCache-pub.age".publicKeys = systems ++ users;
 
   #Scout secrets
   "scout/RGNet-key.age".publicKeys = [ scout ] ++ users;
@@ -40,6 +41,7 @@ in
   "medic/HC-alive.age".publicKeys = [ medic ] ++ users;
 
   #Spy secrets
+  "spy/BinaryCache-key.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-key.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-cert.age".publicKeys = [ spy ] ++ users;
   "spy/Transmission-creds.age".publicKeys = [ spy ] ++ users;
