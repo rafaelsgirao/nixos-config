@@ -33,4 +33,5 @@ rec {
   #For consistency's sake, both use python3 from unstable (but lyricsgenius doesn't need it)
   lyricsgenius = pkgs.callPackage ./lyricsgenius { inherit (pkgs.unstable) python3; };
   tidal-dl = pkgs.callPackage ./tidal-dl { inherit (pkgs.unstable) python3; inherit lyricsgenius; };
+  zypak = pkgs.callPackage ./zypak { };
 }
