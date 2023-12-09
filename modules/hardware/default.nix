@@ -23,7 +23,7 @@ in
     enable = true;
     driSupport = true;
     # driSupport32Bit = true;
-    extraPackages = with pkgs; lib.optionals (isIntel) [
+    extraPackages = with pkgs; lib.optionals isIntel [
       intel-media-driver
       intel-ocl
     ];

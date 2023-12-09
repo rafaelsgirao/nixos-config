@@ -9,7 +9,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "spypool/local/root";
+    device = "neonheavypool/local/root";
     fsType = "zfs";
   };
 
@@ -92,7 +92,7 @@
   };
 
   fileSystems."/home-state" = {
-    device = "spypool/local/home";
+    device = "neonheavypool/local/home-from-spypool";
     fsType = "zfs";
   };
 

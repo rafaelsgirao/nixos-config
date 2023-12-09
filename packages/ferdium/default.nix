@@ -7,7 +7,7 @@ buildNpmPackage rec {
     owner = "ferdium";
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-28n5lobipE6IegU6QyYJt6XnLja7aHK03CRu8EsqNF0=";
+    sha256 = "sha256-28n5lobipE6IegU6QyYJt6XnLja7aHK03CRu8EsqNF0=";
   };
 
   npmDepsHash = "sha256-28n5lobipE6IegU6QyYJt6XnLja7aHK03CRu8EsqNF0=";
