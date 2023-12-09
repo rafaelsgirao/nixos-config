@@ -93,6 +93,15 @@
           flake-parts.follows = "flake-parts";
         };
       };
+    wc-bot =
+      {
+        # url = "github:ist-chan-bot-team/ist-chan-bot";
+        url = "git+ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git";
+        inputs.nixpkgs.follows = "nixpkgs";
+        inputs = {
+          flake-parts.follows = "flake-parts";
+        };
+      };
     sirpt-feed =
       {
         url = "git+ssh://git@git.spy.rafael.ovh:4222/rg/sirpt-feed.git";

@@ -21,7 +21,7 @@ rec {
 
   octodns = pkgs.callPackage ./octodns { };
   octodns-cloudflare = pkgs.callPackage ./octodns-cloudflare { inherit octodns; };
-  wc-bot = callPackage ./wc-bot { };
+  wc-bot = inputs'.wc-bot.packages.default;
   #NOTE: I don't think creating packages that call inputs is good practice,
   #But I don't know how to do better
   # setupSecrets = callPackage ./setupsecrets { inherit inputs; };
