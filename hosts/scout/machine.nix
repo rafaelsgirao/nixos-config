@@ -12,6 +12,7 @@
     ../../modules/zfs.nix
     ../../modules/dsi.nix
     # ../../modules/syncthing.nix
+    ../../modules/docker.nix
     ../../modules/libvirt.nix
     # ../../modules/docker.nix
     ../../modules/hardware/uefi.nix
