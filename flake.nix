@@ -1,4 +1,14 @@
 {
+          nixConfig = {
+            extra-substituters = [
+              "https://cache.spy.rafael.ovh"
+            ];
+            extra-trusted-public-keys = [
+              "cache.spy.rafael.ovh:5aGgIOEo7H004XtJq5Bob59PiISlNCNH+m0v4IVyyCA="
+            ];
+            flake-registry = [
+              "https://rafael.ovh/flake-registry.json"
+            ];};
   inputs = {
     #--------------
     #Important inputs.
@@ -266,14 +276,6 @@
         };
 
         flake = {
-          nixConfig = {
-            extra-substituters = [
-              "https://cache.spy.rafael.ovh"
-            ];
-            extra-trusted-public-keys = [
-              "cache.spy.rafael.ovh:5aGgIOEo7H004XtJq5Bob59PiISlNCNH+m0v4IVyyCA="
-            ];
-          };
 
           # apps = inputs.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;

@@ -16,6 +16,12 @@ in
     ];
   };
 
+  environment.etc."flake-registry/flake-registry.json" = {
+      source = config.environment.etc."nix/registry.json".source;
+      mode = "0444";
+      user = "caddy";
+      group = "caddy";
+  };
 
   services.caddy.globalConfig = ''
     default_bind ${config.rg.ipv4} [${config.rg.ipv6}]
@@ -64,9 +70,18 @@ in
       extraConfig = ''
         encode zstd gzip
         respond /evil/.git* 404
-        root * ${siteDir}/main/html
-        file_server browse {
-          hide .git
+       	@isRegistry file {
+    		root /etc/flake-registry
+    	}
+    	handle @isRegistry {
+    		root * /etc/flake-registry
+    		file_server
+    	}
+        handle {
+            root * ${siteDir}/main/html
+            file_server browse {
+              hide .git
+            }
         }
       '';
     };
