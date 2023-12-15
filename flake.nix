@@ -239,14 +239,15 @@
         ];
         # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
         perSystem = { config, pkgs, inputs', system, ... }: {
-          devShells.default = config.pre-commit.devShell;
+          devShells.default = pkgs.mkShell {
+            shellHook = '' 
+            # export DEBUG=1
+            ${config.pre-commit.installationScript}
+       '';
+          };
           # apps = inputs.nixinate.nixinate self;
           pre-commit.settings.hooks = {
-            nixpkgs-fmt.enable = true;
-            statix.enable = true;
-            deadnix = {
-              enable = true;
-            };
+            treefmt.enable = true;
             gitleaks = {
               enable = true;
               name = "gitleaks";
@@ -264,6 +265,11 @@
             shellcheck.enable = true;
             shfmt.enable = true;
             mdformat.enable = true;
+            deadnix.enable = true;
+            statix.enable = true;
+            statix.disabled-lints = [
+              "repeated_keys"
+            ];
 
           };
           packages = import ./packages { inherit pkgs; inherit inputs; inherit inputs'; };

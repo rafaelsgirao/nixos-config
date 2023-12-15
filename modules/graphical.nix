@@ -198,7 +198,7 @@ in
   # hm.fonts.fontconfig.enable = true;
   hm.home.sessionPath = [ "$HOME/.local/bin" ];
 
-  systemd.user.services.polkit-gnome = lib.mkIf (!isGnome) {
+  hm.systemd.user.services.polkit-gnome = lib.mkIf (!isGnome) {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
     wants = [ "graphical-session.target" ];
@@ -365,7 +365,37 @@ in
       };
   };
 
-  hm.services.flameshot.enable = lib.mkIf (!isGnome) true;
+  #hm.services.flameshot = {
+  #  # enable = lib.mkIf (!isGnome) true;
+  #  enable = true;
+  #  settings = {
+
+  #    General = {
+  #      showStartupLaunchMessage = false;
+  #      contrastOpacity = 86;
+  #      contrastUiColor = "#cb3939";
+  #      disabledTrayIcon = false;
+  #      drawColor = "#ff2217";
+  #      drawFontSize = 8;
+  #      drawThickness = 4;
+  #      filenamePattern = "Screenshot %d-%m-%Y - %H-%M-%S";
+  #      saveAfterCopy = true;
+  #      savePath = "/home/rg/Screenshots";
+  #      savePathFixed = true;
+  #      uiColor = "#db6b73";
+  #    };
+
+
+  #  };
+  #};
+
+  ##Flameshot requires 'tray.target', which isn't a thing in wayland/gnome/wtv
+  #	systemd.user.targets.tray = {
+  #Unit = {
+  #Description = "Home Manager System Tray";
+  #Requires = [ "graphical-session-pre.target" ];
+  #};
+  #};
 
   #Enable XDG Desktop Portals
   # Needed for flameshot:
