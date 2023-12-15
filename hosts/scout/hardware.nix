@@ -33,6 +33,12 @@
     fsType = "zfs";
   };
 
+  fileSystems."/home/rg/Screenshots" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [ "defaults" ];
+  };
+
   # fileSystems."/home/rg" =
   #   {
   #     device = "none";

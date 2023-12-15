@@ -12,10 +12,6 @@ in
     ./wakapi-client.nix
   ];
 
-  #--------------------------------------------
-  #-------------Boot Settings------------------
-  #--------------------------------------------
-
 
   rg = {
     enable = true;
@@ -172,6 +168,8 @@ in
       from = "machines@rafael.ovh";
     };
   };
+
+  documentation.dev.enable = true;
 
   boot.blacklistedKernelModules = [ "mei_me" ];
 
