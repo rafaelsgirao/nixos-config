@@ -71,10 +71,11 @@ in
         # "pyro" = "192.168.10.4";
         # "pyro.rafael.ovh" = "192.168.10.4";
 
-        "medic" = "192.168.10.5";
-        "medic.rafael.ovh" = "192.168.10.5";
-        "medicist" =
-          lib.mkIf (config.networking.hostName != "engie") "193.136.132.93";
+        # Discontinued
+        # "medic" = "192.168.10.5";
+        # "medic.rafael.ovh" = "192.168.10.5";
+        # "medicist" =
+        #   lib.mkIf (config.networking.hostName != "engie") "193.136.132.93";
 
         "spy" = "192.168.10.6";
         "spy.rafael.ovh" = "192.168.10.6";
@@ -143,7 +144,6 @@ in
         "192.168.10.1" = [ "normal" "rg" ];
         "192.168.10.2" = [ "none" ];
         "192.168.10.3" = [ "none" ];
-        "192.168.10.5" = [ "normal" "rg" ];
         "192.168.10.6" = [ "none" ];
         "public" = [ "normal" ];
         # "pt-phishing" = [ "pt-phishing" ];

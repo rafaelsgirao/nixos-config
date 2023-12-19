@@ -13,11 +13,11 @@ in
     };
     extraConfig = ''
       [global-dns-domain-*]
-      servers=192.168.10.9,192.168.10.5
+      servers=192.168.10.9
     '';
   };
 
-  networking.nameservers = [ "192.168.10.9" "192.168.10.5" ];
+  networking.nameservers = [ "192.168.10.9" ];
 
   #resolved allows us to have less processes running:
   services.resolved = {

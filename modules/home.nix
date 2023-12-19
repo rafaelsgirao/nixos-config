@@ -115,7 +115,7 @@ in
       #     commit.gpgSign = true;
       #     gpg.format = "ssh";
       #     user = {
-      #       signingkey = "/home/rg/.ssh/id_ed25519_sk"; # FIX THIS ON MEDIC & SCOUT
+      #       signingkey = "/home/rg/.ssh/id_ed25519_sk"; # FIX THIS ON SCOUT
       #     };
       #   };
       # };

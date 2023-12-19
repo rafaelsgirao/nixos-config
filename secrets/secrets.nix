@@ -1,11 +1,8 @@
 let
   rg-scout = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a";
-  rg-medic = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGTJmVou9C3Q5hZ48FcCv3UoTrG5m2QAf26V8RxZfwxB";
-  users = [ rg-scout rg-medic ];
+  users = [ rg-scout ];
 
   scout = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
-
-  medic = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGItSBTrnu+uZYRbvy9HZO3zGS5Mrdozk8Imjit3/zZV";
 
   spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
 
@@ -13,7 +10,6 @@ let
 
   systems = [
     scout
-    medic
     spy
     saxton
   ];
@@ -28,17 +24,17 @@ in
   "rclone-config.age".publicKeys = systems ++ users;
   "restic-env.age".publicKeys = [ saxton spy ] ++ users;
   "restic-password.age".publicKeys = [ saxton spy ] ++ users;
-  "SSH-config.age".publicKeys = [ scout medic ] ++ users;
+  "SSH-config.age".publicKeys = [ scout ] ++ users;
   "BinaryCache-pub.age".publicKeys = systems ++ users;
 
   #Scout secrets
   "scout/RGNet-key.age".publicKeys = [ scout ] ++ users;
   "scout/RGNet-cert.age".publicKeys = [ scout ] ++ users;
 
-  #Medic secrets
-  "medic/RGNet-key.age".publicKeys = [ medic ] ++ users;
-  "medic/RGNet-cert.age".publicKeys = [ medic ] ++ users;
-  "medic/HC-alive.age".publicKeys = [ medic ] ++ users;
+  # Medic secrets
+  "medic/RGNet-key.age".publicKeys = users;
+  "medic/RGNet-cert.age".publicKeys = users;
+  "medic/HC-alive.age".publicKeys = users;
 
   #Spy secrets
   "spy/BinaryCache-key.age".publicKeys = [ spy ] ++ users;

@@ -38,7 +38,7 @@
   programs.gnome-terminal.enable = false;
 
   #Open port for KDE Connect.
-  #networking.firewall = lib.mkIf (config.networking.hostName != "medic") {
+  #networking.firewall =  {
   #  allowedUDPPortRanges = [
   #    { from = 1716; to = 1764; }
   #  ];

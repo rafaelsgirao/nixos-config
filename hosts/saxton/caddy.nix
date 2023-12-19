@@ -17,7 +17,7 @@ in
   };
 
   environment.etc."flake-registry/flake-registry.json" = {
-    source = config.environment.etc."nix/registry.json".source;
+    inherit (config.environment.etc."nix/registry.json") source;
     mode = "0444";
     user = "caddy";
     group = "caddy";
