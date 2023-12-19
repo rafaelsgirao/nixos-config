@@ -31,11 +31,6 @@ in
   "scout/RGNet-key.age".publicKeys = [ scout ] ++ users;
   "scout/RGNet-cert.age".publicKeys = [ scout ] ++ users;
 
-  # Medic secrets
-  "medic/RGNet-key.age".publicKeys = users;
-  "medic/RGNet-cert.age".publicKeys = users;
-  "medic/HC-alive.age".publicKeys = users;
-
   #Spy secrets
   "spy/BinaryCache-key.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-key.age".publicKeys = [ spy ] ++ users;
