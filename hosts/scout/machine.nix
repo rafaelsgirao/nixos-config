@@ -14,6 +14,7 @@
     # ../../modules/syncthing.nix
     ../../modules/docker.nix
     ../../modules/libvirt.nix
+    ../../modules/unFTP.nix
     # ../../modules/docker.nix
     ../../modules/hardware/uefi.nix
     # Add configs later as needed
@@ -78,6 +79,7 @@
         "Backups"
         "Downloads" # bah
         "Monero"
+        ".config/monero-project"
         # I have a feeling impermanence files don't work that great... using folders for now.
         ".config/Signal"
         ".config/goa-1.0"

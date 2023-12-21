@@ -30,6 +30,7 @@ in
   #Scout secrets
   "scout/RGNet-key.age".publicKeys = [ scout ] ++ users;
   "scout/RGNet-cert.age".publicKeys = [ scout ] ++ users;
+  "scout/unFTP-creds.age".publicKeys = [ scout ] ++ users;
 
   #Spy secrets
   "spy/BinaryCache-key.age".publicKeys = [ spy ] ++ users;
