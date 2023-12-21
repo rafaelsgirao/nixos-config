@@ -64,6 +64,7 @@
     files = [ "/etc/machine-id" ];
     users.rg = {
       directories = [
+        "Portal" #directory for sharing files with Windows VM
         ".config/dconf"
         ".config/safeeyes"
         ".android"

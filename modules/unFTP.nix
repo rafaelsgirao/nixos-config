@@ -6,7 +6,7 @@ in
   age.secrets.unFTP-creds = {
     file = "${hostSecretsDir}/unFTP-creds.age";
     mode = "440";
-    group = "unftp";
+    owner = "rg";
   };
 
   systemd.services.unftp = {
@@ -16,7 +16,7 @@ in
       UNFTP_AUTH_TYPE = "json";
       UNFTP_AUTH_JSON_PATH = config.age.secrets.unFTP-creds.path;
       UNFTP_BIND_ADDRESS = "${config.rg.ip}:2121";
-      UNFTP_BIND_ADDRESS_HTTP = "127.0.0.1";
+      UNFTP_BIND_ADDRESS_HTTP = "127.0.0.1:52581";
       UNFTP_FAILED_LOGINS_POLICY = "user";
       UNFTP_ROOT_DIR = rootDir;
       UNFTP_PASSIVE_PORTS = "50000-51000";
@@ -34,10 +34,12 @@ in
       ProtectHome = "tmpfs";
       ReadWritePaths = [ "-${rootDir}" ];
 
-      CapabilityBoundingSet = [ "~CAP_SYS_ADMIN" ];
+      # CapabilityBoundingSet = [ "~CAP_SYS_ADMIN" ];
+      RemoveIPC = true;
+      CapabilityBoundingSet = [ "" ];
       SystemCallArchitectures = "native";
       SystemCallFilter =
-        [ "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation" ];
+        [ "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation @resources" ];
       PrivateDevices = true;
       PrivateIPC = true;
       ProtectProc = "invisible";
