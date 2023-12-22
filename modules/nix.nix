@@ -46,10 +46,15 @@
     warn-dirty = false;
   };
   nix.gc = {
+    randomizedDelaySec = "45min";
     automatic = true;
-    dates = "weekly";
+    dates = if config.rg.isBuilder then "monthly" else "weekly";
     #Keep last 5 generations.
-    options = "--delete-older-than +5";
+    options =
+      let
+        days = if config.rg.isBuilder then "60" else "15";
+      in
+      "--delete-older-than ${days}";
   };
 
   # Add nixpkgs input to NIX_PATH
@@ -71,10 +76,10 @@
   programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
     Host spybuilder
       HostName 192.168.10.6
-      Port 22
-      User rg
-      # IdentitiesOnly yes
-      # IdentityFile /root/.ssh/id_builder
+    Port 22
+    User rg
+    # IdentitiesOnly yes
+    # IdentityFile /root/.ssh/id_builder
   '';
 
   nix.buildMachines = lib.mkIf (!config.rg.isBuilder) [{
