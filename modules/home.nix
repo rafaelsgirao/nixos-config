@@ -235,11 +235,6 @@ in
         '';
       };
       interactiveShellInit = ''
-        #TODO: remove these lines if atuin working as expected.
-        # set -gx ATUIN_NOBIND "true"
-        # bind \cr _atuin_search
-        # bind -M insert \cr _atuin_search
-
         set fish_greeting #Disables "Welcome to fish! message"
 
       '';

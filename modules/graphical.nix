@@ -461,6 +461,7 @@ in
 
           nvarner.typst-lsp
           mgt19937.typst-preview
+          mkhl.direnv
 
           # ];
         ] ++ p.vscode-utils.extensionsFromVscodeMarketplace [{
@@ -496,6 +497,10 @@ in
     };
   };
 
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   # environment.persistence."/state".users.rg.directories = lib.mkIf isWorkstation [
   #   ".cache"
   #   ".cargo"
@@ -504,7 +509,6 @@ in
   # ];
 
   environment.systemPackages = with pkgs; [
-    nix-index
     pamixer
     # xdg-utils
     handlrXdg
