@@ -23,6 +23,8 @@
     substituters = [
       "https://cache.spy.rafael.ovh"
     ];
+    trusted-substituters = config.nix.settings.substituters;
+
     trusted-public-keys = [
       "cache.spy.rafael.ovh:5aGgIOEo7H004XtJq5Bob59PiISlNCNH+m0v4IVyyCA="
     ];
