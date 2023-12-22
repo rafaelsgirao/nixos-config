@@ -82,7 +82,7 @@
     # IdentityFile /root/.ssh/id_builder
   '';
 
-  nix.buildMachines = lib.mkIf (!config.rg.isBuilder) [{
+  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [{
     sshUser = "rg";
     sshKey = "/home/rg/.ssh/id_ed25519";
     protocol = "ssh-ng";
