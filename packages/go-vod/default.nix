@@ -1,12 +1,12 @@
 { lib, buildGoModule, fetchFromGitHub, ... }:
 buildGoModule rec {
   pname = "go-vod";
-  version = "0.1.25";
+  version = "0.2.4";
 
   src = fetchFromGitHub {
     owner = "pulsejet";
     repo = pname;
-    rev = "${version}";
+    rev = version;
     sha256 = "sha256-OTi1ouMLHOrCIg1HL6I7tLz/p6y5uE8GQxL3jFSuKB0=";
   };
 
