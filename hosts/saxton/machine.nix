@@ -10,6 +10,7 @@ in
     #      ./hardware-configuration.nix
     # (inputs.nixpkgs-unstable + "/nixos/modules/services/security/authelia.nix")
     ./wc-bot.nix
+    ../../modules/ist-discord-bot.nix
     ../../modules/sshguard.nix
     ../../modules/hardware/uefi.nix
     ../../modules/vaultwarden.nix

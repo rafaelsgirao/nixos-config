@@ -12,6 +12,8 @@ rec {
   #TODO.
   # remarkable-rcu = pkgs.callPackage ./rcu {};
 
+  ist-discord-bot = inputs'.ist-discord-bot.packages.default;
+
   #Packages defined in this repo.
   fakepkg = pkgs.callPackage ./fakepkg { };
 

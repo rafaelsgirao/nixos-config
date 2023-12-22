@@ -46,6 +46,7 @@ in
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
 
   #saxton secrets
+  "saxton/ENV-ist-discord-bot.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-WCBot.age".publicKeys = [ saxton ] ++ users;
   "saxton/RGNet-key.age".publicKeys = [ saxton ] ++ users;
   "saxton/RGNet-cert.age".publicKeys = [ saxton ] ++ users;

@@ -113,6 +113,11 @@
           flake-parts.follows = "flake-parts";
         };
       };
+    ist-discord-bot = {
+      url = "github:ist-bot-team/ist-discord-bot/rg/make-nix-package";
+      # url = "github:nix-community/home-manager/master";
+      # inputs.nixpkgs.follows = "nixpkgs"; WARNING: test right after uncommenting this, if you do.
+    };
     sirpt-feed =
       {
         url = "git+ssh://git@git.spy.rafael.ovh:4222/rg/sirpt-feed.git";
@@ -254,9 +259,6 @@
               entry = "${pkgs.gitleaks}/bin/gitleaks protect --verbose --redact --staged";
               pass_filenames = false;
             };
-          };
-          pre-commit.settings.settings = {
-            deadnix.edit = true;
           };
           treefmt.projectRootFile = ./flake.nix;
           treefmt.programs = {
