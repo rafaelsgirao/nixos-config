@@ -232,21 +232,18 @@ in
         '';
       };
       interactiveShellInit = ''
-        #
-          # replace this line with corresponding option when 23.05 .
-          set -gx ATUIN_NOBIND "true"
-          set fish_greeting #Disables "Welcome to fish! message"
+        #TODO: remove these lines if atuin working as expected.
+        # set -gx ATUIN_NOBIND "true"
+        # bind \cr _atuin_search
+        # bind -M insert \cr _atuin_search
 
-          bind \cr _atuin_search
-          bind -M insert \cr _atuin_search
+        set fish_greeting #Disables "Welcome to fish! message"
+
       '';
     };
 
     home.sessionVariables = {
-      "ATUIN_NOBIND" = 1;
       EDITOR = "nvim";
-      # "GTK_USEPORTAL" = 1;
-      # "GDK_DEBUG" = "portals";
       MANROFFOPT = "-c";
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     };
@@ -256,13 +253,13 @@ in
       enable = true;
       enableFishIntegration = config.programs.fish.enable;
       package = pkgs.atuin;
-      # flags = [ "--disable-up-arrow" ];
+      flags = [ "--disable-up-arrow" ];
       settings = {
         dialect = "uk";
         auto_sync = false;
         update_check = false;
-        sync_frequency = "24h";
-        sync_address = lib.mkIf isWorkstation "https://atuin.spy.rafael.ovh";
+        # sync_frequency = "24h";
+        # sync_address = lib.mkIf isWorkstation "https://atuin.spy.rafael.ovh";
       };
     };
 
@@ -273,11 +270,9 @@ in
         add_newline = false;
         hostname.ssh_only = true;
         package.disabled = true;
-        # character = {
-        #   success_symbol = "[❯](bold green)";
-        # };
       };
     };
+
     programs.zoxide = {
       enable = true;
       enableFishIntegration = config.programs.fish.enable;
@@ -325,12 +320,5 @@ in
       enable = true;
       nix-direnv.enable = true;
     };
-
-    # services.fusuma = {
-    #     enable = true;
-    #     settings = {
-    #         j
-    #     };
-    # };
   };
 }
