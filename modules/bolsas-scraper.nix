@@ -2,44 +2,55 @@
 
 let
   dir = "bolsas-scraper";
-  fullDir = "/var/lib/private/${dir}";
+  stateDir = "/var/lib/${dir}";
+  DLDir = "/pst/site/main/arquivo-bolsas/";
 in
 {
 
   age.secrets.ENV-bolsas-scraper = {
     file = "${hostSecretsDir}/ENV-bolsas-scraper.age";
-    # mode = " 440 ";
-    group = "bolsas-scraper";
+    mode = " 440 ";
+    owner = "bolsas-scraper";
   };
 
-  environment.persistence."/pst".directories = [ fullDir ];
+  environment.persistence."/pst".directories = [
+    { directory = stateDir; user = "bolsas-scraper"; group = "bolsas-scraper"; mode = "700"; }
+  ];
 
   users.groups.bolsas-scraper = { };
 
+  users.users = {
+    bolsas-scraper = {
+      group = "bolsas-scraper";
+      extraGroups = [ "caddy" ];
+      isSystemUser = true;
+    };
+  };
 
   systemd.tmpfiles.rules = [
-    "d /pst/site/ 0705 caddy caddy -"
-    "d /pst/site/main/html 0705 caddy caddy -"
+    "d /pst/site/ 0750 caddy caddy -"
+    "d /pst/site/main 0750 caddy caddy -"
+    "d ${DLDir} 0750 bolsas-scraper caddy -"
   ];
 
   #So caddy can read files from bolsas-scraper
-  systemd.services."caddy".serviceConfig.supplementaryGroups = [ "bolsas-scraper" ];
+  # systemd.services."caddy".serviceConfig.supplementaryGroups = [ "bolsas-scraper" ];
 
   #Note to future self: this has to be on same machine that serves PDF archives
   # or else this will fail
   #TODO: DynamicUser here
   systemd.services.bolsas-scraper = {
     environment = {
-      WORKDIR = fullDir;
-      DOWNLOAD_PATH = "/pst/site/main/arquivo-bolsas";
+      WORKDIR = stateDir;
+      DOWNLOAD_PATH = DLDir;
     };
     serviceConfig = {
-      DynamicUser = true;
-      StateDirectory = "bolsas_scraper";
+      User = "bolsas-scraper";
+      StateDirectory = dir;
       StateDirectoryMode = "0700";
       Type = "oneshot";
+
       EnvironmentFile = config.age.secrets.ENV-bolsas-scraper.path;
-      SupplementaryGroups = [ "bolsas-scraper" ];
     };
     script =
       "${pkgs.mypkgs.bolsas-scraper}/bin/bolsas-scraper && ${pkgs.curl}/bin/curl -fsS -m 10 -retry 5 -o /dev/null $HC_URL";
