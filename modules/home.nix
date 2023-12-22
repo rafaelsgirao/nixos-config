@@ -247,7 +247,8 @@ in
       EDITOR = "nvim";
       # "GTK_USEPORTAL" = 1;
       # "GDK_DEBUG" = "portals";
-      "MANPAGER" = "sh -c 'col -bx | bat -l man -p'";
+      MANROFFOPT = "-c";
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     };
     home.stateVersion = lib.mkDefault "23.05";
 
