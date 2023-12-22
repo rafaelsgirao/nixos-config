@@ -28,8 +28,8 @@ in
   };
 
   systemd.tmpfiles.rules = [
-    "d /pst/site/ 0750 caddy caddy -"
-    "d /pst/site/main 0750 caddy caddy -"
+    "d /pst/site/ 0550 caddy caddy -"
+    "d /pst/site/main 0550 caddy caddy -"
     "d ${DLDir} 0750 bolsas-scraper caddy -"
   ];
 
