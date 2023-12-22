@@ -19,6 +19,7 @@ in
   #Nextcloud
   services.nextcloud = {
     enable = true;
+    package = pkgs.nextcloud26;
     webfinger = true;
     hostName = ncHost;
     configureRedis = true;
@@ -38,7 +39,6 @@ in
       extraTrustedDomains = [ altHost ];
       defaultPhoneRegion = "PT";
     };
-    package = pkgs.nextcloud26;
     #Use system's sendmail utility for e-mails
     extraOptions = {
       #Enables imaginary support.
