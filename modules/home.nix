@@ -27,6 +27,8 @@ in
     home.homeDirectory = "/home/rg";
     home.username = "rg";
 
+    news.display = "show";
+
     programs.tmux = {
       enable = true;
       clock24 = true;
