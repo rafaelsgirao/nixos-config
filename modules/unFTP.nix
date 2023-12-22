@@ -32,7 +32,7 @@ in
 
       #Hardening
       ProtectHome = "tmpfs";
-      ReadWritePaths = [ "-${rootDir}" ];
+      BindPaths = [ "${rootDir}" ];
 
       # CapabilityBoundingSet = [ "~CAP_SYS_ADMIN" ];
       RemoveIPC = true;
