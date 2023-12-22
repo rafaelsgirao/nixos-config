@@ -139,7 +139,7 @@ in
     go-vod = {
       group = "go-vod";
       isSystemUser = true;
-      extraGroups = [ "render video" ];
+      extraGroups = [ "render" "video" ];
     };
   };
 
@@ -149,7 +149,7 @@ in
       goVodConfig = {
         NVENC = true;
         NVENCTemporalAQ = true;
-        NVENCScale = "npp";
+        NVENCScale = "cuda";
         FFmpeg = "${pkg}/bin/ffmpeg";
         FFprobe = "${pkg}/bin/ffprobe";
       };
@@ -171,9 +171,9 @@ in
 
 
         ExecStart = "${pkgs.mypkgs.go-vod}/bin/go-vod ${GoVodConfigFile}";
-        DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" ];
+        # DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" ];
         ReadOnlyPaths = config.services.nextcloud.home;
-        SupplementaryGroups = [ "nextcloud" ];
+        SupplementaryGroups = [ "nextcloud" "video" "render" ];
       };
     };
 
