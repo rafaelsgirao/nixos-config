@@ -13,7 +13,6 @@ in
   environment.persistence."/pst".users.rg = {
     directories = [
       ".local/share/atuin"
-      ".local/share/fish"
       ".local/share/zoxide"
       ".local/share/direnv"
     ] ++ lib.optionals isWorkstation [
@@ -44,6 +43,7 @@ in
       ".local/bin/portcheck".source = pkgs.copyPathToStore ../files/portcheck;
       ".local/bin/randomport".source = pkgs.copyPathToStore ../files/randomport;
     } // lib.optionalAttrs isWorkstation {
+      ".config/fish/fish_history".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/fish/fish_history";
       ".config/mimeapps.list".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
       ".config/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/Code/User/settings.json";
       ".local/share/nix/trusted-settings.json".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.local/share/nix/trusted-settings.json";

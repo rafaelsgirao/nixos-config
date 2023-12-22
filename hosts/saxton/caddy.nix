@@ -1,7 +1,6 @@
 { config, ... }:
 
 let
-  inherit (config.networking) fqdn;
   inherit (config.rg) domain;
   siteDir = "/pst/site";
 in
@@ -78,7 +77,7 @@ in
         		file_server
         	}
             handle {
-                root * ${siteDir}/main/html
+                root * ${siteDir}/main
                 file_server browse {
                   hide .git
                 }
@@ -89,16 +88,6 @@ in
       extraConfig = ''
         encode zstd gzip
         respond "uid=0(root) gid=0(root) groups=0(root)"
-      '';
-    };
-    "http://priv.${fqdn}" = {
-      listenAddresses = [ config.rg.ip ];
-      extraConfig = ''
-        encode zstd gzip
-        root * ${siteDir}/priv/html
-        file_server browse {
-          hide .git
-        }
       '';
     };
     "e.${domain}" = {
