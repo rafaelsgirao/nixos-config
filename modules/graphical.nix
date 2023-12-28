@@ -499,7 +499,9 @@ in
 
   programs.nix-index = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
   };
   # environment.persistence."/state".users.rg.directories = lib.mkIf isWorkstation [
   #   ".cache"
