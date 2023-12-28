@@ -24,15 +24,15 @@
             "native-window-placement@gnome-shell-extensions.gcampax.github.com"
             "appindicatorsupport@rgcjonas.gmail.com"
             "gnomebedtime@ionutbortis.gmail.com"
-            "gsconnect@andyholmes.github.io"
+            # "gsconnect@andyholmes.github.io"
             "caffeine@patapon.info"
-            "places-menu@gnome-shell-extensions.gcampax.github.com"
-            "drive-menu@gnome-shell-extensions.gcampax.github.com"
+            # "places-menu@gnome-shell-extensions.gcampax.github.com"
+            # "drive-menu@gnome-shell-extensions.gcampax.github.com"
             "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
             "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
             "pomodoro@arun.codito.in"
-            "time-awareness@gnome-extensions.kapranoff.ru"
-            "browser-tabs@com.github.harshadgavali"
+            # "time-awareness@gnome-extensions.kapranoff.ru"
+            # "browser-tabs@com.github.harshadgavali"
           ];
         };
         # Use `dconf watch /` to track stateful changes you are doing, then set them here.
