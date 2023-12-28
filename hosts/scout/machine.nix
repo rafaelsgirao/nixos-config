@@ -12,7 +12,7 @@
     ../../modules/zfs.nix
     ../../modules/dsi.nix
     # ../../modules/syncthing.nix
-    ../../modules/docker.nix
+    # ../../modules/docker.nix
     ../../modules/libvirt.nix
     ../../modules/unFTP.nix
     # ../../modules/docker.nix

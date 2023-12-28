@@ -10,8 +10,8 @@ in
   };
 
   systemd.services.unftp = {
-    after = [ "libvirtd.service" ];
-    wantedBy = [ "network.target" ];
+    # after = [ "libvirtd.service" ];
+    # wantedBy = [ "network.target" ];
     environment = {
       UNFTP_AUTH_TYPE = "json";
       UNFTP_AUTH_JSON_PATH = config.age.secrets.unFTP-creds.path;
