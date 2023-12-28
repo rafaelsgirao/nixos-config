@@ -1,6 +1,6 @@
 _: {
 
-  environment.persistence."/persist".directories = [
+  environment.persistence."/pst".directories = [
     "/var/rss2email"
   ];
 

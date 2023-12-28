@@ -40,9 +40,6 @@ in
   # Common group for library files
   users.groups.library = { };
 
-  # Only prowlarr runs as a DynamicUser, so need to persist
-  # environment.persistence."/data/nix".directories = [ "/var/lib/prowlarr" ];
-
   # Radarr
   services.radarr = {
     enable = true;
@@ -66,15 +63,11 @@ in
 
   # Prowlarr
   services.prowlarr.enable = true;
-  # # WARNING: Don't put moreHardening in prowlarr (already has it b/c it's a DynamicUser service
-  # systemd.services.prowlarr.serviceConfig = dotnetHardening // { };
-  # environment.persistence."/persist".directories = [ "/var/lib/prowlarr" ];
 
   age.secrets.Transmission-creds = {
     file = "${hostSecretsDir}/Transmission-creds.age";
     owner = "transmission";
   };
-
   #Transmission
   services.transmission = {
     enable = true;
@@ -178,8 +171,17 @@ in
     };
 
   };
-  #TODO: persistence /var/lib/jellyfin
   services.jellyfin.enable = true;
+
+
+  environment.persistence."/state".directories = [
+    "/var/cache/jellyfin"
+  ];
+
+  environment.persistence."/pst".directories = [
+    "/var/lib/jellyfin"
+    "/var/lib/private/prowlarr"
+  ];
   # systemd.services.jellyfin.serviceConfig = {
   # ProtectHome = true;
   # ProtectSystem = "strict";

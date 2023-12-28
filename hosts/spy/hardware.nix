@@ -13,7 +13,7 @@
     fsType = "zfs";
   };
 
-  fileSystems."/root-state" = {
+  fileSystems."/root-state-spypool" = {
     device = "spypool/local/root";
     fsType = "zfs";
   };
@@ -62,7 +62,7 @@
   };
 
   fileSystems."/state" = {
-    device = "spypool/local/state";
+    device = "neonheavypool/local/state";
     fsType = "zfs";
     neededForBoot = true;
   };
@@ -74,20 +74,20 @@
   };
 
   fileSystems."/pst" = {
-    device = "spypool/safe/persist";
+    device = "neonheavypool/safe/persist";
     fsType = "zfs";
     neededForBoot = true;
   };
 
 
   fileSystems."/persist" = {
-    device = "spypool/safe/persist";
+    device = "neonheavypool/safe/persist";
     fsType = "zfs";
     neededForBoot = true;
   };
 
   fileSystems."/nix" = {
-    device = "spypool/local/nix";
+    device = "neonheavypool/local/nix";
     fsType = "zfs";
   };
 
@@ -96,11 +96,11 @@
     fsType = "zfs";
   };
 
-  fileSystems."/data-spy/nextcloud-nixos/data/rg/files/PX" = {
-    device = "/data/syncthing/st-sync/PX";
-    fsType = "none";
-    options = [ "bind" ];
-  };
+  # fileSystems."/data-spy/nextcloud-nixos/data/rg/files/PX" = {
+  #   device = "/data/syncthing/st-sync/PX";
+  #   fsType = "none";
+  #   options = [ "bind" ];
+  # };
 
   swapDevices = [ ];
 
@@ -114,4 +114,3 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
-

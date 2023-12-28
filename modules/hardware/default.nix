@@ -12,6 +12,12 @@ in
 
   services.fwupd.enable = !isVirt;
 
+  environment.persistence."/state".directories = optionals (!isVirt) [
+    "/var/lib/fwupd"
+    "/var/cache/fwupd"
+    "/var/cache/fwupdmgr"
+  ];
+
   environment.systemPackages = optionals (!isVirt)
     [
       pkgs.smartmontools

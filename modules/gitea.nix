@@ -74,7 +74,7 @@ in
       interval = "02:30";
       type = "tar.zst";
       #TODO: stop using hacky fixed dir
-      backupDir = "/state-heavy/backups/gitea";
+      backupDir = "/state/backups/gitea";
       file = "gitea-dump.tar.zst";
     };
   };

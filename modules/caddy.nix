@@ -14,4 +14,8 @@
   ];
 
   users.users.rg.extraGroups = [ "caddy" ];
+
+  environment.persistence."/state".directories = [
+    "/var/lib/caddy"
+  ];
 }

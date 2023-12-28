@@ -87,6 +87,10 @@ in
   # https://www.chvp.be/blog/unifiedpush-nextcloud-nixos/
   services.redis.vmOverCommit = true;
 
+  environment.persistence."/state".directories = [
+    "/var/lib/redis-nextcloud"
+  ];
+
   systemd.services."phpfpm-nextcloud".serviceConfig = {
     DeviceAllow = [ "/dev/dri/renderD128" ];
     SupplementaryGroups = [ "render" "video" ];

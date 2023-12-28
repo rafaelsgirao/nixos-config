@@ -7,6 +7,7 @@ in
 {
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   services.udisks2.enable = lib.mkDefault false;
+
   imports = [
     ./library.nix
     # ../../modules/cups.nix
@@ -31,7 +32,7 @@ in
     ../../modules/wakapi-server.nix
   ];
 
-  services.nextcloud.home = "/data-spy/nextcloud-nixos";
+  services.nextcloud.home = "/data/nextcloud-nixos";
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -54,7 +55,7 @@ in
 
   services.postgresqlBackup = {
     enable = true;
-    location = "/state-heavy/backups/postgres";
+    location = "/state/backups/postgres";
     compression = "zstd";
     backupAll = true;
   };
@@ -67,6 +68,10 @@ in
     isBuilder = true;
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
   };
+
+  environment.persistence."/pst".directories = [
+    "/var/lib/postgresql"
+  ];
 
   #Blocky - no blocklist by default
   # services.blocky.settings.blocking.clientGroupsBlock."default" = [ "none" ];
@@ -112,6 +117,7 @@ in
     cat << EOF > /root/.profile
     if pgrep -x "zfs" > /dev/null
     then
+      zpool import spypool
       zpool import neonheavypool
       zfs load-key -a
       killall zfs
@@ -138,7 +144,7 @@ in
       # decide  how to backup jellyfin (firstly, /state or /persist? then, do we backup directly (ignoring ./metadata or copy the relevant stuff to /state/backups?
       #maybe only use /state/backups if the files to backup need preprocessing (i.e, cant be backed up directly, e.g sqlite, postgres data, etc)
       "/pst"
-      "/data-spy/nextcloud-nixos"
+      "${config.services.nextcloud.home}"
       "/state/backups"
       #TODO: kuma
       #TODO: transmission, radarr, sonarr, etc.
