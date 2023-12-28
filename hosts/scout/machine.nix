@@ -10,7 +10,7 @@
     ../../modules/hardware/laptop.nix
     ../../modules/impermanence.nix
     ../../modules/zfs.nix
-    ../../modules/dsi.nix
+    # ../../modules/dsi.nix
     # ../../modules/syncthing.nix
     # ../../modules/docker.nix
     ../../modules/libvirt.nix
