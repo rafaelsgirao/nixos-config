@@ -305,6 +305,9 @@
                 mypkgs = outputs.packages.${final.system};
               };
           };
+          homeConfigurations = {
+            scout = outputs.nixosConfigurations.tempest.config.home-manager.users."rg".home;
+          };
         };
       };
 }
