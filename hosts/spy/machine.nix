@@ -1,4 +1,4 @@
-{ config, pkgs, lib, hostSecretsDir, ... }:
+{ config, pkgs, lib, ... }:
 let
   hostname = config.networking.hostName;
   inherit (config.rg) ip;
@@ -11,6 +11,7 @@ in
   imports = [
     ./library.nix
     # ../../modules/cups.nix
+    ../../modules/restic.nix
     ../../modules/acme.nix
     ../../modules/binary-cache.nix
     ../../modules/caddy.nix
@@ -40,18 +41,6 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-
-  age.secrets = {
-    "rclone.conf" = {
-      file = "${hostSecretsDir}/../rclone-config.age";
-    };
-    restic-env = {
-      file = "${hostSecretsDir}/../restic-env.age";
-    };
-    restic-password = {
-      file = "${hostSecretsDir}/../restic-password.age";
-    };
-  };
 
   services.postgresqlBackup = {
     enable = true;
@@ -130,12 +119,6 @@ in
 
   #Restic Backups
   services.restic.backups."spy-oneDriveIST" = {
-    user = "root";
-    repository = "rclone:oneDriveIST:/Restic-Backups";
-    timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
-    rcloneConfigFile = config.age.secrets."rclone.conf".path;
-    environmentFile = config.age.secrets.restic-env.path;
-    passwordFile = config.age.secrets.restic-password.path;
     backupPrepareCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --on";
     backupCleanupCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --off && ${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_SPY";
     paths = [
@@ -161,7 +144,6 @@ in
   };
   services.earlyoom.enable = false; #TODO: disable when monerod finish
 
-
   services.uptime-kuma = {
     settings = {
       PORT = "29377";
@@ -169,7 +151,6 @@ in
     };
     enable = true;
   };
-
 
   services.gitea = {
     stateDir = "/data/gitea-nixos";
@@ -184,13 +165,6 @@ in
       extraConfig = ''
         encode zstd gzip
         reverse_proxy unix//run/gitea/gitea.sock
-      '';
-    };
-    "oldgit.${fqdn}" = {
-      useACMEHost = "rafael.ovh";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://127.0.0.1:18172
       '';
     };
     "kuma.${fqdn}" = {

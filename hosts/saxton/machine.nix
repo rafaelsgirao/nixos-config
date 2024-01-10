@@ -1,4 +1,4 @@
-{ config, hostSecretsDir, lib, pkgs, ... }:
+    { config, lib, ... }:
 
 let
   inherit (config.rg) domain;
@@ -11,6 +11,8 @@ in
     # (inputs.nixpkgs-unstable + "/nixos/modules/services/security/authelia.nix")
     ./wc-bot.nix
     # ../../modules/ist-discord-bot.nix
+    ../../modules/docker.nix
+    ../../modules/restic.nix
     ../../modules/sshguard.nix
     ../../modules/hardware/uefi.nix
     ../../modules/vaultwarden.nix
@@ -94,34 +96,5 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
-
-  age.secrets = {
-    "rclone.conf" = {
-      file = "${hostSecretsDir}/../rclone-config.age";
-    };
-    restic-env = {
-      file = "${hostSecretsDir}/../restic-env.age";
-    };
-    restic-password = {
-      file = "${hostSecretsDir}/../restic-password.age";
-    };
-  };
-
-  services.restic.backups."saxton-oneDriveIST" = {
-    user = "root";
-    repository = "rclone:oneDriveIST:/Restic-Backups";
-    timerConfig = { OnCalendar = "*-*-* 3:40:00"; };
-    rcloneConfigFile = config.age.secrets."rclone.conf".path;
-    environmentFile = config.age.secrets.restic-env.path;
-    passwordFile = config.age.secrets.restic-password.path;
-
-    backupCleanupCommand = "${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_SAXTON";
-
-    paths = [
-      "/pst"
-      "/state/backups"
-    ];
-    extraBackupArgs = [ "--exclude-caches" "--verbose" ];
-  };
 
 }
