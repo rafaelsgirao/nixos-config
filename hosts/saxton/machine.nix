@@ -96,7 +96,7 @@ in
   system.stateVersion = "22.05"; # Did you read the comment?
 
   age.secrets = {
-    rclone-config = {
+    "rclone.conf" = {
       file = "${hostSecretsDir}/../rclone-config.age";
     };
     restic-env = {

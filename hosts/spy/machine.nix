@@ -42,7 +42,7 @@ in
   system.stateVersion = "21.11"; # Did you read the comment?
 
   age.secrets = {
-    rclone-config = {
+    "rclone.conf" = {
       file = "${hostSecretsDir}/../rclone-config.age";
     };
     restic-env = {
@@ -133,7 +133,7 @@ in
     user = "root";
     repository = "rclone:oneDriveIST:/Restic-Backups";
     timerConfig = { OnCalendar = "*-*-* 4:30:00"; };
-    rcloneConfigFile = config.age.secrets.rclone-config.path;
+    rcloneConfigFile = config.age.secrets."rclone.conf".path;
     environmentFile = config.age.secrets.restic-env.path;
     passwordFile = config.age.secrets.restic-password.path;
     backupPrepareCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --on";
