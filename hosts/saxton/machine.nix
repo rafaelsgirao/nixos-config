@@ -1,4 +1,4 @@
-{ config, hostSecretsDir, lib, ... }:
+{ config, hostSecretsDir, lib, pkgs, ... }:
 
 let
   inherit (config.rg) domain;
@@ -93,7 +93,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.05"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
 
   age.secrets = {
     "rclone.conf" = {
@@ -107,31 +107,21 @@ in
     };
   };
 
-  #TODO: still very incomplete
-  # services.restic.backups."saxton-oneDriveIST" = {
-  #   user = "root";
-  #   repository = "rclone:oneDriveIST:/Restic-Backups";
-  #   timerConfig = { OnCalendar = "*-*-* 5:00:00"; };
-  #   rcloneConfigFile = config.age.secrets.rclone-config.path;
-  #   environmentFile = config.age.secrets.restic-env.path;
-  #   passwordFile = config.age.secrets.restic-password.path;
+  services.restic.backups."saxton-oneDriveIST" = {
+    user = "root";
+    repository = "rclone:oneDriveIST:/Restic-Backups";
+    timerConfig = { OnCalendar = "*-*-* 3:40:00"; };
+    rcloneConfigFile = config.age.secrets."rclone.conf".path;
+    environmentFile = config.age.secrets.restic-env.path;
+    passwordFile = config.age.secrets.restic-password.path;
 
-  #   backupCleanupCommand = "${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_SAXTON";
+    backupCleanupCommand = "${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_SAXTON";
 
-  #   paths = [
-  #     "/data/bolsas-scraper"
-  #     "/data/caddy-public" # Backup site
-  #     "/state/backups"
-  #     "/pst"
-  #   ];
-  #   extraBackupArgs = [ "--exclude-caches" "--verbose" ];
-  # };
-
-
-
-  # virtualisation.docker.daemon.settings = {
-  #   "ipv6" = true;
-  #   "fixed-cidr-v6" = "2001:db8:1::/64";
-  # };
+    paths = [
+      "/pst"
+      "/state/backups"
+    ];
+    extraBackupArgs = [ "--exclude-caches" "--verbose" ];
+  };
 
 }
