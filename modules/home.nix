@@ -11,16 +11,18 @@ in
   };
 
   environment.persistence."/pst".users.rg = {
-    directories = [
+    directories = lib.optionals isWorkstation [
+      ".ssh"
       ".local/share/atuin"
+      ".local/share/keyrings"
       ".local/share/zoxide"
       ".local/share/direnv"
-    ] ++ lib.optionals isWorkstation [
-      ".ssh"
-      ".local/share/keyrings"
     ];
-
   };
+  environment.persistence."/state".users.rg.directories = lib.optionals (!isWorkstation) [
+    ".local/share/atuin"
+    ".local/share/zoxide"
+  ];
   hm = { config, ... }: {
     imports = [ (inputs.impermanence + "/home-manager.nix") ];
     home.homeDirectory = "/home/rg";
