@@ -61,27 +61,40 @@
 
       };
       datasets = {
+        "local" = {
+          type = "zfs_fs";
+          options = {
+            sync = "disabled";
+          };
+        };
         "local/root" = {
           type = "zfs_fs";
           mountpoint = "/";
           postCreateHook = "zfs snapshot saxton/local/root@blank";
-          options = {
-            sync = "disabled";
-          };
+          # options = {
+          #   sync = "disabled";
+          # };
+        };
+        "local/docker" = {
+          type = "zfs_fs";
+          mountpoint = "/var/lib/docker";
+          # options = {
+          #   sync = "disabled";
+          # };
         };
         "local/cache" = {
           type = "zfs_fs";
           mountpoint = "/var/cache";
-          options = {
-            sync = "disabled";
-          };
+          # options = {
+          #   sync = "disabled";
+          # };
         };
         "local/nix" = {
           type = "zfs_fs";
           mountpoint = "/nix";
-          options = {
-            sync = "disabled";
-          };
+          # options = {
+          #   sync = "disabled";
+          # };
 
         };
         "local/reserved" = {

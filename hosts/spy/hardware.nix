@@ -16,6 +16,7 @@
   fileSystems."/root-state-spypool" = {
     device = "spypool/local/root";
     fsType = "zfs";
+    neededForBoot = true;
   };
 
   fileSystems."/home" = {
