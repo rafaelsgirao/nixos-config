@@ -27,13 +27,10 @@
 
   environment.systemPackages = with pkgs.gnomeExtensions; [
     gnome-bedtime
-    gsconnect
     caffeine
     time-awareness
-    browser-tabs
     pip-on-top
   ];
-  services.gnome.gnome-browser-connector.enable = true;
 
   programs.gnome-terminal.enable = false;
 
