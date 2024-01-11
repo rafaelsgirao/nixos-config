@@ -243,13 +243,28 @@
         ];
         # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
         perSystem = { config, pkgs, inputs', system, ... }: {
+          apps =
+            let
+              buildAllConfigs = pkgs.writeShellScriptBin "build-all-configs" ''
+                for host in $(${pkgs.nix}/bin/nix flake show --accept-flake-config --json --quiet --all-systems | jq '.nixosConfigurations | keys[]' ); do
+                  echo "Building configuration for $host"
+                  ${pkgs.nix}/bin/nix build --no-link  --accept-flake-config ".#nixosConfigurations.$host.config.system.build.toplevel"
+                done
+              '';
+
+            in
+            {
+              build-all = {
+                type = "app";
+                program = buildAllConfigs;
+              };
+            };
           devShells.default = pkgs.mkShell {
             shellHook = '' 
             # export DEBUG=1
             ${config.pre-commit.installationScript}
        '';
           };
-          # apps = inputs.nixinate.nixinate self;
           pre-commit.settings.hooks = {
             treefmt.enable = true;
             gitleaks = {
@@ -285,7 +300,6 @@
 
         flake = {
 
-          # apps = inputs.nixinate.x86_64-linux self;
           nixosConfigurations = mkHosts ./hosts;
           overlays = {
 
