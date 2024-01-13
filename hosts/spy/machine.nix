@@ -64,6 +64,11 @@ in
     "/var/lib/postgresql"
   ];
 
+  #TODO
+  # boot.initrd.postDeviceCommands = lib.mkAfter ''
+  #   zfs rollback -r neonheavypool/local/root@blank
+  # '';
+
   #Blocky - no blocklist by default
   # services.blocky.settings.blocking.clientGroupsBlock."default" = [ "none" ];
   services.blocky.settings = {
