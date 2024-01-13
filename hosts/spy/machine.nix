@@ -10,6 +10,7 @@ in
 
   imports = [
     ./library.nix
+    ../../modules/flood.nix
     # ../../modules/cups.nix
     ../../modules/restic.nix
     ../../modules/acme.nix

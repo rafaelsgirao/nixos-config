@@ -42,6 +42,7 @@ in
   "spy/HC-backups.age".publicKeys = [ spy ] ++ users;
   "spy/Restic-password.age".publicKeys = [ spy ] ++ users;
   "spy/Nextcloud-adminpass.age".publicKeys = [ spy ] ++ users;
+  "spy/ENV-flood-ui.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
 

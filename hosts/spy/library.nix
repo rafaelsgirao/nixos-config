@@ -140,6 +140,13 @@ in
         reverse_proxy http://${ip}:8096
       '';
     };
+    "flood.${fqdn}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:39629
+      '';
+    };
     "transmission.${fqdn}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
