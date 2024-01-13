@@ -61,11 +61,12 @@ in
         # "heavy" = "192.168.10.2";
         # "heavy.rafael.ovh" = "192.168.10.2";
 
-        "engineer" = "192.168.10.3";
-        "engie" = "192.168.10.3";
-        "engie.rafael.ovh" = "192.168.10.3";
-        "mail.rafael.ovh" = lib.mkIf (config.networking.hostName != "engie")
-          (lib.mkDefault "192.168.10.3");
+        # Discontinued
+        # "engineer" = "192.168.10.3";
+        # "engie" = "192.168.10.3";
+        # "engie.rafael.ovh" = "192.168.10.3";
+        # "mail.rafael.ovh" = lib.mkIf (config.networking.hostName != "engie")
+        #   (lib.mkDefault "192.168.10.3");
 
         # Discontinued
         # "pyro" = "192.168.10.4";

@@ -13,7 +13,6 @@ in
   # imports = [ ./chromium.nix ];
   # improve desktop responsiveness when updating the system
   nix.daemonCPUSchedPolicy = "idle";
-  networking.hosts."192.168.10.3" = [ "mx.rafael.ovh" ];
   hm.programs.thunderbird = {
     enable = true;
     # package = null;
