@@ -1,4 +1,4 @@
-    { config, lib, ... }:
+{ config, lib, ... }:
 
 let
   inherit (config.rg) domain;
@@ -6,15 +6,14 @@ let
 in
 {
   imports = [
-    # Include the results of the hardware scan.
-    #      ./hardware-configuration.nix
-    # (inputs.nixpkgs-unstable + "/nixos/modules/services/security/authelia.nix")
+    ../../modules/hardware/uefi.nix
+    ../../modules/hardware/zfs.nix
+
     ./wc-bot.nix
     # ../../modules/ist-discord-bot.nix
     ../../modules/docker.nix
     ../../modules/restic.nix
     ../../modules/sshguard.nix
-    ../../modules/hardware/uefi.nix
     ../../modules/vaultwarden.nix
     # ./sirpt.nix
     ../../modules/bolsas-scraper.nix
@@ -25,7 +24,6 @@ in
     ../../modules/healthchecks.nix
     ../../modules/acme.nix
     ../../modules/blocky.nix
-    ../../modules/zfs.nix
     # ../../modules/docker.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix

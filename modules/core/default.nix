@@ -8,8 +8,8 @@ in
     ./nebula.nix
     ./nix.nix
     ./ssh.nix
-    ./hardware/networking.nix
-    ./wakapi-client.nix
+    ../hardware/networking.nix
+    ../wakapi-client.nix
   ];
 
 
@@ -125,10 +125,12 @@ in
 
   hardware.nvidia.nvidiaSettings = lib.mkDefault false;
 
-  services.earlyoom = {
-    enable = lib.mkDefault true;
-    extraArgs = [ "--avoid '(^|/)(code|chromium|ferdium|thunderbird)$'" ];
-  };
+  # earlyoom completely disregards memory that ZFS occupies but will automatically release when system is low on memory.
+  # making earlyoom completely useless wherever I use ZFS (which is EVERYWHERE).
+  # services.earlyoom = {
+  #   enable = lib.mkDefault true;
+  #   extraArgs = [ "--avoid '(^|/)(code|chromium|ferdium|thunderbird)$'" ];
+  # };
 
 
   # 'to enable vendor fish completions provided by Nixpkgs you will also want to enable the fish shell in /etc/nixos/configuration.nix:'

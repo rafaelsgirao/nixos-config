@@ -353,7 +353,7 @@ in
             executable = "${lib.getBin ferdiumPkg}/bin/ferdium"; # --enable-features=UseOzonePlatform,WaylandWindowDecorations,WebRTCPipeWireCapturer";
             profile = pkgs.writeText "ferdium.profile" ''
               ignore private-tmp
-              include ${pkgs.copyPathToStore ../files/ferdium.profile}
+              include ${pkgs.copyPathToStore ../../files/ferdium.profile}
             '';
           };
         anydesk = {

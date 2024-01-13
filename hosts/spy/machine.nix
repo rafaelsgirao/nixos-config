@@ -9,6 +9,12 @@ in
   services.udisks2.enable = lib.mkDefault false;
 
   imports = [
+    ../../modules/hardware/nvidia.nix
+    ../../modules/hardware/uefi.nix
+    ../../modules/hardware/zfs.nix
+    ../../modules/hardware/zfs-unlock.nix
+
+    ../../modules/core/lanzaboote.nix
     ./library.nix
     ../../modules/flood.nix
     # ../../modules/cups.nix
@@ -23,14 +29,9 @@ in
     ../../modules/monero.nix
     ../../modules/impermanence.nix
     # ./privacy-proxies.nix
-    ../../modules/lanzaboote.nix
-    ../../modules/hardware/nvidia.nix
     ../../modules/headless.nix
-    ../../modules/zfs.nix
-    ../../modules/zfs-unlock.nix
     # ../../modules/docker.nix
     ../../modules/blocky.nix
-    ../../modules/hardware/uefi.nix
     ../../modules/wakapi-server.nix
   ];
 

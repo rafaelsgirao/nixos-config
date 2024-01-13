@@ -42,8 +42,8 @@ in
     #Sway files
     home.file = {
       #Ugly but idc atm
-      ".local/bin/portcheck".source = pkgs.copyPathToStore ../files/portcheck;
-      ".local/bin/randomport".source = pkgs.copyPathToStore ../files/randomport;
+      ".local/bin/portcheck".source = pkgs.copyPathToStore ../../files/portcheck;
+      ".local/bin/randomport".source = pkgs.copyPathToStore ../../files/randomport;
     } // lib.optionalAttrs isWorkstation {
       ".config/fish/fish_history".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/fish/fish_history";
       ".config/mimeapps.list".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";

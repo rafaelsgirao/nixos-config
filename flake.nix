@@ -199,10 +199,10 @@
                   };
                 }
                 { networking.hostName = name; }
-                ./modules/core.nix
-                ./modules/options.nix
+                ./modules/core/default.nix
+                ./modules/core/options.nix
+                ./modules/core/home.nix
                 ./modules/hardware/default.nix
-                ./modules/home.nix
                 inputs.simple-nixos-mailserver.nixosModule
                 inputs.nixinate.nixosModule
                 inputs.agenix.nixosModules.default

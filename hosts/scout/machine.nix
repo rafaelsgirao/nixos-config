@@ -2,22 +2,19 @@
 {
 
   imports = [
-    ../../modules/firefox.nix
-    ../../modules/graphical.nix
-    ../../modules/lanzaboote.nix
-    ../../modules/gnome.nix
-    ../../modules/flatpak.nix
+    ../../modules/workstation/firefox.nix
+    ../../modules/workstation/default.nix
+    ../../modules/workstation/gnome.nix
+    ../../modules/workstation/flatpak.nix
+
     ../../modules/hardware/laptop.nix
-    ../../modules/impermanence.nix
-    ../../modules/zfs.nix
-    # ../../modules/dsi.nix
-    # ../../modules/syncthing.nix
-    # ../../modules/docker.nix
-    ../../modules/libvirt.nix
-    ../../modules/unFTP.nix
-    # ../../modules/docker.nix
     ../../modules/hardware/uefi.nix
-    # Add configs later as needed
+    ../../modules/hardware/zfs.nix
+
+    ../../modules/core/lanzaboote.nix
+    ../../modules/libvirt.nix
+    ../../modules/impermanence.nix
+
   ];
 
   services.zfs.expandOnBoot = "all";
