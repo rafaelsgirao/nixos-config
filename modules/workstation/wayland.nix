@@ -17,4 +17,18 @@ in
 
   environment.systemPackages = with pkgs; [
   ];
+
+
+
+
+  hm.services.mako = mkIf (!isGnome) {
+    enable = true;
+    defaultTimeout = 10000;
+  };
+
+  hm.services.wlsunset = mkIf (!isGnome) {
+    enable = true;
+    latitude = "38.7223";
+    longitude = "9.1393";
+  };
 }
