@@ -2,11 +2,12 @@
 let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
   #handlr is SO much better.
-  handlrXdg = pkgs.writeShellScriptBin "xdg-open" ''
-    #!${pkgs.bash}/bin/bash
-    set -euo pipefail
-    exec ${pkgs.handlr}/bin/handlr open "$@"
-  '';
+  #...but now we're thinking with portals!
+  #handlrXdg = pkgs.writeShellScriptBin "xdg-open" ''
+  #  #!${pkgs.bash}/bin/bash
+  #  set -euo pipefail
+  #  exec ${pkgs.handlr}/bin/handlr open "$@"
+  #'';
   inherit (lib) mkIf;
 in
 {
@@ -512,7 +513,8 @@ in
   environment.systemPackages = with pkgs; [
     pamixer
     # xdg-utils
-    handlrXdg
+    mypkgs.flatpak-xdg-utils
+    # handlrXdg
     nixpkgs-fmt
     nixfmt
 

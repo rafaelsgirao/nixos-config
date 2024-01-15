@@ -18,6 +18,8 @@ rec {
   #Packages defined in this repo.
   fakepkg = pkgs.callPackage ./fakepkg { };
 
+  flatpak-xdg-utils = pkgs.callPackage ./flatpak-xdg-utils { };
+
   go-vod = callPackage ./go-vod { };
   # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
   chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
