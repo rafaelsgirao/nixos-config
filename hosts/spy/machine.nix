@@ -17,6 +17,7 @@ in
     ../../modules/core/lanzaboote.nix
     ./library.nix
     ../../modules/flood.nix
+    ../../modules/sunshine.nix
     # ../../modules/cups.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
@@ -193,6 +194,13 @@ in
       extraConfig = ''
         encode zstd gzip
         reverse_proxy http://${config.rg.ip}:5050
+      '';
+    };
+    "sunshine.${hostname}.rafael.ovh" = {
+      useACMEHost = "rafael.ovh";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy https://localhost:47990
       '';
     };
   };
