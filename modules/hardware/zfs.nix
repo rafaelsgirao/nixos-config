@@ -23,7 +23,7 @@
 
   services.zfs.autoScrub = lib.mkIf (config.rg.machineType != "virt") {
     enable = true;
-    interval = "2 weeks";
+    interval = "2w";
   };
   services.zfs.trim.enable = config.rg.machineType != "virt";
 }

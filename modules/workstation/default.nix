@@ -238,8 +238,8 @@ in
     #media-session.enable = true;
   };
 
-  location.latitude = 38.7223; # e.g, how to coerce an integer into a string
-  location.longitude = 9.1393;
+  location.latitude = 38.7223;
+  location.longitude = -9.1393;
   location.provider = "manual";
 
   #Fonts
