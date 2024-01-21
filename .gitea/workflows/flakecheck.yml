@@ -1,6 +1,10 @@
 ---
 name: CI
 on: push
+
+env:
+  USER: gitea-runner
+
 jobs:
   container-test-job:
     runs-on: ubuntu-latest
