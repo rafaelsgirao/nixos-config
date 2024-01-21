@@ -523,10 +523,11 @@ in
     gnomeExtensions.appindicator # Try to fix tray icons (especially jellyfin-mpv-shim and udiskie2)
     gnome.seahorse
     gnome.file-roller
-    gnome3.eog
-    cinnamon.nemo
+    gnome.nautilus
+    loupe
     gparted
     pavucontrol
+    pwvucontrol
     xorg.xlsclients
     xorg.xeyes
     #Utils
@@ -542,7 +543,6 @@ in
     pandoc
     ripgrep-all
     virt-manager
-    nodePackages.tailwindcss
     udisks2
     riff
 
