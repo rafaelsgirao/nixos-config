@@ -30,7 +30,7 @@
     caffeine
     #    time-awareness #doesn't support Gnome 45
     pip-on-top
-    gnomeExtensions.native-window-placement
+    native-window-placement
   ];
 
   programs.gnome-terminal.enable = false;
