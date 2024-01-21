@@ -5,6 +5,11 @@ include ferdium.local
 # Persistent global definitions
 include globals.local
 
+#New: let ferdium talk to session d-bus.
+#This allows it to use my system's xdg-open, which uses portals!
+dbus-user filter 
+dbus-user.talk org.freedesktop.*
+
 ignore noexec /tmp
 
 noblacklist ${HOME}/.cache/Ferdium

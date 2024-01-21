@@ -13,9 +13,8 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "none";
-    fsType = "tmpfs";
-    options = [ "defaults" "size=6G" "mode=755" ];
+    device = "neonrgpool/local/root";
+    fsType = "zfs";
   };
 
   fileSystems."/nix" = {
@@ -23,10 +22,10 @@
     fsType = "zfs";
   };
 
-  fileSystems."/var/lib/docker" = {
-    device = "neonrgpool/local/docker";
-    fsType = "zfs";
-  };
+  # fileSystems."/var/lib/docker" = {
+  #   device = "neonrgpool/local/docker";
+  #   fsType = "zfs";
+  # };
 
   fileSystems."/home-state" = {
     device = "neonrgpool/safe/home";
@@ -36,21 +35,16 @@
   fileSystems."/home/rg/Screenshots" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" ];
+    # options = [ "defaults" ];
+    options = [ "defaults" "size=100M" "mode=700" ];
   };
-
-  # fileSystems."/home/rg" =
-  #   {
-  #     device = "none";
-  #     fsType = "tmpfs";
-  #     options = [ "defaults" "uid=1000" "gid=100" ];
-  #   };
 
   fileSystems."/persist" = {
     device = "neonrgpool/safe/persist";
     fsType = "zfs";
     neededForBoot = true;
   };
+
   fileSystems."/pst" = {
     device = "neonrgpool/safe/persist";
     fsType = "zfs";

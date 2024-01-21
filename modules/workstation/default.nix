@@ -2,15 +2,16 @@
 let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
   #handlr is SO much better.
-  handlrXdg = pkgs.writeShellScriptBin "xdg-open" ''
-    #!${pkgs.bash}/bin/bash
-    set -euo pipefail
-    exec ${pkgs.handlr}/bin/handlr open "$@"
-  '';
+  #...but now we're thinking with portals!
+  #handlrXdg = pkgs.writeShellScriptBin "xdg-open" ''
+  #  #!${pkgs.bash}/bin/bash
+  #  set -euo pipefail
+  #  exec ${pkgs.handlr}/bin/handlr open "$@"
+  #'';
   inherit (lib) mkIf;
 in
 {
-  # imports = [ ./chromium.nix ];
+  # imports = [ ./darkman.nix ];
   # improve desktop responsiveness when updating the system
   nix.daemonCPUSchedPolicy = "idle";
   hm.programs.thunderbird = {
@@ -237,8 +238,8 @@ in
     #media-session.enable = true;
   };
 
-  location.latitude = 38.7223; # e.g, how to coerce an integer into a string
-  location.longitude = 9.1393;
+  location.latitude = 38.7223;
+  location.longitude = -9.1393;
   location.provider = "manual";
 
   #Fonts
@@ -512,7 +513,8 @@ in
   environment.systemPackages = with pkgs; [
     pamixer
     # xdg-utils
-    handlrXdg
+    mypkgs.flatpak-xdg-utils
+    # handlrXdg
     nixpkgs-fmt
     nixfmt
 
@@ -521,10 +523,11 @@ in
     gnomeExtensions.appindicator # Try to fix tray icons (especially jellyfin-mpv-shim and udiskie2)
     gnome.seahorse
     gnome.file-roller
-    gnome3.eog
-    cinnamon.nemo
+    gnome.nautilus
+    loupe
     gparted
     pavucontrol
+    pwvucontrol
     xorg.xlsclients
     xorg.xeyes
     #Utils
@@ -540,7 +543,6 @@ in
     pandoc
     ripgrep-all
     virt-manager
-    nodePackages.tailwindcss
     udisks2
     riff
 
