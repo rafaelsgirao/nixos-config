@@ -11,7 +11,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  # imports = [ ./chromium.nix ];
+  # imports = [ ./darkman.nix ];
   # improve desktop responsiveness when updating the system
   nix.daemonCPUSchedPolicy = "idle";
   hm.programs.thunderbird = {
