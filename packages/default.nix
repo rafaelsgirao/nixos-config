@@ -38,6 +38,8 @@ rec {
   lyricsgenius = pkgs.callPackage ./lyricsgenius { inherit (pkgs.unstable) python3; };
   tidal-dl = pkgs.callPackage ./tidal-dl { inherit (pkgs.unstable) python3; inherit lyricsgenius; };
 
-  unFTP = callPackage ./unFTP { };
-  # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
+
+  # Packages mostly to contribute upstream
+  unFTP = callPackage ./contrib/unFTP { };
+  sunshine = pkgs.callPackage ./contrib/sunshine { };
 }
