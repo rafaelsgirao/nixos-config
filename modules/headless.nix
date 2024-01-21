@@ -29,7 +29,7 @@
   boot.kernelParams = [ "panic=1" "boot.panic_on_fail" ];
 
   #Blocky - no blocklist by default
-  services.blocky.settings = {
+  services.blocky.settings = lib.mkIf config.services.blocky.enable {
     # Foolproof way to disable blocking/blocklists
     #Also makes blocky start almost instantly.
     blocking.blackLists."normal" = lib.mkIf (config.networking.hostName != "engie") (lib.mkForce [ ]);

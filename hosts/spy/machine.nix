@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   hostname = config.networking.hostName;
   inherit (config.rg) ip;
@@ -9,6 +9,8 @@ in
   services.udisks2.enable = lib.mkDefault false;
 
   imports = [
+    ../../modules/microvm.nix
+    ./microvm-gitea-runner.nix
     ../../modules/hardware/nvidia.nix
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix

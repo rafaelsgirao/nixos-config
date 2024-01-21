@@ -11,7 +11,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  # imports = [ ./darkman.nix ];
+  imports = [ ./ssh.nix ];
   # improve desktop responsiveness when updating the system
   nix.daemonCPUSchedPolicy = "idle";
   hm.programs.thunderbird = {
@@ -110,10 +110,6 @@ in
   #   package = pkgs.gnomeExtensions.gsconnect;
 
   # };
-
-  #Enable SSH agent on boot
-  programs.ssh.startAgent = true;
-  # services.teamviewer.enable = true;
 
   programs.noisetorch.enable = lib.mkIf (config.rg.machineType != "virt") true;
 
@@ -284,7 +280,11 @@ in
     SUBSYSTEM=="usb", ATTRS{idVendor}=="15a2", ATTRS{idProduct}=="0061", MODE="0660", GROUP="users"
     SUBSYSTEM=="usb", ATTRS{idVendor}=="15a2", ATTRS{idProduct}=="0063", MODE="0660", GROUP="users"
 
+  '' + lib.optionalString config.virtualisation.docker.enable ''
+    SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl freeze docker.service"
+    SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl thaw docker.service"
   '';
+
 
 
   #--------------------------------------------
@@ -509,6 +509,7 @@ in
   #   ".rustup"
   #   ".cert"
   # ];
+
 
   environment.systemPackages = with pkgs; [
     pamixer

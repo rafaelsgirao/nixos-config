@@ -1,0 +1,33 @@
+{ config, lib, nixosConfigurations, ... }:
+
+let
+  inherit (lib) mapAttrs mapAttrs' nameValuePair;
+in
+
+{
+  #SSH Client.
+  programs.ssh.knownHosts =
+    let
+      allHostsByName = mapAttrs' (_: host: nameValuePair host.config.networking.hostName host.config.rg.pubKey) nixosConfigurations;
+      allHostsByIP = mapAttrs' (_: host: nameValuePair host.config.rg.ip host.config.rg.pubKey) nixosConfigurations;
+      myKnownHosts = mapAttrs (_: publicKey: { inherit publicKey; }) (allHostsByName // allHostsByIP);
+
+    in
+    myKnownHosts // {
+      "github.com".publicKey =
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
+      "repo.dsi.tecnico.ulisboa.pt".publicKey =
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAwJLvpcT0ZAZXzxFgvNPr8uwAg4EEAH2eSvPoeL+jX";
+    };
+  networking.hosts =
+
+    let
+      # allHosts = mapAttrs' (_: host: nameValuePair host.config.networking.hostName host.config.rg.ip) nixosConfigurations;
+      allHosts = mapAttrs' (_: host: nameValuePair host.config.rg.ip host.config.networking.hostName) nixosConfigurations;
+      myKnownHosts = mapAttrs (_: hostName: [ hostName ]) allHosts;
+    in
+    myKnownHosts;
+
+  #Enable SSH agent on boot
+  programs.ssh.startAgent = true;
+}

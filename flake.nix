@@ -140,10 +140,10 @@
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
     };
 
-    # microvm = {
-    #     url = "github:astro/microvm.nix";
-    #     inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #---------------------
 
     #---------------------
