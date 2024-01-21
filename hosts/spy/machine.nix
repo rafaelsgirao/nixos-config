@@ -78,17 +78,42 @@ in
 
     blocking.clientGroupsBlock = { "127.0.0.1" = [ "none" ]; };
   };
+  systemd.network.enable = true;
+  systemd.network.networks."10-wan" =
+    {
+      # match the interface by name
+      matchConfig.Name = "eth0";
+      address = [
+        # configure addresses including subnet mask
+        "${config.rg.ipv4}/24"
+      ];
+      networkConfig =
+        {
+          # accept Router Advertisements for Stateless IPv6 Autoconfiguraton (SLAAC)
+          IPv6AcceptRA = true;
+
+        };
+      routes = [
+        # create default routes for both IPv6 and IPv4
+        {
+          routeConfig.Gateway = "fe80::1";
+        }
+        { routeConfig.Gateway = "192.168.1.1"; }
+      ];
+      # make the routes on this interface a dependency for network-online.target
+      linkConfig.RequiredForOnline = "routable";
+    };
   networking = {
     hostId = "b18b039a";
     dhcpcd.enable = false;
-    defaultGateway = {
-      address = "192.168.1.1";
-      interface = "eth0";
-    };
-    interfaces.eth0.ipv4.addresses = [{
-      address = config.rg.ipv4;
-      prefixLength = 24;
-    }];
+    # defaultGateway = {
+    #   address = "192.168.1.1";
+    #   interface = "eth0";
+    # };
+    # interfaces.eth0.ipv4.addresses = [{
+    #   address = config.rg.ipv4;
+    #   prefixLength = 24;
+    # }];
     firewall = {
       allowedTCPPorts = [
         6881 # Transmission

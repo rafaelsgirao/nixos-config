@@ -41,16 +41,6 @@ in
 
   networking = {
     hostId = "f46e55a8";
-    interfaces."eth0".ipv6 = {
-      addresses = [{
-        address = config.rg.ipv6;
-        prefixLength = 64;
-      }];
-    };
-    defaultGateway6 = {
-      address = "fe80::1";
-      interface = "eth0";
-    };
   };
 
   networking.nameservers = [ config.rg.ip "1.1.1.1" ];
@@ -76,6 +66,29 @@ in
   networking.hosts = {
     "127.0.0.1" = [ "localhost" config.networking.hostName ];
     "127.0.1.1" = [ "mail.${domain}" config.networking.hostName ];
+  };
+
+  systemd.network.enable = true;
+  systemd.network.networks."10-wan" = {
+    # match the interface by name
+    matchConfig.Name = "eth0";
+    address = [
+      # configure addresses including subnet mask
+      "${config.rg.ipv6}/64"
+      "${config.rg.ipv4}/32"
+    ];
+    routes = [
+      # create default routes for both IPv6 and IPv4
+      { routeConfig.Gateway = "fe80::1"; }
+      {
+        routeConfig = {
+          Gateway = "172.31.1.1";
+          GatewayOnLink = true;
+        };
+      }
+    ];
+    # make the routes on this interface a dependency for network-online.target
+    linkConfig.RequiredForOnline = "routable";
   };
 
   # DNS overrides for Saxton for things that wouldn't make sense
