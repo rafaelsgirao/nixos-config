@@ -19,6 +19,8 @@
   # services.udisks2.enable = false;
 
   networking.networkmanager.enable = false;
+  networking.dhcpcd.enable = !config.systemd.network.enable;
+  networking.useDHCP = !config.systemd.network.enable;
 
 
   programs.command-not-found.enable = lib.mkDefault false;
