@@ -14,7 +14,6 @@
     ../../modules/core/lanzaboote.nix
     ../../modules/libvirt.nix
     ../../modules/impermanence.nix
-
   ];
 
   services.zfs.expandOnBoot = "all";
@@ -38,9 +37,11 @@
         ".vscode"
         ".config/Ferdium"
         ".config/chromium"
-        ".mozilla"
+        ".config/joplin-desktop"
+        ".config/Joplin"
         ".config/Sonixd"
         ".config/WebCord"
+        ".mozilla"
         "studymusic"
         ".local/share/ykman"
         ".local/share/Anki2"
