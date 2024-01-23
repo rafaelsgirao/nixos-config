@@ -26,7 +26,7 @@ in
       {
         "general.useragent.override" = "";
         "privacy.donottrackheader.enabled" = true;
-
+        "calendar.alarms.showmissed" = false;
       };
   };
   hm.accounts.email.accounts."rafael@rafael.ovh" = {
