@@ -12,6 +12,23 @@ _:
     name = "microvm-gitea-runner";
     url = "https://git.spy.rafael.ovh";
 
+    settings = {
+      container = {
+        network = "host";
+        privilged = true;
+      };
+    };
+    # hostPackages =  with pkgs; [
+    # bash
+    # coreutils
+    # curl
+    # gawk
+    # gitMinimal
+    # gnused
+    # nodejs
+    # wget
+    # ];
+    token = "Redacted";
     labels = [
       # provide a debian base with nodejs for actions
       "debian-latest:docker://node:18-bullseye"

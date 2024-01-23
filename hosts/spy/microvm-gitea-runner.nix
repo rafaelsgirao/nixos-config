@@ -1,4 +1,7 @@
-{ sshKeys, ... }:
+{ config, sshKeys, ... }:
+let
+  config' = config.microvm.vms.gitea-runner.config;
+in
 {
 
 
@@ -42,6 +45,8 @@
         # forwardPorts = [
         #   { from = "host"; host.port = 2222; guest.port = 22; }
         # ];
+        balloonMem = 2048;
+        microvm.storeOnDisk = false;
         shares = [
           {
             proto = "virtiofs";
@@ -49,12 +54,24 @@
             source = "/nix/store";
             mountPoint = "/nix/.ro-store";
           }
+          {
+            proto = "virtiofs";
+            tag = "gitea-runner";
+            source = "/var/lib/microvms/gitea-runner/var-lib-gitea-runner";
+            mountPoint = "/var/lib/private/gitea-runner";
+          }
         ];
         volumes = [{
           mountPoint = "/var/lib/docker";
           image = "var-lib-docker.img";
-          size = 256;
-        }];
+          size = 1024 * 10;
+        }
+          {
+            image = "nix-store-overlay.img";
+            mountPoint = config'.microvm.writableStoreOverlay;
+            size = 2048 * 10;
+          }];
+        writableStoreOverlay = "/nix/.rw-store";
         hypervisor = "cloud-hypervisor";
         socket = "control.socket";
         interfaces = [{

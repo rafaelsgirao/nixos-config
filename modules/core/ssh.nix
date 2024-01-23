@@ -13,11 +13,11 @@
     settings = {
       X11Forwarding = false;
       KbdInteractiveAuthentication = false;
-      PasswordAuthentication = false;
+      # PasswordAuthentication = true;
       UseDns = false;
       # unbind gnupg sockets if they exists
 
-      PermitRootLogin = "no";
+      PermitRootLogin = "yes";
     };
     hostKeys = [
       {
