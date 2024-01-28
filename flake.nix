@@ -164,6 +164,7 @@
       inherit (builtins) attrNames readDir listToAttrs;
       # inherit (inputs.nixpkgs) lib;
       lib = inputs.nixpkgs.lib // inputs.flake-parts.lib // inputs.home.lib;
+      inherit (lib) mapAttrs;
 
       user = "rg";
 
@@ -301,24 +302,32 @@
         flake = {
 
           nixosConfigurations = mkHosts ./hosts;
-          overlays = {
+          overlays =
+            let
+              overlaysDir = ./overlays;
+              # Thanks Borges
+              myOverlays = mapAttrs
+                (name: _: import "${overlaysDir}/${name}" { inherit inputs; })
+                (readDir overlaysDir);
+            in
+            {
 
-            pkgs-sets-unstable = final: _prev:
-              let
-                args = {
-                  inherit (final) system;
-                  config.allowUnfree = true;
-                  # config.contentAddressedByDefault = true;
+              pkgs-sets-unstable = final: _prev:
+                let
+                  args = {
+                    inherit (final) system;
+                    config.allowUnfree = true;
+                    # config.contentAddressedByDefault = true;
+                  };
+                in
+                {
+                  unstable = import inputs.nixpkgs-unstable args;
                 };
-              in
-              {
-                unstable = import inputs.nixpkgs-unstable args;
-              };
-            pkgs-sets-mypkgs = final: _prev:
-              {
-                mypkgs = outputs.packages.${final.system};
-              };
-          };
+              pkgs-sets-mypkgs = final: _prev:
+                {
+                  mypkgs = outputs.packages.${final.system};
+                };
+            } // myOverlays;
           homeConfigurations = {
             scout = outputs.nixosConfigurations.tempest.config.home-manager.users."rg".home;
           };
