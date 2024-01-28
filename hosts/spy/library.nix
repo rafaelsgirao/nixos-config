@@ -7,7 +7,9 @@ let
     CapabilityBoundingSet = [ "" ];
     SystemCallArchitectures = "native";
     SystemCallFilter =
-      [ "~@reboot  @obsolete @raw-io @mount @debug @cpu-emulation" ];
+      # [ "~@reboot  @obsolete @raw-io @mount @debug @cpu-emulation" ];
+      [ "@system-service" ];
+    SystemcallErrorNumber = "EPERM";
     PrivateDevices = true;
     PrivateIPC = true;
     ProtectProc = "invisible";
