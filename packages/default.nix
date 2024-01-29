@@ -30,6 +30,7 @@ rec {
   #But I don't know how to do better
   # setupSecrets = callPackage ./setupsecrets { inherit inputs; };
 
+  pyinstaller = pkgs.callPackage ./pyinstaller { inherit (pkgs) python3; };
   #I don't know how to put writeScriptBin in its own file...
   #The code above doesn't work for some reason
   setupSecrets = pkgs.writeScriptBin "setupSecrets" (inputs.dsi-setupsecrets + "setupSecrets");
