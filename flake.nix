@@ -140,21 +140,6 @@
       inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
     };
 
-    # microvm = {
-    #     url = "github:astro/microvm.nix";
-    #     inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    #---------------------
-
-    #---------------------
-    # Other non-flake inputs.
-    #---------------------
-
-    dsi-setupsecrets = {
-      url = "git+ssh://git@git.spy.rafael.ovh:4222/mirrors/setup-secrets.git";
-      flake = false;
-    };
-
   };
 
   outputs = inputs@{ self, ... }:
@@ -212,7 +197,6 @@
                 inputs.disko.nixosModules.disko
                 (dir + "/${name}/hardware.nix")
                 (dir + "/${name}/machine.nix")
-                # inputs.microvm.nixosModules.microvm
                 {
                   home-manager = {
                     useGlobalPkgs = true;

@@ -161,22 +161,6 @@
         "type": "github"
       }
     },
-    "dsi-setupsecrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1690282244,
-        "narHash": "sha256-RRHI4ZmBpS8NA3PeguTyTK2PKaPANf7BAAHIGsiZSxs=",
-        "ref": "refs/heads/master",
-        "rev": "90fbc96a83e4c92798057a6ecf906630ba3aeedd",
-        "revCount": 39,
-        "type": "git",
-        "url": "ssh://git@git.spy.rafael.ovh:4222/mirrors/setup-secrets.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@git.spy.rafael.ovh:4222/mirrors/setup-secrets.git"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -850,7 +834,6 @@
         "agenix": "agenix",
         "bolsas-scraper": "bolsas-scraper",
         "disko": "disko",
-        "dsi-setupsecrets": "dsi-setupsecrets",
         "flake-compat": "flake-compat_2",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils_2",

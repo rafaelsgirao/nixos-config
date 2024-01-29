@@ -164,13 +164,6 @@ in
       #   terminal = false;
       #   categories = [ "Application" ];
       # };
-      # mattermost = {
-      #   name = "Mattermost DSI";
-      #   # icon = "${configDir}/icons/Notion.png";
-      #   exec = "${pre}/chromium --new-window --app=\"https:/chat.tecnico.ulisboa.pt\"";
-      #   terminal = false;
-      #   categories = [ "Application" ];
-      # };
       # discord = {
       #   name = "Discord";
       #   # icon = "${configDir}/icons/Notion.png";
