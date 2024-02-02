@@ -15,6 +15,8 @@ rec {
   # ist-discord-bot = inputs'.ist-discord-bot.packages.default;
 
 
+  frigate = pkgs.callPackage ./contrib/frigate { };
+
   #Packages defined in this repo.
   fakepkg = pkgs.callPackage ./fakepkg { };
 
