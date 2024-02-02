@@ -34,9 +34,11 @@ in
     # ../../modules/docker.nix
     ../../modules/blocky.nix
     ../../modules/wakapi-server.nix
+    # ../../modules/kanidm.nix
     ../../modules/frigate.nix
   ];
 
+  # services.kanidm.enableServer = true;
   services.nextcloud.home = "/data/nextcloud-nixos";
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

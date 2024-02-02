@@ -14,6 +14,7 @@
     ../../modules/core/lanzaboote.nix
     ../../modules/libvirt.nix
     ../../modules/impermanence.nix
+    # ../../modules/kanidm.nix
   ];
 
   services.zfs.expandOnBoot = "all";
@@ -176,6 +177,7 @@
   hm.home.stateVersion = "23.05";
   system.stateVersion = "23.05";
 
+  # services.kanidm.enableClient = true;
   programs.firejail.wrappedBinaries = {
     signal-desktop = {
 
