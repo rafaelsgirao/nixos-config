@@ -45,6 +45,7 @@ in
   "spy/ENV-flood-ui.age".publicKeys = [ spy ] ++ users;
   "spy/ENV-frigate.age".publicKeys = [ spy ] ++ users;
   "spy/ENV-bitmagnet.age".publicKeys = [ spy ] ++ users;
+  "spy/ENV-woodpecker.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
 
