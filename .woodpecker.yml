@@ -1,5 +1,5 @@
 pipeline:
   first-job:
-    image: echo
+    image: bash
     commands:
       - echo "first run"
