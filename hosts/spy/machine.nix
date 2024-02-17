@@ -16,6 +16,7 @@ in
 
     ../../modules/core/lanzaboote.nix
     ./library.nix
+    ../../modules/library/bitmagnet.nix
     ../../modules/flood.nix
     ../../modules/sunshine.nix
     # ../../modules/cups.nix
