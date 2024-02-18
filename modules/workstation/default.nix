@@ -26,7 +26,7 @@ in
       {
         "general.useragent.override" = "";
         "privacy.donottrackheader.enabled" = true;
-
+        "calendar.alarms.showmissed" = false;
       };
   };
   hm.accounts.email.accounts."rafael@rafael.ovh" = {
@@ -157,13 +157,6 @@ in
       #   name = "Proton Mail";
       #   # icon = "${configDir}/icons/Notion.png";
       #   exec = "${pre}/chromium --new-window --app=\"https://mail.proton.me\"";
-      #   terminal = false;
-      #   categories = [ "Application" ];
-      # };
-      # mattermost = {
-      #   name = "Mattermost DSI";
-      #   # icon = "${configDir}/icons/Notion.png";
-      #   exec = "${pre}/chromium --new-window --app=\"https:/chat.tecnico.ulisboa.pt\"";
       #   terminal = false;
       #   categories = [ "Application" ];
       # };

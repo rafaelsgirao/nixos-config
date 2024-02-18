@@ -7,7 +7,9 @@ let
     CapabilityBoundingSet = [ "" ];
     SystemCallArchitectures = "native";
     SystemCallFilter =
-      [ "~@reboot  @obsolete @raw-io @mount @debug @cpu-emulation" ];
+      # [ "~@reboot  @obsolete @raw-io @mount @debug @cpu-emulation" ];
+      [ "@system-service" ];
+    SystemcallErrorNumber = "EPERM";
     PrivateDevices = true;
     PrivateIPC = true;
     ProtectProc = "invisible";
@@ -93,6 +95,7 @@ in
       ratio-limit-enabled = true;
       idle-seeding-limit = 10080;
       idle-seeding-limit-enabled = true;
+      message-level = 1; # Log only error messages. Default is 2, spams the hell out of journal
 
     };
   };

@@ -18,6 +18,7 @@ in
 
     ../../modules/core/lanzaboote.nix
     ./library.nix
+    ../../modules/library/bitmagnet.nix
     ../../modules/flood.nix
     ../../modules/sunshine.nix
     # ../../modules/cups.nix
@@ -36,6 +37,8 @@ in
     # ../../modules/docker.nix
     ../../modules/blocky.nix
     ../../modules/wakapi-server.nix
+    ../../modules/frigate.nix
+    ../../modules/woodpecker.nix
   ];
 
   services.nextcloud.home = "/data/nextcloud-nixos";

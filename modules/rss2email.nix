@@ -84,6 +84,20 @@ _: {
       "IST-2023-AMS".url =
         "https://fenix.tecnico.ulisboa.pt/disciplinas/Mod/2023-2024/1-semestre/rss/announcement";
 
+      # S2 - 2023/2024
+      "IST-2023-PIC".url =
+        "https://fenix.tecnico.ulisboa.pt/disciplinas/PLic23-2/2023-2024/2-semestre/rss/announcement";
+      "IST-2023-PE".url =
+        "https://fenix.tecnico.ulisboa.pt/disciplinas/PEstatisticad103/2023-2024/2-semestre/rss/announcement";
+      "IST-2023-SD".url =
+        "https://fenix.tecnico.ulisboa.pt/disciplinas/SDis23/2023-2024/2-semestre/rss/announcement";
+      "IST-2023-ESof".url =
+        "https://fenix.tecnico.ulisboa.pt/disciplinas/ESof23/2023-2024/2-semestre/rss/announcement";
+      "IST-2023-Comp".url =
+        "https://fenix.tecnico.ulisboa.pt/disciplinas/Com3/2023-2024/2-semestre/rss/announcement";
+      "IST-2023-CG".url =
+        "https://fenix.tecnico.ulisboa.pt/disciplinas/CGra23/2023-2024/2-semestre/rss/announcement";
+
 
       "HackerNews-Monthly" = {
         url = "https://rsshub.app/github/issue/headllines/hackernews-monthly";

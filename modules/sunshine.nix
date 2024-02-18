@@ -2,15 +2,20 @@
 
 let
   # sunshinePkg = pkgs.sunshine;
+  __configStrings = config: (map (key: "${key} = ${config.${key}}") (builtins.attrNames config));
+  genConfig = config: (builtins.concatStringsSep "\n" (__configStrings config));
   sunshinePkg = pkgs.sunshine.override {
     cudaSupport = true;
     stdenv = pkgs.cudaPackages.backendStdenv;
   };
   runtimeDir = "/run/sunshine";
+  RuntimeDirectory = builtins.baseNameOf runtimeDir;
+  RuntimeDirectoryMode = "0700";
   envs = {
     DISPLAY = ":0";
     XDG_RUNTIME_DIR = runtimeDir;
     WAYLAND_DISPLAY = runtimeDir + "/wayland-1";
+    PULSE_SERVER = "unix:${runtimeDir}/pulse/native";
   };
 in
 {
@@ -54,6 +59,8 @@ in
     KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
   '';
 
+  security.rtkit.enable = true;
+
   # https://wiki.archlinux.org/title/Wayland
   # https://wayland.pages.freedesktop.org/weston/toc/running-weston.html
   #    https://overflow.lunar.icu/exchange/unix/questions/653672/virtual-wayland-display-server-possible
@@ -74,7 +81,7 @@ in
   #    RestartSec = "5s";
 
   #    RuntimeDirectory = "sunshine-weston";
-  #    RuntimeDirectoryMode = "0700"; #weston complained of systemd default (0755)
+  #    inherit RuntimeDirectoryMode; #weston complained of systemd default (0755)
   #  };
   # };
 
@@ -101,7 +108,7 @@ in
         WLR_LIBINPUT_NO_DEVICES = "1";
         WLR_BACKENDS = "headless,libinput";
         WAYFIRE_CONFIG_FILE = configFile;
-        _WAYFIRE_SOCKET = runtimeDir + "/wl-sunshine";
+        _WAYFIRE_SOCKET = runtimeDir + "/wl-sunshine"; #FIXME: not working. use default socket name (wayland-1) at runtimeDir
       } // envs;
 
       serviceConfig =
@@ -115,8 +122,10 @@ in
           Restart = "on-failure";
           RestartSec = "5s";
 
-          RuntimeDirectory = "sunshine";
-          RuntimeDirectoryMode = "0700";
+          inherit RuntimeDirectory;
+          inherit RuntimeDirectoryMode;
+          # # RuntimeDirectory = runtimeDirName;
+          # RuntimeDirectoryMode = runtimeDirPerms;
         };
     };
 
@@ -133,20 +142,22 @@ in
         # DynamicUser = true;
         User = "sunshine";
         ExecStart = "${pkgs.pipewire}/bin/pipewire";
+        ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
 
         # https://ma.ttias.be/auto-restart-crashed-service-systemd/
         Restart = "on-failure";
         RestartSec = "5s";
 
-        RuntimeDirectory = "sunshine";
-        RuntimeDirectoryMode = "0700";
+        inherit RuntimeDirectory;
+
+        inherit RuntimeDirectoryMode;
       };
   };
 
   systemd.services.sunshine-pulse = {
-    after = [ "sunshine-display.service" ];
+    after = [ "sunshine-pipewire.service" ];
     # wantedBy = [ "network.target" ];
-    bindsTo = [ "sunshine-display.service" ];
+    bindsTo = [ "sunshine-pipewire.service" ];
     environment = envs;
 
     serviceConfig =
@@ -154,20 +165,21 @@ in
         # DynamicUser = true;
         User = "sunshine";
         ExecStart = "${pkgs.pipewire}/bin/pipewire-pulse";
+        ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
 
         # https://ma.ttias.be/auto-restart-crashed-service-systemd/
         Restart = "on-failure";
         RestartSec = "5s";
 
-        RuntimeDirectory = "sunshine";
-        RuntimeDirectoryMode = "0700";
+        inherit RuntimeDirectory;
+        inherit RuntimeDirectoryMode;
       };
   };
 
   systemd.services.sunshine-app = {
-    after = [ "sunshine-display.service" ];
+    after = [ "sunshine-display.service" "sunshine-pulse.service" ];
     # wantedBy = [ "network.target" ];
-    bindsTo = [ "sunshine-display.service" ];
+    bindsTo = [ "sunshine-display.service" "sunshine-pulse.service" ];
     environment = {
       HOME = "/library/games/.sunshine-app";
     } // envs;
@@ -181,17 +193,63 @@ in
     # XDG_CONFIG_HOME = "/library/games/.sunshine-app";
 
 
-    serviceConfig = {
-      # DynamicUser = true;
-      User = "sunshine";
-      ExecStart = "${sunshinePkg}/bin/sunshine";
+    serviceConfig =
+      let
+        appsConfig = pkgs.writeText "sunshine_apps.json" (builtins.toJSON {
+          env = {
+            PATH = "$(PATH):$(HOME)/.local/bin";
+          };
+          apps = [
+            {
+              name = "Desktop";
+              image-path = "desktop.png";
+            }
+            {
+              name = "(NixOS) Steam Big Picture";
+              detached = [
+                "${pkgs.util-linux}/bin/setsid /run/current-system/sw/bin/steam steam://open/bigpicture"
+              ];
+              image-path = "steam.png";
+            }
+            {
+              name = "(NixOS) Kitty";
+              detached = [
+                "${pkgs.util-linux}/bin/setsid ${pkgs.kitty}/bin/kitty"
+              ];
+              image-path = "${pkgs.kitty}/lib/kitty/logo/kitty.png";
+            }
+            {
+              name = "(NixOS) Steam";
+              detached = [
+                "${pkgs.util-linux}/bin/setsid /run/current-system/sw/bin/steam"
+              ];
+              image-path = "steam.png";
+            }
+          ];
 
-      # https://ma.ttias.be/auto-restart-crashed-service-systemd/
-      Restart = "on-failure";
-      RestartSec = "5s";
+        });
+        configFile = pkgs.writeText "sunshine_config.conf" (genConfig {
+          audio_sink = "sink-sunshine-stereo.monitor";
+          file_apps = "${appsConfig}";
+          capture = "wlr";
+          encoder = "nvenc";
+        });
 
-      RuntimeDirectory = "sunshine-app";
-      RuntimeDirectoryMode = "0700";
-    };
+
+      in
+      {
+        # DynamicUser = true;
+        User = "sunshine";
+        ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
+        ExecStart = "${sunshinePkg}/bin/sunshine ${configFile}";
+
+        # https://ma.ttias.be/auto-restart-crashed-service-systemd/
+        Restart = "on-failure";
+        RestartSec = "5s";
+
+
+        inherit RuntimeDirectory;
+        inherit RuntimeDirectoryMode;
+      };
   };
 }
