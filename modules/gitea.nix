@@ -21,7 +21,7 @@ in
     enable = true;
     stateDir = lib.mkDefault "/data/gitea";
     settings = {
-      actions.ENABLED = true;
+      # actions.ENABLED = true;
       DEFAULT =
         {
           APP_NAME = appName;

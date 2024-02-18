@@ -23,7 +23,7 @@ in
       WOODPECKER_ADMIN = "rg";
       WOODPECKER_HOST = "https://ci.${fqdn}";
       WOODPECKER_SERVER_ADDR = "127.0.0.1:${builtins.toString port}";
-      WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
+      # WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
       WOODPECKER_GITEA = "true";
       WOODPECKER_GITEA_URL = "https://git.spy.rafael.ovh";
       WOODPECKER_GRPC_ADDR = "127.0.0.1:${builtins.toString grpcPort}";
@@ -32,10 +32,11 @@ in
   };
   services.woodpecker-agents.agents.baremetal = {
     enable = true;
+    path = with pkgs; [ coreutils git config.nix.package woodpecker-plugin-git ];
     environment = {
       WOODPECKER_BACKEND = "local";
-      WOODPECKER_SERVER = "127.0.0.1:${builtins.toString port}";
-      # DOCKER_HOST = "unix:///run/podman/podman.sock";
+      WOODPECKER_SERVER = "127.0.0.1:${builtins.toString grpcPort}";
+      # WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
 
     };
     environmentFile = [ config.age.secrets.ENV-woodpecker.path ];
