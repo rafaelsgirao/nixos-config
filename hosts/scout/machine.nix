@@ -1,4 +1,5 @@
 { config, pkgs, lib, ... }:
+
 {
 
   imports = [
@@ -14,6 +15,7 @@
     ../../modules/core/lanzaboote.nix
     ../../modules/libvirt.nix
     ../../modules/impermanence.nix
+    ../../modules/docker.nix
   ];
 
   services.zfs.expandOnBoot = "all";
@@ -45,6 +47,8 @@
         "studymusic"
         ".local/share/ykman"
         ".local/share/Anki2"
+        ".config/JetBrains"
+        ".local/share/JetBrains"
         #        ".local/share/Trash"  - Trashing on system internal mounts is not supported
 
 
@@ -168,6 +172,7 @@
     gnome.gnome-tweaks
     unstable.webcord
     easyeffects
+    jetbrains.idea-ultimate
     #TODO: electronmail?
   ];
 
@@ -183,10 +188,15 @@
       executable = "${lib.getBin pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform,WaylandWindowDecorations,WebRTCPipeWireCapturer --ozone-platform=wayland";
       profile = "${pkgs.firejail}/etc/firejail/signal-desktop.profile";
     };
-    jellyfinmediaplayer = {
-      executable = "${pkgs.jellyfin-media-player}/bin/jellyfinmediaplayer";
-      profile = pkgs.copyPathToStore ../../files/jellyfinmediaplayer.profile;
-    };
   };
+
+  services.udev.extraRules = lib.mkIf (config.rg.class == "workstation") ''
+        # DualShock 3 over USB
+    KERNEL=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0268", MODE="0666"
+
+    # DualShock 3 over Bluetooth
+    KERNEL=="hidraw*", KERNELS=="*054C:0268*", MODE="0666"
+
+  '';
 
 }
