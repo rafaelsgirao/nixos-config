@@ -36,6 +36,7 @@ in
     ../../modules/blocky.nix
     ../../modules/wakapi-server.nix
     ../../modules/frigate.nix
+    ../../modules/woodpecker.nix
   ];
 
   services.nextcloud.home = "/data/nextcloud-nixos";
