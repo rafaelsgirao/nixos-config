@@ -1,17 +1,17 @@
 { config, sshKeys, ... }:
 let
-  config' = config.microvm.vms.gitea-runner.config;
+  config' = config.microvm.vms.ci-runner.config;
 in
 {
 
 
-  microvm.autostart = [ "gitea-runner" ];
+  microvm.autostart = [ "ci-runner" ];
   microvm.vms = {
 
-    gitea-runner.specialArgs = {
+    ci-runner.specialArgs = {
       inherit sshKeys;
     };
-    gitea-runner.config = {
+    ci-runner.config = {
 
 
       networking.nameservers = [ "192.168.10.6" ];
@@ -37,7 +37,7 @@ in
       imports = [
         ../../modules/headless.nix
         ../../modules/docker.nix
-        ../../modules/gitea-actions-runner.nix
+        ../../modules/ci/runner.nix
         ../../modules/core/ssh.nix
       ];
       microvm = {
@@ -56,9 +56,15 @@ in
           }
           {
             proto = "virtiofs";
-            tag = "gitea-runner";
-            source = "/var/lib/microvms/gitea-runner/var-lib-gitea-runner";
-            mountPoint = "/var/lib/private/gitea-runner";
+            # tag = "ro-store";
+            source = "/nix/";
+            mountPoint = "/mnt/nix";
+          }
+          {
+            proto = "virtiofs";
+            tag = "ci-runner";
+            source = "/var/lib/microvms/ci-runner/var-lib-ci-runner";
+            mountPoint = "/var/lib/private/ci-runner";
           }
         ];
         volumes = [{
@@ -78,7 +84,7 @@ in
           type = "tap";
 
           # interface name on the host
-          id = "vm-gitea-runner";
+          id = "vm-ci-runner";
 
           # Ethernet address of the MicroVM's interface, not the host's
           #

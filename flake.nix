@@ -144,17 +144,6 @@
       url = "github:astro/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #---------------------
-
-    #---------------------
-    # Other non-flake inputs.
-    #---------------------
-
-    dsi-setupsecrets = {
-      url = "git+ssh://git@git.spy.rafael.ovh:4222/mirrors/setup-secrets.git";
-      flake = false;
-    };
-
   };
 
   outputs = inputs@{ self, ... }:

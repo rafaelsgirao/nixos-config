@@ -10,7 +10,6 @@ in
   age.secrets = {
     ENV-woodpecker = {
       file = "${hostSecretsDir}/ENV-woodpecker.age";
-      owner = "bitmagnet";
     };
   };
   environment.persistence."/pst".directories = [

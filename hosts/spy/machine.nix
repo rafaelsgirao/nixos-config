@@ -10,7 +10,7 @@ in
 
   imports = [
     ../../modules/microvm.nix
-    ./microvm-gitea-runner.nix
+    ./microvm-ci-runner.nix
     ../../modules/hardware/nvidia.nix
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
@@ -38,7 +38,7 @@ in
     ../../modules/blocky.nix
     ../../modules/wakapi-server.nix
     ../../modules/frigate.nix
-    ../../modules/woodpecker.nix
+    ../../modules/ci/woodpecker.nix
   ];
 
   services.nextcloud.home = "/data/nextcloud-nixos";
