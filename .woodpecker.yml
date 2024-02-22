@@ -2,7 +2,7 @@ pipeline:
   first-job:
     image: nixpkgs/nix-flakes
     commands:
-      - echo "first run"
+      - nix flake check
 
 
 # pipeline:
