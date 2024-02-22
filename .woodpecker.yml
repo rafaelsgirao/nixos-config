@@ -1,6 +1,6 @@
 pipeline:
   first-job:
-    image: nixos/nix
+    image: nixpkgs/nix-flakes
     commands:
       - echo "first run"
 
