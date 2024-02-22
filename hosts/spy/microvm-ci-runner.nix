@@ -1,7 +1,4 @@
-{ config, sshKeys, ... }:
-let
-  config' = config.microvm.vms.ci-runner.config;
-in
+{ config, sshKeys, hostSecretsDir, ... }:
 {
 
 
@@ -10,43 +7,54 @@ in
 
     ci-runner.specialArgs = {
       inherit sshKeys;
+      config' = config;
+      inherit hostSecretsDir;
     };
-    ci-runner.config = {
+    ci-runner.config = { config', ... }: {
 
 
+      networking.usePredictableInterfaceNames = false;
       networking.nameservers = [ "192.168.10.6" ];
       systemd.network.enable = true;
 
       systemd.network.networks."20-lan" = {
-        matchConfig.Type = "ether";
+        matchConfig.Name = "eth0";
         dns = [ "192.168.10.6" ];
         networkConfig = {
           IPv6AcceptRA = true;
           DHCP = "yes";
+          IPForward = "yes";
         };
       };
 
-      networking.firewall.enable = false;
+      # networking.firewall.enable = false; # Having firewall disabled makes docker0 not work...?
       boot.initrd.includeDefaultModules = false;
       environment.defaultPackages = [ ];
 
+      networking.hosts = {
+        "192.168.10.6" = [ "git.spy.rafael.ovh" ];
+      };
       users.users.root.openssh.authorizedKeys.keys = sshKeys;
       users.users.root.password = "1234";
       system.stateVersion = "23.11";
       environment.noXlibs = true;
+      virtualisation.docker.daemon.settings = {
+        dns = [ "192.168.10.6" "1.1.1.1" ];
+      };
+      # virtualisation.docker.extraOptions = "--dns=192.168.10.6"; DONT SET BOTH THESE OPTIONS!
       imports = [
         ../../modules/headless.nix
         ../../modules/docker.nix
         ../../modules/ci/runner.nix
         ../../modules/core/ssh.nix
       ];
-      microvm = {
+      microvm = rec {
         #Only works with QEMU user mode
         # forwardPorts = [
         #   { from = "host"; host.port = 2222; guest.port = 22; }
         # ];
         balloonMem = 2048;
-        microvm.storeOnDisk = false;
+        storeOnDisk = false;
         shares = [
           {
             proto = "virtiofs";
@@ -57,6 +65,7 @@ in
           {
             proto = "virtiofs";
             # tag = "ro-store";
+            tag = "host-nix-store";
             source = "/nix/";
             mountPoint = "/mnt/nix";
           }
@@ -66,6 +75,18 @@ in
             source = "/var/lib/microvms/ci-runner/var-lib-ci-runner";
             mountPoint = "/var/lib/private/ci-runner";
           }
+          {
+            proto = "virtiofs";
+            tag = "woodpecker-agent-state";
+            source = "/var/lib/microvms/ci-runner/woodpecker-agent-state";
+            mountPoint = "/etc/woodpecker";
+          }
+          {
+            proto = "virtiofs";
+            tag = "woodpecker-agenix-secret";
+            source = "${builtins.dirOf config'.age.secrets.ENV-woodpecker.path}";
+            mountPoint = "${builtins.dirOf config'.age.secrets.ENV-woodpecker.path}";
+          }
         ];
         volumes = [{
           mountPoint = "/var/lib/docker";
@@ -74,7 +95,7 @@ in
         }
           {
             image = "nix-store-overlay.img";
-            mountPoint = config'.microvm.writableStoreOverlay;
+            mountPoint = writableStoreOverlay;
             size = 2048 * 10;
           }];
         writableStoreOverlay = "/nix/.rw-store";

@@ -1,15 +1,21 @@
-{ config, pkgs, hostSecretsDir, ... }:
+{ config, hostSecretsDir, ... }:
 let
   inherit (config.networking) fqdn;
-  inherit (config.rg) domain;
+  inherit (config.rg) domain ip;
   port = 40153;
   grpcPort = 32467;
 in
 {
 
+  systemd.tmpfiles.rules = [
+    "d /run/woodpecker-secrets 0700 root root -"
+  ];
+
   age.secrets = {
     ENV-woodpecker = {
       file = "${hostSecretsDir}/ENV-woodpecker.age";
+      path = "/run/woodpecker-secrets/ENV-woodpecker";
+      symlink = false;
     };
   };
   environment.persistence."/pst".directories = [
@@ -25,21 +31,21 @@ in
       # WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
       WOODPECKER_GITEA = "true";
       WOODPECKER_GITEA_URL = "https://git.spy.rafael.ovh";
-      WOODPECKER_GRPC_ADDR = "127.0.0.1:${builtins.toString grpcPort}";
+      WOODPECKER_GRPC_ADDR = "${ip}:${builtins.toString grpcPort}";
     };
     environmentFile = config.age.secrets.ENV-woodpecker.path;
   };
-  services.woodpecker-agents.agents.baremetal = {
-    enable = true;
-    path = with pkgs; [ coreutils git config.nix.package woodpecker-plugin-git ];
-    environment = {
-      WOODPECKER_BACKEND = "local";
-      WOODPECKER_SERVER = "127.0.0.1:${builtins.toString grpcPort}";
-      # WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
+  # services.woodpecker-agents.agents.baremetal = {
+  #   enable = true;
+  #   path = with pkgs; [ coreutils git config.nix.package woodpecker-plugin-git ];
+  #   environment = {
+  #     WOODPECKER_BACKEND = "local";
+  #     WOODPECKER_SERVER = "127.0.0.1:${builtins.toString grpcPort}";
+  #     # WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
 
-    };
-    environmentFile = [ config.age.secrets.ENV-woodpecker.path ];
-  };
+  #   };
+  #   environmentFile = [ config.age.secrets.ENV-woodpecker.path ];
+  # };
 
   services.caddy.virtualHosts."ci.${fqdn}" = {
     useACMEHost = "${domain}";

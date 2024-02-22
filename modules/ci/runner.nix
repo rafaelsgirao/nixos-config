@@ -1,29 +1,30 @@
-_:
-# let
-#   hostname = config.networking.hostName;
-#   inherit (config.rg) ip;
-#   inherit (config.networking) fqdn;
-#   appName = "Gitea RG";
-# in
+{ config'
+, pkgs
+, ...
+}:
+let
+  inherit (config'.rg) ip;
+  grpcPort = 32467;
+in
 {
 
-  age.secrets = {
-    ENV-woodpecker = {
-      file = "${hostSecretsDir}/ENV-woodpecker.age";
-    };
-  };
+
 
   services.woodpecker-agents.agents.runner = {
     enable = true;
-    path = with pkgs; [ coreutils git config.nix.package woodpecker-plugin-git ];
+    path = with pkgs; [ coreutils git config'.nix.package woodpecker-plugin-git ];
     environment = {
       WOODPECKER_BACKEND = "docker";
-      WOODPECKER_SERVER = "127.0.0.1:${builtins.toString grpcPort}";
-      WOODPECKER_BACKEND_DOCKER_VOLUMES = "/mnt/nix:/nix"
-        # WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
+      WOODPECKER_SERVER = "${ip}:${builtins.toString grpcPort}";
+      WOODPECKER_BACKEND_DOCKER_VOLUMES = "/mnt/nix:/nix";
+      # WOODPECKER_BACKEND_DOCKER_NETWORK = "bridge";
+      # WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
 
-        };
-      environmentFile = [ config.age.secrets.ENV-woodpecker.path ];
     };
+    environmentFile = [ config'.age.secrets.ENV-woodpecker.path ];
+  };
+  systemd.services."woodpecker-agent-runner".serviceConfig = {
+    SupplementaryGroups = [ "docker" ];
+  };
 
-  }
+}

@@ -1,5 +1,9 @@
 pipeline:
-  first-job:
-    image: bash
+  run-greet:
+    image: nixos/nix
     commands:
-      - echo "first run"
+      - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+      - nix flake check
+      # - nix run --store unix:///mnt/nix/var/nix/daemon-socket/socket?root=/mnt .#build-all
+    volumes:
+      - /nix:/mnt/nix:ro
