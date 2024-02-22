@@ -1,15 +1,15 @@
 pipeline:
   first-job:
-    image: nixpkgs/nix-flakes
+    image: lnl7/nix:latest
     commands:
-      - nix flake check
+      - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+      - nix flake check 
 
 
 # pipeline:
 #   flake-check:
 #     image: nixos/nix
 #     commands:
-#       # - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
 #       # - nix flake check --experimental-features flakes --experimental-features nix-command
 # pipeline:
 #   flake-check:
