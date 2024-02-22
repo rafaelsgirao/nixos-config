@@ -1,9 +1,16 @@
 pipeline:
-  flake-check:
-    image: nixos/nix
+  first-job:
+    image: bash
     commands:
-      # - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
-      - nix flake check --experimental-features flakes --experimental-features nix-command
+      - echo "first run"
+
+
+# pipeline:
+#   flake-check:
+#     image: nixos/nix
+#     commands:
+#       # - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+#       # - nix flake check --experimental-features flakes --experimental-features nix-command
 # pipeline:
 #   flake-check:
 #     image: nixos/nix
