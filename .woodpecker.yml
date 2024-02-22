@@ -1,6 +1,6 @@
 pipeline:
   first-job:
-    image: bash
+    image: nixos/nix
     commands:
       - echo "first run"
 
