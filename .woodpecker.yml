@@ -6,7 +6,7 @@ steps:
     # image: nixpkgs/nix:nixos-23.11
     # image: nixpkgs/bash
     commands:
-    - apt update && apt install curl
+    - apt update && apt install curl -y
     -  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
     - nix --version
     - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
