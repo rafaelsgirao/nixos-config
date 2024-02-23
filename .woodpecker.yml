@@ -2,10 +2,12 @@ steps:
   verify:
     # when:
     #   event: [ pull_request ]
-    image: nixos/nix:2.20.3
+    image: debian:latest
     # image: nixpkgs/nix:nixos-23.11
     # image: nixpkgs/bash
     commands:
+    - apt update && apt install curl
+    -  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
     - nix --version
     - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
     - nix flake show
