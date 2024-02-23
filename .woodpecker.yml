@@ -2,7 +2,7 @@ steps:
   verify:
     # when:
     #   event: [ pull_request ]
-    image: debian:latest
+    image: ubuntu:latest
     # image: nixpkgs/nix:nixos-23.11
     # image: nixpkgs/bash
     commands:
