@@ -1,4 +1,4 @@
-{ config, hostSecretsDir, ... }:
+{ config, hostSecretsDir, pkgs, ... }:
 let
   inherit (config.networking) fqdn;
   inherit (config.rg) domain ip;
@@ -23,6 +23,7 @@ in
   ];
   services.woodpecker-server = {
     enable = true;
+    package = pkgs.unstable.woodpecker-server;
     environment = {
       # WOODPECKER_OPEN=true;
       WOODPECKER_ADMIN = "rg";

@@ -1,4 +1,4 @@
-{ config, sshKeys, hostSecretsDir, ... }:
+{ config, sshKeys, hostSecretsDir, inputs, ... }:
 {
 
 
@@ -9,6 +9,7 @@
       inherit sshKeys;
       config' = config;
       inherit hostSecretsDir;
+      inherit inputs;
     };
     ci-runner.config = { config', ... }: {
 
@@ -38,13 +39,13 @@
       users.users.root.password = "1234";
       system.stateVersion = "23.11";
       environment.noXlibs = true;
-      virtualisation.docker.daemon.settings = {
-        dns = [ "192.168.10.6" "1.1.1.1" ];
-      };
+      # virtualisation.docker.daemon.settings = {
+      #   dns = [ "192.168.10.6" "1.1.1.1" ];
+      # };
       # virtualisation.docker.extraOptions = "--dns=192.168.10.6"; DONT SET BOTH THESE OPTIONS!
       imports = [
         ../../modules/headless.nix
-        ../../modules/docker.nix
+        # ../../modules/docker.nix
         ../../modules/ci/runner.nix
         ../../modules/core/ssh.nix
       ];
@@ -64,9 +65,8 @@
           }
           {
             proto = "virtiofs";
-            # tag = "ro-store";
-            tag = "host-nix-store";
-            source = "/nix/";
+            tag = "host-nixvirtiofs requires a separate virtiofsd service which is only started as a prerequisite when you start MicroVMs through a systemd service that comes with the microvm.nixosModules.host module.-store";
+            source = "/nix";
             mountPoint = "/mnt/nix";
           }
           {
@@ -88,16 +88,18 @@
             mountPoint = "${builtins.dirOf config'.age.secrets.ENV-woodpecker.path}";
           }
         ];
-        volumes = [{
-          mountPoint = "/var/lib/docker";
-          image = "var-lib-docker.img";
-          size = 1024 * 10;
-        }
+        volumes = [
+          # {
+          # mountPoint = "/var/lib/docker";
+          # image = "var-lib-docker.img";
+          # size = 1024 * 10;
+          # }
           {
             image = "nix-store-overlay.img";
             mountPoint = writableStoreOverlay;
             size = 2048 * 10;
-          }];
+          }
+        ];
         writableStoreOverlay = "/nix/.rw-store";
         hypervisor = "cloud-hypervisor";
         socket = "control.socket";
