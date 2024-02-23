@@ -3,8 +3,6 @@ steps:
     image: bash
     commands: 
       - nix flake show
-
-steps:
   - name: flake check
     image: bash
     commands: 
