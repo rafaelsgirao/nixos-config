@@ -2,7 +2,7 @@ steps:
   verify:
     # when:
     #   event: [ pull_request ]
-    image: lnl7/nix:2020-09-11
+    image: nixos/nix
     # image: nixpkgs/nix:nixos-23.11
     # image: nixpkgs/bash
     commands:
