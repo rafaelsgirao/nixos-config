@@ -6,9 +6,9 @@ steps:
     # image: nixpkgs/nix:nixos-23.11
     # image: nixpkgs/bash
     commands:
-    - nix --version
+    - /nix/var/nix/profiles/default/bin/nix --version
     - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
-    - nix flake show
+    - /nix/var/nix/profiles/default/bin/nix flake show
 
 
 # steps:
