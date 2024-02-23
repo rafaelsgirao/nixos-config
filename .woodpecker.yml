@@ -1,9 +1,20 @@
-pipeline:
-  first-job:
-    image: lnl7/nix:latest
+steps:
+  verify:
+    when:
+      event: [ pull_request ]
+    image: nixos/nix:2.18.1
     commands:
-      - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
-      - nix flake check 
+    - nix --version
+    - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
+    - nix flake show
+
+
+# pipeline:
+#   first-job:
+#     image: lnl7/nix:latest
+#     commands:
+#       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+#       - nix flake check 
 
 
 # pipeline:
