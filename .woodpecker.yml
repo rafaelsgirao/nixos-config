@@ -2,11 +2,11 @@ steps:
   - name: flake show
     image: bash
     commands: 
-      - nix flake show
+      - nix flake show --accept-flake-config
   - name: flake check
     image: bash
     commands: 
-      - nix flake check
+      - nix flake check --accept-flake-config
 # steps:
 #   flake-check:
 #     image: nixos/nix
