@@ -1,7 +1,7 @@
 steps:
   verify:
-    when:
-      event: [ pull_request ]
+    # when:
+    #   event: [ pull_request ]
     image: nixos/nix:2.18.1
     commands:
     - nix --version
