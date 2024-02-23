@@ -1,9 +1,14 @@
 steps:
-  - name: build
+  - name: flake show
     image: bash
     commands: 
       - nix flake show
 
+steps:
+  - name: flake check
+    image: bash
+    commands: 
+      - nix flake check
 # steps:
 #   flake-check:
 #     image: nixos/nix
