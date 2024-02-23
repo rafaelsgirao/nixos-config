@@ -1,4 +1,4 @@
-pipeline:
+steps:
   flake-check:
     image: nixos/nix
     commands:
