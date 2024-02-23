@@ -2,13 +2,13 @@ steps:
   verify:
     # when:
     #   event: [ pull_request ]
-    image: rafaelsgirao/nixdocker
+    image: lnl7/nix:2020-09-11
     # image: nixpkgs/nix:nixos-23.11
     # image: nixpkgs/bash
     commands:
-    - /nix/var/nix/profiles/default/bin/nix --version
+    - nix --version
     - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
-    - /nix/var/nix/profiles/default/bin/nix flake show
+    - nix flake show
 
 
 # steps:
