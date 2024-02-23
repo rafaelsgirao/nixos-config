@@ -1,15 +1,13 @@
-steps:
-  verify:
-    # when:
-    #   event: [ pull_request ]
+pipeline:
+  flake-check:
     image: nixos/nix
-    # image: nixpkgs/nix:nixos-23.11
-    # image: nixpkgs/bash
     commands:
-    - nix --version
-    - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
-    - nix flake show
-
+      - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
+      # - nix flake check
+      - nix flake check --store unix:///mnt/nix/var/nix/daemon-socket/socket?root=/mnt
+      # - nix run --store unix:///mnt/nix/var/nix/daemon-socket/socket?root=/mnt .#build-all
+    volumes:
+      - /nix:/mnt/nix:ro
 
 # steps:
 #   verify:
@@ -40,13 +38,3 @@ steps:
 #     image: nixos/nix
 #     commands:
 #       # - nix flake check --experimental-features flakes --experimental-features nix-command
-# pipeline:
-#   flake-check:
-#     image: nixos/nix
-#     commands:
-#       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
-#       # - nix flake check
-#       - nix flake check --store unix:///mnt/nix/var/nix/daemon-socket/socket?root=/mnt
-#       - nix run --store unix:///mnt/nix/var/nix/daemon-socket/socket?root=/mnt .#build-all
-#     volumes:
-#       - /nix:/mnt/nix:ro
