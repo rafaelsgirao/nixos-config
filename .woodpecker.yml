@@ -7,7 +7,7 @@ steps:
     # image: nixpkgs/bash
     commands:
     - apt update && apt install curl -y
-    -  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+    -  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm
     - nix --version
     - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
     - nix flake show
