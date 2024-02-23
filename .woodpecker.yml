@@ -10,9 +10,9 @@ steps:
     # -  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm -- --init=none
     - curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux --extra-conf "sandbox = false" --init none --no-confirm
 
-    - nix --version
+    - /nix/var/nix/profiles/default/bin/nix --version
     - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
-    - nix flake show
+    - /nix/var/nix/profiles/default/bin/nix flake show
 
 
 
