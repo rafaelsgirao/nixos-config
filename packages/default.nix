@@ -7,7 +7,6 @@ rec {
 
   #Packages from inputs.
   bolsas-scraper = inputs'.bolsas-scraper.packages.default;
-  sirpt-dnsbl = inputs'.sirpt-feed.packages.default;
   wc-bot = inputs'.wc-bot.packages.default;
   #TODO.
   # remarkable-rcu = pkgs.callPackage ./rcu {};

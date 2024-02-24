@@ -37,7 +37,7 @@ in
 
   boot = {
     kernelParams = [ "quiet" ];
-    initrd.preDeviceCommands = ''
+    initrd.preDeviceCommands = lib.mkIf (!config.boot.initrd.systemd.enable) ''
       echo " "
       echo " "
       echo "                                       Rafael Girão"
