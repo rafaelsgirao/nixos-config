@@ -1158,11 +1158,11 @@
         "rev": "f1e90f14aa78b17ec7e5799476a6ed3ffee55f69",
         "revCount": 49,
         "type": "git",
-        "url": "ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git"
+        "url": "ssh://git@git.spy.rafael.ovh:4222/rg/ist-chan-bot.git"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git"
+        "url": "ssh://git@git.spy.rafael.ovh:4222/rg/ist-chan-bot.git"
       }
     }
   },
