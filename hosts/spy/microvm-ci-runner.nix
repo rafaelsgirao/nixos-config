@@ -1,6 +1,14 @@
-{ config, sshKeys, hostSecretsDir, inputs, ... }:
+{ config, sshKeys, hostSecretsDir, inputs, pkgs, ... }:
 {
 
+  users.users.nixremote = {
+    shell = pkgs.bash;
+    useDefaultShell = true;
+    isSystemUser = true;
+    openssh.authorizedKeys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJm1RJ0gxs3rcjEFOkaQTOShqcBYuROFY0fErD2wbCPa woodpecker"
+    ];
+  };
 
   microvm.autostart = [ "ci-runner" ];
   microvm.vms = {
@@ -45,7 +53,7 @@
       # virtualisation.docker.extraOptions = "--dns=192.168.10.6"; DONT SET BOTH THESE OPTIONS!
       imports = [
         ../../modules/headless.nix
-        # ../../modules/docker.nix
+        ../../modules/docker.nix
         ../../modules/ci/runner.nix
         ../../modules/core/ssh.nix
       ];

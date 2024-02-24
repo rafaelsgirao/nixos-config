@@ -1,49 +1,15 @@
 steps:
-  - name: flake show
-    image: bash
-    commands: 
-      - nix flake show --accept-flake-config
-  - name: flake check
-    image: bash
-    commands: 
-      - nix flake check --accept-flake-config
-# steps:
-#   flake-check:
-#     image: nixos/nix
-#     commands:
-#       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
-#       # - nix flake check
-#       - nix flake check --store unix:///mnt/nix/var/nix/daemon-socket/socket?root=/mnt
-#       # - nix run --store unix:///mnt/nix/var/nix/daemon-socket/socket?root=/mnt .#build-all
-#     volumes:
-#       - /nix:/mnt/nix:ro
+  remote-build:
+    image: johnwalkerx/nix-remote-builder-plugin:latest
+    pull: true
+    settings:
+      hostname: cache.spy.rafael.ovh
+      sshport: 22
+      username: nixremote
+      sshkey:
+        from_secret: nixremote_sshkey
+      flakepaths: >-
+        .#nixosConfigurations.scout.config.system.build.toplevel,
+        .#nixosConfigurations.spy.config.system.build.toplevel
+        .#nixosConfigurations.saxton.config.system.build.toplevel
 
-# steps:
-#   verify:
-#     # when:
-#     #   event: [ pull_request ]
-#     image: ubuntu:latest
-#     # image: nixpkgs/nix:nixos-23.11
-#     # image: nixpkgs/bash
-#     commands:
-#     - apt update && apt install curl -y
-#     # -  curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --no-confirm -- --init=none
-#     - curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux --extra-conf "sandbox = false" --init none --no-confirm
-
-#     - /nix/var/nix/profiles/default/bin/nix --version
-#     - echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf
-#     - /nix/var/nix/profiles/default/bin/nix flake show
-
-# pipeline:
-#   first-job:
-#     image: lnl7/nix:latest
-#     commands:
-#       - echo 'experimental-features = flakes nix-command' >> /etc/nix/nix.conf
-#       - nix flake check 
-
-
-# pipeline:
-#   flake-check:
-#     image: nixos/nix
-#     commands:
-#       # - nix flake check --experimental-features flakes --experimental-features nix-command

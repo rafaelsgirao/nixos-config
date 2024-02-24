@@ -15,7 +15,7 @@ in
     package = pkgs.unstable.woodpecker-agent;
     path = with pkgs; [ bash coreutils git git-lfs config'.nix.package woodpecker-plugin-git ];
     environment = {
-      WOODPECKER_BACKEND = "local";
+      WOODPECKER_BACKEND = "docker";
       WOODPECKER_SERVER = "${ip}:${builtins.toString grpcPort}";
       # WOODPECKER_BACKEND_DOCKER_VOLUMES = "/mnt/nix:/nix";
       # WOODPECKER_BACKEND_DOCKER_NETWORK = "bridge";
