@@ -20,6 +20,8 @@
 
   services.zfs.expandOnBoot = "all";
 
+  users.users.rg.extraGroups = [ "docker" ];
+
   rg = {
     ip = "192.168.10.1";
     machineType = "intel";

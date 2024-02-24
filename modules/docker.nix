@@ -5,7 +5,6 @@
   };
   networking.networkmanager.unmanaged = [ "docker0" ];
   environment.systemPackages = with pkgs; [ docker-compose ];
-  users.users.rg.extraGroups = [ "docker" ];
   # virtualisation.docker.rootless = {
   #   enable = true;
   #   setSocketvariable = true;
