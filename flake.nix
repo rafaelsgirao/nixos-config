@@ -173,6 +173,7 @@
                 inherit user;
                 inherit secretsDir;
                 inherit (outputs) nixosConfigurations;
+                inherit self;
                 hostSecretsDir = "${secretsDir}/${name}";
               };
               modules = [
