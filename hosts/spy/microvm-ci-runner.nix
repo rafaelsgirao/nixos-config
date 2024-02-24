@@ -1,14 +1,16 @@
-{ config, sshKeys, hostSecretsDir, inputs, pkgs, ... }:
+{ config, sshKeys, hostSecretsDir, inputs, pkgs, nixosConfigurations, ... }:
 {
 
   users.users.nixremote = {
     shell = pkgs.bash;
+    group = "nixremote";
     useDefaultShell = true;
     isSystemUser = true;
-    openssh.authorizedKeys = [
+    openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJm1RJ0gxs3rcjEFOkaQTOShqcBYuROFY0fErD2wbCPa woodpecker"
     ];
   };
+  users.groups.nixremote = { };
 
   microvm.autostart = [ "ci-runner" ];
   microvm.vms = {
@@ -18,10 +20,12 @@
       config' = config;
       inherit hostSecretsDir;
       inherit inputs;
+      inherit nixosConfigurations;
     };
-    ci-runner.config = { config', ... }: {
+    ci-runner.config = { config', nixosConfigurations, ... }: {
 
 
+      environment.systemPackages = with pkgs; [ htop-vim ];
       networking.usePredictableInterfaceNames = false;
       networking.nameservers = [ "192.168.10.6" ];
       systemd.network.enable = true;
@@ -62,8 +66,11 @@
         # forwardPorts = [
         #   { from = "host"; host.port = 2222; guest.port = 22; }
         # ];
-        balloonMem = 2048;
+        # balloonMem = 2048;
+        mem = 4096;
         storeOnDisk = false;
+        # https://wiki.installgentoo.com/index.php/PCI_passthrough#Memory_hugepages
+        # hugepageMem = true;
         shares = [
           {
             proto = "virtiofs";
@@ -73,22 +80,22 @@
           }
           {
             proto = "virtiofs";
-            tag = "host-nixvirtiofs requires a separate virtiofsd service which is only started as a prerequisite when you start MicroVMs through a systemd service that comes with the microvm.nixosModules.host module.-store";
+            tag = "host-nixvirtiofs";
             source = "/nix";
             mountPoint = "/mnt/nix";
           }
-          {
-            proto = "virtiofs";
-            tag = "ci-runner";
-            source = "/var/lib/microvms/ci-runner/var-lib-ci-runner";
-            mountPoint = "/var/lib/private/ci-runner";
-          }
-          {
-            proto = "virtiofs";
-            tag = "woodpecker-agent-state";
-            source = "/var/lib/microvms/ci-runner/woodpecker-agent-state";
-            mountPoint = "/etc/woodpecker";
-          }
+          # {
+          #   proto = "virtiofs";
+          #   tag = "ci-runner";
+          #   source = "/var/lib/microvms/ci-runner/var-lib-ci-runner";
+          #   mountPoint = "/var/lib/private/ci-runner";
+          # }
+          # {
+          #   proto = "virtiofs";
+          #   tag = "woodpecker-agent-state";
+          #   source = "/var/lib/microvms/ci-runner/woodpecker-agent-state";
+          #   mountPoint = "/etc/woodpecker";
+          # }
           {
             proto = "virtiofs";
             tag = "woodpecker-agenix-secret";
@@ -97,11 +104,11 @@
           }
         ];
         volumes = [
-          # {
-          # mountPoint = "/var/lib/docker";
-          # image = "var-lib-docker.img";
-          # size = 1024 * 10;
-          # }
+          {
+            mountPoint = "/var/lib/docker";
+            image = "var-lib-docker.img";
+            size = 1024 * 10;
+          }
           {
             image = "nix-store-overlay.img";
             mountPoint = writableStoreOverlay;
