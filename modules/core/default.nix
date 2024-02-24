@@ -1,4 +1,4 @@
-{ config, pkgs, lib, sshKeys, inputs, hostSecretsDir, ... }:
+{ config, pkgs, lib, sshKeys, inputs, hostSecretsDir, self, ... }:
 let
   isVirt = config.rg.machineType == "virt";
   # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
@@ -13,6 +13,7 @@ in
   ];
 
 
+  environment.etc."nixos/system-flake".source = self;
   rg = {
     enable = true;
     domain = "rafael.ovh";
