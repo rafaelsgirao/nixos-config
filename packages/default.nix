@@ -33,6 +33,7 @@ rec {
   lyricsgenius = pkgs.callPackage ./lyricsgenius { inherit (pkgs.unstable) python3; };
   tidal-dl = pkgs.callPackage ./tidal-dl { inherit (pkgs.unstable) python3; inherit lyricsgenius; };
 
+  pre-commit-macadmin = pkgs.callPackage ./pre-commit-macadmin { inherit (pkgs) python3; };
 
   # Packages mostly to contribute upstream
   unFTP = callPackage ./contrib/unFTP { };
