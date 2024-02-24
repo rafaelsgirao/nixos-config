@@ -1,6 +1,6 @@
 steps:
   remote-build:
-    image: johnwalkerx/nix-remote-builder-plugin:latest
+    image: rafaelsgirao/nix-remote-builder-plugin:latest
     pull: true
     settings:
       hostname: 192.168.10.6
