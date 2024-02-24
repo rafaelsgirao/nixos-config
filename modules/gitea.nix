@@ -49,7 +49,7 @@ in
 
       };
       service = {
-        REQUIRE_SIGNIN_VIEW = true;
+        REQUIRE_SIGNIN_VIEW = false;
         DISABLE_REGISTRATION = true;
 
       };
