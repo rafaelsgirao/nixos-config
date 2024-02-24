@@ -37,6 +37,7 @@
       directories = [
         ".fly"
         ".vscode"
+        ".config/Code"
         ".config/Ferdium"
         ".config/chromium"
         ".config/joplin-desktop"
@@ -49,6 +50,7 @@
         ".local/share/Anki2"
         ".config/JetBrains"
         ".local/share/JetBrains"
+        ".m2"
         #        ".local/share/Trash"  - Trashing on system internal mounts is not supported
 
 
