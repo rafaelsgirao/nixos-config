@@ -9,7 +9,7 @@ in
     ./nix.nix
     ./ssh.nix
     ../hardware/networking.nix
-    ../wakapi-client.nix
+    # ../wakapi-client.nix
   ];
 
 
@@ -203,28 +203,23 @@ in
     eza # managed by HM, but I might want to use this as root
     bat
     fd
-    pre-commit
     python3
     openssh
     neofetch
-    bashmount
     sshfs
     rclone
     unstable.yt-dlp
     speedtest-cli
-    # sentry-cli
     rm-improved
     delta
     dua
-    moreutils # Provides sponge which is nice for in-line replacing file contents
     mailutils
 
     inputs.agenix.packages.x86_64-linux.default
     traceroute
     iperf3
     nmap
-    ruff
-    black
+    rustscan
     nload
   ]
   ++ lib.optionals (!isVirt)
@@ -233,8 +228,7 @@ in
       nvme-cli
       dmidecode
       ethtool
-
       pciutils #Provides `lspci` command
-
+      bashmount
     ];
 }
