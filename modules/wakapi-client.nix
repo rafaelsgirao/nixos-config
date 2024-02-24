@@ -43,4 +43,11 @@ in
     ];
   };
 
+  programs.neovim.plugins = with pkgs.vimPlugins; [
+    vim-wakatime
+  ];
+
+  programs.fish.plugins = with pkgs.fishPlugins; [
+    { name = "wakatime-fish"; inherit (wakatime-fish) src; }
+  ];
 }

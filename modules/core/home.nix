@@ -173,7 +173,6 @@ in
           '';
         }
 
-        vim-wakatime
         vim-nix
         vim-commentary
         vim-eunuch
@@ -211,7 +210,6 @@ in
         "_" = "sudo";
       };
       plugins = with pkgs.fishPlugins; [
-        { name = "wakatime-fish"; inherit (wakatime-fish) src; }
         { name = "done"; inherit (done) src; }
         { name = "bass"; inherit (bass) src; }
       ];
