@@ -17,7 +17,7 @@ in
     environment = {
       WOODPECKER_BACKEND = "docker";
       WOODPECKER_SERVER = "${ip}:${builtins.toString grpcPort}";
-      # WOODPECKER_BACKEND_DOCKER_VOLUMES = "/nix:/mnt/nix:ro";
+      WOODPECKER_BACKEND_DOCKER_VOLUMES = "/nix:/mnt/nix:ro";
       # WOODPECKER_BACKEND_DOCKER_NETWORK = "bridge";
       # WOODPECKER_AUTHENTICATE_PUBLIC_REPOS = "true";
 
