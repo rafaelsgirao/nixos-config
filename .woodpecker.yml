@@ -3,7 +3,7 @@ steps:
     image: johnwalkerx/nix-remote-builder-plugin:latest
     pull: true
     settings:
-      hostname: cache.spy.rafael.ovh
+      hostname: 192.168.10.6
       sshport: 22
       username: nixremote
       sshkey:
