@@ -170,6 +170,7 @@
             inherit name;
             value = inputs.nixpkgs.lib.nixosSystem rec {
               specialArgs = {
+                inherit self;
                 inherit sshKeys;
                 inherit inputs;
                 inherit user;

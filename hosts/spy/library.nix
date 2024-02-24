@@ -95,7 +95,7 @@ in
       ratio-limit-enabled = true;
       idle-seeding-limit = 10080;
       idle-seeding-limit-enabled = true;
-      message-level = 1; # Log only error messages. Default is 2, spams the hell out of journal
+      message-level = 1; # Log only critical messages. Default is 2, spams the hell out of journal
 
     };
   };

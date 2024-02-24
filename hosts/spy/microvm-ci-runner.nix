@@ -22,7 +22,7 @@
       inherit inputs;
       inherit nixosConfigurations;
     };
-    ci-runner.config = { config', nixosConfigurations, ... }: {
+    ci-runner.config = { config', ... }: {
 
 
       environment.systemPackages = with pkgs; [ htop-vim ];
@@ -66,7 +66,8 @@
         # forwardPorts = [
         #   { from = "host"; host.port = 2222; guest.port = 22; }
         # ];
-        # balloonMem = 2048;
+        cpu = 2;
+        balloonMem = 4096;
         mem = 4096;
         storeOnDisk = false;
         # https://wiki.installgentoo.com/index.php/PCI_passthrough#Memory_hugepages
