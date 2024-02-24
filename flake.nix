@@ -108,7 +108,9 @@
       {
         # url = "github:ist-chan-bot-team/ist-chan-bot";
         # url = "git+ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git";
-        url = "git+ssh://git@git.spy.rafael.ovh:4222/rg/ist-chan-bot.git";
+        # url = "git+ssh://git@git.spy.rafael.ovh:4222/rg/ist-chan-bot.git";
+        # url = "git+https://git.spy.rafael.ovh/rg/ist-chan-bot?ref=main";
+        url = "tarball+https://git.spy.rafael.ovh/rg/ist-chan-bot/archive/main.tar.gz";
         inputs.nixpkgs.follows = "nixpkgs";
         inputs = {
           flake-parts.follows = "flake-parts";
