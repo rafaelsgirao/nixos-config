@@ -118,11 +118,6 @@
       # url = "github:nix-community/home-manager/master";
       # inputs.nixpkgs.follows = "nixpkgs"; WARNING: test right after uncommenting this, if you do.
     };
-    sirpt-feed =
-      {
-        url = "git+ssh://git@git.spy.rafael.ovh:4222/rg/sirpt-feed.git";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
 
     agenix = {
       url = "github:ryantm/agenix";
@@ -263,6 +258,14 @@
               entry = "${pkgs.gitleaks}/bin/gitleaks protect --verbose --redact --staged";
               pass_filenames = false;
             };
+            # commitizen = {
+            #   enable = true;
+            #   description = "Check whether the current commit message follows commiting rules. Allow empty commit messages by default, because they typically indicate to Git that the commit should be aborted.";
+            #   entry = "${pkgs.commitizen}/bin/cz check --allow-abort --commit-msg-file";
+            #   stages = [ "commit-msg" ];
+
+            #   # pass_filenames = false;
+            # };
           };
           treefmt.projectRootFile = ./flake.nix;
           treefmt.programs = {

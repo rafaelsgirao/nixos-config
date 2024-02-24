@@ -889,7 +889,6 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix_2",
         "ruby-nix": "ruby-nix",
         "simple-nixos-mailserver": "simple-nixos-mailserver",
-        "sirpt-feed": "sirpt-feed",
         "treefmt-nix": "treefmt-nix_2",
         "wc-bot": "wc-bot"
       }
@@ -971,26 +970,6 @@
         "ref": "nixos-23.05",
         "repo": "nixos-mailserver",
         "type": "gitlab"
-      }
-    },
-    "sirpt-feed": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1689939309,
-        "narHash": "sha256-Or6M3wemm+7wj6OhuLx70+WwBzv4J00P1M8ZZEtIzWA=",
-        "ref": "refs/heads/master",
-        "rev": "01b6d24f1d065efb36a3b44047734d97f21ec7e1",
-        "revCount": 7,
-        "type": "git",
-        "url": "ssh://git@git.spy.rafael.ovh:4222/rg/sirpt-feed.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@git.spy.rafael.ovh:4222/rg/sirpt-feed.git"
       }
     },
     "spectrum": {
