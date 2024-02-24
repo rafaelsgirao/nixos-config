@@ -10,7 +10,7 @@
   };
   environment.systemPackages = [ pkgs.sbctl ];
 
-  environment.persistence."/persist" = {
+  environment.persistence."/pst" = {
     directories =
       [
         "/etc/secureboot"

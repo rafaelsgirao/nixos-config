@@ -25,7 +25,7 @@ in
     backupDir = "/state/backups/vaultwarden";
     environmentFile = config.age.secrets.ENV-vaultwarden.path;
     config = {
-      # DATA_FOLDER = "/persist/vaultwarden";
+      # DATA_FOLDER = "/pst/vaultwarden";
       DOMAIN = "https://vault.${domain}";
       ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = 52378;
