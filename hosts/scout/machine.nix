@@ -176,7 +176,6 @@
     gnome.gnome-tweaks
     unstable.webcord
     easyeffects
-    jetbrains.idea-ultimate
     #TODO: electronmail?
   ];
 
