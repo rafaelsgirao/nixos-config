@@ -27,5 +27,8 @@ in
 
   environment.persistence."/pst" = {
     hideMounts = true;
+    directories = [
+      "/var/lib/nixos"
+    ];
   };
 }
