@@ -174,7 +174,7 @@
     tor-browser-bundle-bin
     burpsuite
     gnome.gnome-tweaks
-    unstable.webcord
+    webcord
     easyeffects
     #TODO: electronmail?
   ];
