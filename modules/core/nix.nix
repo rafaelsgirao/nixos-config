@@ -20,22 +20,21 @@
 
     trusted-users = [ "@wheel" "root" ];
 
-    substituters = [
+    trusted-substituters = [
       "https://cache.spy.rafael.ovh"
     ];
-    trusted-substituters = config.nix.settings.substituters;
 
     trusted-public-keys = [
       "cache.spy.rafael.ovh:5aGgIOEo7H004XtJq5Bob59PiISlNCNH+m0v4IVyyCA="
     ];
 
     # Fallback quickly if substituters are not available.
-    connect-timeout = 5;
+    connect-timeout = 2;
 
     # The default at 10 is rarely enough.
     log-lines = lib.mkDefault 30;
 
-    # Avoid disk full issues
+    # Avoid disk full issues.
     max-free = lib.mkDefault (3000 * 1024 * 1024);
     min-free = lib.mkDefault (512 * 1024 * 1024);
 
