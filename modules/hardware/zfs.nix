@@ -23,7 +23,9 @@
 
   services.zfs.autoScrub = lib.mkIf (config.rg.machineType != "virt") {
     enable = true;
-    interval = "2w";
+    # Want to do every 2 weeks but systemd does not support this easily (:
+    # https://github.com/systemd/systemd/issues/6024
+    interval = "weekly";
   };
   services.zfs.trim.enable = config.rg.machineType != "virt";
 }
