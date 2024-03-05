@@ -98,6 +98,9 @@ in
 
         };
 
+        pull = {
+          rebase = true;
+        };
         delta = {
           navigate = true;
         };
