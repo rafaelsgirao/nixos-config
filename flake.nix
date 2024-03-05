@@ -313,9 +313,9 @@
                   mypkgs = outputs.packages.${final.system};
                 };
             } // myOverlays;
-          homeConfigurations = {
-            scout = outputs.nixosConfigurations.tempest.config.home-manager.users."rg".home;
-          };
+
+          homeConfigurations =
+            mapAttrs (_: host: host.config.home-manager.users."rg".home) outputs.nixosConfigurations;
         };
       };
 }
