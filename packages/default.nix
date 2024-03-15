@@ -20,6 +20,8 @@ rec {
   flatpak-xdg-utils = pkgs.callPackage ./flatpak-xdg-utils { };
 
   go-vod = callPackage ./go-vod { };
+
+  mavend = callPackage ./mavend { };
   # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
   chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
 
