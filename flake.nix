@@ -118,11 +118,6 @@
       # url = "github:nix-community/home-manager/master";
       # inputs.nixpkgs.follows = "nixpkgs"; WARNING: test right after uncommenting this, if you do.
     };
-    sirpt-feed =
-      {
-        url = "git+ssh://git@git.spy.rafael.ovh:4222/rg/sirpt-feed.git";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
 
     agenix = {
       url = "github:ryantm/agenix";
