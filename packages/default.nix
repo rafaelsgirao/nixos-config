@@ -6,6 +6,7 @@ in
 rec {
 
   #Packages from inputs.
+  agenix = inputs'.agenix.packages.default;
   bolsas-scraper = inputs'.bolsas-scraper.packages.default;
   wc-bot = inputs'.wc-bot.packages.default;
   #TODO.

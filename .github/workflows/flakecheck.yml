@@ -4,15 +4,6 @@ on: push
 jobs:
   container-test-job:
     runs-on: ubuntu-latest
-    # container:
-    #   image: "nixos/nix"
-      # env:
-      #   NODE_ENV: development
-      # ports:
-      #   - 80
-      # volumes:
-      #   - my_docker_volume:/volume_mount
-      # options: --cpus 1
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -20,5 +11,5 @@ jobs:
         uses: cachix/install-nix-action@v18
       - uses: DeterminateSystems/magic-nix-cache-action@main
         name: "Magic Nix Cache!"
-      - run: nix flake check --no-build --extra-experimental-features "nix-command flakes"
+      - run: nix flake check --quiet --extra-experimental-features "nix-command flakes"
         name: Run nix flake checks

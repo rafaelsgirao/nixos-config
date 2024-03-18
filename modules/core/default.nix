@@ -1,4 +1,4 @@
-{ config, pkgs, lib, sshKeys, inputs, hostSecretsDir, self, ... }:
+{ config, pkgs, lib, sshKeys, hostSecretsDir, self, ... }:
 let
   isVirt = config.rg.machineType == "virt";
   # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
@@ -112,6 +112,7 @@ in
       "render"
       "scanner"
       "lp"
+      "caddy" #To access/modify sites' content
       "adbusers"
       "networkmanager"
       "qemu-libvirtd"
@@ -216,7 +217,7 @@ in
     dua
     mailutils
 
-    inputs.agenix.packages.x86_64-linux.default
+    mypkgs.agenix
     traceroute
     iperf3
     nmap

@@ -176,6 +176,7 @@
     gnome.gnome-tweaks
     webcord
     easyeffects
+    mypkgs.mavend
     #TODO: electronmail?
   ];
 
@@ -194,7 +195,7 @@
   };
 
   services.udev.extraRules = lib.mkIf (config.rg.class == "workstation") ''
-        # DualShock 3 over USB
+    # DualShock 3 over USB
     KERNEL=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0268", MODE="0666"
 
     # DualShock 3 over Bluetooth
