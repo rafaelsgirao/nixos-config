@@ -104,7 +104,6 @@
         inputs = {
           flake-parts.follows = "flake-parts";
           nixpkgs.follows = "nixpkgs";
-          devenv.follows = "";
         };
       };
     wc-bot =
@@ -132,8 +131,9 @@
         darwin.follows = ""; #If in the future I get a Mac (unlikely), remove this line.
       };
     };
+    #Not pinning to 0.3.0 anymore because master allows me to cancel the 'pre-commit-hooks-nix' input.
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.3.0";
+      url = "github:nix-community/lanzaboote";
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
