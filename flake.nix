@@ -18,9 +18,7 @@
     #---------------
 
     #--------------------
-    #Inputs that other inputs depend on
-
-    # Not using flake-compat directly, but useful to get the other inputs to follow this
+    #Inputs that other inputs depend on.
     flake-compat = {
       url = "github:edolstra/flake-compat";
       flake = false;
@@ -32,7 +30,10 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-
+    gitignore = {
+      url = "github:hercules-ci/gitignore.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #-------------------
 
 
@@ -54,12 +55,12 @@
     pre-commit-hooks-nix =
       {
         url = "github:cachix/pre-commit-hooks.nix";
-
         inputs = {
           flake-utils.follows = "flake-utils";
           flake-compat.follows = "flake-compat";
           nixpkgs.follows = "nixpkgs";
           nixpkgs-stable.follows = "nixpkgs";
+          gitignore.follows = "gitignore";
         };
       };
 
@@ -67,6 +68,7 @@
       url = "github:inscapist/ruby-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # ------------------------
@@ -81,14 +83,14 @@
 
     impermanence.url = "github:nix-community/impermanence/master";
 
-    simple-nixos-mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-22_11.follows = "nixpkgs";
-      inputs.nixpkgs-23_05.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
-      inputs.flake-compat.follows = "flake-utils";
-    };
+    # simple-nixos-mailserver = {
+    #   url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.nixpkgs-22_11.follows = "nixpkgs";
+    #   inputs.nixpkgs-23_05.follows = "nixpkgs";
+    #   inputs.utils.follows = "flake-utils";
+    #   inputs.flake-compat.follows = "flake-utils";
+    # };
 
     home = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -99,40 +101,45 @@
     bolsas-scraper =
       {
         url = "github:ist-bot-team/bolsas-scraper";
-        inputs.nixpkgs.follows = "nixpkgs";
         inputs = {
           flake-parts.follows = "flake-parts";
+          nixpkgs.follows = "nixpkgs";
+          devenv.follows = "";
         };
       };
     wc-bot =
       {
         # url = "github:ist-chan-bot-team/ist-chan-bot";
         url = "git+ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git";
-        inputs.nixpkgs.follows = "nixpkgs";
         inputs = {
+          nixpkgs.follows = "nixpkgs";
           flake-parts.follows = "flake-parts";
+          pre-commit-hooks-nix.follows = "";
+          treefmt-nix.follows = "";
         };
       };
-    ist-discord-bot = {
-      url = "github:ist-bot-team/ist-discord-bot/rg/make-nix-package";
-      # url = "github:nix-community/home-manager/master";
-      # inputs.nixpkgs.follows = "nixpkgs"; WARNING: test right after uncommenting this, if you do.
-    };
+    # ist-discord-bot = {
+    #   url = "github:ist-bot-team/ist-discord-bot/rg/make-nix-package";
+    #   # url = "github:nix-community/home-manager/master";
+    #   # inputs.nixpkgs.follows = "nixpkgs"; WARNING: test right after uncommenting this, if you do.
+    # };
 
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home";
+        darwin.follows = ""; #If in the future I get a Mac (unlikely), remove this line.
       };
     };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote?ref=v0.3.0";
+      url = "github:nix-community/lanzaboote/v0.3.0";
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.pre-commit-hooks-nix.follows = "pre-commit-hooks-nix";
+      inputs.flake-parts.follows = "flake-parts";
+      inputs.pre-commit-hooks-nix.follows = "";
     };
 
   };
@@ -185,7 +192,7 @@
                 ./modules/core/options.nix
                 ./modules/core/home.nix
                 ./modules/hardware/default.nix
-                inputs.simple-nixos-mailserver.nixosModule
+                # inputs.simple-nixos-mailserver.nixosModule
                 inputs.nixinate.nixosModule
                 inputs.agenix.nixosModules.default
                 inputs.lanzaboote.nixosModules.lanzaboote
