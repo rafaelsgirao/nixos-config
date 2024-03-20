@@ -247,6 +247,7 @@ in
       EDITOR = "nvim";
       MANROFFOPT = "-c";
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      NIXOS_OZONE_WL = "1";
     };
     home.stateVersion = lib.mkDefault "23.05";
 
