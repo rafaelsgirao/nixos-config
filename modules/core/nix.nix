@@ -18,7 +18,10 @@
       "repl-flake"
     ];
 
-    trusted-users = [ "@wheel" "root" ];
+    # being in trusted-users has the same security implications as being in docker group!
+    # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-trusted-users
+    # Thanks @diogotcorreia
+    trusted-users = [ ];
 
     trusted-substituters = [
       "https://cache.spy.rafael.ovh"
