@@ -22,10 +22,10 @@
     fsType = "zfs";
   };
 
-  # fileSystems."/var/lib/docker" = {
-  #   device = "neonrgpool/local/docker";
-  #   fsType = "zfs";
-  # };
+  fileSystems."/var/lib/docker" = {
+    device = "neonrgpool/local/docker";
+    fsType = "zfs";
+  };
 
   fileSystems."/home-state" = {
     device = "neonrgpool/safe/home";

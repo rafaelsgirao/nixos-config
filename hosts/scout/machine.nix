@@ -99,6 +99,10 @@
     };
   };
 
+  nix.settings = {
+    max-jobs = 4;
+    cores = 6; # Thinkpad has 8 vCores, leave two for rest of the system
+  };
   services.blocky.settings.blocking.clientGroupsBlock = {
     "127.0.0.1" = [ "normal" "rg" ];
   };
