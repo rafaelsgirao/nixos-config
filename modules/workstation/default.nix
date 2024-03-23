@@ -115,7 +115,7 @@ in
   programs.ssh.startAgent = true;
   # services.teamviewer.enable = true;
 
-  programs.noisetorch.enable = lib.mkIf (config.rg.machineType != "virt") true;
+  # programs.noisetorch.enable = lib.mkIf (config.rg.machineType != "virt") true;
 
   hm.programs.rbw = {
     enable = true;
@@ -412,6 +412,18 @@ in
 
   services.earlyoom.enableNotifications = true;
 
+  hm.home.sessionVariables = {
+    #xdg-ninja recommendations
+    CARGO_HOME = "\"$XDG_DATA_HOME\"/rustup";
+    RUSTUP_HOME = "\"$XDG_DATA_HOME\"/cargo";
+    ANDROID_HOME = "\"$XDG_DATA_HOME\"/android";
+  };
+  environment.persistence."/state".users.rg.directories = [
+    ".local/share/android"
+    ".local/share/cargo"
+    ".local/share/rustup"
+  ];
+
   hm.programs.vscode =
     let
       p = pkgs.unstable;
@@ -496,12 +508,6 @@ in
     enableBashIntegration = false;
     enableZshIntegration = false;
   };
-  # environment.persistence."/state".users.rg.directories = lib.mkIf isWorkstation [
-  #   ".cache"
-  #   ".cargo"
-  #   ".rustup"
-  #   ".cert"
-  # ];
 
   environment.systemPackages = with pkgs; [
     pamixer
@@ -524,8 +530,6 @@ in
     xorg.xlsclients
     xorg.xeyes
     #Utils
-    rustup
-    # rofi
     yubikey-manager
     playerctl
     udiskie

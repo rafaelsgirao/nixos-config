@@ -47,7 +47,6 @@
         ".config/Sonixd"
         ".config/WebCord"
         ".mozilla"
-        "studymusic"
         ".local/share/ykman"
         ".local/share/Anki2"
         ".config/JetBrains"
@@ -73,7 +72,6 @@
         "Portal" #directory for sharing files with Windows VM
         ".config/dconf"
         ".config/safeeyes"
-        ".android"
         ".anydesk"
         ".thunderbird"
         ".local/share/davisr"

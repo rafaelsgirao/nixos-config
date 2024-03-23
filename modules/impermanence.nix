@@ -19,8 +19,6 @@ in
     users.rg.directories = lib.mkIf isWorkstation
       [
         ".cache"
-        ".cargo"
-        ".rustup"
         ".cert"
       ];
   };
