@@ -1,8 +1,5 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, lib, ... }:
 
-let
-  isGnome = config.services.xserver.desktopManager.gnome.enable;
-in
 {
   imports = [ ./bluetooth.nix ];
   # ++ lib.optionals (isWorkstation) [ ./cups.nix ];
@@ -55,8 +52,7 @@ in
   '';
 
   #Battery life thingy
-  #TODO: does HP omen support tlp?
-  services.tlp = lib.mkIf (!isGnome) {
+  services.tlp = {
     enable = true;
     settings = {
       START_CHARGE_THRESH_BAT0 = 75;
@@ -65,8 +61,13 @@ in
       #Only BAT1 exists on thinkpad(?)
       START_CHARGE_THRESH_BAT1 = 75;
       STOP_CHARGE_THRESH_BAT1 = 80;
+
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
     };
   };
+  services.power-profiles-daemon.enable = lib.mkForce false;
+
 
   #Enable upower
   services.upower.enable = true;
