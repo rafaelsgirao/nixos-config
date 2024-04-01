@@ -13,6 +13,7 @@
     ../../modules/hardware/zfs.nix
 
     ../../modules/core/lanzaboote.nix
+    ../../modules/core/hardening.nix
     ../../modules/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/docker.nix
@@ -165,20 +166,15 @@
     appimage-run
     simple-scan
     lm_sensors
-    libreoffice
-    poetry
-    hyperfine
     colordiff
     #  ghidra-bin
     calibre
     monero-gui
     flyctl
     tor-browser-bundle-bin
-    burpsuite
     gnome.gnome-tweaks
     webcord
     easyeffects
-    mypkgs.mavend
     #TODO: electronmail?
   ];
 

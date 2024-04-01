@@ -515,7 +515,6 @@ in
     mypkgs.flatpak-xdg-utils
     # handlrXdg
     nixpkgs-fmt
-    nixfmt
 
     #Gnome and related stuff
     gnome.pomodoro
@@ -536,8 +535,6 @@ in
     libqalculate
     ntfs3g
     steam-run
-    gdb
-    pandoc
     ripgrep-all
     virt-manager
     udisks2
@@ -548,7 +545,6 @@ in
     # (pkgs.uutils-coreutils.override { prefix = ""; })
 
     sonixd
-    joplin-desktop
     sox # Used to generate brown noise
 
     ventoy-bin

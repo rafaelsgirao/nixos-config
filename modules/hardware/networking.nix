@@ -7,6 +7,9 @@ in
   networking.networkmanager = lib.mkIf isWorkstation {
     enable = true;
     unmanaged = [ "nebula0" ];
+    # dhcpcd doesn't start properly with malloc
+    # see https://github.com/NixOS/nixpkgs/issues/151696
+    dhcp = "internal";
     dns = "systemd-resolved"; #this is done upstream.
     connectionConfig = {
       mdns = 2;
@@ -33,6 +36,8 @@ in
     '';
   };
   services.avahi.enable = false;
+
+  networking.dhcpcd.enable = false;
 
   #Arch wiki recommends opening these ports for mDNS and LLMNR
   networking.firewall.allowedUDPPorts = [ 5353 5355 ];
@@ -75,7 +80,6 @@ in
 
 # };
 
-# networking.dhcpcd.enable = false;
 # services.resolved = {
 #   enable = true;
 #   extraConfig = ''

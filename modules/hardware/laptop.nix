@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ lib, ... }:
 
 {
   imports = [ ./bluetooth.nix ];
@@ -75,10 +75,9 @@
 
 
   #Enable Scanning
-  hardware.sane.enable = true;
-  hardware.sane.extraBackends = [ pkgs.sane-airscan ];
+  # hardware.sane.enable = true;
+  # hardware.sane.extraBackends = [ pkgs.sane-airscan ];
   #  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin pkgs.sane-airscan ];
 
   programs.adb.enable = true;
-  environment.systemPackages = with pkgs; [ tigervnc ];
 }
