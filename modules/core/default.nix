@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./nebula.nix
+    ./hardening.nix
     ./nix.nix
     ./ssh.nix
     ../hardware/networking.nix
@@ -27,6 +28,7 @@ in
     archiveFlake = config.rg.class != "workstation";
     sshUser = "rg";
     buildOn = "remote";
+    nixOptions = [ "--accept-flake-config" ];
     #  Build the config with the nixos-rebuild command from your flakes nixpkgs,
     # instead of the hosts nixpkgs.
     # This makes cross-platform deployment fail, as it'll ignore the target's build platform
