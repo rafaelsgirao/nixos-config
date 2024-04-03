@@ -358,6 +358,7 @@ in
       };
   };
 
+  programs.adb.enable = true;
   #hm.services.flameshot = {
   #  # enable = lib.mkIf (!isGnome) true;
   #  enable = true;

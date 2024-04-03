@@ -79,5 +79,4 @@
   # hardware.sane.extraBackends = [ pkgs.sane-airscan ];
   #  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin pkgs.sane-airscan ];
 
-  programs.adb.enable = true;
 }
