@@ -325,17 +325,6 @@ in
     enable = true;
     wrappedBinaries =
       {
-        # thunderbird = {
-        #   executable = "${lib.getBin pkgs.thunderbird}/bin/thunderbird";
-        #   # extraArgs = [ "--join-or-start=thunderbird" ];
-        #   desktop = "${pkgs.thunderbird}/share/applications/thunderbird.desktop";
-        # };
-        # chromium = {
-        #   # executable = "${lib.getBin pkgs.ungoogled-chromium}/bin/chromium  --force-dark-mode --enable-features=WebUIDarkMode";
-        #   executable = "${lib.getBin pkgs.ungoogled-chromium}/bin/chromium";
-        #   # extraArgs = [ "--join-or-start=chromium" ];
-        #   desktop = "${pkgs.ungoogled-chromium}/share/applications/firefox.desktop";
-        # };
         # Tray icons are passed by files on /tmp, ignore private tmp on tray apps
         ferdium =
           let
@@ -350,11 +339,6 @@ in
               include ${pkgs.copyPathToStore ../../files/ferdium.profile}
             '';
           };
-        anydesk = {
-          executable = "${lib.getBin pkgs.anydesk}/bin/anydesk";
-          desktop = "${pkgs.anydesk}/share/applications/AnyDesk.desktop";
-          # extraArgs = [ "--join-or-start=anydesk" ];
-        };
       };
   };
 
