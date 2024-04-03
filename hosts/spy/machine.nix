@@ -10,15 +10,17 @@ in
 
   imports = [
     ../../modules/hardware/nvidia.nix
+    ../../modules/hardware/laptop.nix
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/hardware/zfs-unlock.nix
 
     ../../modules/core/lanzaboote.nix
-    ./library.nix
-    ../../modules/library/bitmagnet.nix
-    ../../modules/flood.nix
-    ../../modules/sunshine.nix
+    # ./library.nix
+    # ../../modules/library/bitmagnet.nix
+    ../../modules/library/jellyfin.nix
+    # ../../modules/flood.nix
+    # ../../modules/sunshine.nix
     # ../../modules/cups.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
@@ -28,14 +30,14 @@ in
     ../../modules/nextcloud.nix
     ../../modules/rss2email.nix
     ../../modules/gitea.nix
-    ../../modules/monero.nix
+    # ../../modules/monero.nix
     ../../modules/impermanence.nix
     # ./privacy-proxies.nix
     ../../modules/headless.nix
     # ../../modules/docker.nix
     ../../modules/blocky.nix
-    ../../modules/wakapi-server.nix
-    ../../modules/frigate.nix
+    # ../../modules/wakapi-server.nix
+    # ../../modules/frigate.nix
     # ../../modules/woodpecker.nix
   ];
 
@@ -68,6 +70,13 @@ in
     "/var/lib/postgresql"
   ];
 
+  services.tlp.settings = {
+    CPU_SCALING_GOVERNOR_ON_AC = lib.mkForce "powersave";
+    RUNTIME_PM_ON_AC = "auto";
+    AHCI_RUNTIME_PM_ON_AC = "auto";
+    WIFI_PWR_ON_AC = "on";
+  };
+
   #TODO
   # boot.initrd.postDeviceCommands = lib.mkAfter ''
   #   zfs rollback -r neonheavypool/local/root@blank
@@ -86,26 +95,17 @@ in
     {
       # match the interface by name
       matchConfig.Name = "eth0";
-      address = [
-        # configure addresses including subnet mask
-        "${config.rg.ipv4}/24"
-      ];
-      networkConfig =
-        {
-          # accept Router Advertisements for Stateless IPv6 Autoconfiguraton (SLAAC)
-          IPv6AcceptRA = true;
-
-        };
-      routes = [
-        # create default routes for both IPv6 and IPv4
-        {
-          routeConfig.Gateway = "fe80::1";
-        }
-        { routeConfig.Gateway = "192.168.1.1"; }
-      ];
-      # make the routes on this interface a dependency for network-online.target
-      linkConfig.RequiredForOnline = "routable";
+      DHCP = "yes";
     };
+
+  systemd.network.networks."12-usb" =
+    #Ensure providing ethernet through USB works
+    {
+      # match the interface by name
+      matchConfig.Driver = "cdc_ncm";
+      DHCP = "yes";
+    };
+
   networking = {
     hostId = "b18b039a";
     dhcpcd.enable = false;

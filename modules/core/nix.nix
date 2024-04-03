@@ -54,7 +54,7 @@
     #Keep last 5 generations.
     options =
       let
-        days = if config.rg.isBuilder then "60" else "15";
+        days = if config.rg.isBuilder then "90" else "20";
       in
       "--delete-older-than ${days}";
   };
@@ -68,11 +68,6 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
 
-
-  #Security implications if true
-  #... but with nix.settings.sandbox requires it....
-  # security.allowUserNamespaces = lib.mkForce false;
-
   nix.distributedBuilds = !config.rg.isBuilder;
 
   # programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
@@ -84,16 +79,16 @@
   #   # IdentityFile /root/.ssh/id_builder
   # '';
 
-  # nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [{
-  #   sshUser = "rg";
-  #   sshKey = "/home/rg/.ssh/id_ed25519";
-  #   protocol = "ssh-ng";
-  #   # publicHostKey = "bla";
-  #   hostName = "192.168.10.6";
-  #   systems = [ "x86_64-linux" "aarch64-linux" ];
-  #   maxJobs = 4;
-  #   speedFactor = 2;
-  #   supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
-  #   mandatoryFeatures = [ ];
-  # }];
+  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [{
+    sshUser = "rg";
+    sshKey = "/home/rg/.ssh/id_ed25519";
+    protocol = "ssh-ng";
+    # publicHostKey = "bla";
+    hostName = "192.168.10.6";
+    systems = [ "x86_64-linux" "aarch64-linux" ];
+    maxJobs = 4;
+    speedFactor = 2;
+    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+    mandatoryFeatures = [ ];
+  }];
 }
