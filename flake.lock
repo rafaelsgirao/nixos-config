@@ -465,11 +465,11 @@
         "treefmt-nix": []
       },
       "locked": {
-        "lastModified": 1710784795,
-        "narHash": "sha256-7rXw8liLR8AWsHQCKbyJr2vt66svp5vhHaaVCK8P4XA=",
+        "lastModified": 1710785347,
+        "narHash": "sha256-SPsP/7GEiJQFP6BcDP3olagW3J2FAHo02/wXS0QZtnY=",
         "ref": "refs/heads/main",
-        "rev": "9263d7be62adbea277129a19bf69324acc19f02f",
-        "revCount": 50,
+        "rev": "6c5fef87f30390d6595aaae225686615f1ec892a",
+        "revCount": 52,
         "type": "git",
         "url": "ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git"
       },
