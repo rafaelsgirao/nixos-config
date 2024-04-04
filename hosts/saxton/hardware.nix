@@ -11,6 +11,8 @@
   boot.extraModulePackages = [ ];
 
   nixpkgs.hostPlatform = "aarch64-linux";
+  #Platform on which NixOS _should_ be built!
+  nixpkgs.buildPlatform = "x86_64-linux";
 
   disko.devices = {
     disk.main = {

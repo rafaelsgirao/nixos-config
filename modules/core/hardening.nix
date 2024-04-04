@@ -36,8 +36,8 @@ with lib;
 
   security.forcePageTableIsolation = mkDefault true;
 
-  # This is required by podman to run containers in rootless mode.
-  security.unprivilegedUsernsClone = mkDefault true;
+  # This is required by podman to run containers in rootless mode - disabling anyway.
+  security.unprivilegedUsernsClone = mkForce false;
 
   # security.virtualisation.flushL1DataCache = mkDefault "always";
 

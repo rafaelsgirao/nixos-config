@@ -32,7 +32,7 @@
   services.blocky.settings = {
     # Foolproof way to disable blocking/blocklists
     #Also makes blocky start almost instantly.
-    blocking.blackLists."normal" = lib.mkIf (config.networking.hostName != "engie") (lib.mkForce [ ]);
+    blocking.blackLists."normal" = lib.mkIf (config.networking.hostName != "saxton") (lib.mkForce [ ]);
 
     blocking.clientGroupsBlock = {
       "${config.rg.ip}" = [ "none" ];

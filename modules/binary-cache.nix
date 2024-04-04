@@ -31,4 +31,6 @@ in
         
     '';
   };
+
+  nix.settings.secret-key-files = config.age.secrets.binary-cache-key.path;
 }

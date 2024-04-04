@@ -23,16 +23,16 @@
     # Thanks @diogotcorreia
     trusted-users = [ ];
 
-    extra-trusted-substituters = [
+    trusted-substituters = [
       "https://cache.spy.rafael.ovh"
     ];
 
-    extra-trusted-public-keys = [
+    trusted-public-keys = [
       "cache.spy.rafael.ovh:5aGgIOEo7H004XtJq5Bob59PiISlNCNH+m0v4IVyyCA="
     ];
 
     # Fallback quickly if substituters are not available.
-    connect-timeout = 2;
+    connect-timeout = 5;
 
     # The default at 10 is rarely enough.
     log-lines = lib.mkDefault 30;
@@ -46,6 +46,7 @@
 
     flake-registry = ""; # Disable global flake registry
     warn-dirty = false;
+    use-xdg-base-directories = true;
   };
   nix.gc = {
     randomizedDelaySec = "45min";
