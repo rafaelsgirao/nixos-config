@@ -28,7 +28,7 @@
     ];
 
     trusted-public-keys = [
-      "cache.spy.rafael.ovh:5aGgIOEo7H004XtJq5Bob59PiISlNCNH+m0v4IVyyCA="
+      "cache.spy.rafael.ovh-2:GZTv+leVV7RtP6o5/ddthaqpW6Fw3LASE9Xw2E9xDv4="
     ];
 
     # Fallback quickly if substituters are not available.
@@ -48,14 +48,15 @@
     warn-dirty = false;
     use-xdg-base-directories = true;
   };
-  nix.gc = {
+
+  nix.gc = lib.mkIf (!config.rg.isBuilder) {
     randomizedDelaySec = "45min";
     automatic = true;
     dates = if config.rg.isBuilder then "monthly" else "weekly";
     #Keep last 5 generations.
     options =
       let
-        days = if config.rg.isBuilder then "90" else "20";
+        days = if config.rg.isBuilder then "90" else "30";
       in
       "--delete-older-than ${days}";
   };

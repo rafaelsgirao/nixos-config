@@ -20,7 +20,7 @@ with lib;
 
   boot.kernelPackages = mkForce pkgs.linuxPackages_hardened;
 
-  nix.settings.allowed-users = mkDefault [ "@users" ];
+  nix.settings.allowed-users = [ "@users" ];
 
   #scudo breaks thunderbird & firefox (maybe everything Gecko?) 
   #Consider opening upstream issue

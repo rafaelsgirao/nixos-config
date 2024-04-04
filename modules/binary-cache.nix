@@ -1,6 +1,6 @@
 { config, hostSecretsDir, ... }:
 let
-  port = 47924;
+  port = toString 47924;
 
 in
 {
@@ -11,12 +11,10 @@ in
     };
   };
 
-  services.nix-serve = {
+  services.harmonia = {
     enable = true;
-    # package = pkgs.nix-serve-ng;
-    secretKeyFile = config.age.secrets.binary-cache-key.path;
-    inherit port;
-    bindAddress = "127.0.0.1";
+    signKeyPath = config.age.secrets.binary-cache-key.path;
+    settings.bind = "127.0.0.1:${port}";
   };
 
   services.caddy.virtualHosts."cache.${config.networking.fqdn}" = {
@@ -27,7 +25,7 @@ in
       header {
           Strict-Transport-Security "max-age=2592000; includeSubDomains"
       }
-      reverse_proxy http://127.0.0.1:${toString port}
+      reverse_proxy http://127.0.0.1:${port}
         
     '';
   };
