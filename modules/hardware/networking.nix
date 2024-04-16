@@ -20,10 +20,11 @@ in
     '';
   };
 
-  networking.nameservers = [ "192.168.10.9" ];
+  networking.nameservers = lib.mkIf isWorkstation [ "192.168.10.9" ];
 
-  #resolved allows us to have less processes running:
-  services.resolved = {
+  #resolved is bad software. it just doesn't work reliably.
+  # Only keeping it in workstations for now, for mDNS/service-discovery.
+  services.resolved = lib.mkIf isWorkstation {
     enable = true;
     #LLMNR is a Microsoft standard.
     #Microsoft is giving up on LLMNR in favour of mDNS.

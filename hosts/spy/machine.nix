@@ -66,6 +66,12 @@ in
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
   };
 
+  nix = {
+    # daemonIOSchedClass = "idle";
+    # daemonCPUSchedPolicy = "idle";
+    daemonIOSchedPriority = 5;
+  };
+
   environment.persistence."/pst".directories = [
     "/var/lib/postgresql"
   ];
@@ -82,13 +88,15 @@ in
   #   zfs rollback -r neonheavypool/local/root@blank
   # '';
 
+  networking.nameservers = [ "127.0.0.1" ];
   #Blocky - no blocklist by default
   # services.blocky.settings.blocking.clientGroupsBlock."default" = [ "none" ];
   services.blocky.settings = {
+    port = "127.0.0.1:53";
     blocking.blackLists."normal" =
       lib.mkForce [ ]; # Foolproof way to disable blocking
-
-    blocking.clientGroupsBlock = { "127.0.0.1" = [ "none" ]; };
+    blocking.blackLists."rg" =
+      lib.mkForce [ ]; # Foolproof way to disable blocking
   };
   systemd.network.enable = true;
   systemd.network.networks."10-wan" =
