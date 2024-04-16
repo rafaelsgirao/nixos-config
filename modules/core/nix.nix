@@ -7,7 +7,12 @@
 
   # Add each flake input as a registry
   # To make nix3 commands consistent with the flake
-  nix.registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+  # Only adding each flake input to the registry in workstations, 
+  # Since all registries add ~200-400MB to each system's closure.
+  nix.registry =
+    if (config.rg.class == "workstation")
+    then lib.mapAttrs (_: value: { flake = value; }) inputs
+    else { nixpkgs.flake = inputs.nixpkgs; };
 
   nix.settings = {
     # Enable flakes

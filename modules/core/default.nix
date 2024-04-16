@@ -212,7 +212,6 @@ in
     neofetch
     sshfs
     rclone
-    unstable.yt-dlp
     speedtest-cli
     rm-improved
     delta

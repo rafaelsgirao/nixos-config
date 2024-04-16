@@ -500,6 +500,7 @@ in
     mypkgs.flatpak-xdg-utils
     # handlrXdg
     nixpkgs-fmt
+    unstable.yt-dlp
 
     #Gnome and related stuff
     gnome.pomodoro
