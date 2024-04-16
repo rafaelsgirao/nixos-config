@@ -28,7 +28,8 @@ with lib;
   # environment.memoryAllocator.provider = mkDefault "graphene-hardened";
   environment.variables.SCUDO_OPTIONS = mkDefault "ZeroContents=1";
 
-  security.lockKernelModules = mkDefault true;
+  # Preferring convenience over security.
+  # security.lockKernelModules = mkDefault true;
 
   security.protectKernelImage = mkDefault true;
 
@@ -37,7 +38,8 @@ with lib;
   security.forcePageTableIsolation = mkDefault true;
 
   # This is required by podman to run containers in rootless mode - disabling anyway.
-  security.unprivilegedUsernsClone = mkForce false;
+  #Enabling because everything remotely Electron-based or Flatpakked requires this (because bwrap)
+  security.unprivilegedUsernsClone = true;
 
   # security.virtualisation.flushL1DataCache = mkDefault "always";
 

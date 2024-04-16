@@ -268,6 +268,11 @@ in
     cue = true;
   };
 
+  boot.kernelModules = [
+    "cdc_ncm"
+    "cdc_ether"
+  ];
+
   #Needed for the Yubikey
   services.pcscd.enable = true;
 
