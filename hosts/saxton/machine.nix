@@ -10,6 +10,7 @@ in
     ../../modules/hardware/zfs.nix
 
     ./wc-bot.nix
+    ../../modules/ntfy-sh.nix
     # ../../modules/ist-discord-bot.nix
     ../../modules/docker.nix
     ../../modules/restic.nix

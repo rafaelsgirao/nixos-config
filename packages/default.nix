@@ -31,6 +31,8 @@ rec {
 
   pyinstaller = pkgs.callPackage ./pyinstaller { inherit (pkgs) python3; };
 
+  mailrise = pkgs.callPackage ./mailrise { inherit (pkgs) python3; };
+
 
   #For consistency's sake, both use python3 from unstable (but lyricsgenius doesn't need it)
   lyricsgenius = pkgs.callPackage ./lyricsgenius { inherit (pkgs.unstable) python3; };

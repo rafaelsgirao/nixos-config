@@ -40,7 +40,7 @@ in
     enable = true;
     autodetect = true;
     notifications = {
-      test = lib.mkDefault false;
+      test = !isWorkstation;
       mail = {
         sender = "machines@rafael.ovh";
         recipient = "rafaelgirao+smartd@proton.me";

@@ -26,6 +26,7 @@ in
   "restic-password.age".publicKeys = [ saxton spy ] ++ users;
   "SSH-config.age".publicKeys = [ scout ] ++ users;
   "BinaryCache-pub.age".publicKeys = systems ++ users;
+  "ENV-mailrise.age".publicKeys = systems ++ users;
 
   #Scout secrets
   "scout/RGNet-key.age".publicKeys = [ scout ] ++ users;

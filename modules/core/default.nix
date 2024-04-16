@@ -9,6 +9,7 @@ in
     ./hardening.nix
     ./nix.nix
     ./ssh.nix
+    ../mailrise.nix
     ../hardware/networking.nix
     # ../wakapi-client.nix
   ];
@@ -159,9 +160,9 @@ in
     setSendmail = true;
     defaults = {
       aliases = "/etc/aliases";
-      port = 465;
-      tls_trust_file = "/etc/ssl/certs/ca-certificates.crt";
-      tls = "on";
+      # port = 465;
+      # tls_trust_file = "/etc/ssl/certs/ca-certificates.crt";
+      # tls = "on";
       auth = "plain";
       tls_starttls = "off";
     };
