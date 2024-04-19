@@ -256,7 +256,6 @@ in
   services.gnome.gnome-keyring.enable = true;
   programs.dconf.enable = true;
 
-  # nix.settings.autoOptimiseStore = true;
 
   #--------------------------------------------
   #--------------Yubikey Settings-------------

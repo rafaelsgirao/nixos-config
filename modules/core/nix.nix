@@ -15,6 +15,9 @@
     else { nixpkgs.flake = inputs.nixpkgs; };
 
   nix.settings = {
+
+    auto-optimise-store = true;
+
     # Enable flakes
     experimental-features = [
       "nix-command"
@@ -95,7 +98,7 @@
     systems = [ "x86_64-linux" "aarch64-linux" ];
     maxJobs = 4;
     speedFactor = 2;
-    supportedFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
+    supportedFeatures = [ "big-parallel" "kvm" ];
     mandatoryFeatures = [ ];
   }];
 }

@@ -70,6 +70,10 @@ in
     # daemonIOSchedClass = "idle";
     # daemonCPUSchedPolicy = "idle";
     daemonIOSchedPriority = 5;
+    settings.system-features = [
+      "big-parallel"
+      "kvm"
+    ];
   };
 
   environment.persistence."/pst".directories = [
