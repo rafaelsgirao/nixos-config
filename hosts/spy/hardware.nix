@@ -81,12 +81,6 @@
   };
 
 
-  fileSystems."/persist" = {
-    device = "neonheavypool/safe/persist";
-    fsType = "zfs";
-    neededForBoot = true;
-  };
-
   fileSystems."/nix" = {
     device = "neonheavypool/local/nix";
     fsType = "zfs";
@@ -96,6 +90,10 @@
     device = "neonheavypool/local/home-from-spypool";
     fsType = "zfs";
   };
+
+  #Undervolt CPU
+  services.undervolt.enable = true;
+  services.undervolt.coreOffset = -100;
 
   swapDevices = [ ];
 

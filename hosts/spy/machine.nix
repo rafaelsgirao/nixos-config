@@ -16,6 +16,7 @@ in
     ../../modules/hardware/zfs-unlock.nix
 
     ../../modules/core/lanzaboote.nix
+    ../../modules/systemd-initrd.nix
     # ./library.nix
     # ../../modules/library/bitmagnet.nix
     ../../modules/library/jellyfin.nix
@@ -150,19 +151,52 @@ in
   boot.kernelParams =
     [ "ip=${config.rg.ipv4}::192.168.1.1:255.255.255.0::eth0:none" ];
 
-  boot.initrd.network.postCommands = ''
+  # boot.initrd.network.postCommands = ''
+  #   cat << EOF > /root/.profile
+  #   if pgrep -x "zfs" > /dev/null
+  #   then
+  #     zpool import spypool
+  #     zpool import neonheavypool
+  #     zfs load-key -a
+  #     killall zfs
+  #   else
+  #     echo "zfs not running -- maybe the pool is taking some time to load for some unforseen reason."
+  #   fi
+  #   EOF
+  # '';
+  boot.initrd.systemd.services.remote-unlock = {
+    description = "Rollback root filesystem to a pristine state on boot";
+    wantedBy = [
+      "zfs.target"
+      "network.target"
+    ];
+    after = [
+      "zfs-import-rpool.service"
+    ];
+    # before = [
+    #   # "sysroot.mount"
+    # ];
+    # path = with pkgs; [
+    # ];
+    unitConfig.DefaultDependencies = "no";
+    serviceConfig.Type = "oneshot";
+    script = ''
+
     cat << EOF > /root/.profile
     if pgrep -x "zfs" > /dev/null
     then
-      zpool import spypool
       zpool import neonheavypool
+      zpool import spypool
       zfs load-key -a
       killall zfs
     else
       echo "zfs not running -- maybe the pool is taking some time to load for some unforseen reason."
     fi
     EOF
-  '';
+
+    
+    '';
+  };
 
 
   #Restic Backups
@@ -172,7 +206,7 @@ in
     paths = [
 
       #TODO: revamp this
-      # decide  how to backup jellyfin (firstly, /state or /persist? then, do we backup directly (ignoring ./metadata or copy the relevant stuff to /state/backups?
+      # decide  how to backup jellyfin (firstly, /state or /pst? then, do we backup directly (ignoring ./metadata or copy the relevant stuff to /state/backups?
       #maybe only use /state/backups if the files to backup need preprocessing (i.e, cant be backed up directly, e.g sqlite, postgres data, etc)
       "/pst"
       "${config.services.nextcloud.home}"

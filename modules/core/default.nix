@@ -37,10 +37,17 @@ in
     substituteOnTarget = true;
   };
 
+  #TODO: remove this later
+  # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501/7
+  services.logrotate.checkConfig = false;
 
   boot = {
     kernelParams = [ "quiet" ];
-    initrd.preDeviceCommands = ''
+    initrd.preDeviceCommands = lib.mkIf
+      (
+
+        !config.boot.initrd.systemd.enable
+      ) ''
       echo " "
       echo " "
       echo "                                       Rafael Girão"
@@ -96,8 +103,9 @@ in
     extraLocaleSettings.LC_TIME = "pt_PT.UTF-8";
   };
   console = {
-    font = "Lat2-Terminus16";
-    keyMap = "pt-latin1";
+    earlySetup = true;
+    # font = "Lat2-Terminus16";
+    # keyMap = "pt-latin1";
   };
 
   environment.pathsToLink = [ "/libexec" ];

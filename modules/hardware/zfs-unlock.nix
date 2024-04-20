@@ -24,17 +24,17 @@
       };
       # this will automatically load the zfs password prompt on login
       # and kill the other prompt so boot can continue
-      postCommands = lib.mkDefault ''
-        cat << EOF > /root/.profile
-        if pgrep -x "zfs" > /dev/null
-        then
-          zfs load-key -a
-          killall zfs
-        else
-          echo "zfs not running -- maybe the pool is taking some time to load for some unforseen reason."
-        fi
-        EOF
-      '';
+      # postCommands = lib.mkDefault ''
+      #   cat << EOF > /root/.profile
+      #   if pgrep -x "zfs" > /dev/null
+      #   then
+      #     zfs load-key -a
+      #     killall zfs
+      #   else
+      #     echo "zfs not running -- maybe the pool is taking some time to load for some unforseen reason."
+      #   fi
+      #   EOF
+      # '';
     };
   };
 }

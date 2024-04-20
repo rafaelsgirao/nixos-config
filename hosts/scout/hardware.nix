@@ -39,12 +39,6 @@
     options = [ "defaults" "size=100M" "mode=700" ];
   };
 
-  fileSystems."/persist" = {
-    device = "neonrgpool/safe/persist";
-    fsType = "zfs";
-    neededForBoot = true;
-  };
-
   fileSystems."/pst" = {
     device = "neonrgpool/safe/persist";
     fsType = "zfs";

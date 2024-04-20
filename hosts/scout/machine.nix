@@ -3,6 +3,7 @@
 {
 
   imports = [
+    ../../modules/systemd-initrd.nix
     ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
@@ -68,7 +69,6 @@
       [
         "/etc/NetworkManager/system-connections"
       ];
-    files = [ "/etc/machine-id" ];
     users.rg = {
       directories = [
         "Portal" #directory for sharing files with Windows VM
@@ -112,9 +112,35 @@
     "id.rafael.ovh" = "192.168.10.6";
   };
 
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
+  boot.initrd.postDeviceCommands = lib.mkIf (!config.boot.initrd.systemd.enable) (lib.mkAfter ''
     zfs rollback -r neonrgpool/local/root@blank
-  '';
+  '');
+
+  boot.initrd.systemd.emergencyAccess = true;
+  boot.initrd.systemd.additionalUpstreamUnits = [
+    "debug-shell.service"
+  ];
+  boot.initrd.systemd.services.rollback = {
+    description = "Rollback root filesystem to a pristine state on boot";
+    wantedBy = [
+      # "zfs.target"
+      "initrd.target"
+    ];
+    after = [
+      "zfs-import-neonrgpool.service"
+    ];
+    before = [
+      "sysroot.mount"
+    ];
+    path = with pkgs; [
+      zfs
+    ];
+    unitConfig.DefaultDependencies = "no";
+    serviceConfig.Type = "oneshot";
+    script = ''
+      zfs rollback -r neonrgpool/local/root@blank && echo "  >> >> rollback complete << <<"
+    '';
+  };
 
   environment.variables = {
     QEMU_OPTS =
