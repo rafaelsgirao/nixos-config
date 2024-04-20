@@ -14,6 +14,8 @@
     then lib.mapAttrs (_: value: { flake = value; }) inputs
     else { nixpkgs.flake = inputs.nixpkgs; };
 
+  nix.daemonIOSchedClass = "idle";
+  nix.daemonCPUSchedPolicy = "idle";
   nix.settings = {
 
     auto-optimise-store = true;
