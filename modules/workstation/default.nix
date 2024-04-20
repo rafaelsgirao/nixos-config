@@ -292,10 +292,6 @@ in
   programs.nm-applet.enable = lib.mkIf (!isGnome) true;
 
   # hm.services.network-manager-applet.enable = true;
-  #AppArmor is recommended for Firejail
-  #Disable for now - https://github.com/NixOS/nixpkgs/issues/169056
-  security.apparmor.enable = false;
-
   hm.programs.zathura = {
     enable = true;
     options = {
@@ -324,27 +320,6 @@ in
   #     "application/zip" = [ "org.gnome.FileRoller.desktop" ];
   #   };
   # };
-
-  programs.firejail = {
-    enable = true;
-    wrappedBinaries =
-      {
-        # Tray icons are passed by files on /tmp, ignore private tmp on tray apps
-        ferdium =
-          let
-            #NOTE: can't build ferdium from source b/c package-lock.json is missing. Suggested workarounds are cursed.
-            ferdiumPkg = pkgs.ferdium;
-          in
-          {
-            desktop = "${ferdiumPkg}/share/applications/ferdium.desktop";
-            executable = "${lib.getBin ferdiumPkg}/bin/ferdium"; # --enable-features=UseOzonePlatform,WaylandWindowDecorations,WebRTCPipeWireCapturer";
-            profile = pkgs.writeText "ferdium.profile" ''
-              ignore private-tmp
-              include ${pkgs.copyPathToStore ../../files/ferdium.profile}
-            '';
-          };
-      };
-  };
 
   programs.adb.enable = true;
   #hm.services.flameshot = {

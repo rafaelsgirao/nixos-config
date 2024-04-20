@@ -183,15 +183,6 @@
   hm.home.stateVersion = "23.05";
   system.stateVersion = "23.05";
 
-  programs.firejail.wrappedBinaries = {
-    signal-desktop = {
-
-      #TODO: signal-desktop.desktop
-      executable = "${lib.getBin pkgs.signal-desktop}/bin/signal-desktop --enable-features=UseOzonePlatform,WaylandWindowDecorations,WebRTCPipeWireCapturer --ozone-platform=wayland";
-      profile = "${pkgs.firejail}/etc/firejail/signal-desktop.profile";
-    };
-  };
-
   services.udev.extraRules = lib.mkIf (config.rg.class == "workstation") ''
     # DualShock 3 over USB
     KERNEL=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0268", MODE="0666"
