@@ -60,6 +60,7 @@ in
   rg = {
     ip = "192.168.10.6";
     ipv4 = "192.168.1.80";
+    machineId = "42ef768cc806409b923c6044269f9902";
     machineType = "intel";
     class = "server";
     isBuilder = true;
@@ -119,7 +120,6 @@ in
     };
 
   networking = {
-    hostId = "b18b039a";
     dhcpcd.enable = false;
     # defaultGateway = {
     #   address = "192.168.1.1";

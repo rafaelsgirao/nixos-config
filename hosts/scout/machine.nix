@@ -25,6 +25,7 @@
 
   rg = {
     ip = "192.168.10.1";
+    machineId = "d50445fd8e8745c5abd3aadefb7f8af6";
     machineType = "intel";
     class = "workstation";
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
@@ -118,10 +119,6 @@
   environment.variables = {
     QEMU_OPTS =
       "-m 4096 -smp 4 -enable-kvm"; # https://github.com/NixOS/nixpkgs/issues/59219
-  };
-
-  networking = {
-    hostId = "71b26626";
   };
 
 

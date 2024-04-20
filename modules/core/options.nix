@@ -26,6 +26,10 @@ in
         type = types.str;
         default = null;
       };
+      machineId = mkOption {
+        type = types.str;
+        default = null;
+      };
       domain = mkOption { type = types.str; };
       ip = mkOption { type = types.str; };
       ipv4 = mkOption { type = types.str; };
@@ -35,6 +39,9 @@ in
   };
   config = {
     home-manager.users."rg" = mkAliasDefinitions options.hm;
+
+    environment.etc.machine-id.text = config.rg.machineId;
+    networking.hostId = builtins.substring 0 8 config.rg.machineId;
 
     assertions =
       let
@@ -49,6 +56,7 @@ in
         # (assertRgNotNull config.rg.ipv4)
         # (assertRgNotNull config.rg.ipv6)
         (assertRgNotNull config.rg.machineType)
+        (assertRgNotNull config.rg.machineId)
         (assertRgNotNull config.rg.class)
         (assertRgNotNull config.rg.pubKey)
 

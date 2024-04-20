@@ -32,6 +32,7 @@ in
 
   rg = {
     class = "server";
+    machineId = "3879c7fb370c4ea6929d4566c286095f";
     machineType = "virt";
     ip = "192.168.10.9";
     ipv4 = "128.140.110.89";
@@ -40,20 +41,12 @@ in
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
   };
 
-  networking = {
-    hostId = "f46e55a8";
-  };
-
   networking.nameservers = [ config.rg.ip "1.1.1.1" ];
 
   #Root as 'tmpfs'.
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     zfs rollback -r ${config.networking.hostName}/local/root@blank
   '';
-
-  environment.persistence."/pst" = {
-    files = [ "/etc/machine-id" ];
-  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
