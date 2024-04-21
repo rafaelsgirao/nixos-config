@@ -13,3 +13,4 @@ jobs:
         name: "Magic Nix Cache!"
       - run: nix flake check --quiet --extra-experimental-features "nix-command flakes"
         name: Run nix flake checks
+        env: NIX_CONFIG: "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}"

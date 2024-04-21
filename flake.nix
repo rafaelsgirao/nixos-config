@@ -23,6 +23,10 @@
       url = "github:edolstra/flake-compat";
       flake = false;
     };
+    crane = {
+      url = "github:ipetkov/crane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     flake-utils = {
       url = "github:numtide/flake-utils";
     };
@@ -81,6 +85,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    attic = {
+      url = "github:zhaofengli/attic";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.crane.follows = "crane";
+    };
     impermanence.url = "github:nix-community/impermanence/master";
 
     # simple-nixos-mailserver = {
@@ -140,6 +152,7 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.flake-parts.follows = "flake-parts";
       inputs.pre-commit-hooks-nix.follows = "";
+      inputs.crane.follows = "crane";
     };
 
   };
@@ -184,6 +197,7 @@
                     overlays = builtins.attrValues outputs.overlays;
                     config = {
                       allowUnfree = true;
+                      # contentAddressedByDefault = true;
                     };
                   };
                 }
@@ -195,7 +209,6 @@
                 # inputs.simple-nixos-mailserver.nixosModule
                 inputs.nixinate.nixosModule
                 inputs.agenix.nixosModules.default
-                inputs.lanzaboote.nixosModules.lanzaboote
                 inputs.home.nixosModules.home-manager
                 inputs.disko.nixosModules.disko
                 (dir + "/${name}/hardware.nix")
@@ -282,7 +295,7 @@
             overlays = [
               outputs.overlays.pkgs-sets-unstable
             ];
-            config = { };
+            # config = { contentAddressedByDefault = true; };
           };
         };
 
@@ -313,6 +326,10 @@
               pkgs-sets-mypkgs = final: _prev:
                 {
                   mypkgs = outputs.packages.${final.system};
+                };
+              pkgs-sets-everythingmusl = final: prev:
+                {
+                  final = prev.pkgsMusl;
                 };
             } // myOverlays;
 

@@ -50,6 +50,13 @@ in
         reverse_proxy http://192.168.10.6:5050
       '';
     };
+    "cache.${domain}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://192.168.10.6:33763
+      '';
+    };
     "www.${domain}" = {
       useACMEHost = "${domain}";
       extraConfig = ''

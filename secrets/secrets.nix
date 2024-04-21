@@ -34,6 +34,7 @@ in
   "scout/unFTP-creds.age".publicKeys = [ scout ] ++ users;
 
   #Spy secrets
+  "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;
   "spy/BinaryCache-key.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-key.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-cert.age".publicKeys = [ spy ] ++ users;

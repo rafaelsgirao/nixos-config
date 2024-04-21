@@ -5,7 +5,7 @@ let
   inherit (config.networking) fqdn;
 in
 {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
   services.udisks2.enable = lib.mkDefault false;
 
   imports = [
@@ -25,7 +25,8 @@ in
     # ../../modules/cups.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
-    ../../modules/binary-cache.nix
+    # ../../modules/binary-cache.nix
+    ../../modules/attic.nix
     ../../modules/caddy.nix
     ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
