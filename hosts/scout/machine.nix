@@ -43,12 +43,10 @@
         ".fly"
         ".vscode"
         ".config/Code"
-        ".config/Ferdium"
         ".config/chromium"
         ".config/joplin-desktop"
         ".config/Joplin"
         ".config/Sonixd"
-        ".config/WebCord"
         ".mozilla"
         ".local/share/ykman"
         ".local/share/Anki2"
@@ -88,7 +86,6 @@
         "Monero"
         ".config/monero-project"
         # I have a feeling impermanence files don't work that great... using folders for now.
-        ".config/Signal"
         ".config/goa-1.0"
       ];
       files = [
@@ -180,9 +177,6 @@
 
   #Additional packages
   environment.systemPackages = with pkgs; [
-    # autenticacao-gov
-    #FIXME
-    # remarkable-rcu
     ffmpeg
     gcc
     # rustdesk
@@ -190,15 +184,11 @@
     simple-scan
     lm_sensors
     colordiff
-    #  ghidra-bin
-    calibre
     monero-gui
     flyctl
     tor-browser-bundle-bin
     gnome.gnome-tweaks
-    webcord
     easyeffects
-    #TODO: electronmail?
   ];
 
   zramSwap.enable = true;
