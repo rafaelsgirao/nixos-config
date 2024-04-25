@@ -148,58 +148,6 @@ in
   }];
 
 
-  #Remote ZFS pool unlock
-  boot.kernelParams =
-    [ "ip=${config.rg.ipv4}::192.168.1.1:255.255.255.0::eth0:none" ];
-
-  # boot.initrd.network.postCommands = ''
-  #   cat << EOF > /root/.profile
-  #   if pgrep -x "zfs" > /dev/null
-  #   then
-  #     zpool import spypool
-  #     zpool import neonheavypool
-  #     zfs load-key -a
-  #     killall zfs
-  #   else
-  #     echo "zfs not running -- maybe the pool is taking some time to load for some unforseen reason."
-  #   fi
-  #   EOF
-  # '';
-  boot.initrd.systemd.services.remote-unlock = {
-    description = "Rollback root filesystem to a pristine state on boot";
-    wantedBy = [
-      "zfs.target"
-      "network.target"
-    ];
-    after = [
-      "zfs-import-rpool.service"
-    ];
-    # before = [
-    #   # "sysroot.mount"
-    # ];
-    # path = with pkgs; [
-    # ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig.Type = "oneshot";
-    script = ''
-
-    cat << EOF > /root/.profile
-    if pgrep -x "zfs" > /dev/null
-    then
-      zpool import neonheavypool
-      zpool import spypool
-      zfs load-key -a
-      killall zfs
-    else
-      echo "zfs not running -- maybe the pool is taking some time to load for some unforseen reason."
-    fi
-    EOF
-
-    
-    '';
-  };
-
-
   #Restic Backups
   services.restic.backups."spy-oneDriveIST" = {
     backupPrepareCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --on";
