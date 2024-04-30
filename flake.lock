@@ -390,6 +390,7 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "ruby-nix": "ruby-nix",
         "treefmt-nix": "treefmt-nix",
+        "trigobot": "trigobot",
         "wc-bot": "wc-bot"
       }
     },
@@ -485,6 +486,35 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "trigobot": {
+      "inputs": {
+        "crane": [
+          "crane"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pre-commit-hooks-nix": [],
+        "treefmt-nix": []
+      },
+      "locked": {
+        "lastModified": 1714495722,
+        "narHash": "sha256-JUCgi4hUqGvEvJ8NmLjVh/GFuwj97NZfcizYWCwLV2I=",
+        "owner": "rafaelsgirao",
+        "repo": "trigobot-rs",
+        "rev": "dbf55ea7a01a07679d25331b08cf5f68e8e385a8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rafaelsgirao",
+        "ref": "feat/flake-package",
+        "repo": "trigobot-rs",
         "type": "github"
       }
     },

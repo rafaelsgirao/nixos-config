@@ -129,6 +129,19 @@
           treefmt-nix.follows = "";
         };
       };
+
+    trigobot =
+      {
+        # url = "github:Trigobot-Development-Team/trigobot-rs";
+        url = "github:rafaelsgirao/trigobot-rs?ref=feat/flake-package";
+        inputs = {
+          nixpkgs.follows = "nixpkgs";
+          flake-parts.follows = "flake-parts";
+          pre-commit-hooks-nix.follows = "";
+          treefmt-nix.follows = "";
+          crane.follows = "crane";
+        };
+      };
     # ist-discord-bot = {
     #   url = "github:ist-bot-team/ist-discord-bot/rg/make-nix-package";
     #   # url = "github:nix-community/home-manager/master";
