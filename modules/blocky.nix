@@ -168,7 +168,8 @@ in
       prefetchThreshold = 5;
     };
     prometheus.enable = false;
-    port = lib.mkDefault "${config.rg.ip}:53";
+    # port = lib.mkDefault "${config.rg.ip}:53";
+    port = lib.mkDefault "127.0.0.1:53";
     # tlsPort = 853;
     tlsPort = lib.mkDefault null;
     # httpPort = "127.0.0.1:4000";

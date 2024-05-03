@@ -24,7 +24,6 @@ in
     ../../modules/caddy.nix
     ../../modules/healthchecks.nix
     ../../modules/acme.nix
-    ../../modules/blocky.nix
     # ../../modules/docker.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix
@@ -41,7 +40,6 @@ in
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
   };
 
-  networking.nameservers = [ config.rg.ip "1.1.1.1" ];
 
   #Root as 'tmpfs'.
   boot.initrd.postDeviceCommands = lib.mkAfter ''
@@ -90,7 +88,7 @@ in
     # logPrivacy = true;
     certFile = "/var/lib/acme/${domain}/fullchain.pem";
     keyFile = "/var/lib/acme/${domain}/key.pem";
-    port = "${config.rg.ip}:53";
+    port = "0.0.0.0:53";
     tlsPort = 853;
   };
 
