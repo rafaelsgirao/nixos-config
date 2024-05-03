@@ -54,6 +54,8 @@ in
     programs.ssh =
       {
         enable = true;
+        controlMaster = "auto";
+        controlPersist = "10m";
         extraConfig = lib.mkIf isWorkstation
           ''
             AddKeysToAgent yes
