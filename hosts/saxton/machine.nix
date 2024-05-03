@@ -8,7 +8,6 @@ in
   imports = [
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
-    ../../modules/services/trigobot.nix
 
     ./wc-bot.nix
     ../../modules/ntfy-sh.nix
