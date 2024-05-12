@@ -210,6 +210,7 @@ in
         jf = "journalctl -f";
         dc = "docker-compose";
         fd = "fd -HI";
+        cpugov = "cpupower frequency-set -g";
         # "sudo-" = "sudoedit";
         se = "sudoedit";
         "_" = "sudo";
@@ -226,14 +227,6 @@ in
         ssh = "TERM=xterm-256color ${pkgs.openssh}/bin/ssh";
       };
       functions = {
-        cpugov = ''
-          if count $argv > /dev/null
-          	echo "$argv" | ${pkgs.sudo}/bin/sudo ${pkgs.coreutils}/bin/tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-          else
-          	#Assume all CPUs have the same governor which is reasonable
-                 ${pkgs.coreutils}/bin/cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-          end
-        '';
         sudoedit = ''
           set -lx SUDO_COMMAND "sudoedit $argv";
           command sudoedit $argv;
