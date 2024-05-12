@@ -1,9 +1,9 @@
 { lib, modulesPath, ... }: {
-  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   environment.etc.machineId.text = "c2472bd717a44486adfdbc8e2f00199d";
 
   imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
     # ../../modules/hardware/nvidia.nix
     # ../../modules/hardware/laptop.nix
   ];
