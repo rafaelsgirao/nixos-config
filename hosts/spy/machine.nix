@@ -9,12 +9,10 @@ in
   services.udisks2.enable = lib.mkDefault false;
 
   imports = [
-    ../../modules/hardware/nvidia.nix
-    ../../modules/hardware/laptop.nix
+
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/hardware/zfs-unlock.nix
-
     ../../modules/core/lanzaboote.nix
     ../../modules/systemd-initrd.nix
     # ./library.nix
@@ -83,12 +81,6 @@ in
     "/var/lib/postgresql"
   ];
 
-  services.tlp.settings = {
-    CPU_SCALING_GOVERNOR_ON_AC = lib.mkForce "powersave";
-    RUNTIME_PM_ON_AC = "auto";
-    AHCI_RUNTIME_PM_ON_AC = "auto";
-    WIFI_PWR_ON_AC = "on";
-  };
 
   #TODO
   # boot.initrd.postDeviceCommands = lib.mkAfter ''
@@ -111,6 +103,11 @@ in
       # match the interface by name
       matchConfig.Name = "eth0";
       DHCP = "yes";
+
+      address = [
+        # configure addresses including subnet mask
+        "${config.rg.ipv4}/24"
+      ];
     };
 
   systemd.network.networks."12-usb" =
@@ -123,14 +120,6 @@ in
 
   networking = {
     dhcpcd.enable = false;
-    # defaultGateway = {
-    #   address = "192.168.1.1";
-    #   interface = "eth0";
-    # };
-    # interfaces.eth0.ipv4.addresses = [{
-    #   address = config.rg.ipv4;
-    #   prefixLength = 24;
-    # }];
     firewall = {
       allowedTCPPorts = [
         6881 # Transmission

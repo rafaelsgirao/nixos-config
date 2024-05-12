@@ -3,6 +3,18 @@
 
   environment.etc.machineId.text = "c2472bd717a44486adfdbc8e2f00199d";
 
+  imports = [
+    # ../../modules/hardware/nvidia.nix
+    # ../../modules/hardware/laptop.nix
+  ];
+
+  # services.tlp.settings = {
+  #   CPU_SCALING_GOVERNOR_ON_AC = lib.mkForce "powersave";
+  #   RUNTIME_PM_ON_AC = "auto";
+  #   AHCI_RUNTIME_PM_ON_AC = "auto";
+  #   WIFI_PWR_ON_AC = "on";
+  # };
+
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "nvme" "usb_storage" "uas" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
@@ -92,8 +104,8 @@
   };
 
   #Undervolt CPU
-  services.undervolt.enable = true;
-  services.undervolt.coreOffset = -100;
+  # services.undervolt.enable = true;
+  # services.undervolt.coreOffset = -80;
 
   swapDevices = [ ];
 
