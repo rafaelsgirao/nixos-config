@@ -1,4 +1,4 @@
-{ config, lib, sshKeys, ... }: {
+{ config, lib, pkgs, sshKeys, ... }: {
   #Unlock encrypted zfs via ssh on boot
   #https://nixos.wiki/wiki/ZFS#Unlock_encrypted_zfs_via_ssh_on_boot
   #Inspiration:
@@ -22,33 +22,16 @@
 
     initrd.systemd.network = config.systemd.network;
   };
-  boot.initrd.systemd.services.remote-unlock = {
-    wantedBy = [
-      "zfs.target"
-      "network.target"
-    ];
-    after = [
-      "zfs-import.target"
-    ];
-    # before = [
-    #   # "sysroot.mount"
-    # ];
-    # path = with pkgs; [
-    # ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig.Type = "oneshot";
-    script = ''
-
-    cat << EOF > /root/.profile
-    if pgrep -x "zfs" > /dev/null
-    then
-      zpool import -a
-      zfs load-key -a
-      killall zfs
-    else
-      echo "zfs not running -- maybe the pool is taking some time to load for some unforseen reason."
-    fi
-    EOF
-    '';
+  boot.initrd.systemd.storePaths = [ pkgs.toybox ];
+  boot.initrd.systemd.extraBin = {
+    toybox = "${pkgs.toybox}/bin/toybox";
   };
+
+  boot.initrd.systemd.contents."/etc/profile".text = ''
+    systemctl restart systemd-ask-password-console.service
+  '';
+
+  # boot.initrd.systemd.contents."/etc/profile".text = ''
+  #   zfs load-key -a; ${pkgs.toybox}/bin/killall zfs
+  # '';
 }

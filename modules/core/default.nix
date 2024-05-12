@@ -6,7 +6,7 @@ in
 {
   imports = [
     ./nebula.nix
-    ./hardening.nix
+    # ./hardening.nix
     ./nix.nix
     ./ssh.nix
     ../mailrise.nix
@@ -42,7 +42,6 @@ in
   services.logrotate.checkConfig = false;
 
   boot = {
-    kernelParams = [ "quiet" ];
     initrd.preDeviceCommands = lib.mkIf
       (
 
@@ -191,7 +190,6 @@ in
     #Basic utils
     tcpdump
     viu
-    just
     cloc
     rsync
     nebula

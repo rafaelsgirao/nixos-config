@@ -76,31 +76,112 @@
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
 
 
+  nix.distributedBuilds = !config.rg.isBuilder && config.rg.class == "workstation";
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
+    Host eu.nixbuild.net
+      PubkeyAcceptedKeyTypes ssh-ed25519
+      ServerAliveInterval 60
+      IPQoS throughput
+      IdentityFile /home/rg/.ssh/id_ed25519
+      ControlMaster auto
+      ControlPath ~/.ssh--master-%r@%n:%p
+      ControlPersist 10m
+
+    Host lab*p*.rnl.tecnico.ulisboa.pt
+      AddressFamily inet
+      User ist199309
+      PubkeyAcceptedKeyTypes ssh-ed25519
+      ServerAliveInterval 60
+      IPQoS throughput
+      IdentityFile /home/rg/.ssh/id_ed25519
+      ProxyJump borg
+      ControlMaster auto
+      ControlPath ~/.ssh--master-%r@%n:%p
+      ControlPersist 10m
+
+    Host borg borg.rnl.tecnico.ulisboa.pt
+      AddressFamily inet
+      User ist199309
+      HostName borg.rnl.tecnico.ulisboa.pt
+      PubkeyAcceptedKeyTypes ssh-ed25519
+      ServerAliveInterval 60
+      IPQoS throughput
+      IdentityFile /home/rg/.ssh/id_ed25519
+      ControlMaster auto
+      ControlPath ~/.ssh--master-%r@%n:%p
+      ControlPersist 10m
 
 
-  nix.distributedBuilds = !config.rg.isBuilder;
+  '';
 
-  # programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
-  #   Host spybuilder
-  #     HostName 192.168.10.6
-  #   Port 22
-  #   User rg
-  #   # IdentitiesOnly yes
-  #   # IdentityFile /root/.ssh/id_builder
-  # '';
+  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [
+    # {
+    # sshUser = "rg";
+    # sshKey = "/home/rg/.ssh/id_ed25519";
+    # protocol = "ssh-ng";
+    # # publicHostKey = "bla";
+    # hostName = "192.168.10.6";
+    # systems = [ "x86_64-linux" "aarch64-linux" ];
+    # maxJobs = 4;
+    # speedFactor = 2;
+    # supportedFeatures = [ "big-parallel" "kvm" ];
+    # mandatoryFeatures = [ ];
+    # }
 
-  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [{
-    sshUser = "rg";
-    sshKey = "/home/rg/.ssh/id_ed25519";
-    protocol = "ssh-ng";
-    # publicHostKey = "bla";
-    hostName = "192.168.10.6";
-    systems = [ "x86_64-linux" "aarch64-linux" ];
-    maxJobs = 4;
-    speedFactor = 2;
-    supportedFeatures = [ "big-parallel" "kvm" ];
-    mandatoryFeatures = [ ];
-  }];
+
+    # {
+    #   hostName = "eu.nixbuild.net";
+    #   protocol = "ssh-ng";
+    #   systems = [ "x86_64-linux" "i686-linux" ];
+    #   maxJobs = 100;
+    #   speedFactor = 2;
+    #   supportedFeatures = [ "benchmark" "big-parallel" ];
+    # }
+    # {
+    #   hostName = "eu.nixbuild.net";
+    #   protocol = "ssh-ng";
+    #   system = "aarch64-linux";
+    #   maxJobs = 100;
+    #   speedFactor = 2;
+    #   supportedFeatures = [ "benchmark" "big-parallel" ];
+    # }
+    {
+      hostName = "lab0p5.rnl.tecnico.ulisboa.pt";
+      protocol = "ssh-ng";
+      systems = [ "x86_64-linux" "i686-linux" ];
+      maxJobs = 100;
+      speedFactor = 3;
+      supportedFeatures = [ ];
+    }
+    {
+      hostName = "lab0p2.rnl.tecnico.ulisboa.pt";
+      protocol = "ssh-ng";
+      systems = [ "x86_64-linux" "i686-linux" ];
+      maxJobs = 1;
+      speedFactor = 3;
+      supportedFeatures = [ "benchmark" ];
+      mandatoryFeatures = [ "big-parallel" ];
+    }
+
+    {
+      hostName = "lab0p3.rnl.tecnico.ulisboa.pt";
+      protocol = "ssh-ng";
+      systems = [ "x86_64-linux" "i686-linux" ];
+      maxJobs = 1;
+      speedFactor = 3;
+      supportedFeatures = [ "benchmark" ];
+      mandatoryFeatures = [ "big-parallel" ];
+    }
+
+    {
+      hostName = "lab0p4.rnl.tecnico.ulisboa.pt";
+      protocol = "ssh-ng";
+      systems = [ "x86_64-linux" "i686-linux" ];
+      maxJobs = 1;
+      speedFactor = 3;
+      supportedFeatures = [ "benchmark" ];
+      mandatoryFeatures = [ "big-parallel" ];
+    }
+  ];
 }

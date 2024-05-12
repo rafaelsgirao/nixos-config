@@ -45,7 +45,7 @@
 
   services.logind.lidSwitch = "ignore";
 
-  systemd.resolved.enable = false;
+  services.resolved.enable = false;
   networking.nameservers = [ "127.0.0.1" "1.1.1.1" ]; #Blocky (and fallback)
 
   #Separate user to run docker containers and other things on

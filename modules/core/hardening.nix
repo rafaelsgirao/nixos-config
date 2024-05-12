@@ -9,7 +9,7 @@
 # profile, try disabling it. If you report an issue and use this
 # profile, always mention that you do.
 
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 
@@ -18,7 +18,7 @@ with lib;
   #   maintainers = [ maintainers.joachifm maintainers.emily ];
   # };
 
-  boot.kernelPackages = mkForce pkgs.linuxPackages_hardened;
+  boot.kernelPackages = mkIf (!config.rg.isBuilder) (mkForce pkgs.linuxPackages_hardened);
 
   nix.settings.allowed-users = [ "@users" ];
 
@@ -127,4 +127,27 @@ with lib;
   # Ignore outgoing ICMP redirects (this is ipv4 only)
   boot.kernel.sysctl."net.ipv4.conf.all.send_redirects" = mkDefault false;
   boot.kernel.sysctl."net.ipv4.conf.default.send_redirects" = mkDefault false;
+
+
+
+  #nscd hardening
+  systemd.services.nscd.serviceConfig = {
+    SystemCallFilter = [ "@system-service" ];
+    ProtectKernelModules = true;
+    ProtectClock = true;
+    PrivateDevices = true;
+    ProtectKernelLogs = true;
+    MemoryDenyWriteExecute = true;
+    ProtectControlGroups = true;
+    ProtectKernelTunables = true;
+    ProtectHostname = true;
+    # ProtectHome = "tmpfs";
+    LockPersonality = true;
+    ProtectProc = true;
+    # PrivateUsers = true; #nscd serves /etc/passwd?
+    # PrivateNetwork = true; #nscd serves DNS queries
+    CapabilityBoundingSet = [ "" ];
+    RestrictNamespaces = true;
+    RestrictAddressFamilies = [ "AF_UNIX AF_INET AF_INET6 AF_NETLINK" ];
+  };
 }

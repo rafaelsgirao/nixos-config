@@ -51,8 +51,15 @@ in
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAwJLvpcT0ZAZXzxFgvNPr8uwAg4EEAH2eSvPoeL+jX";
       "lab*p*.rnl.tecnico.ulisboa.pt".publicKey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5pvNnQKZ0/a5CA25a/WVi8oqSgG2q2WKfInNP4xEpP";
-      "borg.rnl.ist.utl.pt".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJLCDWGT0Uv6Q2fgTTtLMDM3nTyeV5mGCIiH6zx+KI2b";
+      borg = {
+        hostNames = [ "borg" "borg.rnl.tecnico.ulisboa.pt" "borg.rnl.ist.utl.pt`" ];
+        publicKey =
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJLCDWGT0Uv6Q2fgTTtLMDM3nTyeV5mGCIiH6zx+KI2b";
+      };
+      nixbuild = {
+        hostNames = [ "eu.nixbuild.net" ];
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
+      };
     };
   networking.hosts =
 

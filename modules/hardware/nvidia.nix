@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
 
   # disable intel.
   # boot.blacklistedKernelModules = lib.mkIf (config.rg.class == "server") [ "i915" ];
@@ -10,7 +10,7 @@
   #     intelBusId = "PCI:00:02:0";
   #   };
   # };
-  services.xserver.videoDrivers = [ "nvidia" ];
+  # services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -19,7 +19,7 @@
       finegrained = false; # requires PRIME to be set up
     };
     # open = true;
-    nvidiaSettings = false;
+    nvidiaSettings = config.rg.class == "workstation";
   };
 
   hardware.opengl = {
