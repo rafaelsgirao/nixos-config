@@ -8,6 +8,7 @@ in
   imports = [
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
+    ../../modules/core/hardening.nix
 
     ./wc-bot.nix
     ../../modules/ntfy-sh.nix
@@ -92,7 +93,8 @@ in
     tlsPort = 853;
   };
 
-  nix.settings.max-jobs = 0; # no local builds (beta)
+  nix.settings.max-jobs = 1; # minimise local builds.
+  nix.settings.cores = 1; # minimise local builds.
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

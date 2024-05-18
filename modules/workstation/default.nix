@@ -54,6 +54,7 @@ in
     };
   };
 
+  programs.ccache.enable = true;
   hm.accounts.email.accounts."rg@rafael.ovh" = {
     primary = true;
     userName = "rg@rafael.ovh";

@@ -1,11 +1,11 @@
 {
   nixConfig = {
-    extra-substituters = [
-      "https://cache.spy.rafael.ovh"
-    ];
-    extra-trusted-public-keys = [
-      "cache.spy.rafael.ovh-2:GZTv+leVV7RtP6o5/ddthaqpW6Fw3LASE9Xw2E9xDv4="
-    ];
+    # extra-substituters = [
+    #   "https://cache.spy.rafael.ovh"
+    # ];
+    # extra-trusted-public-keys = [
+    #   "cache.spy.rafael.ovh-2:GZTv+leVV7RtP6o5/ddthaqpW6Fw3LASE9Xw2E9xDv4="
+    # ];
     flake-registry = [
       "https://rafael.ovh/flake-registry.json"
     ];

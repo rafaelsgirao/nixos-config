@@ -2,6 +2,8 @@
 
 {
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+
   imports = [
     ../../modules/systemd-initrd.nix
     ../../modules/workstation/firefox.nix
@@ -13,9 +15,10 @@
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
 
-    ../../modules/core/lanzaboote.nix
-    ../../modules/core/hardening.nix
-    ../../modules/libvirt.nix
+    #    ../../modules/hardware/nvidia.nix
+    #../../modules/core/lanzaboote.nix
+    #    ../../modules/core/hardening.nix
+    #    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/docker.nix
   ];
@@ -69,10 +72,8 @@
       ];
     users.rg = {
       directories = [
-        "Portal" #directory for sharing files with Windows VM
         ".config/dconf"
         ".config/safeeyes"
-        ".anydesk"
         ".thunderbird"
         ".local/share/davisr"
         ".config/davisr"
@@ -112,6 +113,8 @@
   boot.initrd.postDeviceCommands = lib.mkIf (!config.boot.initrd.systemd.enable) (lib.mkAfter ''
     zfs rollback -r neonrgpool/local/root@blank
   '');
+
+  # boot.crashDump.enable = true;
 
   boot.initrd.systemd.emergencyAccess = true;
   boot.initrd.systemd.additionalUpstreamUnits = [
