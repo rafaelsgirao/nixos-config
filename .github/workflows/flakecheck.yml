@@ -14,3 +14,8 @@ jobs:
       - run: nix flake check --quiet --extra-experimental-features "nix-command flakes"
         name: Run nix flake checks
         env: NIX_CONFIG: "access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}"
+checks:
+  steps:
+    - uses: actions/checkout@v4
+    - name: Check Nix flake Nixpkgs inputs
+      uses: DeterminateSystems/flake-checker-action@main
