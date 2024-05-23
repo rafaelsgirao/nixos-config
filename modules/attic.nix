@@ -43,7 +43,7 @@ in
 
       storage = {
         type = "local";
-        path = "/var/state/attic";
+        path = "/var/lib/attic";
       };
 
       garbage-collection = {
@@ -73,7 +73,7 @@ in
 
 
   environment.persistence."/state".directories = [
-    "/var/state/attic"
+    "/var/lib/attic"
   ];
   # The service above is supposed to detect this based on the database string,
   # but since we're using the shorthand, it doesn't.
