@@ -111,7 +111,7 @@
   };
 
   boot.initrd.postDeviceCommands = lib.mkIf (!config.boot.initrd.systemd.enable) (lib.mkAfter ''
-    zfs rollback -r neonrgpool/local/root@blank
+    zfs rollback -r zpool/local/root@blank
   '');
 
   # boot.crashDump.enable = true;
@@ -127,7 +127,7 @@
       "initrd.target"
     ];
     after = [
-      "zfs-import-neonrgpool.service"
+      "zfs-import-zpool.service"
     ];
     before = [
       "sysroot.mount"
@@ -138,7 +138,7 @@
     unitConfig.DefaultDependencies = "no";
     serviceConfig.Type = "oneshot";
     script = ''
-      zfs rollback -r neonrgpool/local/root@blank && echo "  >> >> rollback complete << <<"
+      zfs rollback -r zpool/local/root@blank && echo "  >> >> rollback complete << <<"
     '';
   };
 
