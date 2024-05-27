@@ -415,7 +415,7 @@ in
 
   environment.systemPackages = with pkgs; [
     pamixer
-    # xdg-utils
+    xdg-ninja
     mypkgs.flatpak-xdg-utils
     # handlrXdg
     nixpkgs-fmt
