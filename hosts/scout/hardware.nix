@@ -63,7 +63,9 @@
       # mode = "TODO"; #TODO
       options = {
         ashift = "12";
+
       };
+      # man zfsprops
       rootFsOptions = {
         acltype = "posixacl";
         atime = "off";
@@ -73,7 +75,9 @@
         normalization = "formD";
         xattr = "sa";
         mountpoint = "none";
-
+        encryption = "on";
+        keyformat = "passphrase";
+        keylocation = "prompt";
       };
       datasets = {
         "local" = {
