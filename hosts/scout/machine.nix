@@ -83,7 +83,8 @@
         "Pictures"
         "DSI"
         "Backups"
-        "Downloads" # bah
+        "Documents"
+        "Downloads"
         "Monero"
         ".config/monero-project"
         # I have a feeling impermanence files don't work that great... using folders for now.
