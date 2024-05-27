@@ -1,8 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  isGnome = config.services.xserver.desktopManager.gnome.enable;
-  inherit (lib) mkIf;
-in
 {
   hm.programs.vscode =
     let
@@ -57,6 +53,6 @@ in
       #    version = "2023.1.1";
       #    sha256 = "sha256-9XcnsrC3wUo721ldBwT2ZAHaslwHqN1i4tkSbt3OV2I=";
       #  }];
-      #};
+    };
 
-    }
+}
