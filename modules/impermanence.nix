@@ -6,9 +6,6 @@ in
 
   #Home as tmpfs.
 
-  # systemd.tmpfiles.rules = [
-  #   "d /home/rg 0700 rg users"
-  # ];
 
 
   environment.persistence."/state" = {

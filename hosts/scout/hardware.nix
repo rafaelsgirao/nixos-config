@@ -34,12 +34,9 @@
     fsType = "zfs";
   };
 
-  fileSystems."/home/rg/Screenshots" = {
-    device = "none";
-    fsType = "tmpfs";
-    # options = [ "defaults" ];
-    options = [ "defaults" "size=100M" "mode=700" ];
-  };
+  systemd.tmpfiles.rules = [
+    "d /home/rg/Screenshots 0700 rg users"
+  ];
 
   fileSystems."/pst" = {
     device = "neonrgpool/safe/persist";
