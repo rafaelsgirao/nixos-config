@@ -405,9 +405,12 @@ in
 
   programs.nix-index = {
     enable = true;
-    enableFishIntegration = false;
-    enableBashIntegration = false;
-    enableZshIntegration = false;
+    enableFishIntegration = true;
+    enableBashIntegration = true;
+  };
+
+  programs.command-not-found = {
+    enable = false;
   };
 
   environment.systemPackages = with pkgs; [
