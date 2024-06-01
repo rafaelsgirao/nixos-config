@@ -298,12 +298,12 @@ in
   hm.xdg = {
     enable = true;
     mime.enable = true;
-    userDirs = {
-      enable = true;
-      music = "${config.xdg.userDirs.documents}/Music";
-      pictures = "${config.xdg.userDirs.documents}/Pictures";
-      videos = "${config.xdg.userDirs.documents}/Videos";
-    };
+    # userDirs = {
+    #   enable = true;
+    #   music = "${config.hm.xdg.userDirs.documents}/Music";
+    #   pictures = "${config.hm.xdg.userDirs.documents}/Pictures";
+    #   videos = "${config.hm.xdg.userDirs.documents}/Videos";
+    # };
   };
 
   #I prefer state for this.
