@@ -114,9 +114,6 @@ in
 
   #Enable SSH agent on boot
   programs.ssh.startAgent = true;
-  # services.teamviewer.enable = true;
-
-  # programs.noisetorch.enable = lib.mkIf (config.rg.machineType != "virt") true;
 
   hm.programs.rbw = {
     enable = true;
@@ -226,10 +223,6 @@ in
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   location.latitude = 38.7223;
@@ -303,9 +296,14 @@ in
   };
 
   hm.xdg = {
-    userDirs.enable = true;
     enable = true;
     mime.enable = true;
+    userDirs = {
+      enable = true;
+      music = "${xdg.userDirs.documents}/Music";
+      pictures = "${xdg.userDirs.documents}/Pictures";
+      videos = "${xdg.userDirs.documents}/Videos";
+    };
   };
 
   #I prefer state for this.
@@ -450,7 +448,6 @@ in
     # (pkgs.uutils-coreutils.override { prefix = ""; })
 
     sonixd
-    sox # Used to generate brown noise
 
     ventoy-bin
     libnotify
