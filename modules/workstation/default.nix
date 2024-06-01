@@ -300,9 +300,9 @@ in
     mime.enable = true;
     userDirs = {
       enable = true;
-      music = "${xdg.userDirs.documents}/Music";
-      pictures = "${xdg.userDirs.documents}/Pictures";
-      videos = "${xdg.userDirs.documents}/Videos";
+      music = "${config.xdg.userDirs.documents}/Music";
+      pictures = "${config.xdg.userDirs.documents}/Pictures";
+      videos = "${config.xdg.userDirs.documents}/Videos";
     };
   };
 
