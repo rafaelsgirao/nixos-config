@@ -14,10 +14,9 @@ in
     connectionConfig = {
       mdns = 2;
     };
-    extraConfig = ''
-      [global-dns-domain-*]
-      servers=192.168.10.9
-    '';
+    settings = {
+      "global-dns-domain-*".servers = "192.168.10.9 1.1.1.1";
+    };
   };
 
   networking.nameservers = lib.mkIf isWorkstation [ "192.168.10.9" ];

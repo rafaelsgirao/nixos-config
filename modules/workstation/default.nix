@@ -132,16 +132,18 @@ in
     };
     iconTheme = {
       package = pkgs.papirus-icon-theme;
-      name = "ePapirus-Dark";
+      name = "Papirus-Dark";
     };
-    cursorTheme = { name = "elementary"; };
+    cursorTheme = {
+      name = "Adwaita";
+    };
   };
 
   # TAKEN FROM https://github.com/NixOS/nixos-hardware/blob/master/common/gpu/intel/default.nix
   # ---
   hm.qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
 
 

@@ -12,6 +12,7 @@ in
 {
   systemd.services.mailrise = {
     after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
     wantedBy = [ "network-online.target" ];
     serviceConfig = {
       EnvironmentFile = config.age.secrets.ENV-mailrise.path;

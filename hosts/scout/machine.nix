@@ -111,9 +111,6 @@
   # boot.crashDump.enable = true;
 
   boot.initrd.systemd.emergencyAccess = true;
-  boot.initrd.systemd.additionalUpstreamUnits = [
-    "debug-shell.service"
-  ];
   boot.initrd.systemd.services.rollback = {
     description = "Rollback root filesystem to a pristine state on boot";
     wantedBy = [
