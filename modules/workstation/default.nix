@@ -455,6 +455,5 @@ in
     libnotify
     nodePackages.prettier
     typst-lsp #for VSCode and such
-    yubioath-flutter
   ];
 }

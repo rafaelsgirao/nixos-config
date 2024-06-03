@@ -21,6 +21,7 @@
     #    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/docker.nix
+    ../../modules/dei.nix
   ];
 
   services.zfs.expandOnBoot = "all";

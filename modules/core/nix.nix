@@ -115,7 +115,7 @@
 
   '';
 
-  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [
+  nix.buildMachines = lib.mkIf (false && !config.rg.isBuilder && config.rg.class == "workstation") [
     # {
     # sshUser = "rg";
     # sshKey = "/home/rg/.ssh/id_ed25519";

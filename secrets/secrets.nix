@@ -32,6 +32,7 @@ in
   "scout/RGNet-key.age".publicKeys = [ scout ] ++ users;
   "scout/RGNet-cert.age".publicKeys = [ scout ] ++ users;
   "scout/unFTP-creds.age".publicKeys = [ scout ] ++ users;
+  "scout/RNLDEI-wireguard.age".publicKeys = [ scout ] ++ users;
 
   #Spy secrets
   "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;

@@ -6,7 +6,7 @@ in
 
   networking.networkmanager = lib.mkIf isWorkstation {
     enable = true;
-    unmanaged = [ "nebula0" ];
+    unmanaged = [ "nebula0" "rnl0" "docker0" ];
     # dhcpcd doesn't start properly with malloc
     # see https://github.com/NixOS/nixpkgs/issues/151696
     dhcp = "internal";
@@ -14,9 +14,7 @@ in
     connectionConfig = {
       mdns = 2;
     };
-    settings = {
-      "global-dns-domain-*".servers = "192.168.10.9 1.1.1.1";
-    };
+    insertNameservers = [ "192.168.10.9" "1.1.1.1" ];
   };
 
   networking.nameservers = lib.mkIf isWorkstation [ "192.168.10.9" ];
