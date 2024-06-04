@@ -74,7 +74,7 @@ in
   "saxton/Mailserver-pwd-machines.age".publicKeys = [ saxton ] ++ users;
 
   #Sazed secrets
-  "sazed/RGNet-key.age".publicKeys = [ saxton ] ++ users;
-  "sazed/RGNet-cert.age".publicKeys = [ saxton ] ++ users;
+  "sazed/RGNet-key.age".publicKeys = [ sazed ] ++ users;
+  "sazed/RGNet-cert.age".publicKeys = [ sazed ] ++ users;
 
 }

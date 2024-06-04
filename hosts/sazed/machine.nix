@@ -1,5 +1,11 @@
 { pkgs, ... }:
 
+let
+  RNLCert = builtins.fetchurl {
+    url = "https://rnl.tecnico.ulisboa.pt/ca/cacert/cacert.pem";
+    sha256 = "1jiqx6s86hlmpp8k2172ki6b2ayhr1hyr5g2d5vzs41rnva8bl63";
+  };
+in
 {
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
@@ -20,18 +26,17 @@
     #    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/docker.nix
-    ../../modules/dei.nix
   ];
 
   services.zfs.expandOnBoot = "all";
-
+  security.pki.certificateFiles = [ "${RNLCert}" ];
   users.users.rg.extraGroups = [ "docker" ];
 
   rg = {
     #TODO: change
-    ip = "192.168.10.1";
+    ip = "192.168.10.10";
     #TODO: change
-    machineId = "d50445fd8e8745c5abd3aadefb7f8af6";
+    machineId = "4307a85c4d5e403fbd89fc34f27527e1";
     machineType = "amd";
     class = "workstation";
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
@@ -121,5 +126,4 @@
 
   hm.home.stateVersion = "24.05";
   system.stateVersion = "24.05";
-
 }
