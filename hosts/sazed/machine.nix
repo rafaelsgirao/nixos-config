@@ -13,7 +13,7 @@ in
   imports = [
     ../../modules/systemd-initrd.nix
     #Firefox through flatpak (testing)
-    ../../modules/workstation/firefox.nix
+    # ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
