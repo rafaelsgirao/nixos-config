@@ -14,6 +14,10 @@ let
 
   sazed = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
 
+  workstations = [ scout sazed ];
+
+  servers = [ spy saxton ];
+
   systems = [
     scout
     spy
@@ -29,9 +33,9 @@ in
   "sendmail-pass.age".publicKeys = systems ++ users;
   "RGNet-CA.age".publicKeys = systems ++ users;
   "rclone-config.age".publicKeys = systems ++ users;
-  "restic-env.age".publicKeys = [ saxton spy ] ++ users;
-  "restic-password.age".publicKeys = [ saxton spy ] ++ users;
-  "SSH-config.age".publicKeys = [ scout ] ++ users;
+  "restic-env.age".publicKeys = servers ++ users;
+  "restic-password.age".publicKeys = servers ++ users;
+  "SSH-config.age".publicKeys = workstations ++ users;
   "BinaryCache-pub.age".publicKeys = systems ++ users;
   "ENV-mailrise.age".publicKeys = systems ++ users;
 
