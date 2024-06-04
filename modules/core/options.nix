@@ -26,6 +26,7 @@ in
         type = types.str;
         default = null;
       };
+      # Generate a new one with: systemd-machine-id-setup
       machineId = mkOption {
         type = types.str;
         default = null;

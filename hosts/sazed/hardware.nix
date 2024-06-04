@@ -4,26 +4,21 @@
     #    (inputs.nixos-hardware + "/lenovo/thinkpad/t480/default.nix")
   ];
 
-  boot.initrd.availableKernelModules =
-    #    [ "xhci_pci" "ahci" "nvme" "usbhid" "sdhci_pci" ];
-    [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  swapDevices = [ ];
-
-  powerManagement.cpuFreqGovernor = "powersave";
-
   nixpkgs.hostPlatform = "x86_64-linux";
+
+  hardware.cpu.amd.updateMicrocode = true;
 
 
   # Storage.
   disko.devices = {
     disk.main = {
       type = "disk";
-      # device = "/dev/disk/by-id/ata-WDC_PC_SN520_SDAPMUW-256G-1001_1835C2800054"; #TODO: change later
+      device = "/dev/disk/by-id/ata-SSD_2.5__512GB_InnovationIT_QLC_663122209170076";
       content.type = "gpt";
       content.partitions = {
         ESP = {

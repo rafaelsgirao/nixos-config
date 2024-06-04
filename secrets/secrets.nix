@@ -1,6 +1,8 @@
 let
   rg-scout = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a";
-  users = [ rg-scout ];
+  rg-yubikey-1-rk = [ "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEwOBxayZyd/zGYyoTRN2rdIQM71nzVT3lISg2pNfrZRAAAABHNzaDo=" ];
+
+  users = [ rg-scout rg-yubikey-1-rk ];
 
   scout = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
 
@@ -8,10 +10,13 @@ let
 
   saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
 
+  sazed = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
+
   systems = [
     scout
     spy
     saxton
+    sazed
   ];
 in
 {
@@ -65,5 +70,9 @@ in
   "saxton/ENV-vaultwarden.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-rafael.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-machines.age".publicKeys = [ saxton ] ++ users;
+
+  #Sazed secrets
+  # "saxton/RGNet-key.age".publicKeys = [ saxton ] ++ users;
+  # "saxton/RGNet-cert.age".publicKeys = [ saxton ] ++ users;
 
 }

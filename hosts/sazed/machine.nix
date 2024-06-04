@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -7,7 +7,7 @@
   imports = [
     ../../modules/systemd-initrd.nix
     #Firefox through flatpak (testing)
-    # ../../modules/workstation/firefox.nix
+    ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
@@ -15,8 +15,7 @@
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
 
-    #    ../../modules/hardware/nvidia.nix
-    ../../modules/core/lanzaboote.nix
+    #   ../../modules/core/lanzaboote.nix
     #    ../../modules/core/hardening.nix
     #    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
@@ -35,8 +34,7 @@
     machineId = "d50445fd8e8745c5abd3aadefb7f8af6";
     machineType = "amd";
     class = "workstation";
-    #TODO: change
-    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
+    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
   };
 
   # hm.home.packages = with pkgs; [ anki-bin ];
@@ -108,13 +106,6 @@
     QEMU_OPTS =
       "-m 4096 -smp 4 -enable-kvm"; # https://github.com/NixOS/nixpkgs/issues/59219
   };
-
-
-  #SSH daemon only inside Nebula
-  services.openssh.listenAddresses = [{
-    addr = config.rg.ip;
-    port = 22;
-  }];
 
   #Additional packages
   environment.systemPackages = with pkgs; [
