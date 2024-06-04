@@ -35,9 +35,7 @@ in
   users.users.rg.extraGroups = [ "docker" ];
 
   rg = {
-    #TODO: change
-    ip = "192.168.10.10";
-    #TODO: change
+    ip = "192.168.10.5";
     machineId = "4307a85c4d5e403fbd89fc34f27527e1";
     machineType = "amd";
     class = "workstation";
