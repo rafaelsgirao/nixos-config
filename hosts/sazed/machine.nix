@@ -13,7 +13,9 @@ in
   imports = [
     ../../modules/systemd-initrd.nix
     #Firefox through flatpak (testing)
-    # ../../modules/workstation/firefox.nix
+    # Not using flatpaked firefox while this isn't solved:
+    # https://github.com/flatpak/flatpak/issues/4525
+    ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
