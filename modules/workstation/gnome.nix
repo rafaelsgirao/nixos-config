@@ -82,9 +82,14 @@
         "org/gnome/shell/app-switcher" = { current-workspace-only = false; };
 
         # "org/gnome/eog/ui" = { image-gallery = true; };
+        # "/org/gnome/settings-daemon/plugins/power" = {
+        #   sleep-inactive-battery-type = "suspend";
+        #   sleep-inactive-battery-timeout = lib.hm.gvariant.mkUint32 900;
+        #   sleep-inactive-ac-type = "nothing";
+        # };
 
         "org/gnome/mutter" = {
-          edge-tiling = true;
+          edge-tiling = lib.mkDefault true;
           workspaces-only-on-primary = true;
           dynamic-workspaces = true;
         };

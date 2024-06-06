@@ -27,10 +27,12 @@
         # Enable and configure pop-shell, see:
         # - https://github.com/pop-os/shell/blob/master_jammy/scripts/configure.sh
         # - https://github.com/trevex/dotfiles/blob/5b3b0e2b9624fbedd1a64d378e18aea6efef6db9/modules/nixos/desktop/gnome/default.nix#L60
+        "org/gnome/mutter".edge-tiling = false;
 
         "org/gnome/shell/extensions/pop-shell" = {
           active-hint = true;
           smart-gaps = true;
+          tile-by-default = true;
           gap-outer = lib.hm.gvariant.mkUint32 0;
           gap-inner = lib.hm.gvariant.mkUint32 0;
         };
