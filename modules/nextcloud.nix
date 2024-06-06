@@ -32,15 +32,15 @@ in
       dbuser = "nextcloud";
       dbhost = "/run/postgresql";
       dbname = "nextcloud";
-      trustedProxies = [ config.rg.ip "127.0.0.1" "192.168.10.9" ];
       adminpassFile = config.age.secrets.NC-adminpass.path;
       adminuser = "rg";
-      overwriteProtocol = "https";
       extraTrustedDomains = [ altHost ];
-      defaultPhoneRegion = "PT";
     };
     #Use system's sendmail utility for e-mails
-    extraOptions = {
+    settings = {
+      trusted_proxies = [ config.rg.ip "127.0.0.1" "192.168.10.9" ];
+      overwriteprotocol = "https";
+      default_phone_region = "PT";
       #Enables imaginary support.
       enabledPreviewProviders = [
         "OC\\Preview\\Imaginary"
