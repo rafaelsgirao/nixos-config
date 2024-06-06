@@ -23,7 +23,7 @@ in
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
 
-    # ../../modules/core/lanzaboote.nix
+    ../../modules/core/lanzaboote.nix
     #    ../../modules/core/hardening.nix
     #    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
