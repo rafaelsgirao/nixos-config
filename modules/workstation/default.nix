@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
   #handlr is SO much better.
@@ -11,7 +11,12 @@ let
   inherit (lib) mkIf;
 in
 {
-  imports = [ ./vscode.nix ];
+  imports = [
+    ./vscode.nix
+  ];
+  hm.imports = [
+    inputs.lan-mouse.homeManagerModules.default
+  ];
   # improve desktop responsiveness when updating the system
   nix.daemonCPUSchedPolicy = "idle";
   hm.programs.thunderbird = {
@@ -411,6 +416,13 @@ in
 
   programs.command-not-found = {
     enable = false;
+  };
+
+  hm.programs.lan-mouse.settings = {
+    release_bind = [ "KeyA" "KeyS" "KeyD" "KeyF" ];
+    port = 7742;
+    frontend = "gtk";
+    systemd = true;
   };
 
   environment.systemPackages = with pkgs; [

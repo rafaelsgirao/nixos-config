@@ -92,6 +92,11 @@
       inputs.flake-compat.follows = "flake-compat";
       inputs.crane.follows = "crane";
     };
+
+    lan-mouse = {
+      url = "github:feschber/lan-mouse";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     impermanence.url = "github:nix-community/impermanence/master";
 
     # simple-nixos-mailserver = {

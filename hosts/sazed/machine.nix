@@ -23,7 +23,7 @@ in
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
 
-    #   ../../modules/core/lanzaboote.nix
+    # ../../modules/core/lanzaboote.nix
     #    ../../modules/core/hardening.nix
     #    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
@@ -115,12 +115,27 @@ in
   #Additional packages
   environment.systemPackages = with pkgs; [
     appimage-run
-    simple-scan
     lm_sensors
     colordiff
     gnome.gnome-tweaks
     easyeffects
   ];
+
+  services.xserver.displayManager.gdm.autoSuspend = false;
+  hm.programs.lan-mouse = {
+    enable = true;
+    # systemd = false;
+    # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # Optional configuration in nix syntax, see config.toml for available options
+    settings = {
+      bottom = {
+        # scout
+        activate_on_startup = true;
+        ips = [ "192.168.10.1" ];
+        port = 7742;
+      };
+    };
+  };
 
   zramSwap.enable = true;
 

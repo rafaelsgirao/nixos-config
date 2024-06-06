@@ -191,6 +191,20 @@
   hm.home.stateVersion = "23.05";
   system.stateVersion = "23.05";
 
+  hm.programs.lan-mouse = {
+    enable = true;
+    # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # Optional configuration in nix syntax, see config.toml for available options
+    settings = {
+      top = {
+        # sazed
+        activate_on_startup = false;
+        ips = [ "192.168.10.5" ];
+        port = 7742;
+      };
+    };
+  };
+
   services.udev.extraRules = lib.mkIf (config.rg.class == "workstation") ''
     # DualShock 3 over USB
     KERNEL=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0268", MODE="0666"
