@@ -28,7 +28,7 @@ in
     key = config.age.secrets.RGNet-key.path;
     tun.device = "nebula0";
     ca = config.age.secrets.RGNet-CA.path;
-    lighthouses = lib.optionals (!isLighthouse) [ "192.168.10.9" ];
+    lighthouses = lib.optionals (!isLighthouse) [ "192.168.10.5" "192.168.10.9" ];
     settings = {
       cipher = "aes";
       pki = {
@@ -54,6 +54,8 @@ in
     staticHostMap = {
       "192.168.10.9" =
         [ "128.140.110.89:4242" "[2a01:4f8:1c1e:aead::1]:4242" ];
+      "192.168.10.5" =
+        [ "193.136.164.205:4242" "[2001:690:2100:82::205]:4242" ];
     };
     firewall.outbound = [{
       host = "any";
