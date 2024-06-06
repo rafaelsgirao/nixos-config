@@ -51,7 +51,6 @@
         ".config/joplin-desktop"
         ".config/Joplin"
         ".config/Sonixd"
-        ".mozilla"
         ".local/share/ykman"
         ".local/share/Anki2"
         ".config/JetBrains"

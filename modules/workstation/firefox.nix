@@ -2,6 +2,8 @@
 
 {
 
+  environment.persistence."/state".users.rg.directories = [ ".mozilla" ];
+
   hm.programs.firefox = {
     enable = true;
 
