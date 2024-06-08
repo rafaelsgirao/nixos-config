@@ -13,7 +13,7 @@ in
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/hardware/zfs-unlock.nix
-    ../../modules/core/lanzaboote.nix
+    # ../../modules/core/lanzaboote.nix
     # ../../modules/systemd-initrd.nix
     # ./library.nix
     # ../../modules/library/bitmagnet.nix

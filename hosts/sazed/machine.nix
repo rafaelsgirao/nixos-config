@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
   RNLCert = builtins.fetchurl {
@@ -11,7 +11,7 @@ in
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
 
   imports = [
-    ../../modules/systemd-initrd.nix
+    # ../../modules/systemd-initrd.nix
     #Firefox through flatpak (testing)
     # Not using flatpaked firefox while this isn't solved:
     # https://github.com/flatpak/flatpak/issues/4525
@@ -22,6 +22,7 @@ in
 
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
+    ../../modules/hardware/zfs-unlock.nix
 
     ../../modules/core/lanzaboote.nix
     #    ../../modules/core/hardening.nix
@@ -30,6 +31,7 @@ in
     ../../modules/docker.nix
   ];
 
+  boot.kernelParams = [ "ip=193.136.164.205::193.136.164.222:255.255.255.224::eth0:none" ];
   services.zfs.expandOnBoot = "all";
   security.pki.certificateFiles = [ "${RNLCert}" ];
   users.users.rg.extraGroups = [ "docker" ];
@@ -85,28 +87,32 @@ in
   };
 
 
-  boot.initrd.systemd.emergencyAccess = true;
-  boot.initrd.systemd.services.rollback = {
-    description = "Rollback root filesystem to a pristine state on boot";
-    wantedBy = [
-      # "zfs.target"
-      "initrd.target"
-    ];
-    after = [
-      "zfs-import-zpool.service"
-    ];
-    before = [
-      "sysroot.mount"
-    ];
-    path = with pkgs; [
-      zfs
-    ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig.Type = "oneshot";
-    script = ''
-      zfs rollback -r zpool/local/root@blank && echo "  >> >> rollback complete << <<"
-    '';
-  };
+  # boot.initrd.systemd.emergencyAccess = true;
+  # boot.initrd.systemd.services.rollback = {
+  #   description = "Rollback root filesystem to a pristine state on boot";
+  #   wantedBy = [
+  #     # "zfs.target"
+  #     "initrd.target"
+  #   ];
+  #   after = [
+  #     "zfs-import-zpool.service"
+  #   ];
+  #   before = [
+  #     "sysroot.mount"
+  #   ];
+  #   path = with pkgs; [
+  #     zfs
+  #   ];
+  #   unitConfig.DefaultDependencies = "no";
+  #   serviceConfig.Type = "oneshot";
+  #   script = ''
+  #     zfs rollback -r zpool/local/root@blank && echo "  >> >> rollback complete << <<"
+  #   '';
+  # };
+
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r neonheavypool/local/root@blank
+  '';
 
   environment.variables = {
     QEMU_OPTS =

@@ -24,9 +24,11 @@
     ../../modules/dei.nix
   ];
 
+  programs.gamemode.enable = true;
+
   services.zfs.expandOnBoot = "all";
 
-  users.users.rg.extraGroups = [ "docker" ];
+  users.users.rg.extraGroups = [ "docker" "gamemode" ];
 
   rg = {
     ip = "192.168.10.1";

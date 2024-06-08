@@ -34,10 +34,10 @@ in
       dbname = "nextcloud";
       adminpassFile = config.age.secrets.NC-adminpass.path;
       adminuser = "rg";
-      extraTrustedDomains = [ altHost ];
     };
     #Use system's sendmail utility for e-mails
     settings = {
+      trusted_domains = [ altHost ];
       trusted_proxies = [ config.rg.ip "127.0.0.1" "192.168.10.9" ];
       overwriteprotocol = "https";
       default_phone_region = "PT";

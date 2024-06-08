@@ -9,6 +9,7 @@ in
 {
 
   hardware.cpu.intel.updateMicrocode = isIntel;
+  programs.cpu-energy-meter.enable = isIntel;
 
   services.fwupd.enable = !isVirt;
 
