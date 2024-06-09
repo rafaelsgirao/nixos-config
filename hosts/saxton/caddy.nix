@@ -47,6 +47,8 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
+        #enable HSTS (180 days, minimum to pass nextcloud check)
+        header Strict-Transport-Security max-age=31536000; #6 months
         reverse_proxy http://192.168.10.6:5050
       '';
     };

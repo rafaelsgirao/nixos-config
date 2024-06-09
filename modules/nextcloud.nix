@@ -19,7 +19,7 @@ in
   #Nextcloud
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud28;
+    package = pkgs.nextcloud29;
     webfinger = true;
     hostName = ncHost;
     configureRedis = true;
@@ -27,6 +27,11 @@ in
     #Makes sure that wherever this module is imported this variable is changed.
     home = lib.mkDefault null;
     # secretFile = config.age.secrets.NC-secretfile.path;
+    phpOptions = {
+      #  "The amount of memory used to store interned strings, in megabytes."
+
+      "opcache.interned_strings_buffer" = "32";
+    };
     config = {
       dbtype = "pgsql";
       dbuser = "nextcloud";
@@ -37,6 +42,8 @@ in
     };
     #Use system's sendmail utility for e-mails
     settings = {
+      # "A value of 1 e.g. will only run these background jobs between 01:00am UTC and 05:00am UTC".
+      maintenance_window_start = 1;
       trusted_domains = [ altHost ];
       trusted_proxies = [ config.rg.ip "127.0.0.1" "192.168.10.9" ];
       overwriteprotocol = "https";

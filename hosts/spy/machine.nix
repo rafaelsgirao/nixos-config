@@ -197,6 +197,8 @@ in
       useACMEHost = "rafael.ovh";
       extraConfig = ''
         encode zstd gzip
+        #enable HSTS (180 days, minimum to pass nextcloud check)
+        header Strict-Transport-Security max-age=31536000;
         reverse_proxy http://${config.rg.ip}:5050
       '';
     };
