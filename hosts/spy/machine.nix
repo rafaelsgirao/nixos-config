@@ -15,30 +15,18 @@ in
     ../../modules/hardware/zfs-unlock.nix
     # ../../modules/core/lanzaboote.nix
     # ../../modules/systemd-initrd.nix
-    # ./library.nix
-    # ../../modules/library/bitmagnet.nix
     ../../modules/library/jellyfin.nix
-    # ../../modules/flood.nix
-    # ../../modules/sunshine.nix
-    # ../../modules/cups.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
-    # ../../modules/binary-cache.nix
     ../../modules/attic.nix
     ../../modules/caddy.nix
     ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
     ../../modules/rss2email.nix
     ../../modules/gitea.nix
-    # ../../modules/monero.nix
     ../../modules/impermanence.nix
-    # ./privacy-proxies.nix
     ../../modules/headless.nix
-    # ../../modules/docker.nix
     ../../modules/blocky.nix
-    # ../../modules/wakapi-server.nix
-    # ../../modules/frigate.nix
-    # ../../modules/woodpecker.nix
   ];
 
   services.nextcloud.home = "/data/nextcloud-nixos";
@@ -49,6 +37,10 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
+
+  # When upgrading postgres, see:
+  # https://nixos.org/manual/nixos/stable/#module-services-postgres-upgrading
+  services.postgresql.package = pkgs.postgresql_16;
 
   services.postgresqlBackup = {
     enable = true;

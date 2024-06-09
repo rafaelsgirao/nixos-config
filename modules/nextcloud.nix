@@ -19,7 +19,7 @@ in
   #Nextcloud
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud27;
+    package = pkgs.nextcloud28;
     webfinger = true;
     hostName = ncHost;
     configureRedis = true;
@@ -146,14 +146,20 @@ in
       extraGroups = [ "render" "video" ];
     };
   };
+  #https://memories.gallery/troubleshooting/#issues-with-nixos
+  systemd.services.nextcloud-cron = {
+    path = with pkgs; [ perl exiftool ];
+  };
 
   systemd.services."go-vod" =
     let
       pkg = pkgs.jellyfin-ffmpeg;
       goVodConfig = {
-        NVENC = true;
-        NVENCTemporalAQ = true;
-        NVENCScale = "cuda";
+        # NVENC = true;
+        # NVENCTemporalAQ = true;
+        # NVENCScale = "cuda";
+        VAAPI = true;
+        #        VAAPILowPower  = true; ?untested
         FFmpeg = "${pkg}/bin/ffmpeg";
         FFprobe = "${pkg}/bin/ffprobe";
       };

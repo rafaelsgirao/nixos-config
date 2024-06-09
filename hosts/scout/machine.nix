@@ -14,11 +14,6 @@
     ../../modules/hardware/laptop.nix
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
-
-    #    ../../modules/hardware/nvidia.nix
-    #../../modules/core/lanzaboote.nix
-    #    ../../modules/core/hardening.nix
-    #    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/docker.nix
     ../../modules/dei.nix
@@ -37,8 +32,6 @@
     class = "workstation";
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
   };
-
-  # hm.home.packages = with pkgs; [ anki-bin ];
 
   environment.persistence."/state" = {
     # directories = [ ];
