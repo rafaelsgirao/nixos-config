@@ -161,7 +161,7 @@ in
   systemd.services."go-vod" =
     let
       pkg = pkgs.jellyfin-ffmpeg;
-      goVodConfig = {
+      goVodConfig = rec {
         # NVENC = true;
         # NVENCTemporalAQ = true;
         # NVENCScale = "cuda";
@@ -169,6 +169,8 @@ in
         #        VAAPILowPower  = true; ?untested
         FFmpeg = "${pkg}/bin/ffmpeg";
         FFprobe = "${pkg}/bin/ffprobe";
+        useTranspose = VAAPI;
+        ForceSwTranspose = VAAPI;
       };
       GoVodConfigFile = pkgs.writeText "go-vod-config.json" (builtins.toJSON goVodConfig);
     in
