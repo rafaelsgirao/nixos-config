@@ -43,6 +43,7 @@ in
         send_recv_error = "private";
       };
       punchy = {
+        punch = true;
         respond = true;
       };
       tun = {
