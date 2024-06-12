@@ -362,7 +362,7 @@ in
     unstable.yt-dlp
 
     #Gnome and related stuff
-    gnome.pomodoro
+    gnome_pomodoro
     gnomeExtensions.appindicator # Try to fix tray icons (especially jellyfin-mpv-shim and udiskie2)
     gnome.seahorse
     gnome.file-roller
