@@ -58,8 +58,8 @@ in
         "scout.rafael.ovh" = "192.168.10.1";
 
         # Discontinued
-        # "heavy" = "192.168.10.2";
-        # "heavy.rafael.ovh" = "192.168.10.2";
+        "vin" = "192.168.10.2";
+        "vin.rafael.ovh" = "192.168.10.2";
 
         # Discontinued
         # "engineer" = "192.168.10.3";
@@ -72,20 +72,19 @@ in
         # "pyro" = "192.168.10.4";
         # "pyro.rafael.ovh" = "192.168.10.4";
 
-        # Discontinued
-        # "medic" = "192.168.10.5";
-        # "medic.rafael.ovh" = "192.168.10.5";
-        # "medicist" =
-        #   lib.mkIf (config.networking.hostName != "engie") "193.136.132.93";
+        "sazed" = "192.168.10.5";
+        "sazed.rafael.ovh" = "192.168.10.5";
 
         "spy" = "192.168.10.6";
         "spy.rafael.ovh" = "192.168.10.6";
         "media.rafael.ovh" =
-          lib.mkIf (config.networking.hostName != "engie") "192.168.10.6";
+          #TODO: hacky. create an option for this.
+          lib.mkIf (config.networking.hostName != "saxton") "192.168.10.6";
 
         "demo" = "192.168.10.7";
         "demo.rafael.ovh" = "192.168.10.7";
 
+        #TODO: remove. doesn't exist anymore
         "sniper" = "192.168.10.8";
         "sniper.rafael.ovh" = "192.168.10.8";
 
