@@ -277,6 +277,7 @@
               fish
               tmux
               gitui
+              htop
             ];
             shellHook = '' 
             # export DEBUG=1
