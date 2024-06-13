@@ -69,11 +69,13 @@
           ];
         };
         # Use `dconf watch /` to track stateful changes you are doing, then set them here.
-        # "org/gnome/desktop/input-sources" = {
-        #   sources = [ (lib.hm.gvariant.mkTuple [ "xkb" "us+altgr-intl" ]) ];
-        # xkb-options = [ "lv3:ralt_switch" "ctrl:nocaps" ];
-
-        # };
+        "org/gnome/desktop/input-sources" = {
+          sources = [
+            (lib.hm.gvariant.mkTuple [ "xkb" "us" ])
+            (lib.hm.gvariant.mkTuple [ "xkb" "pt" ])
+            # xkb-options = [ "lv3:ralt_switch" "ctrl:nocaps" ];
+          ];
+        };
         "org/gnome/settings-daemon/plugins/color" = {
           night-light-enabled = true;
           night-light-temperature = lib.hm.gvariant.mkUint32 1700;
@@ -87,6 +89,11 @@
         #   sleep-inactive-battery-timeout = lib.hm.gvariant.mkUint32 900;
         #   sleep-inactive-ac-type = "nothing";
         # };
+        # };
+
+        "/org/gnome/shell/extensions/bedtime-mode".bedtime-mode-active = false;
+        "/org/gnome/desktop/a11y".always-show-universal-access-status = true;
+        "/org/gnome/desktop/interface".text-scaling-factor = lib.hm.gvariant.mkUfloat32 1.25;
 
         "org/gnome/mutter" = {
           edge-tiling = lib.mkDefault true;
