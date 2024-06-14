@@ -308,6 +308,13 @@ in
     ".local/share/rustup"
   ];
 
+  environment.persistence."/pst".users.rg.directories = [
+    ".local/share/android"
+    ".local/share/cargo"
+    ".local/share/rustup"
+    ".config/attic"
+  ];
+
   hm.programs.mpv = {
     enable = true;
     scripts = [ pkgs.mpvScripts.mpris ];
@@ -340,6 +347,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    attic-client
     pamixer
     xdg-ninja
     mypkgs.flatpak-xdg-utils
