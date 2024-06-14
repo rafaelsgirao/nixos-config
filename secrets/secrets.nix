@@ -4,7 +4,9 @@ let
 
   users = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a rg@scout"
-    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJi2uB1uGKJSSVYq0zM1i26l5Lr+dWw1M+I73v9kdhNzdE995c8a4uIl0J5eU+3XV4LJP/AFLv1eRBaVInTVGQ8= rg@sazed-TPM"
+    # Age only supports RSA keys and ed25519 :( 
+    #    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJi2uB1uGKJSSVYq0zM1i26l5Lr+dWw1M+I73v9kdhNzdE995c8a4uIl0J5eU+3XV4LJP/AFLv1eRBaVInTVGQ8= rg@sazed-TPM"
+    #    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBxyt2Uhru+PIf9SKRF96AW05P9WuyR7NKbS6OZyElNjOT+1qmkeL82+7B5qeHsACA3ZRo4svorIS1Q8khLmexk= rg@vin-TPM"
   ];
 
   scout = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
