@@ -64,7 +64,6 @@
       directories = [
         ".config/dconf"
         ".config/safeeyes"
-        ".thunderbird"
         ".local/share/davisr"
         ".config/davisr"
         "Documents"

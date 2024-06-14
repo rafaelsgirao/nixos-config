@@ -7,6 +7,7 @@
   imports = [
     ../../modules/systemd-initrd.nix
     ../../modules/workstation/firefox.nix
+    ../../modules/workstation/thunderbird.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
