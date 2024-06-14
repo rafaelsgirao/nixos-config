@@ -43,7 +43,7 @@ in
 
       storage = {
         type = "local";
-        path = "/var/lib/attic";
+        path = "/var/lib/atticd"; #service is DynamicUser
       };
 
       garbage-collection = {
@@ -73,7 +73,8 @@ in
 
 
   environment.persistence."/state".directories = [
-    "/var/lib/attic"
+    #FIXME: /var/lib/private should also be mode 0700
+    { directory = "/var/lib/private/atticd"; mode = "0700"; } #service is DynamicUser
   ];
   # The service above is supposed to detect this based on the database string,
   # but since we're using the shorthand, it doesn't.
