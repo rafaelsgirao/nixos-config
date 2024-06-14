@@ -343,6 +343,15 @@ in
     systemd = true;
   };
 
+  networking.firewall = {
+    allowedTCPPorts = [
+      53317 # LocalSend (installed thru flatpak)
+    ];
+    allowedUDPPorts = [
+      53317 #  LocalSend (installed thru flatpak)
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     attic-client
     pamixer
