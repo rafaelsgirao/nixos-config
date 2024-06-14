@@ -309,9 +309,6 @@ in
   ];
 
   environment.persistence."/pst".users.rg.directories = [
-    ".local/share/android"
-    ".local/share/cargo"
-    ".local/share/rustup"
     ".config/attic"
   ];
 
