@@ -38,7 +38,7 @@ in
 
   rg = {
     ip = "192.168.10.5";
-    isLighthouse = true;
+    isLighthouse = false; #Local firewall doesn't allow world access to 4242.
     machineId = "4307a85c4d5e403fbd89fc34f27527e1";
     machineType = "amd";
     class = "workstation";

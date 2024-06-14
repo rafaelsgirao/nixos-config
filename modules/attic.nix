@@ -2,7 +2,7 @@
 let
   port = toString 33763;
   dbUser = config.services.atticd.user;
-  host = "https://cache.${config.rg.domain}";
+  host = "cache.${config.rg.domain}";
 
 in
 {
@@ -79,7 +79,7 @@ in
   # but since we're using the shorthand, it doesn't.
   systemd.services.atticd.after = [ "postgresql.service" "nss-lookup.target" ];
 
-  services.caddy.virtualHosts."cache.${config.networking.fqdn}" = {
+  services.caddy.virtualHosts."${host}" = {
     useACMEHost = "rafael.ovh";
     extraConfig = ''
       encode zstd gzip
@@ -87,7 +87,7 @@ in
       header {
           Strict-Transport-Security "max-age=2592000; includeSubDomains"
       }
-      reverse_proxy http://127.0.0.1:${port}
+      reverse_proxy http://${config.rg.ip}:${port}
         
     '';
   };
