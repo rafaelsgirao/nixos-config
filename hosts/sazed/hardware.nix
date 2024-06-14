@@ -113,12 +113,6 @@
     };
   };
 
-  # Mount legacy partitions.
-  # fileSystems."/home-state" = {
-  #   device = "neonrgpool/safe/home";
-  #   fsType = "zfs";
-  # };
-
   fileSystems."/pst".neededForBoot = true;
   fileSystems."/state".neededForBoot = true;
 }

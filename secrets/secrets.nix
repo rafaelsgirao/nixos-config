@@ -1,10 +1,11 @@
 let
-  rg-scout = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a";
-
   # Unsupported by agenix:
   #rg-yubikey-1-rk = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEwOBxayZyd/zGYyoTRN2rdIQM71nzVT3lISg2pNfrZRAAAABHNzaDo=";
 
-  users = [ rg-scout ];
+  users = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a rg@scout"
+    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJi2uB1uGKJSSVYq0zM1i26l5Lr+dWw1M+I73v9kdhNzdE995c8a4uIl0J5eU+3XV4LJP/AFLv1eRBaVInTVGQ8= rg@sazed-TPM"
+  ];
 
   scout = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
 
@@ -14,7 +15,9 @@ let
 
   sazed = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
 
-  workstations = [ scout sazed ];
+  vin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin";
+
+  workstations = [ scout sazed vin ];
 
   servers = [ spy saxton ];
 
@@ -23,11 +26,13 @@ let
     spy
     saxton
     sazed
+    vin
   ];
 in
 {
   #so ugly!
 
+  "RNLDEI-wireguard.age".publicKeys = workstations ++ users;
   "wakatime-config.age".publicKeys = systems ++ users;
   "ACME-env.age".publicKeys = systems ++ users;
   "sendmail-pass.age".publicKeys = systems ++ users;
@@ -43,7 +48,6 @@ in
   "scout/RGNet-key.age".publicKeys = [ scout ] ++ users;
   "scout/RGNet-cert.age".publicKeys = [ scout ] ++ users;
   "scout/unFTP-creds.age".publicKeys = [ scout ] ++ users;
-  "scout/RNLDEI-wireguard.age".publicKeys = [ scout ] ++ users;
 
   #Spy secrets
   "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;
@@ -71,7 +75,6 @@ in
   "saxton/ENV-bolsas-scraper.age".publicKeys = [ saxton ] ++ users;
   "saxton/HC-alive.age".publicKeys = [ saxton ] ++ users;
   "saxton/HC-bolsas.age".publicKeys = [ saxton ] ++ users;
-  # "saxton/HC-sirpt.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-sirptDNSBL.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-vaultwarden.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-rafael.age".publicKeys = [ saxton ] ++ users;
