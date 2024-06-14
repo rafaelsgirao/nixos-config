@@ -16,10 +16,12 @@ in
   ];
   hm.imports = [
     inputs.lan-mouse.homeManagerModules.default
+    ./ssh-tpm-agent.nix
   ];
   # improve desktop responsiveness when updating the system
   nix.daemonCPUSchedPolicy = "idle";
 
+  hm.services.ssh-tpm-agent.enable = true;
   programs.ccache.enable = true;
 
   # programs.kdeconnect = lib.mkIf (config.rg.class == "workstation") {
