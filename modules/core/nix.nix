@@ -33,12 +33,14 @@
     # Thanks @diogotcorreia
     trusted-users = [ ];
 
+    substituters = [ "https://cache.rafael.ovh/rgnet" ];
     trusted-substituters = [
-      "https://cache.spy.rafael.ovh"
+      "https://cache.rafael.ovh"
+
     ];
 
     trusted-public-keys = [
-      "cache.spy.rafael.ovh-2:GZTv+leVV7RtP6o5/ddthaqpW6Fw3LASE9Xw2E9xDv4="
+      "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="
     ];
 
     # Fallback quickly if substituters are not available.
