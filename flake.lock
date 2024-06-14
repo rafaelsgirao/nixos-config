@@ -304,6 +304,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1718011381,
+        "narHash": "sha256-sFXI+ZANp/OC+MwfJoZgPSf4xMdtzQMe1pS3FGti4C8=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "88ad3d7501e22b2401dd72734b032b7baa794434",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixinate": {
       "inputs": {
         "flake-parts": [
@@ -420,6 +440,7 @@
         "impermanence": "impermanence",
         "lan-mouse": "lan-mouse",
         "lanzaboote": "lanzaboote",
+        "nix-index-database": "nix-index-database",
         "nixinate": "nixinate",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

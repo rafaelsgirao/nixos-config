@@ -13,6 +13,7 @@ in
 {
   imports = [
     ./vscode.nix
+    inputs.nix-index-database.nixosModules.nix-index
   ];
   hm.imports = [
     inputs.lan-mouse.homeManagerModules.default

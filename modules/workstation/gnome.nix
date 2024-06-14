@@ -84,16 +84,18 @@
         "org/gnome/shell/app-switcher" = { current-workspace-only = false; };
 
         # "org/gnome/eog/ui" = { image-gallery = true; };
-        # "/org/gnome/settings-daemon/plugins/power" = {
-        #   sleep-inactive-battery-type = "suspend";
-        #   sleep-inactive-battery-timeout = lib.hm.gvariant.mkUint32 900;
-        #   sleep-inactive-ac-type = "nothing";
-        # };
+        "org/gnome/settings-daemon/plugins/power" = {
+          sleep-inactive-battery-type = "suspend";
+          sleep-inactive-battery-timeout = lib.hm.gvariant.mkUint32 900;
+          sleep-inactive-ac-type = "nothing";
+        };
         # };
 
-        "/org/gnome/shell/extensions/bedtime-mode".bedtime-mode-active = false;
-        "/org/gnome/desktop/a11y".always-show-universal-access-status = true;
-        "/org/gnome/desktop/interface".text-scaling-factor = lib.hm.gvariant.mkUfloat32 1.25;
+        "org/gnome/shell/extensions/bedtime-mode".bedtime-mode-active = false;
+
+        #TODO: would be cooler if these two were only enabled on laptops.
+        "org/gnome/desktop/a11y".always-show-universal-access-status = lib.mkDefault true;
+        "org/gnome/desktop/interface".text-scaling-factor = lib.mkDefault 1.25;
 
         "org/gnome/mutter" = {
           edge-tiling = lib.mkDefault true;

@@ -45,8 +45,6 @@ in
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
   };
 
-  # hm.home.packages = with pkgs; [ anki-bin ];
-
   environment.persistence."/state" = {
     # directories = [ ];
     users.rg = {
@@ -129,23 +127,31 @@ in
   ];
 
   services.xserver.displayManager.gdm.autoSuspend = false;
-  hm.programs.lan-mouse = {
-    enable = true;
-    # systemd = false;
-    # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # Optional configuration in nix syntax, see config.toml for available options
-    settings = {
-      bottom = {
-        # scout
-        activate_on_startup = true;
-        ips = [ "192.168.10.1" ];
-        port = 7742;
+
+  #dconf settings
+  hm = _: {
+    home.stateVersion = "24.05";
+    dconf.settings = {
+      "org/gnome/desktop/a11y".always-show-universal-access-status = false;
+      "org/gnome/desktop/interface".text-scaling-factor = 1.0;
+    };
+    programs.lan-mouse = {
+      enable = true;
+      # systemd = false;
+      # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # Optional configuration in nix syntax, see config.toml for available options
+      settings = {
+        bottom = {
+          # scout
+          activate_on_startup = true;
+          ips = [ "192.168.10.1" ];
+          port = 7742;
+        };
       };
     };
   };
 
   zramSwap.enable = true;
 
-  hm.home.stateVersion = "24.05";
   system.stateVersion = "24.05";
 }
