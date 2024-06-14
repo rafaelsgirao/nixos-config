@@ -43,7 +43,7 @@ in
 
       Service = {
         Environment = "'SSH_AUTH_SOCK=%t/${socket}'";
-        ExecStart = "${pkgs.ssh-tpm-agent}/bin/ssh-tpm-agent -l %t/${socket}";
+        ExecStart = "${pkgs.ssh-tpm-agent}/bin/ssh-tpm-agent -A %t/ssh-agent -l %t/${socket}";
         PassEnvironment = "SSH_AGENT_PID";
         SuccessExitStatus = "2";
         Type = "simple";
