@@ -322,6 +322,8 @@
         };
 
         flake = {
+          #So nix repl can access `self`, through outputs.self
+          inherit self;
 
           nixosConfigurations = mkHosts ./hosts;
           overlays =

@@ -15,7 +15,12 @@ in
   ];
 
 
+  # https://discourse.nixos.org/t/flakes-accessing-selfs-revision/11237/8
+  #                                      system.configurationRevision = toString (self.shortRev or self.dirtyShortRev or "unknown");
+  system.configurationRevision =
+    self.shortRev or (throw "Refusing to build from a dirty Git tree!");
   environment.etc."nixos/system-flake".source = self;
+  environment.etc."nixos/system-revision".text = self.rev;
   rg = {
     enable = true;
     domain = "rafael.ovh";
