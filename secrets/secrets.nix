@@ -10,13 +10,9 @@ let
   ];
 
   scout = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlOwjvhd+yIUCNLtK4q3nNT3sZNa/CfPcvuxXMU02Fq";
-
   spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
-
   saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
-
   sazed = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
-
   vin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin";
 
   workstations = [ scout sazed vin ];
@@ -43,7 +39,6 @@ in
   "restic-env.age".publicKeys = servers ++ users;
   "restic-password.age".publicKeys = servers ++ users;
   "SSH-config.age".publicKeys = workstations ++ users;
-  "BinaryCache-pub.age".publicKeys = systems ++ users;
   "ENV-mailrise.age".publicKeys = systems ++ users;
 
   #Scout secrets
@@ -53,14 +48,12 @@ in
 
   #Spy secrets
   "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;
-  "spy/BinaryCache-key.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-key.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-cert.age".publicKeys = [ spy ] ++ users;
   "spy/Transmission-creds.age".publicKeys = [ spy ] ++ users;
   "spy/HC-alive.age".publicKeys = [ spy ] ++ users;
   "spy/HC-nextcloud.age".publicKeys = [ spy ] ++ users;
   "spy/HC-backups.age".publicKeys = [ spy ] ++ users;
-  "spy/Restic-password.age".publicKeys = [ spy ] ++ users;
   "spy/Nextcloud-adminpass.age".publicKeys = [ spy ] ++ users;
   "spy/ENV-flood-ui.age".publicKeys = [ spy ] ++ users;
   "spy/ENV-frigate.age".publicKeys = [ spy ] ++ users;
@@ -76,7 +69,6 @@ in
   "saxton/RGNet-cert.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-bolsas-scraper.age".publicKeys = [ saxton ] ++ users;
   "saxton/HC-alive.age".publicKeys = [ saxton ] ++ users;
-  "saxton/HC-bolsas.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-sirptDNSBL.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-vaultwarden.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-rafael.age".publicKeys = [ saxton ] ++ users;
