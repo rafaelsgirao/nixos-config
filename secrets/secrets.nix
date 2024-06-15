@@ -2,8 +2,10 @@ let
   # Unsupported by agenix:
   #rg-yubikey-1-rk = "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEwOBxayZyd/zGYyoTRN2rdIQM71nzVT3lISg2pNfrZRAAAABHNzaDo=";
 
+  #FIXME: add more 'users' for redundancy!
   users = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a rg@scout"
+    "age1yubikey1qfwmheguzsuma4n9dq2vknkkh28d4vcnmvrv82gtzd6gf2scnel45wnnz44" # Yubikey age recipient
     # Age only supports RSA keys and ed25519 :( 
     #    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJi2uB1uGKJSSVYq0zM1i26l5Lr+dWw1M+I73v9kdhNzdE995c8a4uIl0J5eU+3XV4LJP/AFLv1eRBaVInTVGQ8= rg@sazed-TPM"
     #    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBxyt2Uhru+PIf9SKRF96AW05P9WuyR7NKbS6OZyElNjOT+1qmkeL82+7B5qeHsACA3ZRo4svorIS1Q8khLmexk= rg@vin-TPM"
@@ -23,6 +25,9 @@ let
 in
 {
   #so ugly!
+
+  #Secrets to be accessed manually, not programatically by machines.
+  "RGNet-key.age".publicKeys = users;
 
   #Secrets for workstations.
   "RNLDEI-wireguard.age".publicKeys = workstations ++ users;

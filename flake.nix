@@ -282,6 +282,7 @@
               tmux
               gitui
               htop
+              age-plugin-yubikey
             ];
             shellHook = '' 
             # export DEBUG=1
