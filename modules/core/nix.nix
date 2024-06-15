@@ -35,8 +35,7 @@
 
     substituters = [ "https://cache.rafael.ovh/rgnet" ];
     trusted-substituters = [
-      "https://cache.rafael.ovh"
-
+      "https://cache.rafael.ovh/rgnet"
     ];
 
     trusted-public-keys = [
@@ -44,7 +43,7 @@
     ];
 
     # Fallback quickly if substituters are not available.
-    connect-timeout = 5;
+    connect-timeout = 2;
 
     # The default at 10 is rarely enough.
     log-lines = lib.mkDefault 30;
