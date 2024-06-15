@@ -19,26 +19,25 @@ let
 
   servers = [ spy saxton ];
 
-  systems = [
-    scout
-    spy
-    saxton
-    sazed
-    vin
-  ];
+  systems = workstations ++ servers;
 in
 {
   #so ugly!
 
+  #Secrets for workstations.
   "RNLDEI-wireguard.age".publicKeys = workstations ++ users;
+  "SSH-config.age".publicKeys = workstations ++ users;
+
+  #Secrets for servers.
+  "restic-env.age".publicKeys = servers ++ users;
+  "restic-password.age".publicKeys = servers ++ users;
+
+  #Secrets for all.
   "wakatime-config.age".publicKeys = systems ++ users;
   "ACME-env.age".publicKeys = systems ++ users;
   "sendmail-pass.age".publicKeys = systems ++ users;
   "RGNet-CA.age".publicKeys = systems ++ users;
   "rclone-config.age".publicKeys = systems ++ users;
-  "restic-env.age".publicKeys = servers ++ users;
-  "restic-password.age".publicKeys = servers ++ users;
-  "SSH-config.age".publicKeys = workstations ++ users;
   "ENV-mailrise.age".publicKeys = systems ++ users;
 
   #Scout secrets
