@@ -5,6 +5,8 @@ let
   allowedSignersFile = pkgs.writeText "allowed_signers" ''
     rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDzCDVaFW2iJmjXHNRdAfa71OFpMzxMDn8bfumxU0f+5wXskNmjgNf+kYYH+lzigPU1rxzLgi8dysaWJd3XBiYw= rg-Signing@sazed[TPM]
     git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDzCDVaFW2iJmjXHNRdAfa71OFpMzxMDn8bfumxU0f+5wXskNmjgNf+kYYH+lzigPU1rxzLgi8dysaWJd3XBiYw= rg-Signing@sazed[TPM]
+    rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKc6a6LE0hQuWTgXxqUST9KETI/h3FXXEO09OhpoAd6BfBniQaPnCRt8fC3o5F4RQKIZnop41mGuYM2fDdvRwdw= rg-Signing@vin[TPM]
+    git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKc6a6LE0hQuWTgXxqUST9KETI/h3FXXEO09OhpoAd6BfBniQaPnCRt8fC3o5F4RQKIZnop41mGuYM2fDdvRwdw= rg-Signing@vin[TPM]
   '';
 in
 {
