@@ -288,7 +288,6 @@
           #TODO: would be cooler if the flake exposed something that could be used by 'nix profile install github:<...>'
           devShells.default = pkgs.mkShell {
             packages = with pkgs; [
-              neovim
               ripgrep
               fd
               curl

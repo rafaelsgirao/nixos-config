@@ -1,6 +1,7 @@
 { config, pkgs, lib, sshKeys, hostSecretsDir, self, ... }:
 let
   isVirt = config.rg.machineType == "virt";
+  isServer = config.rg.class == "server";
   # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 in
 {
@@ -18,9 +19,12 @@ in
   # https://discourse.nixos.org/t/flakes-accessing-selfs-revision/11237/8
   #                                      system.configurationRevision = toString (self.shortRev or self.dirtyShortRev or "unknown");
   system.configurationRevision =
-    self.shortRev or (throw "Refusing to build from a dirty Git tree!");
+    if isServer then
+      (self.shortRev or (throw "Refusing to build from a dirty Git tree!"))
+    else
+      (self.shortRev or self.dirtyShortRev);
   environment.etc."nixos/system-flake".source = self;
-  environment.etc."nixos/system-revision".text = self.rev;
+  environment.etc."nixos/system-revision".text = self.rev or self.dirtyRev;
   rg = {
     enable = true;
     domain = "rafael.ovh";

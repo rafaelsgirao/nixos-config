@@ -134,9 +134,12 @@ in
       #   };
       # };
     };
+    # Thanks =^)
+    # https://github.com/Pesteves2002/dotfiles/tree/nixos/profiles/nixvim
     programs.nixvim = {
       enable = true;
       defaultEditor = true;
+      colorscheme = "catppuccin-macchiato";
       colorschemes.catppuccin = {
         enable = true;
         settings = {
@@ -147,17 +150,37 @@ in
       viAlias = true;
       vimAlias = true;
       plugins = {
+        #Status bar on the bottom.
+        lualine.enable = true;
+        # Easy commenting
+        comment.enable = true;
+        #Show errors in-line.
+        trouble.enable = true;
+        # In-line git blame.
         gitsigns.enable = true;
+        # Auto add closing brackets, parentheses, etc.
+        nvim-autopairs.enable = true;
       };
+      extraConfigVim = ''
+        syntax on
+        set ruler
+        set number
+        let no_buffers_menu=1
+        set smartcase
+        set ignorecase
+        set incsearch
+        set tabstop=4
+        set softtabstop=4
+        set shiftwidth=4
+        set mouse=
+        set expandtab
+      '';
     };
 
     #    programs.neovim = {
     #      enable = true;
     #      coc.enable = true;
     #      #    defaultEditor = true;
-    #      viAlias = true;
-    #      vimAlias = true;
-    #      vimdiffAlias = true;
     #      extraConfig = ''
     #        syntax on
     #        set ruler
@@ -199,9 +222,7 @@ in
     #        }
     #
     #        vim-nix
-    #        vim-commentary
     #        vim-eunuch
-    #        catppuccin-nvim
     #        {
     #          plugin = vim-illuminate;
     #          config = "let g:Illuminate_delay = 100";
