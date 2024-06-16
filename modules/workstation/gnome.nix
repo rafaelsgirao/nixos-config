@@ -75,6 +75,11 @@
           # xkb-options = [ "lv3:ralt_switch" "ctrl:nocaps" ];
         ];
       };
+
+      "org/gnome/desktop/peripherals/keyboard" = {
+        delay = lib.hm.gvariant.mkUint32 246;
+        repeat-interval = lib.hm.gvariant.mkUint32 18;
+      };
       "org/gnome/settings-daemon/plugins/color" = {
         night-light-enabled = true;
         night-light-temperature = lib.hm.gvariant.mkUint32 1700;
