@@ -2,6 +2,10 @@
 let
   isWorkstation = config.rg.class == "workstation";
   config' = config;
+  allowedSignersFile = pkgs.writeText "allowed_signers" ''
+    rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDzCDVaFW2iJmjXHNRdAfa71OFpMzxMDn8bfumxU0f+5wXskNmjgNf+kYYH+lzigPU1rxzLgi8dysaWJd3XBiYw= rg-Signing@sazed[TPM]
+    git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDzCDVaFW2iJmjXHNRdAfa71OFpMzxMDn8bfumxU0f+5wXskNmjgNf+kYYH+lzigPU1rxzLgi8dysaWJd3XBiYw= rg-Signing@sazed[TPM]
+  '';
 in
 {
 
@@ -70,7 +74,7 @@ in
     programs.eza = {
       enable = true;
       enableFishIntegration = true;
-      git = true; #23.05
+      git = true;
       extraOptions = [
         "--group-directories-first"
         "--header"
@@ -116,24 +120,22 @@ in
           "git@git.spy.rafael.ovh:2222".insteadOf = "https://git.spy.rafael.ovh/";
         };
 
-        # "gpg \"ssh\"".allowedSignersFile = pkgs.writeText "allowed_signers" ''
-        #   git@rafael.ovh ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a rg@Scout
-        #   git@rafael.ovh sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPPsEKHGmtdhA+uqziPEGnJirEXfFQdqCDyIFJ2z1MKgAAAABHNzaDo= Yubikey-SSH
-        #   git@rafael.ovh sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPjOSq2fWLz3AyieIcFPYl5jYVvD1G/L35XkPcEKkPXCAAAAEnNzaDpZSy1naXQtc2lnbmluZw== Yubikey-Signing
-        #   rafael.s.girao@tecnico.ulisboa.pt ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a rg@Scout
-        #   rafael.s.girao@tecnico.ulisboa.pt sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPPsEKHGmtdhA+uqziPEGnJirEXfFQdqCDyIFJ2z1MKgAAAABHNzaDo= Yubikey-SSH
-        #   rafael.s.girao@tecnico.ulisboa.pt sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPjOSq2fWLz3AyieIcFPYl5jYVvD1G/L35XkPcEKkPXCAAAAEnNzaDpZSy1naXQtc2lnbmluZw== Yubikey-Signing
-        # '';
+        # SSH commit signing. See:
+        # https://docs.gitlab.com/ee/user/project/repository/signed_commits/ssh.html
+        gpg.ssh.allowedSignersFile = toString allowedSignersFile;
+
+        commit.gpgSign = lib.mkIf isWorkstation true;
+        gpg.format = "ssh";
+        user = lib.mkIf isWorkstation {
+          #`man ssh-keygen` reads:
+          # -Y sign:
+          #  The key used for signing is specified using the -f option and may refer to either a private key,
+          #  or a public key with the private half available via ssh-agent(1).
+          signingkey = "/home/rg/.ssh/id_gitsign_ecdsa.pub";
+        };
       };
-      #     # SSH commit signing
-      #     commit.gpgSign = true;
-      #     gpg.format = "ssh";
-      #     user = {
-      #       signingkey = "/home/rg/.ssh/id_ed25519_sk"; # FIX THIS ON SCOUT
-      #     };
-      #   };
-      # };
     };
+
     # Thanks =^)
     # https://github.com/Pesteves2002/dotfiles/tree/nixos/profiles/nixvim
     programs.nixvim = {
@@ -285,7 +287,6 @@ in
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
       NIXOS_OZONE_WL = "1";
     };
-    home.stateVersion = lib.mkDefault "23.05";
 
     programs.atuin = {
       enable = true;
