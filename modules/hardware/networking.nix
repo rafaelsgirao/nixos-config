@@ -14,10 +14,7 @@ in
     connectionConfig = {
       mdns = 2;
     };
-    insertNameservers = [ "192.168.10.9" "1.1.1.1" ];
   };
-
-  networking.nameservers = lib.mkIf isWorkstation [ "192.168.10.9" ];
 
   #resolved is bad software. it just doesn't work reliably.
   # Only keeping it in workstations for now, for mDNS/service-discovery.
@@ -27,10 +24,14 @@ in
     #Microsoft is giving up on LLMNR in favour of mDNS.
     llmnr = "false";
     dnssec = "allow-downgrade";
-    domains = [ config.rg.domain ];
     fallbackDns = [ "1.1.1.1#one.one.one.one" "9.9.9.9#dns.quad9.net" "2620:fe::9#dns.quad9.net" ];
     extraConfig = ''
       DNSOverTLS=opportunistic
+
+      # https://gist.github.com/brasey/fa2277a6d7242cdf4e4b7c720d42b567
+      [Resolve]
+      DNS=192.168.10.9
+      Domains=~rafael.ovh
     '';
   };
   services.avahi.enable = false;

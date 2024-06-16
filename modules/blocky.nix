@@ -57,7 +57,6 @@ in
         "scout" = "192.168.10.1";
         "scout.rafael.ovh" = "192.168.10.1";
 
-        # Discontinued
         "vin" = "192.168.10.2";
         "vin.rafael.ovh" = "192.168.10.2";
 
