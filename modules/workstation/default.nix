@@ -326,7 +326,7 @@ in
     };
   };
 
-  programs.nix-index = {
+  hm.programs.nix-index = {
     enable = true;
     enableFishIntegration = true;
     enableBashIntegration = true;
