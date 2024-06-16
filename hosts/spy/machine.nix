@@ -37,6 +37,7 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
+  hm.home.stateVersion = "21.11"; # Did you read the comment?
 
   # When upgrading postgres, see:
   # https://nixos.org/manual/nixos/stable/#module-services-postgres-upgrading
