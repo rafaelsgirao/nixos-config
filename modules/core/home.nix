@@ -24,7 +24,11 @@ in
     ".local/share/zoxide"
   ];
   hm = { config, ... }: {
-    imports = [ (inputs.impermanence + "/home-manager.nix") ];
+    imports = [
+      (inputs.impermanence + "/home-manager.nix")
+      inputs.nixvim.homeManagerModules.nixvim
+    ];
+
     home.homeDirectory = "/home/rg";
     home.username = "rg";
 
@@ -130,71 +134,87 @@ in
       #   };
       # };
     };
-
-    programs.neovim = {
+    programs.nixvim = {
       enable = true;
-      coc.enable = true;
-      #    defaultEditor = true;
+      defaultEditor = true;
+      colorschemes.catppuccin = {
+        enable = true;
+        settings = {
+          flavour = "macchiato";
+        };
+      };
+
       viAlias = true;
       vimAlias = true;
-      vimdiffAlias = true;
-      extraConfig = ''
-        syntax on
-        set ruler
-        set number
-        let no_buffers_menu=1
-        set smartcase
-        set ignorecase
-        set incsearch
-        set tabstop=4
-        set softtabstop=4
-        set shiftwidth=4
-        set mouse=
-        set expandtab
-        colorscheme catppuccin-macchiato
-      '';
-      plugins = with pkgs.vimPlugins; [
-        {
-          plugin = gitsigns-nvim;
-          type = "lua";
-          config = ''
-            require('gitsigns').setup{
-              signs = {
-                add = {  text = '+' },
-              },
-              current_line_blame = true,
-              on_attach = function(bufnr)
-                local gs = package.loaded.gitsigns
-
-                local function map(mode, l, r, opts)
-                  opts = opts or {}
-                  opts.buffer = bufnr
-                  vim.keymap.set(mode, l, r, opts)
-                end
-
-                map('n', '<leader>gb', gs.toggle_current_line_blame)
-              end,
-            }
-          '';
-        }
-
-        vim-nix
-        vim-commentary
-        vim-eunuch
-        catppuccin-nvim
-        {
-          plugin = vim-illuminate;
-          config = "let g:Illuminate_delay = 100";
-        }
-        {
-          plugin = delimitMate;
-          config = ''
-            let delimitMate_expand_cr = 2
-            let delimitMate_expand_space = 1
-          '';
-        }
-      ];
+      plugins = {
+        gitsigns.enable = true;
+      };
     };
+
+    #    programs.neovim = {
+    #      enable = true;
+    #      coc.enable = true;
+    #      #    defaultEditor = true;
+    #      viAlias = true;
+    #      vimAlias = true;
+    #      vimdiffAlias = true;
+    #      extraConfig = ''
+    #        syntax on
+    #        set ruler
+    #        set number
+    #        let no_buffers_menu=1
+    #        set smartcase
+    #        set ignorecase
+    #        set incsearch
+    #        set tabstop=4
+    #        set softtabstop=4
+    #        set shiftwidth=4
+    #        set mouse=
+    #        set expandtab
+    #        colorscheme catppuccin-macchiato
+    #      '';
+    #      plugins = with pkgs.vimPlugins; [
+    #        {
+    #          plugin = gitsigns-nvim;
+    #          type = "lua";
+    #          config = ''
+    #            require('gitsigns').setup{
+    #              signs = {
+    #                add = {  text = '+' },
+    #              },
+    #              current_line_blame = true,
+    #              on_attach = function(bufnr)
+    #                local gs = package.loaded.gitsigns
+    #
+    #                local function map(mode, l, r, opts)
+    #                  opts = opts or {}
+    #                  opts.buffer = bufnr
+    #                  vim.keymap.set(mode, l, r, opts)
+    #                end
+    #
+    #                map('n', '<leader>gb', gs.toggle_current_line_blame)
+    #              end,
+    #            }
+    #          '';
+    #        }
+    #
+    #        vim-nix
+    #        vim-commentary
+    #        vim-eunuch
+    #        catppuccin-nvim
+    #        {
+    #          plugin = vim-illuminate;
+    #          config = "let g:Illuminate_delay = 100";
+    #        }
+    #        {
+    #          plugin = delimitMate;
+    #          config = ''
+    #            let delimitMate_expand_cr = 2
+    #            let delimitMate_expand_space = 1
+    #          '';
+    #        }
+    #      ];
+    #    };
 
     programs.fish = {
       enable = true;
@@ -277,7 +297,7 @@ in
 
     programs.gitui = {
       enable = true;
-      # https://github.com/catppuccin/gitui/blob/main/themes/catppuccin-macchiato.ron
+      # https://github.com/mcatppuccin/gitui/blob/main/themes/catppuccin-macchiato.ron
       theme = ''
         (
             selected_tab: Some("Reset"),

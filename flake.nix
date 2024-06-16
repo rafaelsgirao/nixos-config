@@ -72,6 +72,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-24.05";
+      inputs = {
+        #FIXME: make PR so that these lines can be uncommented
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home";
+        flake-parts.follows = "flake-parts";
+        nix-darwin.follows = "";
+        #        devshell.follows = "";
+        #        git-hooks.follows = "";
+        flake-compat.follows = "flake-compat";
+        #        treefmt-nix.follows = "";
+      };
+    };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # ------------------------
