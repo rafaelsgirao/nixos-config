@@ -39,12 +39,11 @@
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "!nixp" ];
         };
-        # defaultSearchProviderSearchURL = "https://startpage.com/search?query={searchTerms}";
         "StartPage" = {
           urls = [{
-            template = "https://startpage.com/search";
+            template = "https://startpage.com/sp/search";
             params = [
-              { name = "query"; value = "{searchTerms}"; }
+              { name = "q"; value = "{searchTerms}"; }
             ];
           }];
 
