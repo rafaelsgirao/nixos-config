@@ -24,12 +24,12 @@ let
   systems = workstations ++ servers;
 in
 {
-  #so ugly!
+  #TODO: this so ugly!
 
-  #Secrets to be accessed manually, not programatically by machines.
+  # secrets to be accessed manually, not programatically by machines.
   "RGNet-key.age".publicKeys = users;
 
-  #Secrets for workstations.
+  # secrets for workstations.
   "RNLDEI-wireguard.age".publicKeys = workstations ++ users;
   "SSH-config.age".publicKeys = workstations ++ users;
 
@@ -37,7 +37,7 @@ in
   "restic-env.age".publicKeys = servers ++ users;
   "restic-password.age".publicKeys = servers ++ users;
 
-  #Secrets for all.
+  # secrets for all.
   "wakatime-config.age".publicKeys = systems ++ users;
   "ACME-env.age".publicKeys = systems ++ users;
   "sendmail-pass.age".publicKeys = systems ++ users;
@@ -45,12 +45,12 @@ in
   "rclone-config.age".publicKeys = systems ++ users;
   "ENV-mailrise.age".publicKeys = systems ++ users;
 
-  #Scout secrets
+  # scout secrets.
   "scout/RGNet-key.age".publicKeys = [ scout ] ++ users;
   "scout/RGNet-cert.age".publicKeys = [ scout ] ++ users;
   "scout/unFTP-creds.age".publicKeys = [ scout ] ++ users;
 
-  #Spy secrets
+  # spy secrets.
   "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-key.age".publicKeys = [ spy ] ++ users;
   "spy/RGNet-cert.age".publicKeys = [ spy ] ++ users;
@@ -66,7 +66,7 @@ in
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
 
-  #saxton secrets
+  # saxton secrets.
   "saxton/ENV-ist-discord-bot.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-WCBot.age".publicKeys = [ saxton ] ++ users;
   "saxton/RGNet-key.age".publicKeys = [ saxton ] ++ users;
@@ -78,8 +78,12 @@ in
   "saxton/Mailserver-pwd-rafael.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-machines.age".publicKeys = [ saxton ] ++ users;
 
-  #Sazed secrets
+  # sazed secrets.
   "sazed/RGNet-key.age".publicKeys = [ sazed ] ++ users;
   "sazed/RGNet-cert.age".publicKeys = [ sazed ] ++ users;
+
+  # vin secrets.
+  "vin/RGNet-key.age".publicKeys = [ vin ] ++ users;
+  "vin/RGNet-cert.age".publicKeys = [ vin ] ++ users;
 
 }
