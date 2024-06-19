@@ -29,6 +29,9 @@ in
     ../../modules/blocky.nix
   ];
 
+  networking.networkmanager.enable = lib.mkForce true;
+  networking.networkmanager.unmanaged = [ "eth0" ];
+
   services.nextcloud.home = "/data/nextcloud-nixos";
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -58,16 +61,6 @@ in
     class = "server";
     isBuilder = true;
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
-  };
-
-  nix = {
-    settings = {
-
-      system-features = [
-        "big-parallel"
-        "kvm"
-      ];
-    };
   };
 
   environment.persistence."/pst".directories = [
