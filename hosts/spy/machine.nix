@@ -59,7 +59,7 @@ in
     machineId = "42ef768cc806409b923c6044269f9902";
     machineType = "intel";
     class = "server";
-    isBuilder = true;
+    isBuilder = false;
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
   };
 
