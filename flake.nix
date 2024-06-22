@@ -188,6 +188,7 @@
       # inherit (inputs.nixpkgs) lib;
       lib = inputs.nixpkgs.lib // inputs.flake-parts.lib // inputs.home.lib;
       inherit (lib) mapAttrs;
+      fs = lib.fileset;
 
       user = "rg";
 
@@ -343,11 +344,24 @@
           nixosConfigurations = mkHosts ./hosts;
           overlays =
             let
-              overlaysDir = ./overlays;
-              # Thanks Borges
+              # https://nix.dev/tutorials/working-with-local-files.html
+              sourceFiles = fs.unions [
+                (fs.fileFilter
+                  (file: file.hasExt "nix")
+                  ./overlays
+                )
+              ];
+              overlaysDir = fs.toSource {
+                root = ./overlays;
+                fileset = sourceFiles;
+              };
+
               myOverlays = mapAttrs
-                (name: _: import "${overlaysDir}/${name}" { inherit inputs; })
+                # Can't use overlaysDir here because I want to access non-overlay files in overlays dir
+                # And `overlaysDir` doesn't have them
+                (name: _: import ./overlays/${name} { inherit inputs; })
                 (readDir overlaysDir);
+
             in
             {
 
@@ -377,4 +391,3 @@
         };
       };
 }
-

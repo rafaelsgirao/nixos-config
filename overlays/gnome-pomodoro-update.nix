@@ -14,6 +14,17 @@ _final: prev:
       hash = "sha256-agRb5yzJ6McIhhbE092AZY4t8l81qOpwDhe/2Yj+bzw=";
     };
 
+    patches = [
+      # Our glib setup hooks moves GSettings schemas to a subdirectory to prevent conflicts.
+      # We need to patch the build script so that the extension can find them.
+      # (prev.substituteAll {
+      #   src = ./gnome-pomodoro.patch;
+      #   # src = . + "../files/gnome-pomodoro.patch" ;
+      #   inherit (attrs) pname;
+      #   inherit version;
+      # })
+    ];
+
 
   });
 }
