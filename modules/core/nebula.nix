@@ -39,6 +39,15 @@ in
         disconnect_invalid = true;
 
       };
+      lighthouse = {
+        local_allow_list = {
+          interfaces = {
+            # don't advertise docker IPs to lighthouse
+            "docker.*" = false;
+            "br-[0-9a-f]{12}" = false;
+          };
+        };
+      };
       listen = {
         send_recv_error = "private";
       };
