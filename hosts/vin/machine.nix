@@ -12,6 +12,7 @@
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
 
+    ../../modules/captive-portal.nix
     ../../modules/hardware/laptop.nix
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
