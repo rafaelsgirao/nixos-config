@@ -1,7 +1,6 @@
 # Browser to login into WiFi captive portals
 # Shamelessly stolen from https://github.com/diogotcorreia/dotfiles/blob/77054e9886fc22628dee3449a28a19a1b73441dc/profiles/graphical/captive-portals-client.nix#L1
-{ config
-, lib
+{ lib
 , pkgs
 , # profiles,
   ...
@@ -12,7 +11,7 @@ let
 in
 {
   imports = [
-    ./workstation/firefox.nix;
+    ./workstation/firefox.nix
   ];
 
   programs.captive-browser = {
