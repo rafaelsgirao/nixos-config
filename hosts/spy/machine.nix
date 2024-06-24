@@ -167,7 +167,7 @@ in
   };
 
   services.caddy.globalConfig = ''
-    default_bind ${config.rg.ip}
+    default_bind ${config.rg.ip} 127.0.0.1 ::1
   '';
   services.caddy.virtualHosts = {
     "git.${fqdn}" = {

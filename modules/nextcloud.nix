@@ -19,6 +19,7 @@ in
   #Nextcloud
   services.nextcloud = {
     enable = true;
+    https = true;
     package = pkgs.nextcloud29;
     webfinger = true;
     hostName = ncHost;
