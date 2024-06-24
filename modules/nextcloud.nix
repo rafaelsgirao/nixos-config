@@ -58,16 +58,16 @@ in
       preview_imaginary_url = "http://${config.services.imaginary.address}:${toString config.services.imaginary.port}";
       mail_smtpmode = "sendmail";
       mail_sendmailmode = "pipe";
-      notify_push = {
-        enable = true;
-        bendDomainToLocalhost = true;
-      };
       #Memories options
       memories.vod.ffmpeg = "${pkgs.jellyfin-ffmpeg}/bin/ffmpeg";
       memories.vod.ffprobe = "${pkgs.jellyfin-ffmpeg}/bin/ffprobe";
     };
 
 
+    notify_push = {
+      enable = true;
+      bendDomainToLocalhost = true;
+    };
 
     # extraApps = with config.services.nextcloud.package.packages.apps; {
     #   inherit calendar contacts deck tasks twofactor_webauthn;
@@ -120,25 +120,6 @@ in
     enable = true;
     settings.return-size = true;
   };
-
-  #TODO: substituir isto pelo plugin do nextcloud do inotify.
-  # Se voltar a ativar isto, dar fix à env var HC_NEXTCLOUD_SCAN que atm não existe.
-  #inotify plugin não serve actually - é só para external storage
-  # systemd.services."nextcloud-file-scan-rg" = {
-  #   serviceConfig.Type = "oneshot";
-  #   script =
-  #     "/run/current-system/sw/bin/nextcloud-occ files:scan rg && ${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_NEXTCLOUD_SCAN";
-  # };
-
-  # systemd.timers."nextcloud-file-scan-rg" = {
-  #   wantedBy = [ "timers.target" ];
-  #   partOf = [ "nextcloud-file-scan-rg.service" ];
-  #   timerConfig = {
-  #     OnBootSec = "1d";
-  #     OnUnitInactiveSec =
-  #       "1d"; # Scanning seems to take ~45min, so run this less frequently
-  #   };
-  # };
 
   systemd.services."nextcloud-setup" = {
     requires = [ "postgresql.service" ];
