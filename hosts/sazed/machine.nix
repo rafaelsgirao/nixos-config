@@ -35,6 +35,9 @@ in
   services.zfs.expandOnBoot = "all";
   security.pki.certificateFiles = [ "${RNLCert}" ];
   users.users.rg.extraGroups = [ "docker" ];
+  #To make VS Code remote SSH work without too much hassle/timesink
+  programs.nix-ld.enable = true;
+
 
   rg = {
     ip = "192.168.10.5";
