@@ -31,6 +31,7 @@ in
 
   # };
 
+  networking.useDHCP = false;
   #Enable SSH agent on boot
   programs.ssh.startAgent = true;
 

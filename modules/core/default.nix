@@ -130,6 +130,8 @@ in
       "render"
       "scanner"
       "lp"
+      "uinput" #maybe this will exist but not sure
+      "input"
       "caddy" #To access/modify sites' content
       "adbusers"
       "networkmanager"

@@ -188,6 +188,7 @@
     # DualShock 3 over Bluetooth
     KERNEL=="hidraw*", KERNELS=="*054C:0268*", MODE="0666"
 
+    KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
   '';
 
 }

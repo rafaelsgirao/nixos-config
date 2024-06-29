@@ -45,6 +45,7 @@ in
             # don't advertise docker IPs to lighthouse
             "docker.*" = false;
             "br-[0-9a-f]{12}" = false;
+            "rnl0" = false;
           };
         };
       };
@@ -60,7 +61,7 @@ in
         drop_multicast = false;
       };
     };
-    listen.host = "[::]";
+    listen.host = "::";
     staticHostMap = {
       "192.168.10.9" =
         [ "128.140.110.89:4242" "[2a01:4f8:1c1e:aead::1]:4242" ];
