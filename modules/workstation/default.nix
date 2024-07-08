@@ -317,6 +317,7 @@ in
     ".config/attic"
   ];
 
+  users.users.rg.extraGroups = [ "kvm" ];
   hm.programs.mpv = {
     enable = true;
     scripts = [ pkgs.mpvScripts.mpris ];
