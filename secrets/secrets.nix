@@ -34,10 +34,10 @@ in
   "SSH-config.age".publicKeys = workstations ++ users;
 
   #Secrets for servers.
-  "restic-env.age".publicKeys = servers ++ users;
-  "restic-password.age".publicKeys = servers ++ users;
 
   # secrets for all.
+  "restic-env.age".publicKeys = systems ++ users;
+  "restic-password.age".publicKeys = systems ++ users;
   "wakatime-config.age".publicKeys = systems ++ users;
   "ACME-env.age".publicKeys = systems ++ users;
   "sendmail-pass.age".publicKeys = systems ++ users;

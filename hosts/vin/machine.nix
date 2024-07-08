@@ -19,6 +19,7 @@
     ../../modules/impermanence.nix
     ../../modules/docker.nix
     ../../modules/dei.nix
+    ../../modules/restic.nix
   ];
 
   programs.gamemode.enable = true;
