@@ -40,7 +40,7 @@
       files = [
       ];
       directories = [
-        ".fly"
+        ".local/share/fly"
         ".config/chromium"
         ".config/joplin-desktop"
         ".config/Joplin"

@@ -302,6 +302,10 @@ in
     CARGO_HOME = "\"$XDG_DATA_HOME\"/rustup";
     RUSTUP_HOME = "\"$XDG_DATA_HOME\"/cargo";
     ANDROID_HOME = "\"$XDG_DATA_HOME\"/android";
+    FLY_CONFIG_DIR = "\"$XDG_STATE_HOME\"/fly";
+    GNUPGHOME = "\"$XDG_DATA_HOME\"/gnupg";
+    #xdg-ninja recommendations - end
+
   };
   environment.persistence."/state".users.rg.directories = [
     ".local/share/android"

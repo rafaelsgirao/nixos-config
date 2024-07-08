@@ -42,7 +42,7 @@
       files = [
       ];
       directories = [
-        ".fly"
+        ".local/share/fly"
         ".config/chromium"
         ".config/Sonixd"
         ".local/share/ykman"
