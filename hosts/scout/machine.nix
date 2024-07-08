@@ -41,8 +41,6 @@
       ];
       directories = [
         ".fly"
-        ".vscode"
-        ".config/Code"
         ".config/chromium"
         ".config/joplin-desktop"
         ".config/Joplin"

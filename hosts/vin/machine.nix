@@ -42,8 +42,6 @@
       ];
       directories = [
         ".fly"
-        ".vscode"
-        ".config/Code"
         ".config/chromium"
         ".config/Sonixd"
         ".local/share/ykman"

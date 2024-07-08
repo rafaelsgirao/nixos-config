@@ -37,6 +37,7 @@ in
   users.users.rg.extraGroups = [ "docker" ];
   #To make VS Code remote SSH work without too much hassle/timesink
   programs.nix-ld.enable = true;
+  programs.nix-ld.package = pkgs.nix-ld-rs;
 
 
   rg = {
@@ -54,8 +55,6 @@ in
       files = [
       ];
       directories = [
-        ".vscode"
-        ".config/Code"
         ".m2"
 
 
