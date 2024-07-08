@@ -90,7 +90,6 @@ in
   networking = {
     inherit (config.rg) domain;
     usePredictableInterfaceNames = false;
-    interfaces.eth0.useDHCP = lib.mkDefault true;
     firewall = {
       enable = true;
       allowedTCPPorts = [
@@ -119,6 +118,7 @@ in
   environment.pathsToLink = [ "/libexec" ];
 
   users.mutableUsers = false;
+  users.defaultUserShell = pkgs.fish;
 
   users.users.rg = {
     uid = 1000;

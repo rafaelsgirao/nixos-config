@@ -55,7 +55,7 @@ in
 
   rg = {
     ip = "192.168.10.6";
-    ipv4 = "192.168.1.80";
+    ipv4 = "192.168.1.50";
     machineId = "42ef768cc806409b923c6044269f9902";
     machineType = "intel";
     class = "server";
@@ -184,7 +184,7 @@ in
       useACMEHost = "rafael.ovh";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://192.168.1.1:80
+        reverse_proxy http://192.168.1.254:80
       '';
     };
     "cloud.${fqdn}" = {
