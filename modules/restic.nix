@@ -34,7 +34,7 @@ in
   };
 
   #Backups for servers
-  services.restic.backups."${hostname}-oneDriveIST" = lib.mkIf (config.rg.class == "server")
+  services.restic.backups."${hostname}-oneDriveIST" = lib.mkIf (config.rg.class == "server") (commonOpts //
     {
       repository = "rclone:oneDriveIST:/Restic-Backups";
       timerConfig = {
@@ -50,17 +50,18 @@ in
         "/state/backups" #Backup files/dumps that are created by other tools & services, e.g postgresql, gitea, vaultwarden
       ];
       extraBackupArgs = [ "--exclude-caches" "--verbose" ];
-    } // commonOpts;
+    });
 
   #Backups for workstations
-  services.restic.backups."${hostname}" = lib.mkIf (config.rg.class == "workstation")
+  services.restic.backups."onedriveIST" = lib.mkIf (config.rg.class == "workstation") (commonOpts //
     {
       timerConfig = null; #only run when explicitly started
-      repositoryFile = "/state/backups/restic-repo";
+      repository = "rclone:oneDriveIST:/Restic-Backups";
+      # repositoryFile = "/state/backups/restic-repo";
       paths = lib.mkDefault [
         "/pst"
       ];
 
-    } // commonOpts;
+    });
 
 }
