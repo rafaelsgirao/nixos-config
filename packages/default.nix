@@ -22,6 +22,8 @@ rec {
 
   go-vod = callPackage ./go-vod { };
 
+  drawj2d = callPackage ./drawj2d { };
+
   mavend = callPackage ./mavend { };
   # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
   chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
