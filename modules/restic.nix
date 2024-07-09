@@ -37,34 +37,37 @@ in
   };
 
   #Backups for servers
-  services.restic.backups."${provider}" = lib.mkIf (config.rg.class == "server") (commonOpts //
-    {
-      repository = "rclone:${provider}:/Restic-Backups";
-      timerConfig = {
-        OnCalendar = "*-*-* 1:15:00";
-        Persistent = true;
-        RandomizedDelaySec = "5h";
-      };
+  services.restic.backups."${provider}" =
+    if (config.rg.class == "server") then
+      (commonOpts //
+        {
+          repository = "rclone:${provider}:/Restic-Backups";
+          timerConfig = {
+            OnCalendar = "*-*-* 1:15:00";
+            Persistent = true;
+            RandomizedDelaySec = "5h";
+          };
 
-      backupCleanupCommand = lib.mkDefault "${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_${hostnameUpper}";
+          backupCleanupCommand = lib.mkDefault "${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_${hostnameUpper}";
 
-      paths = lib.mkDefault [
-        "/pst"
-        "/state/backups" #Backup files/dumps that are created by other tools & services, e.g postgresql, gitea, vaultwarden
-      ];
-      extraBackupArgs = [ "--exclude-caches" "--verbose" ];
-    });
+          paths = lib.mkDefault [
+            "/pst"
+            "/state/backups" #Backup files/dumps that are created by other tools & services, e.g postgresql, gitea, vaultwarden
+          ];
+          extraBackupArgs = [ "--exclude-caches" "--verbose" ];
+        })
 
-  #Backups for workstations
-  services.restic.backups."${provider}" = lib.mkIf (config.rg.class == "workstation") (commonOpts //
-    {
-      timerConfig = null; #only run when explicitly started
-      repository = "rclone:${provider}:/Restic-Backups";
-      # repositoryFile = "/state/backups/restic-repo";
-      paths = lib.mkDefault [
-        "/pst"
-      ];
+    else
+    #Backups for workstations
+      (commonOpts //
+        {
+          timerConfig = null; #only run when explicitly started
+          repository = "rclone:${provider}:/Restic-Backups";
+          # repositoryFile = "/state/backups/restic-repo";
+          paths = lib.mkDefault [
+            "/pst"
+          ];
 
-    });
+        });
 
 }
