@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
   # Being headless, we don't need a GRUB splash image.
   boot.loader.grub.splashImage = null;
@@ -60,10 +60,6 @@
 
   # environment.memoryAllocator.provider = "graphene-hardened";
   # boot.kernelPackages = lib.mkForce pkgs.linuxPackages_hardened;
-
-  environment.systemPackages = with pkgs; [
-    restic
-  ];
 
   boot.initrd.includeDefaultModules = false;
 
