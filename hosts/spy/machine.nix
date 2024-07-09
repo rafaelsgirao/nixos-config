@@ -1,6 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   inherit (config.rg) ip;
+  inherit (config.rg) domain;
   inherit (config.networking) fqdn;
 in
 {
@@ -171,34 +172,34 @@ in
   '';
   services.caddy.virtualHosts = {
     "git.${fqdn}" = {
-      useACMEHost = "rafael.ovh";
+      useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
         reverse_proxy unix//run/gitea/gitea.sock
       '';
     };
     "kuma.${fqdn}" = {
-      useACMEHost = "rafael.ovh";
+      useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
         reverse_proxy http://127.0.0.1:29377
       '';
     };
     "router.${fqdn}" = {
-      useACMEHost = "rafael.ovh";
+      useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
         reverse_proxy http://192.168.1.254:80
       '';
     };
     "cloud.${fqdn}" = {
-      useACMEHost = "rafael.ovh";
+      useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
         reverse_proxy http://${config.rg.ip}:5050
       '';
     };
-    "cache.${domain}" = {
+    "cache.${fqdn}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
