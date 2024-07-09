@@ -3,6 +3,7 @@
 let
   hostname = config.networking.hostName;
   hostnameUpper = lib.toUpper hostname;
+  provider = config.rg.backupsProvider;
 
   commonOpts = {
     rcloneConfigFile = config.age.secrets."rclone.conf".path;
@@ -21,6 +22,8 @@ let
 in
 {
 
+  rg.backupsProvider = "storagebox";
+
   age.secrets = {
     "rclone.conf" = {
       file = "${hostSecretsDir}/../rclone-config.age";
@@ -34,9 +37,9 @@ in
   };
 
   #Backups for servers
-  services.restic.backups."${hostname}-storagebox" = lib.mkIf (config.rg.class == "server") (commonOpts //
+  services.restic.backups."${provider}" = lib.mkIf (config.rg.class == "server") (commonOpts //
     {
-      repository = "rclone:storagebox:/Restic-Backups";
+      repository = "rclone:${provider}:/Restic-Backups";
       timerConfig = {
         OnCalendar = "*-*-* 1:15:00";
         Persistent = true;
@@ -53,10 +56,10 @@ in
     });
 
   #Backups for workstations
-  services.restic.backups."onedriveIST" = lib.mkIf (config.rg.class == "workstation") (commonOpts //
+  services.restic.backups."${provider}" = lib.mkIf (config.rg.class == "workstation") (commonOpts //
     {
       timerConfig = null; #only run when explicitly started
-      repository = "rclone:storagebox:/Restic-Backups";
+      repository = "rclone:${provider}:/Restic-Backups";
       # repositoryFile = "/state/backups/restic-repo";
       paths = lib.mkDefault [
         "/pst"

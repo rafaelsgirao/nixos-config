@@ -124,7 +124,7 @@ in
 
 
   #Restic Backups
-  services.restic.backups."spy-oneDriveIST" = {
+  services.restic.backups."${config.rg.backupsProvider}" = {
     backupPrepareCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --on";
     backupCleanupCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --off && ${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_SPY";
     paths = [

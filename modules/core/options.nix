@@ -32,6 +32,7 @@ in
         default = null;
       };
       domain = mkOption { type = types.str; };
+      backupsProvider = mkOption { type = types.str; };
       ip = mkOption { type = types.str; };
       ipv4 = mkOption { type = types.str; };
       ipv6 = mkOption { type = types.str; };
