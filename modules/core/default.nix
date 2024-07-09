@@ -241,6 +241,7 @@ in
     nmap
     rustscan
     nload
+    nix-output-monitor
   ]
   ++ lib.optionals (!isVirt)
     [

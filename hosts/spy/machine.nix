@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }:
 let
-  hostname = config.networking.hostName;
   inherit (config.rg) ip;
   inherit (config.networking) fqdn;
 in
@@ -162,11 +161,16 @@ in
     stateDir = "/data/gitea-nixos";
   };
 
+  #Hairpinning of local services.
+  networking.hosts = {
+    "127.0.0.1" = [ "cache.rafael.ovh" ];
+  };
+
   services.caddy.globalConfig = ''
     default_bind ${config.rg.ip}
   '';
   services.caddy.virtualHosts = {
-    "git.${hostname}.rafael.ovh" = {
+    "git.${fqdn}" = {
       useACMEHost = "rafael.ovh";
       extraConfig = ''
         encode zstd gzip
@@ -191,16 +195,14 @@ in
       useACMEHost = "rafael.ovh";
       extraConfig = ''
         encode zstd gzip
-        #enable HSTS (180 days, minimum to pass nextcloud check)
-        header Strict-Transport-Security max-age=31536000;
         reverse_proxy http://${config.rg.ip}:5050
       '';
     };
-    "sunshine.${hostname}.rafael.ovh" = {
-      useACMEHost = "rafael.ovh";
+    "cache.${domain}" = {
+      useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy https://localhost:47990
+        reverse_proxy http://192.168.10.6:33763
       '';
     };
   };
