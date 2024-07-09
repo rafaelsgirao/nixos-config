@@ -34,9 +34,9 @@ in
   };
 
   #Backups for servers
-  services.restic.backups."${hostname}-oneDriveIST" = lib.mkIf (config.rg.class == "server") (commonOpts //
+  services.restic.backups."${hostname}-storagebox" = lib.mkIf (config.rg.class == "server") (commonOpts //
     {
-      repository = "rclone:oneDriveIST:/Restic-Backups";
+      repository = "rclone:storagebox:/Restic-Backups";
       timerConfig = {
         OnCalendar = "*-*-* 1:15:00";
         Persistent = true;
@@ -56,7 +56,7 @@ in
   services.restic.backups."onedriveIST" = lib.mkIf (config.rg.class == "workstation") (commonOpts //
     {
       timerConfig = null; #only run when explicitly started
-      repository = "rclone:oneDriveIST:/Restic-Backups";
+      repository = "rclone:storagebox:/Restic-Backups";
       # repositoryFile = "/state/backups/restic-repo";
       paths = lib.mkDefault [
         "/pst"
