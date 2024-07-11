@@ -45,6 +45,10 @@ in
       clock24 = true;
       historyLimit = 20000;
       mouse = true;
+      extraConfig = ''
+        # Allows searching stdout buffer with `Ctrl /`
+        bind-key / copy-mode \; send-keys C-S
+      '';
     };
 
     xdg.enable = true;
