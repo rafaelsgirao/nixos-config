@@ -47,6 +47,7 @@
       # url = "github:matthewcroughan/nixinate";
       url = "github:rafaelsgirao/nixinate?ref=feat/test-2";
       # url = "git+file:///home/rg/Documents/repos/nixinate";
+      # url = "path:///home/rg/Documents/repos/nixinate";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
