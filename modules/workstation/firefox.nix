@@ -13,7 +13,7 @@
       # '';
 
       search.force = true;
-      search.default = "StartPage";
+      search.default = "DuckDuckGo";
       search.engines = {
         "Arch Wiki" = {
           urls = [{
@@ -39,17 +39,17 @@
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "!nixp" ];
         };
-        "StartPage" = {
-          urls = [{
-            template = "https://startpage.com/sp/search";
-            params = [
-              { name = "q"; value = "{searchTerms}"; }
-            ];
-          }];
-
-          # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "!sp" ];
-        };
+        # "StartPage" = {
+        #   urls = [{
+        #     template = "https://startpage.com/sp/search";
+        #     params = [
+        #       { name = "q"; value = "{searchTerms}"; }
+        #     ];
+        #   }];
+        #
+        #   # icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        #   definedAliases = [ "!sp" ];
+        # };
 
         "NixOS Wiki" = {
           urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
