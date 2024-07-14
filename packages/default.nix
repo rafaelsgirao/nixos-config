@@ -20,6 +20,8 @@ rec {
 
   flatpak-xdg-utils = pkgs.callPackage ./flatpak-xdg-utils { };
 
+  howdy = pkgs.callPackage ./howdy { };
+
   go-vod = callPackage ./go-vod { };
 
   drawj2d = callPackage ./drawj2d { };

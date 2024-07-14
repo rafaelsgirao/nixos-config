@@ -4,49 +4,41 @@
 , meson
 , ninja
 , pkg-config
-, glib
+, libevdev
+, inih
+, python3
+, python3Packages
 , cmake
+, pam
 }:
 
 stdenv.mkDerivation rec {
-  pname = "flatpak-xdg-utils";
-  version = "1.0.5";
+  pname = "howdy";
+  version = "0.0.1"; #Fake!
 
   src = fetchFromGitHub {
-    owner = "flatpak";
-    repo = "flatpak-xdg-utils";
-    rev = version;
-    hash = "sha256-TqUV8QpBti+86FElCdHXifIS2dsShA/POFUyZwjTHOE=";
+    owner = "boltgolt";
+    repo = "howdy";
+    rev = "aa75c7666c040c6a7c83cd92b9b81a6fea4ce97c";
+    hash = "sha256-oYw2xoqLdERy51fYk6zLUZ5Agkr6OKFcvUnFgvHH5rU=";
   };
 
-  # sourceRoot = "${src.name}/src";
-
-  # postPatch = ''
-  #   patchShebangs install_links.py
-  # '';
   dontUseCmakeConfigure = true;
 
-  mesonFlags = [
-    "-Dc_args=-I${glib.dev}/include/gio-unix-2.0"
-  ];
   buildInputs = [
-    (lib.getDev glib)
+    inih
+    libevdev
+    pam
   ];
   nativeBuildInputs = [
-    # glib
-    # glib.dev
     cmake
     meson
-    # python3
+    python3
     ninja
     pkg-config
+    python3Packages.wheel
+    python3Packages.setuptools
   ];
-
-  # outputs = [ "bin" "dev" "out" "man" ];
-
-  # mesonFlags = [
-  #   "-Ddocs=disabled"
-  # ];
 
   strictDeps = true;
 
