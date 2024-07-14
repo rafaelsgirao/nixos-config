@@ -448,7 +448,6 @@
       },
       "original": {
         "owner": "rafaelsgirao",
-        "ref": "feat/test-2",
         "repo": "nixinate",
         "type": "github"
       }
