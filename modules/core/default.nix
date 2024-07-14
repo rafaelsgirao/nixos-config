@@ -231,13 +231,13 @@ in
     dua
     mailutils
 
-    mypkgs.agenix
     traceroute
     iperf3
     nmap
     rustscan
     nload
     nix-output-monitor
+    nix-tree
   ]
   ++ lib.optionals (!isVirt)
     [
