@@ -158,6 +158,10 @@ in
       viAlias = true;
       vimAlias = true;
       plugins = {
+        #Fully featured file explorer.
+        chadtree.enable = true;
+        #"Fast AF completion".
+        coq-nvim.enable = true;
         #Status bar on the bottom.
         lualine.enable = true;
         # Easy commenting
@@ -168,6 +172,12 @@ in
         gitsigns.enable = true;
         # Auto add closing brackets, parentheses, etc.
         nvim-autopairs.enable = true;
+        #Language Server Providers.
+        lsp.servers = {
+          nil-ls.enable = true; # Nix
+          marksman.enable = true; # Markdown 
+          typst-lsp.enable = true;
+        };
       };
       extraConfigVim = ''
         syntax on
