@@ -79,6 +79,7 @@ in
         "media.rafael.ovh" =
           #TODO: hacky. create an option for this.
           lib.mkIf (config.networking.hostName != "saxton") "192.168.10.6";
+        "cloud.rafael.ovh" = "192.168.10.6";
 
         "demo" = "192.168.10.7";
         "demo.rafael.ovh" = "192.168.10.7";
