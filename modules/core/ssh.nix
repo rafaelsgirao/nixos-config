@@ -21,7 +21,7 @@ in
       UseDns = false;
       # unbind gnupg sockets if they exists
 
-      PermitRootLogin = "no";
+      PermitRootLogin = lib.mkDefault "no";
     };
     hostKeys = [
       {
