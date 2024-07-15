@@ -193,6 +193,13 @@ in
         reverse_proxy http://${config.rg.ip}:5050
       '';
     };
+    "cloud.${domain}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://${config.rg.ip}:5050
+      '';
+    };
     "cache.${fqdn}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
