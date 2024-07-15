@@ -359,7 +359,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    agenix
+    mypkgs.agenix
     attic-client
     pamixer
     xdg-ninja
