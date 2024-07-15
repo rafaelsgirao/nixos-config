@@ -17,9 +17,14 @@ let
   sazed = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
   vin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin";
 
+  cluster-nodes = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINSnqxAKupYw0c0jIHBdLfPOCVxQHKF033Z3MRg7e9EY" #node-a
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9gdgB5xSKVwTG4fAw4nIBV+HxY4pGOxbE/ciNyzMZW" #node-b
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL+0QmD4kVio9vs9K0dOun2og9iu/B2pH7yYzxG4Vo6O" #node-c
+  ];
   workstations = [ scout sazed vin ];
 
-  servers = [ spy saxton ];
+  servers = [ spy saxton ] ++ cluster-nodes;
 
   systems = workstations ++ servers;
 in

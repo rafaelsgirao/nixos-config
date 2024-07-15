@@ -5,7 +5,7 @@ in
 {
 
 
-  age.secrets = {
+  age.secrets = lib.mkIf config.services.nebula.networks."rgnet".enable {
     RGNet-CA = {
       file = "${hostSecretsDir}/../RGNet-CA.age";
       owner = "nebula-rgnet";
@@ -20,7 +20,6 @@ in
     };
   };
 
-  users.users."nebula-rgnet".uid = 990;
   services.nebula.networks."rgnet" = {
     inherit isLighthouse;
     enable = true;

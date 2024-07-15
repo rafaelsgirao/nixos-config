@@ -26,7 +26,7 @@ in
         type = types.str;
         default = null;
       };
-      # Generate a new one with: systemd-machine-id-setup
+      # Generate a new one with: dbus-uuidgen
       machineId = mkOption {
         type = types.str;
         default = null;
