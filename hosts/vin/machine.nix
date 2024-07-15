@@ -159,6 +159,7 @@
     colordiff
     gnome.gnome-tweaks
     easyeffects
+    mypkgs.howdy
   ];
 
   zramSwap.enable = true;
@@ -180,6 +181,27 @@
     };
   };
 
+  #Default sudo config + howdy config.
+  #Fingers crossed this won't bite me later...
+  security.pam.services.sudo.text = ''
+    # Account management.
+    account required pam_unix.so # unix (order 10900)
+    
+    # Authentication management.
+    auth sufficient pam_unix.so likeauth try_first_pass # unix (order 11500)
+    auth required pam_deny.so # deny (order 12300)
+    
+    # Password management.
+    password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
+    
+    # Session management.
+    session required pam_env.so conffile=/etc/pam/environment readenv=0 # env (order 10100)
+    session required pam_unix.so # unix (order 10200)
+
+    # Howdy config.
+    auth sufficient pam_howdy.so
+
+  '';
   services.udev.extraRules = lib.mkIf (config.rg.class == "workstation") ''
     # DualShock 3 over USB
     KERNEL=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0268", MODE="0666"
