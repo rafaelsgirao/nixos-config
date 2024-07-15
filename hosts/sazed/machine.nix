@@ -26,10 +26,12 @@ in
 
     ../../modules/core/lanzaboote.nix
     #    ../../modules/core/hardening.nix
-    #    ../../modules/libvirt.nix
+    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
-    ../../modules/docker.nix
+    # ../../modules/docker.nix
     ../../modules/restic.nix
+    ../../modules/workstation/cups.nix
+    ../../modules/sshguard.nix
   ];
 
   boot.kernelParams = [ "ip=193.136.164.205::193.136.164.222:255.255.255.224::eth0:none" ];
