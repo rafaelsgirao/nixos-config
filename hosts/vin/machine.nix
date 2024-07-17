@@ -11,6 +11,7 @@
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
+    ../../modules/workstation/nextcloud-client.nix
 
     ../../modules/captive-portal.nix
     ../../modules/hardware/laptop.nix

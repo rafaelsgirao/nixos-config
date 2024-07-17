@@ -19,6 +19,7 @@ in
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
+    ../../modules/workstation/nextcloud-client.nix
 
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
