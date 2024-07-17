@@ -1,6 +1,7 @@
 { config, pkgs, lib, sshKeys, hostSecretsDir, self, ... }:
 let
   isVirt = config.rg.machineType == "virt";
+  inherit (lib) mkDefault;
   # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 in
 {
@@ -47,6 +48,7 @@ in
   services.logrotate.checkConfig = false;
 
   boot = {
+    tmp.cleanOnBoot = mkDefault true;
     initrd.preDeviceCommands = lib.mkIf
       (
 
@@ -74,7 +76,7 @@ in
   };
 
 
-  zramSwap.enable = lib.mkDefault true;
+  zramSwap.enable = mkDefault true;
 
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
@@ -102,7 +104,7 @@ in
 
   # Select internationalisation properties.
   i18n = {
-    defaultLocale = lib.mkDefault "en_US.UTF-8";
+    defaultLocale = mkDefault "en_US.UTF-8";
     extraLocaleSettings.LC_TIME = "pt_PT.UTF-8";
   };
   console = {
@@ -141,12 +143,12 @@ in
   users.users.root.hashedPassword = config.users.users.rg.hashedPassword;
 
 
-  hardware.nvidia.nvidiaSettings = lib.mkDefault false;
+  hardware.nvidia.nvidiaSettings = mkDefault false;
 
   # earlyoom completely disregards memory that ZFS occupies but will automatically release when system is low on memory.
   # making earlyoom completely useless wherever I use ZFS (which is EVERYWHERE).
   # services.earlyoom = {
-  #   enable = lib.mkDefault true;
+  #   enable = mkDefault true;
   #   extraArgs = [ "--avoid '(^|/)(code|chromium|ferdium|thunderbird)$'" ];
   # };
 
@@ -170,7 +172,7 @@ in
   };
 
   programs.msmtp = {
-    enable = lib.mkDefault true;
+    enable = mkDefault true;
     setSendmail = true;
     defaults = {
       aliases = "/etc/aliases";
