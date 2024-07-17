@@ -66,6 +66,40 @@ in
 
   # boot.initrd.systemd.enable = true;
 
+
+  networking.networkmanager.unmanaged = [ "eth0" ];
+
+  systemd.network.enable = true;
+  systemd.network.networks."10-wan" = {
+    # match the interface by name
+    matchConfig.Name = "eth0";
+    address = [
+      # configure addresses including subnet mask
+      "193.136.164.205/24"
+      "2001:690:2100:82::205/58"
+    ];
+    routes = [
+      { routeConfig.Gateway = "193.136.164.222"; };
+      { routeConfig.Gateway = "2001:690:2100:82::ffff:1"; };
+    ];
+
+    dns = [
+      "2001:690:2100:80::1"
+      "2001:690:2100:80::2"
+      "193.136.164.1"
+      "193.136.164.2"
+    ];
+
+    #?? not sure about these. just copied from wireguard config
+    # networkConfig = {
+    #    LinkLocalAddressing = "no";
+    #    IPv6AcceptRA = false;
+    # }
+
+    ntp = [ "ntp.rnl.tecnico.ulisboa.pt" ];
+
+  };
+
   environment.persistence."/pst" = {
     directories =
       [
