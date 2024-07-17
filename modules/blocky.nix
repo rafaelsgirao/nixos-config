@@ -152,10 +152,17 @@ in
       processingConcurrency = 20;
       blockType = "nxDomain";
       blockTTL = "24h";
-      refreshPeriod = "12h";
-      downloadTimeout = "10s";
-      downloadAttempts = 2;
-      downloadCooldown = "5s";
+      loading = {
+
+        downloads = {
+          #TODO: CONTINUE
+          downloadTimeout = "10s";
+
+          downloadAttempts = 2;
+          downloadCooldown = "5s";
+        };
+        refreshPeriod = "12h";
+      };
       failStartOnListError = false;
     };
     caching = {
@@ -167,19 +174,20 @@ in
       prefetchThreshold = 5;
     };
     prometheus.enable = false;
-    # port = lib.mkDefault "${config.rg.ip}:53";
-    port = lib.mkDefault "127.0.0.1:53";
-    # tlsPort = 853;
-    tlsPort = lib.mkDefault null;
-    # httpPort = "127.0.0.1:4000";
-    httpPort = lib.mkDefault "127.0.0.1:4000"; #Blocky CLI expects port 4000 by default
-    # httpPort =
+    ports = {
+      dns = lib.mkDefault "127.0.0.1:53";
+      tls = lib.mkDefault null;
+      http = lib.mkDefault "127.0.0.1:4000"; #Blocky CLI expects port 4000 by default
+
+    };
     # lib.mkIf (config.networking.hostName != "scout") (lib.mkDefault 4000);
     minTlsServeVersion = "1.2";
     bootstrapDns = "tcp+udp:1.1.1.1";
-    logLevel = "info";
-    logFormat = "text";
-    logTimestamp = false;
-    logPrivacy = lib.mkDefault false;
+    log = {
+      level = "warn";
+      format = "text";
+      timestamp = false;
+      privacy = lib.mkDefault false;
+    };
   };
 }
