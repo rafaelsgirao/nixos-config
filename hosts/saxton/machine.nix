@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 let
   inherit (config.rg) domain;
@@ -38,14 +38,9 @@ in
     ipv4 = "128.140.110.89";
     ipv6 = "2a01:4f8:1c1e:aead::1";
     isLighthouse = true;
+    resetRootFs = true;
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
   };
-
-
-  #Root as 'tmpfs'.
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r ${config.networking.hostName}/local/root@blank
-  '';
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [

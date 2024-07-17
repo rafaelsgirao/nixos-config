@@ -7,6 +7,7 @@
     #    (inputs.nixos-hardware + "/lenovo/thinkpad/t480/default.nix")
   ];
 
+  rg.resetRootFsPoolName = "neonrgpool";
   boot.initrd.availableKernelModules =
     #    [ "xhci_pci" "ahci" "nvme" "usbhid" "sdhci_pci" ];
     [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];

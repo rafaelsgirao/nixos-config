@@ -36,6 +36,15 @@ in
       ip = mkOption { type = types.str; };
       ipv4 = mkOption { type = types.str; };
       ipv6 = mkOption { type = types.str; };
+      resetRootFs = mkOption {
+        type = types.bool;
+        default = false;
+      };
+      #ugly
+      resetRootFsPoolName = mkOption {
+        type = types.str;
+        default = "zpool";
+      };
     };
 
   };

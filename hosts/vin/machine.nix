@@ -25,8 +25,6 @@
 
   programs.gamemode.enable = true;
 
-  services.zfs.expandOnBoot = "all";
-
   users.users.rg.extraGroups = [ "docker" "gamemode" ];
 
   rg = {
@@ -35,6 +33,7 @@
     machineType = "intel";
     class = "workstation";
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin";
+    resetRootFs = true;
   };
 
   environment.persistence."/state" = {
@@ -86,34 +85,10 @@
     cores = 6; # Dell Latitude has 8 vCores, leave two for rest of the system
   };
 
-  boot.initrd.postDeviceCommands = lib.mkIf (!config.boot.initrd.systemd.enable) (lib.mkAfter ''
-    zfs rollback -r zpool/local/root@blank
-  '');
 
   # boot.crashDump.enable = true;
 
   boot.initrd.systemd.emergencyAccess = true;
-  boot.initrd.systemd.services.rollback = {
-    description = "Rollback root filesystem to a pristine state on boot";
-    wantedBy = [
-      # "zfs.target"
-      "initrd.target"
-    ];
-    after = [
-      "zfs-import-zpool.service"
-    ];
-    before = [
-      "sysroot.mount"
-    ];
-    path = with pkgs; [
-      zfs
-    ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig.Type = "oneshot";
-    script = ''
-      zfs rollback -r zpool/local/root@blank && echo "  >> >> rollback complete << <<"
-    '';
-  };
 
   environment.variables = {
     QEMU_OPTS =

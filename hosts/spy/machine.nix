@@ -67,12 +67,6 @@ in
     "/var/lib/postgresql"
   ];
 
-
-  #TODO
-  # boot.initrd.postDeviceCommands = lib.mkAfter ''
-  #   zfs rollback -r neonheavypool/local/root@blank
-  # '';
-
   networking.nameservers = [ "127.0.0.1" ];
   #Blocky - no blocklist by default
   # services.blocky.settings.blocking.clientGroupsBlock."default" = [ "none" ];

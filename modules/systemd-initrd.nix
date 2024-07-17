@@ -1,5 +1,4 @@
 { config, ... }: {
-  # https://discourse.nixos.org/t/zfs-rollback-not-working-using-boot-initrd-systemd/37195/2
   # https://discourse.nixos.org/t/display-contact-info-in-nixos-boot-stage-1/38118/4
 
   boot.initrd.systemd.enable = true;
@@ -7,7 +6,6 @@
     "/etc/machine-id".text = config.rg.machineId;
   };
   boot.initrd.systemd.services.contactinfo = {
-    description = "Rollback root filesystem to a pristine state on boot";
     wantedBy = [
       # "zfs.target"
       "initrd.target"

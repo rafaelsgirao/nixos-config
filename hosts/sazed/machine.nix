@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   RNLCert = builtins.fetchurl {
@@ -36,9 +36,9 @@ in
   ];
 
   boot.kernelParams = [ "ip=193.136.164.205::193.136.164.222:255.255.255.224::eth0:none" ];
-  services.zfs.expandOnBoot = "all";
   security.pki.certificateFiles = [ "${RNLCert}" ];
   users.users.rg.extraGroups = [ "docker" ];
+
   #To make VS Code remote SSH work without too much hassle/timesink
   programs.nix-ld.enable = true;
   programs.nix-ld.package = pkgs.nix-ld-rs;
@@ -60,8 +60,6 @@ in
       ];
       directories = [
         ".m2"
-
-
       ];
     };
   };
@@ -90,33 +88,6 @@ in
     };
   };
 
-
-  # boot.initrd.systemd.emergencyAccess = true;
-  # boot.initrd.systemd.services.rollback = {
-  #   description = "Rollback root filesystem to a pristine state on boot";
-  #   wantedBy = [
-  #     # "zfs.target"
-  #     "initrd.target"
-  #   ];
-  #   after = [
-  #     "zfs-import-zpool.service"
-  #   ];
-  #   before = [
-  #     "sysroot.mount"
-  #   ];
-  #   path = with pkgs; [
-  #     zfs
-  #   ];
-  #   unitConfig.DefaultDependencies = "no";
-  #   serviceConfig.Type = "oneshot";
-  #   script = ''
-  #     zfs rollback -r zpool/local/root@blank && echo "  >> >> rollback complete << <<"
-  #   '';
-  # };
-
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r neonheavypool/local/root@blank
-  '';
 
   environment.variables = {
     QEMU_OPTS =

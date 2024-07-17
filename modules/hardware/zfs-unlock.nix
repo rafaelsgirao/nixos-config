@@ -1,12 +1,9 @@
 { lib, sshKeys, ... }: {
+  #TODO: systemd-initrd vs legacy initrd
   #Unlock encrypted zfs via ssh on boot
   #https://nixos.wiki/wiki/ZFS#Unlock_encrypted_zfs_via_ssh_on_boot
   networking.useDHCP = false;
   boot = {
-    #Wipe root dataset to a clean slate on each reboot
-    # initrd.postDeviceCommands = lib.mkAfter ''
-    #   zfs rollback -r spypool/local/root@blank
-    # '';
 
     # README: set this parameter on machines you import this file!
     # kernelParams = [ "ip=192.168.1.80::192.168.1.1:255.255.255.0::eth0:none" ];
