@@ -1,6 +1,6 @@
 # https://discourse.nixos.org/t/zfs-rollback-not-working-using-boot-initrd-systemd/37195/2
 
-{ config, ... }:
+{ config, lib, pkgs, ... }:
 let
   isEnabled = config.rg.resetRootFs;
   isSystemdInitrd = config.boot.initrd.systemd.enable;
@@ -23,7 +23,7 @@ in
       "initrd.target"
     ];
     after = [
-      "zfs-import-${poolname}.service"
+      "zfs-import-${poolName}.service"
     ];
     before = [
       "sysroot.mount"
