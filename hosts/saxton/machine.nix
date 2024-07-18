@@ -9,6 +9,7 @@ in
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/core/hardening.nix
+    ../../modules/core/lanzaboote.nix
 
     ./wc-bot.nix
     ../../modules/ntfy-sh.nix

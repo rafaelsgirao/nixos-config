@@ -79,8 +79,8 @@ in
       "2001:690:2100:82::205/58"
     ];
     routes = [
-      { routeConfig.Gateway = "193.136.164.222"; };
-      { routeConfig.Gateway = "2001:690:2100:82::ffff:1"; };
+      { routeConfig.Gateway = "193.136.164.222"; }
+      { routeConfig.Gateway = "2001:690:2100:82::ffff:1"; }
     ];
 
     dns = [
