@@ -74,6 +74,7 @@ in
   systemd.network.networks."10-wan" = {
     # match the interface by name
     matchConfig.Name = "eth0";
+    DHCP = "no";
     address = [
       # configure addresses including subnet mask
       "193.136.164.205/24"
