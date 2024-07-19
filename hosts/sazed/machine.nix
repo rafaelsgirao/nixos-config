@@ -11,7 +11,7 @@ in
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
 
   imports = [
-    # ../../modules/systemd-initrd.nix
+    ../../modules/systemd-initrd.nix
     #Firefox through flatpak (testing)
     # Not using flatpaked firefox while this isn't solved:
     # https://github.com/flatpak/flatpak/issues/4525
@@ -23,7 +23,7 @@ in
 
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
-    ../../modules/hardware/zfs-unlock.nix
+    ../../modules/hardware/zfs-unlock-initrd.nix
 
     ../../modules/core/lanzaboote.nix
     #    ../../modules/core/hardening.nix
