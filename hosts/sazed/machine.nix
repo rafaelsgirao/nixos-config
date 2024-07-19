@@ -54,6 +54,9 @@ in
     resetRootFs = true;
   };
 
+  services.nebula.networks."rgnet".settings = {
+    listen.port = 31020;
+  };
   environment.persistence."/state" = {
     # directories = [ ];
     users.rg = {
