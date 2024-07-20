@@ -82,7 +82,7 @@ in
     {
       # match the interface by name
       matchConfig.Name = "eth0";
-      DHCP = "yes";
+      DHCP = "no"; #DHCPv6 will still be triggered by RA (Router Advertisements)
 
       address = [
         # configure addresses including subnet mask
