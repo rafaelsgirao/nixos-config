@@ -35,7 +35,6 @@ in
     ../../modules/sshguard.nix
   ];
 
-  boot.kernelParams = [ "ip=193.136.164.205::193.136.164.222:255.255.255.224::eth0:none" ];
   security.pki.certificateFiles = [ "${RNLCert}" ];
   users.users.rg.extraGroups = [ "docker" ];
 
