@@ -55,6 +55,9 @@ in
         punch = true;
         respond = true;
       };
+      relay = {
+        relays = [ "192.168.10.5" "192.168.10.9" ];
+      };
       tun = {
         drop_local_broadcast = false;
         drop_multicast = false;

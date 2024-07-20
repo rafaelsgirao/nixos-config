@@ -55,7 +55,9 @@ in
 
   services.nebula.networks."rgnet".settings = {
     listen.port = 31020;
+    relay.am_relay = true;
   };
+
   environment.persistence."/state" = {
     # directories = [ ];
     users.rg = {

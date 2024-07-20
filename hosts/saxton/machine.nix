@@ -57,6 +57,10 @@ in
     "127.0.1.1" = [ "mail.${domain}" config.networking.hostName ];
   };
 
+  services.nebula.networks."rgnet".settings = {
+    relay.am_relay = true;
+  };
+
   systemd.network.enable = true;
   systemd.network.networks."10-wan" = {
     # match the interface by name
