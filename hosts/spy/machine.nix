@@ -12,9 +12,9 @@ in
 
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
-    ../../modules/hardware/zfs-unlock.nix
+    ../../modules/hardware/zfs-unlock-initrd.nix
     # ../../modules/core/lanzaboote.nix
-    # ../../modules/systemd-initrd.nix
+    ../../modules/systemd-initrd.nix
     ../../modules/library/jellyfin.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
@@ -87,6 +87,9 @@ in
       address = [
         # configure addresses including subnet mask
         "${config.rg.ipv4}/24"
+      ];
+      routes = [
+        { routeConfig.Gateway = "192.168.1.254"; }
       ];
     };
 

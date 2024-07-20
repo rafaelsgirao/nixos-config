@@ -29,7 +29,10 @@
   programs.command-not-found.enable = lib.mkDefault false;
 
   # Since we can't manually respond to a panic, just reboot.
-  boot.kernelParams = [ "panic=1" "boot.panic_on_fail" ];
+  boot.kernelParams = [
+    "panic=120"
+    #  boot.panic_on_fail" 
+  ];
 
   #Blocky - no blocklist by default
   services.blocky.settings = {
@@ -61,7 +64,7 @@
   # environment.memoryAllocator.provider = "graphene-hardened";
   # boot.kernelPackages = lib.mkForce pkgs.linuxPackages_hardened;
 
-  boot.initrd.includeDefaultModules = false;
+  # boot.initrd.includeDefaultModules = false;
 
   # No need for fonts on a server
   fonts.fontconfig.enable = lib.mkDefault false;
