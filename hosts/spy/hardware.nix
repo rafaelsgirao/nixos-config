@@ -25,11 +25,11 @@
     fsType = "zfs";
   };
 
-  fileSystems."/root-state-spypool" = {
-    device = "spypool/local/root";
-    fsType = "zfs";
-    neededForBoot = true;
-  };
+  # fileSystems."/root-state-spypool" = {
+  #   device = "spypool/local/root";
+  #   fsType = "zfs";
+  #   neededForBoot = true;
+  # };
 
   fileSystems."/home" = {
     device = "none";
@@ -42,10 +42,10 @@
     fsType = "vfat";
   };
 
-  fileSystems."/data-spy" = {
-    device = "spypool/safe/data";
-    fsType = "zfs";
-  };
+  # fileSystems."/data-spy" = {
+  #   device = "spypool/safe/data";
+  #   fsType = "zfs";
+  # };
 
   fileSystems."/data" = {
     device = "neonheavypool/safe/data";
