@@ -29,9 +29,6 @@ in
     ../../modules/blocky.nix
   ];
 
-  networking.networkmanager.enable = lib.mkForce true;
-  networking.networkmanager.unmanaged = [ "eth0" ];
-
   services.nextcloud.home = "/data/nextcloud-nixos";
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

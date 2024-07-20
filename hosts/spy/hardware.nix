@@ -1,7 +1,5 @@
 { lib, modulesPath, ... }: {
 
-  environment.etc.machineId.text = "c2472bd717a44486adfdbc8e2f00199d";
-
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     # ../../modules/hardware/nvidia.nix
@@ -15,6 +13,7 @@
   #   WIFI_PWR_ON_AC = "on";
   # };
 
+  rg.resetRootFsPoolName = "neonheavypool";
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "nvme" "usb_storage" "uas" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
