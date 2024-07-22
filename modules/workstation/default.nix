@@ -13,10 +13,10 @@ in
 {
   imports = [
     ./vscode.nix
-    inputs.nix-index-database.nixosModules.nix-index
   ];
   hm.imports = [
     inputs.lan-mouse.homeManagerModules.default
+    inputs.nix-index-database.hmModules.nix-index
     ./ssh-tpm-agent.nix
   ];
   # improve desktop responsiveness when updating the system
