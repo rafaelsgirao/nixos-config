@@ -172,11 +172,15 @@ in
         gitsigns.enable = true;
         # Auto add closing brackets, parentheses, etc.
         nvim-autopairs.enable = true;
+        # Rust
+        rustaceanvim.enable = true;
         #Language Server Providers.
         lsp.servers = {
           nil-ls.enable = true; # Nix
           marksman.enable = true; # Markdown 
-          typst-lsp.enable = true;
+          ruff.enable = true; # Python
+          pylyzer.enable = true; # Python
+          typst-lsp.enable = true; # Typst
         };
       };
       extraConfigVim = ''
