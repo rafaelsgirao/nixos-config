@@ -31,6 +31,19 @@ in
 
   # };
 
+  # Custom error sound on e.g firefox when Ctrl-f search fails
+  hm.dconf.settings."org/gnome/desktop/sound".event-sounds = true;
+  hm.home.file = {
+    ".local/share/sounds/__custom/bell-terminal.ogg".source = pkgs.copyPathToStore ../../files/bell_sound.ogg;
+    ".local/share/sounds/__custom/bell-window-system.ogg".source = pkgs.copyPathToStore ../../files/bell_sound.ogg;
+    ".local/share/sounds/__custom/index.theme".source = pkgs.writeText "index.theme" ''
+      [Sound Theme]
+      Name=Custom
+      Inherits=freedesktop
+      Directories=.
+    '';
+  };
+
   networking.useDHCP = false;
   #Enable SSH agent on boot
   programs.ssh.startAgent = true;
