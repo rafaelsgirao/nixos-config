@@ -365,9 +365,11 @@ in
   networking.firewall = {
     allowedTCPPorts = [
       53317 # LocalSend (installed thru flatpak)
+      7236 # Gnome Network Displays
     ];
     allowedUDPPorts = [
       53317 #  LocalSend (installed thru flatpak)
+      7236 # Gnome Network Displays
     ];
   };
 
