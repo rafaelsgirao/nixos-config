@@ -262,7 +262,7 @@
       # package = pkgs.fakepkg;
       # package = (pkgs.busybox +;
       enable = true;
-      package = pkgs.firefox;
+      package = pkgs.unstable.firefox;
       # package = custom-firefox;
       policies = {
         "3rdparty".Extensions = {

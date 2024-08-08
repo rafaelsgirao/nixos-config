@@ -135,7 +135,7 @@
     colordiff
     gnome.gnome-tweaks
     easyeffects
-    mypkgs.howdy
+    # mypkgs.howdy
   ];
 
   zramSwap.enable = true;
