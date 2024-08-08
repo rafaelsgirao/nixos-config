@@ -4,6 +4,14 @@
   #Inspiration:
   # https://github.com/ElvishJerricco/stage1-tpm-tailscale/blob/main/boot.nix
   networking.useDHCP = false;
+
+  # This works, even when using systemd-networkd!
+  networking.interfaces."eth0".wakeOnLan = {
+    # Arch Wiki: "Note: Setting one of u, m or b along with g might also be necessary to enable the feature."
+    #  ^^ https://wiki.archlinux.org/title/Wake-on-LAN
+    enable = true;
+  };
+
   boot = {
 
     # README: set this parameter on machines you import this file!
