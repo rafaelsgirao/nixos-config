@@ -29,7 +29,7 @@ in
     #    ../../modules/core/hardening.nix
     ../../modules/libvirt.nix
     ../../modules/impermanence.nix
-    # ../../modules/docker.nix
+    ../../modules/docker.nix
     ../../modules/restic.nix
     ../../modules/workstation/cups.nix
     ../../modules/sshguard.nix
