@@ -7,6 +7,7 @@
   imports = [
     ../../modules/systemd-initrd.nix
     ../../modules/core/lanzaboote.nix
+    ../../modules/workstation/chromium.nix
     ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
