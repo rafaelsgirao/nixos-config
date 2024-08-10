@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }:
+{ config, hostSecretsDir, inputs, lib, pkgs, ... }:
 let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
   #handlr is SO much better.
@@ -8,6 +8,7 @@ let
   #  set -euo pipefail
   #  exec ${pkgs.handlr}/bin/handlr open "$@"
   #'';
+  hmLib = config.home-manager.users."rg".lib;
   inherit (lib) mkIf;
 in
 {
@@ -24,6 +25,12 @@ in
 
   hm.services.ssh-tpm-agent.enable = true;
   programs.ccache.enable = true;
+
+  age.secrets = {
+    attic-user-config = {
+      file = "${hostSecretsDir}/../attic-config.age";
+    };
+  };
 
   # programs.kdeconnect = lib.mkIf (config.rg.class == "workstation") {
   #   enable = true;
@@ -42,6 +49,7 @@ in
       Inherits=freedesktop
       Directories=.
     '';
+    ".config/attic/config.toml".source = hmLib.file.mkOutOfStoreSymlink "${config.age.secrets.attic-user-config.path}";
   };
 
   networking.useDHCP = false;
@@ -324,10 +332,6 @@ in
     ".local/share/android"
     ".local/share/cargo"
     ".local/share/rustup"
-  ];
-
-  environment.persistence."/pst".users.rg.directories = [
-    ".config/attic"
   ];
 
   users.users.rg.extraGroups = [ "kvm" ];

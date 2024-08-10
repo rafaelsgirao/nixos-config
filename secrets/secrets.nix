@@ -42,6 +42,7 @@ in
   # secrets for workstations.
   "RNLDEI-wireguard.age".publicKeys = workstations ++ users;
   "SSH-config.age".publicKeys = workstations ++ users;
+  "attic-config.age".publicKeys = workstations ++ users;
 
   #Secrets for servers.
 
