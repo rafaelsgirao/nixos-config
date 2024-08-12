@@ -15,6 +15,7 @@ in
     #Firefox through flatpak (testing)
     # Not using flatpaked firefox while this isn't solved:
     # https://github.com/flatpak/flatpak/issues/4525
+    ../../modules/workstation/chromium.nix
     ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
