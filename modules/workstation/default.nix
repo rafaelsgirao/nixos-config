@@ -29,6 +29,8 @@ in
   age.secrets = {
     attic-user-config = {
       file = "${hostSecretsDir}/../attic-config.age";
+      mode = "400";
+      owner = "rg";
     };
   };
 
