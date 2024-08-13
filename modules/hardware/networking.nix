@@ -32,6 +32,7 @@ in
       [Resolve]
       DNS=192.168.10.9
       Domains=~rafael.ovh
+      DNSSEC=false
     '';
   };
   services.avahi.enable = false;
