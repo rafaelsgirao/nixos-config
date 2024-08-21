@@ -274,6 +274,7 @@
           apps =
             let
               buildAllConfigs = pkgs.writeShellScriptBin "build-all-configs" ''
+                set -euo pipefail
                 for host in $(${pkgs.nix}/bin/nix flake show --accept-flake-config --json --quiet --all-systems | jq '.nixosConfigurations | keys[]' ); do
                   echo "Building configuration for $host"
                   ${pkgs.nix}/bin/nix build --no-link  --accept-flake-config ".#nixosConfigurations.$host.config.system.build.toplevel"
