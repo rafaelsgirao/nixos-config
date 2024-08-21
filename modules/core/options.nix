@@ -45,6 +45,10 @@ in
         type = types.str;
         default = "zpool";
       };
+      vCores = mkOption {
+        type = types.ints.u8;
+        default = 0;
+      };
     };
 
   };
@@ -60,6 +64,7 @@ in
         assertRgNotNull = x: { assertion = x != null; message = rgMsg x; };
       in
       [
+        { assertion = config.rg.vCores != 0; message = "The option config.rg.vCores must be set."; }
         (assertRgNotNull config.rg.domain)
         # (assertRgNotNull config.hm.home.stateVersion)
         (assertRgNotNull config.system.stateVersion)

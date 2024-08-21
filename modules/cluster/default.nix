@@ -37,8 +37,9 @@
   #--- FOR TESTING ONLY
   system.stateVersion = "24.05"; # Did you read the comment?
   hm.home.stateVersion = "24.05"; # Did you read the comment?
-  nix.settings.max-jobs = 1; # minimise local builds.
-  nix.settings.cores = 1; # minimise local builds.
+  # nix.settings.max-jobs = 1; # minimise local builds.
+  # nix.settings.cores = 1; # minimise local builds.
+  rg.vCores = 4;
   networking.firewall.enable = lib.mkForce false; # FOR TESTING
   services.nebula.networks."rgnet".enable = lib.mkForce false;
   #--- FOR TESTING ONLY END

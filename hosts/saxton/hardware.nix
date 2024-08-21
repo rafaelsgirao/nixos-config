@@ -10,6 +10,7 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
+  rg.vCores = 2;
   rg.resetRootFsPoolName = "saxton";
   nixpkgs.hostPlatform = "aarch64-linux";
   #Platform on which NixOS _should_ be built!

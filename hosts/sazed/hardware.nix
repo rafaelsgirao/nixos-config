@@ -1,9 +1,10 @@
 { modulesPath, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    #    (inputs.nixos-hardware + "/lenovo/thinkpad/t480/default.nix")
     ../../modules/hardware/bluetooth.nix
   ];
+
+  rg.vCores = 8;
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];

@@ -16,49 +16,56 @@
 
   nix.daemonIOSchedClass = "idle";
   nix.daemonCPUSchedPolicy = "idle";
-  nix.settings = {
+  nix.settings =
+    let
+      nixCores = lib.max (config.rg.vCores - 2) 1;
+      nixJobs = lib.max ((config.rg.vCores - 2) / 2) 1;
+    in
+    {
+      max-jobs = lib.mkDefault nixJobs;
+      cores = lib.mkDefault nixCores;
 
-    auto-optimise-store = true;
+      auto-optimise-store = true;
 
-    # Enable flakes
-    experimental-features = [
-      "nix-command"
-      "flakes"
-      "ca-derivations"
-      "repl-flake"
-    ];
+      # Enable flakes
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "ca-derivations"
+        "repl-flake"
+      ];
 
-    # being in trusted-users has the same security implications as being in docker group!
-    # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-trusted-users
-    # Thanks @diogotcorreia
-    trusted-users = [ ];
+      # being in trusted-users has the same security implications as being in docker group!
+      # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-trusted-users
+      # Thanks @diogotcorreia
+      trusted-users = [ ];
 
-    substituters = [ "https://cache.rafael.ovh/rgnet" ];
-    trusted-substituters = [
-      "https://cache.rafael.ovh/rgnet"
-    ];
+      substituters = [ "https://cache.rafael.ovh/rgnet" ];
+      trusted-substituters = [
+        "https://cache.rafael.ovh/rgnet"
+      ];
 
-    trusted-public-keys = [
-      "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="
-    ];
+      trusted-public-keys = [
+        "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="
+      ];
 
-    # Fallback quickly if substituters are not available.
-    connect-timeout = 2;
+      # Fallback quickly if substituters are not available.
+      connect-timeout = 2;
 
-    # The default at 10 is rarely enough.
-    log-lines = lib.mkDefault 30;
+      # The default at 10 is rarely enough.
+      log-lines = lib.mkDefault 30;
 
-    # Avoid disk full issues.
-    max-free = lib.mkDefault (3000 * 1024 * 1024);
-    min-free = lib.mkDefault (512 * 1024 * 1024);
+      # Avoid disk full issues.
+      max-free = lib.mkDefault (3000 * 1024 * 1024);
+      min-free = lib.mkDefault (512 * 1024 * 1024);
 
-    # Avoid copying unnecessary stuff over SSH
-    builders-use-substitutes = true;
+      # Avoid copying unnecessary stuff over SSH
+      builders-use-substitutes = true;
 
-    flake-registry = ""; # Disable global flake registry
-    warn-dirty = false;
-    use-xdg-base-directories = true;
-  };
+      flake-registry = ""; # Disable global flake registry
+      warn-dirty = false;
+      use-xdg-base-directories = true;
+    };
 
   nix.gc = lib.mkIf (!config.rg.isBuilder) {
     randomizedDelaySec = "45min";

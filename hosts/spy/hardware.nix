@@ -13,6 +13,7 @@
   #   WIFI_PWR_ON_AC = "on";
   # };
 
+  rg.vCores = 2;
   rg.resetRootFsPoolName = "neonheavypool";
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "nvme" "usb_storage" "uas" "sd_mod" "sdhci_pci" ];
