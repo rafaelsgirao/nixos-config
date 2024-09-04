@@ -37,8 +37,12 @@ in
 
     home.homeDirectory = "/home/rg";
     home.username = "rg";
-
     news.display = "show";
+
+    home.packages = with pkgs; [
+      pkgs.mypkgs.randomport
+      pkgs.mypkgs.portcheck
+    ];
 
     programs.tmux = {
       enable = true;
@@ -54,11 +58,7 @@ in
     xdg.enable = true;
     home.enableNixpkgsReleaseCheck = true;
     #Sway files
-    home.file = {
-      #Ugly but idc atm
-      ".local/bin/portcheck".source = pkgs.copyPathToStore ../../files/portcheck;
-      ".local/bin/randomport".source = pkgs.copyPathToStore ../../files/randomport;
-    } // lib.optionalAttrs isWorkstation {
+    home.file = { } // lib.optionalAttrs isWorkstation {
       ".config/fish/fish_history".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/fish/fish_history";
       ".config/mimeapps.list".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
       ".config/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/Code/User/settings.json";
