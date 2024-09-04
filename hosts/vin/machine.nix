@@ -44,8 +44,6 @@
       ];
       directories = [
         ".local/share/fly"
-        ".config/chromium"
-        ".config/Sonixd"
         ".local/share/ykman"
         ".config/JetBrains"
         ".local/share/JetBrains"

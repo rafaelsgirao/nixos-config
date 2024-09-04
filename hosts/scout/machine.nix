@@ -45,7 +45,6 @@
         ".config/chromium"
         ".config/joplin-desktop"
         ".config/Joplin"
-        ".config/Sonixd"
         ".local/share/ykman"
         ".local/share/Anki2"
         ".config/JetBrains"

@@ -335,6 +335,7 @@ in
     ".local/share/android"
     ".local/share/cargo"
     ".local/share/rustup"
+    ".config/Sonixd"
   ];
 
   users.users.rg.extraGroups = [ "kvm" ];
