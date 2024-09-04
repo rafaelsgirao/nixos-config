@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   # https://discourse.nixos.org/t/display-contact-info-in-nixos-boot-stage-1/38118/4
 
   boot.initrd.systemd.enable = true;

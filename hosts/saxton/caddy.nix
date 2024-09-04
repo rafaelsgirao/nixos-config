@@ -47,12 +47,32 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        # reverse_proxy http://192.168.10.6:5050
 
-        @assets path *.js *.css *.ico *.svg
-        handle /apps/memories/a/* {
+        @shared {
+            # Needed common paths
+            path /apps/theming/img/*
+
+            # Photos
+            path /apps/photos/public/*
+            path /apps/photos/api/v1/publicPreview/
+            path /remote.php/dav/photospublic/*
+
+            # Memories
+            path /apps/memories/a/*
+            path /apps/memories/s/*
+            path /apps/memories/api/* # Would be better if this was more fine-grained
+
+            # Cospend
+            path /apps/cospend/s/*
+            path /ocs/v2.php/apps/cospend/api/v1/public/*
+
+            path *.js *.css *.ico *.svg
+        }
+        handle @shared {
          reverse_proxy http://192.168.10.6:5050
         }
+
+        redir https://${domain}
       '';
     };
     "cache.${domain}" = {
