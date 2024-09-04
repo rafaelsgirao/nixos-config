@@ -45,6 +45,10 @@ rec {
 
   pre-commit-macadmin = pkgs.callPackage ./pre-commit-macadmin { inherit (pkgs) python3; };
 
+  # Scripts
+  python-scripts = pkgs.callPackage ./scripts { inherit (pkgs) python3; };
+  randomport = pkgs.callPackage ./scripts/randomport.nix { };
+
   # Packages mostly to contribute upstream
   unFTP = callPackage ./contrib/unFTP { };
   sunshine = pkgs.callPackage ./contrib/sunshine { };

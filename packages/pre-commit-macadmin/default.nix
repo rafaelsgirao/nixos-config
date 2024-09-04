@@ -22,7 +22,5 @@ python3.pkgs.buildPythonApplication rec {
     # Not sure if needed.
     pkginfo
     importlib-metadata
-
-
   ];
 }
