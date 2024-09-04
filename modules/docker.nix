@@ -1,17 +1,23 @@
 { config, pkgs, lib, ... }: {
+
+  virtualisation.containers.enable = true;
+
+
   virtualisation.docker = {
     enable = lib.mkDefault true;
     daemon.settings.shutdown-timeout = 120;
   };
   networking.networkmanager.unmanaged = [ "docker0" ];
   environment.systemPackages = with pkgs; [ docker-compose ];
-  # virtualisation.docker.rootless = {
-  #   enable = true;
-  #   setSocketvariable = true;
-  # };
 
-  services.udev.extraRules = lib.mkIf (config.rg.class == "workstation") ''
-    SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl freeze docker.service"
-    SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl thaw docker.service"
+  #TODO: be careful about ist-discord-bot @ sazed!
+  virtualisation.docker.rootless = lib.mkIf (config.rg.class == "workstation") {
+    enable = true;
+    setSocketVariable = true;
+  };
+
+  services.udev.extraRules = lib.mkIf (config.rg.class == "workstation" && !config.virtualisation.docker.rootless.enable) ''
+    SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl freeze docker.service --no-block"
+    SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl thaw docker.service --no-block"
   '';
 }
