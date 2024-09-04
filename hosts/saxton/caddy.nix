@@ -49,8 +49,9 @@ in
         encode zstd gzip
 
         @shared {
-            # Needed common paths
+            # Common
             path /apps/theming/img/*
+            path *.js *.css *.ico *.svg
 
             # Photos
             path /apps/photos/public/*
@@ -66,7 +67,6 @@ in
             path /apps/cospend/s/*
             path /ocs/v2.php/apps/cospend/api/v1/public/*
 
-            path *.js *.css *.ico *.svg
         }
         handle @shared {
          reverse_proxy http://192.168.10.6:5050
