@@ -323,6 +323,8 @@
             shfmt.enable = true;
             mdformat.enable = true;
             deadnix.enable = true;
+            ruff-check.enable = true;
+            ruff-format.enable = true;
             statix.enable = true;
             statix.disabled-lints = [
               "repeated_keys"
