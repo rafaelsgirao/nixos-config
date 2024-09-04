@@ -331,6 +331,7 @@ in
     #xdg-ninja recommendations - end
 
   };
+
   environment.persistence."/state".users.rg.directories = [
     ".local/share/android"
     ".local/share/cargo"

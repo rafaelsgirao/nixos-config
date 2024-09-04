@@ -41,7 +41,7 @@ in
 
     home.packages = with pkgs; [
       pkgs.mypkgs.randomport
-      pkgs.mypkgs.portcheck
+      pkgs.mypkgs.python-scripts
     ];
 
     programs.tmux = {

@@ -11,10 +11,12 @@
   environment.systemPackages = with pkgs; [ docker-compose ];
 
   #TODO: be careful about ist-discord-bot @ sazed!
-  virtualisation.docker.rootless = lib.mkIf (config.rg.class == "workstation") {
-    enable = true;
-    setSocketVariable = true;
-  };
+  #NOTE: this. is. so. painful! please don't use this in the future.
+  # You have been warned.
+  # virtualisation.docker.rootless = lib.mkIf (config.rg.class == "workstation") {
+  #   enable = true;
+  #   setSocketVariable = true;
+  # };
 
   services.udev.extraRules = lib.mkIf (config.rg.class == "workstation" && !config.virtualisation.docker.rootless.enable) ''
     SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl freeze docker.service --no-block"
