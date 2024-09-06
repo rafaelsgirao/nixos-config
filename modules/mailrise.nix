@@ -5,7 +5,13 @@ let
     configs:
       '*@*':
         urls:
-        - !env_var MAILRISE_URL
+        - !env_var MAILRISE_MACHINES_URL
+      'rss-ist@rafael.ovh':
+        urls:
+        - !env_var MAILRISE_RSS_IST_URL
+      'rss-feeds@rafael.ovh':
+        urls:
+        - !env_var MAILRISE_RSS_FEEDS_URL
   '';
 
 in

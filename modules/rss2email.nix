@@ -7,7 +7,7 @@ _: {
   services.rss2email = {
     enable = true;
     interval = "15min";
-    to = "rafaelgirao+r2e-ist@protonmail.com";
+    to = "rss-ist@rafael.ovh";
     config = {
       from = "machines@rafael.ovh";
       html-mail = true;
@@ -114,7 +114,7 @@ _: {
 
       "HackerNews-Monthly" = {
         url = "https://rsshub.app/github/issue/headllines/hackernews-monthly";
-        to = "rafaelgirao+r2e-feeds@protonmail.com";
+        to = "rss-feeds@rafael.ovh";
       };
     };
   };
