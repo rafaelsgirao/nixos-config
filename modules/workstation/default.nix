@@ -1,4 +1,4 @@
-{ config, hostSecretsDir, inputs, lib, pkgs, ... }:
+{ config, secretsDir, inputs, lib, pkgs, ... }:
 let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
   #handlr is SO much better.
@@ -28,7 +28,7 @@ in
 
   age.secrets = {
     attic-user-config = {
-      file = "${hostSecretsDir}/../attic-config.age";
+      file = "${secretsDir}/attic-config.age";
       mode = "400";
       owner = "rg";
     };

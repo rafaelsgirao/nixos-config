@@ -1,4 +1,4 @@
-{ lib, hostSecretsDir, config, ... }:
+{ lib, secretsDir, hostSecretsDir, config, ... }:
 let
   inherit (config.rg) isLighthouse;
 in
@@ -7,7 +7,7 @@ in
 
   age.secrets = lib.mkIf config.services.nebula.networks."rgnet".enable {
     RGNet-CA = {
-      file = "${hostSecretsDir}/../RGNet-CA.age";
+      file = "${secretsDir}/RGNet-CA.age";
       owner = "nebula-rgnet";
     };
     RGNet-cert = {

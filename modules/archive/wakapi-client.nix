@@ -1,11 +1,11 @@
-{ config, pkgs, lib, hostSecretsDir, ... }:
+{ config, pkgs, lib, secretsDir, ... }:
 let
   agePath = config.age.secrets.wakatime-cfg.path;
 in
 {
 
   age.secrets.wakatime-cfg = {
-    file = "${hostSecretsDir}/../wakatime-config.age";
+    file = "${secretsDir}/../wakatime-config.age";
     mode = "440";
     owner = "rg";
   };

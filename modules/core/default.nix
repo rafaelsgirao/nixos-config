@@ -1,4 +1,4 @@
-{ config, pkgs, lib, sshKeys, hostSecretsDir, self, ... }:
+{ config, pkgs, lib, sshKeys, secretsDir, self, ... }:
 let
   isVirt = config.rg.machineType == "virt";
   inherit (lib) mkDefault;
@@ -167,7 +167,7 @@ in
   '';
 
   age.secrets.sendmail-pass = {
-    file = "${hostSecretsDir}/../sendmail-pass.age";
+    file = "${secretsDir}/sendmail-pass.age";
     mode = "444";
   };
 

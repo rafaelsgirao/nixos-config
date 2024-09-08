@@ -1,4 +1,4 @@
-{ config, hostSecretsDir, ... }:
+{ config, secretsDir, ... }:
 let
   inherit (config.rg) domain;
   inherit (config.networking) fqdn;
@@ -7,7 +7,7 @@ in
   environment.persistence."/state".directories = [ "/var/lib/acme" ];
 
   age.secrets.ACME-env = {
-    file = "${hostSecretsDir}/../ACME-env.age";
+    file = "${secretsDir}/ACME-env.age";
     owner = "acme";
     group = "acme";
     mode = "440";

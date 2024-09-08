@@ -1,4 +1,4 @@
-{ config, pkgs, lib, hostSecretsDir, ... }:
+{ config, pkgs, lib, secretsDir, ... }:
 
 let
   hostname = config.networking.hostName;
@@ -26,13 +26,13 @@ in
 
   age.secrets = {
     "rclone.conf" = {
-      file = "${hostSecretsDir}/../rclone-config.age";
+      file = "${secretsDir}/rclone-config.age";
     };
     restic-env = {
-      file = "${hostSecretsDir}/../restic-env.age";
+      file = "${secretsDir}/restic-env.age";
     };
     restic-password = {
-      file = "${hostSecretsDir}/../restic-password.age";
+      file = "${secretsDir}/restic-password.age";
     };
   };
 

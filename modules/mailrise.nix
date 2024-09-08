@@ -1,4 +1,4 @@
-{ config, lib, pkgs, hostSecretsDir, ... }:
+{ config, lib, pkgs, secretsDir, ... }:
 
 let
   configFile = pkgs.writeText "mailrise_config.yml" ''
@@ -27,7 +27,7 @@ in
   };
 
   age.secrets.ENV-mailrise = {
-    file = "${hostSecretsDir}/../ENV-mailrise.age";
+    file = "${secretsDir}/../ENV-mailrise.age";
   };
 
   # https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS/3-optional-configuration.html

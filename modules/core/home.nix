@@ -1,4 +1,4 @@
-{ config, pkgs, lib, hostSecretsDir, inputs, file, ... }:
+{ config, pkgs, lib, secretsDir, inputs, file, ... }:
 let
   isWorkstation = config.rg.class == "workstation";
   isVirt = config.rg.machineType == "virt";
@@ -13,7 +13,7 @@ in
 {
 
   age.secrets.ssh-config = lib.mkIf isWorkstation {
-    file = "${hostSecretsDir}/../SSH-config.age";
+    file = "${secretsDir}/../SSH-config.age";
     owner = "rg";
   };
 

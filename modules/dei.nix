@@ -1,6 +1,6 @@
 { config
 , lib
-, hostSecretsDir
+, secretsDir
 , ...
 }:
 
@@ -15,7 +15,7 @@ in
   security.pki.certificateFiles = [ "${RNLCert}" ];
   age.secrets = {
     RNLDEI-wg = {
-      file = "${hostSecretsDir}/../RNLDEI-wireguard.age";
+      file = "${secretsDir}/RNLDEI-wireguard.age";
       owner = "root";
       group = "systemd-network";
       mode = "0640";
