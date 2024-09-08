@@ -7,6 +7,7 @@
   };
   imports = [
     ./consul.nix
+    ./garage.nix
     ../../modules/core/hardening.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix

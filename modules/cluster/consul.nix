@@ -20,7 +20,7 @@ in
       bootstrap_expect = 3;
       datacenter = "vm";
       domain = "consul";
-      encrypt = "Gj7Lt826mtt+bCujHT8cbJ3xFuwTCJzfnM73iAuBo70="; #generate with `consul keygen`
+      encrypt = "Gj7Lt826mtt+bCujHT8cbJ3xFuwTCJzfnM73iAuBo70="; #change in prod! generate with `consul keygen`.
       server = true;
       log_level = "INFO";
       retry_join = [
