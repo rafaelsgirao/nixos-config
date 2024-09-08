@@ -31,7 +31,6 @@ in
     settings = rec {
       # https://garagehq.deuxfleurs.fr/documentation/reference-manual/configuration/
       replication_factor = 3;
-      consistency_mode = 1;
       db_engine = "sqlite";
       disable_scrub = true;
       rpc_bind_addr = "${config.rg.ip}:${toString port}";
