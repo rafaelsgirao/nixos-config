@@ -46,6 +46,14 @@ in
     };
   };
 
+  users.groups.garage = { };
+
+  users.users.garage = {
+    group = "garage";
+    #  extraGroups = [ "caddy" ];
+    isSystemUser = true;
+  };
+
   environment.persistence."/pst".directories = [
     { directory = "/var/lib/garage"; }
     # { directory = config.mailserver.dkimKeyDirectory; user = dkimUser; group = dkimUser; }
