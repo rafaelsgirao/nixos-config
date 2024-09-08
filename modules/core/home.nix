@@ -1,6 +1,7 @@
 { config, pkgs, lib, hostSecretsDir, inputs, file, ... }:
 let
   isWorkstation = config.rg.class == "workstation";
+  isVirt = config.rg.machineType == "virt";
   config' = config;
   allowedSignersFile = pkgs.writeText "allowed_signers" ''
     rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDzCDVaFW2iJmjXHNRdAfa71OFpMzxMDn8bfumxU0f+5wXskNmjgNf+kYYH+lzigPU1rxzLgi8dysaWJd3XBiYw= rg-Signing@sazed[TPM]
@@ -370,10 +371,13 @@ in
       enable = true;
       package = pkgs.htop-vim;
       settings = {
-        show_cpu_frequency = 1;
-        show_cpu_temperature = 1;
         show_program_path = 0;
         shadow_other_users = 1;
+        hide_kernel_threads = 1;
+        hide_userland_threads = 1;
+      } // lib.optionalAttrs (!isVirt) {
+        show_cpu_frequency = 1;
+        show_cpu_temperature = 1;
       };
     };
     programs.direnv = lib.mkIf isWorkstation {
