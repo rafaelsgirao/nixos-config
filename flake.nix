@@ -273,19 +273,30 @@
         perSystem = { config, pkgs, inputs', system, ... }: {
           apps =
             let
-              buildAllConfigs = pkgs.writeShellScriptBin "build-all-configs" ''
+              buildAllHosts = pkgs.writeShellScriptBin "build-all-configs" ''
                 set -euo pipefail
                 for host in $(${pkgs.nix}/bin/nix flake show --accept-flake-config --json --quiet --all-systems | jq '.nixosConfigurations | keys[]' ); do
                   echo "Building configuration for $host"
                   ${pkgs.nix}/bin/nix build --no-link  --accept-flake-config ".#nixosConfigurations.$host.config.system.build.toplevel"
                 done
               '';
+              buildAllPackages = pkgs.writeShellScriptBin "build-all-packages" ''
+                set -euo pipefail
+                for package in $(${pkgs.nix}/bin/nix flake show --accept-flake-config --json --quiet | jq '.packages."${system}" | keys[]' ); do
+                  echo "Building package $package"
+                  ${pkgs.nix}/bin/nix build --no-link  --accept-flake-config ".#packages.${system}.$package"
+                done
+              '';
 
             in
             {
-              build-all = {
+              build-all-hosts = {
                 type = "app";
-                program = buildAllConfigs;
+                program = buildAllHosts;
+              };
+              build-all-packages = {
+                type = "app";
+                program = buildAllPackages;
               };
             };
           #TODO: would be cooler if the flake exposed something that could be used by 'nix profile install github:<...>'
