@@ -23,6 +23,7 @@ let
   vin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin";
 
   cluster-nodes = [
+    #TODO: change when prod
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINSnqxAKupYw0c0jIHBdLfPOCVxQHKF033Z3MRg7e9EY" #node-a
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9gdgB5xSKVwTG4fAw4nIBV+HxY4pGOxbE/ciNyzMZW" #node-b
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL+0QmD4kVio9vs9K0dOun2og9iu/B2pH7yYzxG4Vo6O" #node-c
@@ -36,15 +37,19 @@ in
 {
   #TODO: this so ugly!
 
-  # secrets to be accessed manually, not programatically by machines.
+  # Secrets to be accessed manually, not programatically by machines.
   "RGNet-key.age".publicKeys = users;
 
-  # secrets for workstations.
+  # Secrets for workstations.
   "RNLDEI-wireguard.age".publicKeys = workstations ++ users;
   "SSH-config.age".publicKeys = workstations ++ users;
   "attic-config.age".publicKeys = workstations ++ users;
 
-  #Secrets for servers.
+  # Secrets for servers.
+
+  # Secrets for cluster nodes.
+  "cluster/ENV-garage.age".publicKeys = cluster-nodes ++ users;
+
 
   # secrets for all.
   "restic-env.age".publicKeys = systems ++ users;
