@@ -41,14 +41,12 @@ in
     port = 8025;
     tls = "off";
   };
+
   programs.msmtp.accounts.default = lib.mkForce {
     host = config.networking.fqdn;
     auth = false;
     from = "machines.${config.networking.hostName}@rafael.ovh";
     port = 8025;
     tls = false;
-
-
-
   };
 }

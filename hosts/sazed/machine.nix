@@ -34,7 +34,6 @@ in
     ../../modules/restic.nix
     ../../modules/workstation/cups.nix
     ../../modules/sshguard.nix
-    ../../modules/gitlab-runner.nix
   ];
 
   security.pki.certificateFiles = [ "${RNLCert}" ];
