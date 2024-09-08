@@ -69,10 +69,21 @@ stdenv.mkDerivation rec {
   '';
 
   postFixup = ''
-    wrapProgram $out/bin/palantir-java-format --set JAVA_HOME ${jdk.home}
+    wrapProgram $out/bin/palantir-java-format --set JAVA_HOME ${jdk.home}  \
+      --set JAVA_OPTS "--add-opens=java.base/java.lang=ALL-UNNAMED \
+        --add-opens=java.base/java.util=ALL-UNNAMED \
+        --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED \
+        --add-exports=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED \
+        --add-exports=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED \
+        --add-exports=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED \
+        --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED"
     rm $out/bin/palantir-java-format.bat
+    cp $out/bin/palantir-java-format $out/bin/google-java-format # To allow usage with treefmt-nix
   '';
 
+  meta = {
+    mainProgram = "palantir-java-format";
+  };
 
 
 }
