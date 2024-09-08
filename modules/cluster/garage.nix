@@ -1,4 +1,4 @@
-{ config, pkgs, hostSecretsDir, ... }:
+{ config, pkgs, secretsDir, ... }:
 
 let
   port = 12969;
@@ -6,7 +6,7 @@ in
 {
 
   age.secrets.ENV-garage = {
-    file = "${hostSecretsDir}/../cluster/ENV-garage.age";
+    file = "${secretsDir}/cluster/ENV-garage.age";
     owner = "garage";
     group = "garage";
     mode = "440";
