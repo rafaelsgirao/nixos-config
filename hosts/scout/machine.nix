@@ -20,6 +20,9 @@
     ../../modules/dei.nix
   ];
 
+  programs.nix-ld.enable = true;
+  programs.nix-ld.package = pkgs.nix-ld-rs;
+
   programs.gamemode.enable = true;
 
   services.zfs.expandOnBoot = "all";
