@@ -43,7 +43,7 @@ in
         service_name = "garage-daemon";
       };
       s3_api = {
-        api_bind_addr = "[::]:3900"; # Not setting to nebula IP to allow local clients to access it thru localhost
+        api_bind_addr = "127.0.0.1:3900"; # Not setting to nebula IP to allow local clients to access it thru localhost
         s3_region = "garage";
         root_domain = ".s3.rafael.ovh";
       };
