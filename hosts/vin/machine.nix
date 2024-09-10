@@ -27,7 +27,6 @@
   programs.gamemode.enable = true;
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.package = pkgs.nix-ld-rs;
 
   users.users.rg.extraGroups = [ "docker" "gamemode" ];
 
