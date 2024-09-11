@@ -28,6 +28,7 @@ in
 
     ../../modules/core/lanzaboote.nix
     #    ../../modules/core/hardening.nix
+    ../../modules/caddy.nix
     ../../modules/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/docker.nix
@@ -35,6 +36,17 @@ in
     ../../modules/workstation/cups.nix
     ../../modules/sshguard.nix
   ];
+
+  services.caddy.virtualHosts = {
+    # ODEIO.
+    "sazed.rnl.tecnico.ulisboa.pt" = {
+      extraConfig = ''
+         encode zstd gzip
+        	root * /pst/var/lib/odeio
+         file_server
+      '';
+    };
+  };
 
   security.pki.certificateFiles = [ "${RNLCert}" ];
   users.users.rg.extraGroups = [ "docker" ];
@@ -81,7 +93,7 @@ in
     DHCP = "no";
     address = [
       # configure addresses including subnet mask
-      "193.136.164.205/24"
+      "193.136.164.205/27" # 255.255.255.224
       "2001:690:2100:82::205/58"
     ];
     routes = [
