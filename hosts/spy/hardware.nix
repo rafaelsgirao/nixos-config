@@ -68,20 +68,8 @@
     options = [ "bind" ];
   };
 
-  fileSystems."/state-heavy" = {
-    device = "neonheavypool/local/state";
-    fsType = "zfs";
-    neededForBoot = true;
-  };
-
   fileSystems."/state" = {
     device = "neonheavypool/local/state";
-    fsType = "zfs";
-    neededForBoot = true;
-  };
-
-  fileSystems."/pst-heavy" = {
-    device = "neonheavypool/safe/persist";
     fsType = "zfs";
     neededForBoot = true;
   };
