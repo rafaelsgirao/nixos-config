@@ -7,6 +7,12 @@ let
   };
 in
 {
+  #Temporary settings for AGISIT course:
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  users.extraGroups.vboxusers.members = [ "rg" ];
+  # AGISIT - end
+
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
 
