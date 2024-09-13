@@ -13,7 +13,9 @@ in
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/hardware/zfs-unlock-initrd.nix
-    ../../modules/core/lanzaboote.nix
+    # Lanzaboote fails to install for some reason. investigate when time.
+    # DON'T enable just because.
+    # ../../modules/core/lanzaboote.nix
     ../../modules/systemd-initrd.nix
     ../../modules/library/jellyfin.nix
     ../../modules/restic.nix
