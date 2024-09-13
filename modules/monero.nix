@@ -25,7 +25,7 @@ in
       address = config.rg.ip;
     };
     limits = rec {
-      download = "12500";
+      download = 12500;
       upload = download;
     };
     extraConfig = ''
