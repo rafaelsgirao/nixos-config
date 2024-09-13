@@ -1,8 +1,11 @@
 { config, ... }:
 let
-  dataDir = "/var/monero";
+  dataDir = "/var/lib/monero";
 in
 {
+  environment.persistence."/state".directories = [
+    "/var/lib/monero"
+  ];
 
   networking.firewall = {
     allowedTCPPorts = [
@@ -20,6 +23,10 @@ in
       restricted = true;
       port = 18081;
       address = config.rg.ip;
+    };
+    limits = rec {
+      download = "12500";
+      upload = download;
     };
     extraConfig = ''
       no-zmq=1

@@ -27,6 +27,7 @@ in
     ../../modules/impermanence.nix
     ../../modules/headless.nix
     ../../modules/blocky.nix
+    ../../modules/monero.nix
   ];
 
   services.nextcloud.home = "/data/nextcloud-nixos";
@@ -142,7 +143,6 @@ in
       "--verbose"
     ];
   };
-  services.earlyoom.enable = false; #TODO: disable when monerod finish
 
   services.uptime-kuma = {
     settings = {
