@@ -13,7 +13,7 @@ in
 {
 
   age.secrets.ssh-config = lib.mkIf isWorkstation {
-    file = "${secretsDir}/../SSH-config.age";
+    file = "${secretsDir}/SSH-config.age";
     owner = "rg";
   };
 
