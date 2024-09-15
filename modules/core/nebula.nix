@@ -32,6 +32,7 @@ in
       cipher = "aes";
       pki = {
         blocklist = [
+          "8146e435f083aecdf00f6ec976ce98aa2f9d6ae1682068aa1e5d41ef7cb02df0" #Scout.
           "b2cc750cd2f6409f91f53d117fe9fa761549f09b005fb2c5f5b1ae59b5729b2d" #Medic (?).
           "54bd0a5c978cf0266c83fc0437ee62ba458b45c2835bd5cd2a576e8db07b500d" #Engie.
         ];
