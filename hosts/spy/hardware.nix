@@ -57,7 +57,7 @@
     fsType = "zfs";
   };
 
-  fileSystems."/var/monero" = {
+  fileSystems."/var/lib/monero" = {
     device = "neonheavypool/local/monero";
     fsType = "zfs";
   };

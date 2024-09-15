@@ -3,9 +3,10 @@ let
   dataDir = "/var/lib/monero";
 in
 {
-  environment.persistence."/state".directories = [
-    "/var/lib/monero"
-  ];
+  # Disabled: using specific dataset for monero.
+  # environment.persistence."/state".directories = [
+  #   { directory = dataDir; user = "monero"; group = "nobody"; }
+  # ];
 
   networking.firewall = {
     allowedTCPPorts = [
