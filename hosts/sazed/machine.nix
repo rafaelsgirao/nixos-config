@@ -11,6 +11,7 @@ in
   virtualisation.virtualbox.host.enable = true;
   virtualisation.virtualbox.host.enableExtensionPack = true;
   users.extraGroups.vboxusers.members = [ "rg" ];
+  # (after AGISIT ends, also remove environment.persistence entries, further down)
   # AGISIT - end
 
 
@@ -83,6 +84,11 @@ in
       ];
       directories = [
         ".m2"
+        # AGISIT: temporary 
+        ".local/share/vagrant"
+        ".config/VirtualBox"
+        "VirtualBox VMs" # ewww!
+        # AGISIT: end
       ];
     };
   };

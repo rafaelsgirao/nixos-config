@@ -328,6 +328,8 @@ in
     FLY_CONFIG_DIR = "\"$XDG_STATE_HOME\"/fly";
     GNUPGHOME = "\"$XDG_DATA_HOME\"/gnupg";
     DOTNET_CLI_HOME = "\"$XDG_DATA_HOME\"/dotnet";
+    VAGRANT_HOME = "\"$XDG_DATA_HOME\"/vagrant";
+    SONARLINT_USER_HOME = "\"$XDG_DATA_HOME\"/sonarlint";
     #xdg-ninja recommendations - end
 
   };
