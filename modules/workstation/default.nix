@@ -266,29 +266,33 @@ in
   # };
 
   programs.adb.enable = true;
-  #hm.services.flameshot = {
-  #  # enable = lib.mkIf (!isGnome) true;
-  #  enable = true;
-  #  settings = {
+  hm.services.flameshot = {
+    # enable = lib.mkIf (!isGnome) true;
+    enable = true;
+    settings = {
 
-  #    General = {
-  #      showStartupLaunchMessage = false;
-  #      contrastOpacity = 86;
-  #      contrastUiColor = "#cb3939";
-  #      disabledTrayIcon = false;
-  #      drawColor = "#ff2217";
-  #      drawFontSize = 8;
-  #      drawThickness = 4;
-  #      filenamePattern = "Screenshot %d-%m-%Y - %H-%M-%S";
-  #      saveAfterCopy = true;
-  #      savePath = "/home/rg/Screenshots";
-  #      savePathFixed = true;
-  #      uiColor = "#db6b73";
-  #    };
+      General = {
+        showStartupLaunchMessage = false;
+        contrastOpacity = 86;
+        contrastUiColor = "#cb3939";
+        disabledTrayIcon = false;
+        drawColor = "#ff2217";
+        drawFontSize = 8;
+        drawThickness = 4;
+        filenamePattern = "Screenshot %d-%m-%Y - %H-%M-%S";
+        saveAfterCopy = true;
+        savePath = "/home/rg/Pictures/Screenshots";
+        savePathFixed = true;
+        uiColor = "#db6b73";
+      };
+    };
+  };
 
-
-  #  };
-  #};
+  hm.systemd.user.services.flameshot = {
+    Unit = {
+      After = lib.mkForce "graphical-session.target";
+    };
+  };
 
   ##Flameshot requires 'tray.target', which isn't a thing in wayland/gnome/wtv
   #	systemd.user.targets.tray = {
