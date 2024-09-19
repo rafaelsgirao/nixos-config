@@ -4,8 +4,6 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.devNodes = "/dev/disk/by-path";
   boot.initrd.supportedFilesystems = [ "zfs" ];
-  #Use latest kernel + ZFS
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   virtualisation.docker.storageDriver = "zfs";
 
   services.zfs.zed.settings = {
