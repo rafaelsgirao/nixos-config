@@ -180,6 +180,6 @@ in
     logLevel = "info";
     logFormat = "text";
     logTimestamp = false;
-    logPrivacy = lib.mkDefault false;
+    logPrivacy = true;
   };
 }

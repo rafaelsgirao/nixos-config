@@ -86,7 +86,6 @@ in
 
   # DNS overrides for Saxton for things that wouldn't make sense
   services.blocky.settings = {
-    # logPrivacy = true;
     certFile = "/var/lib/acme/${domain}/fullchain.pem";
     keyFile = "/var/lib/acme/${domain}/key.pem";
     port = "0.0.0.0:53";
