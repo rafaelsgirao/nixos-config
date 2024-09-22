@@ -3,6 +3,7 @@ let
   # fqdn = config.networking.fqdn;
   ncHost = "cloud.rafael.ovh";
   altHost = "cloud.spy.rafael.ovh";
+  inherit (config.rg) domain;
 in
 {
 
@@ -76,10 +77,40 @@ in
     # extraAppsEnable = true;
   };
 
-  services.nginx.virtualHosts.${ncHost}.listen = [{
-    addr = config.rg.ip;
-    port = 5050;
-  }];
+
+  services.nginx.enableReload = true;
+
+  users.users.nginx.extraGroups = [ "caddy" ];
+
+  services.nginx.virtualHosts.${ncHost} = {
+    useACMEHost = "${domain}";
+    addSSL = true;
+
+    listen = [
+      {
+        addr = "127.0.0.1";
+        port = 80;
+      }
+      {
+        addr = "127.0.0.1";
+        port = 443;
+        ssl = true;
+      }
+      {
+        addr = "[::1]";
+        port = 80;
+      }
+      {
+        addr = "[::1]";
+        port = 443;
+        ssl = true;
+      }
+      {
+        addr = config.rg.ip;
+        port = 5050;
+      }
+    ];
+  };
 
   services.postgresql = {
     enable = true;

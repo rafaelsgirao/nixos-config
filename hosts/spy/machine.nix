@@ -160,11 +160,11 @@ in
 
   #Hairpinning of local services.
   networking.hosts = {
-    "127.0.0.1" = [ "cache.rafael.ovh" ];
+    "${config.rg.ip}" = [ "cache.rafael.ovh" ];
   };
 
   services.caddy.globalConfig = ''
-    default_bind ${config.rg.ip} 127.0.0.1 ::1
+    default_bind ${config.rg.ip}
   '';
   services.caddy.virtualHosts = {
     "git.${fqdn}" = {
@@ -192,14 +192,14 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://${config.rg.ip}:5050
+        reverse_proxy http://127.0.0.1:80
       '';
     };
     "cloud.${domain}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://${config.rg.ip}:5050
+        reverse_proxy http://127.0.0.1:80
       '';
     };
     "cache.${fqdn}" = {
