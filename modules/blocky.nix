@@ -92,6 +92,16 @@ in
         "saxton.rafael.ovh" = "192.168.10.9";
       };
     };
+    blocking.loading = {
+      downloads = {
+        timeout = "10s";
+        attempts = 2;
+        cooldown = "5s";
+      };
+      refreshPeriod = "12h";
+      concurrency = 20;
+
+    };
     blocking.blackLists = {
       "none" = null;
       "rg" = [ "https://priv.rafael.ovh/rg_domains.txt" ];
@@ -149,13 +159,8 @@ in
         # "pt-phishing" = [ "pt-phishing" ];
         "default" = lib.mkDefault [ "normal" ];
       };
-      processingConcurrency = 20;
       blockType = "nxDomain";
       blockTTL = "24h";
-      refreshPeriod = "12h";
-      downloadTimeout = "10s";
-      downloadAttempts = 2;
-      downloadCooldown = "5s";
       failStartOnListError = false;
     };
     caching = {
@@ -167,19 +172,18 @@ in
       prefetchThreshold = 5;
     };
     prometheus.enable = false;
-    # port = lib.mkDefault "${config.rg.ip}:53";
-    port = lib.mkDefault "127.0.0.1:53";
-    # tlsPort = 853;
-    tlsPort = lib.mkDefault null;
-    # httpPort = "127.0.0.1:4000";
-    httpPort = lib.mkDefault "127.0.0.1:4000"; #Blocky CLI expects port 4000 by default
-    # httpPort =
-    # lib.mkIf (config.networking.hostName != "scout") (lib.mkDefault 4000);
+    ports = {
+      dns = lib.mkDefault "127.0.0.1:53";
+      tls = lib.mkDefault null;
+      http = lib.mkDefault "127.0.0.1:4000"; #Blocky CLI expects port 4000 by default
+    };
     minTlsServeVersion = "1.2";
     bootstrapDns = "tcp+udp:1.1.1.1";
-    logLevel = "info";
-    logFormat = "text";
-    logTimestamp = false;
-    logPrivacy = true;
+    log = {
+      level = "warn";
+      format = "text";
+      timestamp = false;
+      privacy = true;
+    };
   };
 }
