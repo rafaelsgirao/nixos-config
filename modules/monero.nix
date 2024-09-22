@@ -69,6 +69,12 @@ in
     ProtectSystem = "strict";
     ReadWritePaths = [ "${dataDir}" ];
     RestrictSUIDSGID = true;
+    # https://unix.stackexchange.com/questions/494843/how-to-limit-a-systemd-service-to-play-nice-with-the-cpu
+    # Default weight is 100.
+    CPUWeight = "80";
+    IOWeight = "20";
+    MemorySwapMax = "0";
+
   };
 
 }
