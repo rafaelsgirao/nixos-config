@@ -186,8 +186,7 @@
     let
       inherit (self) outputs;
       inherit (builtins) attrNames readDir listToAttrs;
-      # inherit (inputs.nixpkgs) lib;
-      lib = inputs.nixpkgs.lib // inputs.flake-parts.lib // inputs.home.lib;
+      lib = inputs.nixpkgs.lib // inputs.flake-parts.lib // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib);
       inherit (lib) mapAttrs;
       fs = lib.fileset;
 
@@ -354,7 +353,7 @@
 
         flake = {
           #So nix repl can access `self`, through outputs.self
-          inherit self;
+          inherit self lib;
 
           nixosConfigurations = mkHosts ./hosts;
           overlays =
