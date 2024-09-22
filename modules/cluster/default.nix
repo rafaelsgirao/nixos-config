@@ -4,10 +4,12 @@
   rg = {
     class = "server";
     machineType = "virt";
+    clusterNode = true;
   };
   imports = [
     ./consul.nix
     ./garage.nix
+    ./keydb.nix
     ../../modules/core/hardening.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix
