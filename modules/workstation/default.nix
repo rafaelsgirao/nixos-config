@@ -9,6 +9,7 @@ let
   #  exec ${pkgs.handlr}/bin/handlr open "$@"
   #'';
   hmLib = config.home-manager.users."rg".lib;
+  XDG_DATA_HOME = config.home-manager.users."rg".home.sessionVariables."XDG_DATA_HOME";
   inherit (lib) mkIf;
 in
 {
@@ -326,14 +327,14 @@ in
 
   hm.home.sessionVariables = {
     #xdg-ninja recommendations
-    CARGO_HOME = "\"$XDG_DATA_HOME\"/rustup";
-    RUSTUP_HOME = "\"$XDG_DATA_HOME\"/cargo";
-    ANDROID_HOME = "\"$XDG_DATA_HOME\"/android";
-    FLY_CONFIG_DIR = "\"$XDG_STATE_HOME\"/fly";
-    GNUPGHOME = "\"$XDG_DATA_HOME\"/gnupg";
-    DOTNET_CLI_HOME = "\"$XDG_DATA_HOME\"/dotnet";
-    VAGRANT_HOME = "\"$XDG_DATA_HOME\"/vagrant";
-    SONARLINT_USER_HOME = "\"$XDG_DATA_HOME\"/sonarlint";
+    CARGO_HOME = "${XDG_DATA_HOME}/cargo";
+    RUSTUP_HOME = "${XDG_DATA_HOME}/rustup";
+    ANDROID_HOME = "${XDG_DATA_HOME}/android";
+    FLY_CONFIG_DIR = "${XDG_DATA_HOME}/fly";
+    GNUPGHOME = "${XDG_DATA_HOME}/gnupg";
+    DOTNET_CLI_HOME = "${XDG_DATA_HOME}/dotnet";
+    VAGRANT_HOME = "${XDG_DATA_HOME}/vagrant";
+    SONARLINT_USER_HOME = "${XDG_DATA_HOME}/sonarlint";
     #xdg-ninja recommendations - end
 
   };
