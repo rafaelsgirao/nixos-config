@@ -8,6 +8,7 @@ in
   services.redis.package = pkgs.keydb;
   services.redis.servers."redis-juicefs" = {
     enable = true;
+    openFirewall = true;
     settings = rec {
 
       server-threads = 2;
