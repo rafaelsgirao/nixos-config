@@ -1,6 +1,7 @@
 { lib, secretsDir, hostSecretsDir, config, ... }:
 let
   inherit (config.rg) isLighthouse;
+  nebulaPort = config.services.nebula.networks."rgnet".settings.listen.port;
 in
 {
 
@@ -44,8 +45,10 @@ in
           interfaces = {
             # don't advertise docker IPs to lighthouse
             "docker.*" = false;
+            "vbox.*" = false;
             "br-[0-9a-f]{12}" = false;
             "rnl0" = false;
+            "virbr.*" = false;
           };
         };
       };
@@ -96,8 +99,8 @@ in
       trustedInterfaces = [ "nebula0" ];
     }
     // lib.optionalAttrs config.rg.isLighthouse {
-      allowedTCPPorts = [ 4242 ];
-      allowedUDPPorts = [ 4242 ];
+      allowedTCPPorts = [ 4242 nebulaPort ];
+      allowedUDPPorts = [ 4242 nebulaPort ];
     };
 
 }
