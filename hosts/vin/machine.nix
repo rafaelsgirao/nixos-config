@@ -136,6 +136,7 @@
     colordiff
     gnome.gnome-tweaks
     easyeffects
+    brave
     # mypkgs.howdy
   ];
 

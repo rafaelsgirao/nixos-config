@@ -36,6 +36,8 @@ rec {
 
   pyinstaller = pkgs.callPackage ./pyinstaller { inherit (pkgs) python3; };
 
+  maven-java-format = pkgs.callPackage ./maven-java-format { };
+
   mailrise = pkgs.callPackage ./mailrise { inherit (pkgs) python3; };
 
   refind-ursamajor-theme = pkgs.callPackage ./refind-ursamajor-theme { };

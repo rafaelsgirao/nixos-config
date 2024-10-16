@@ -35,18 +35,17 @@
 
   programs.gnome-terminal.enable = false;
 
-  #Open ports for KDE Connect.
-  #networking.firewall =  {
-  #  allowedUDPPortRanges = [
-  #    { from = 1716; to = 1764; }
-  #  ];
-  #  allowedTCPPortRanges = [
-  #    { from = 1716; to = 1764; }
-  #  ];
-  #};
-
   #dconf settings
   hm = { lib, ... }: {
+
+
+    # programs.gnome-shell.enable = true;
+    #   programs.gnome-shell.extensions = [
+    #      { package = pkgs.gnomeExtensions.gsconnect; }
+    #   ];
+
+
+
     dconf.enable = true;
     dconf.settings = {
       "org/gnome/shell" = {
@@ -56,7 +55,6 @@
           "native-window-placement@gnome-shell-extensions.gcampax.github.com"
           "appindicatorsupport@rgcjonas.gmail.com"
           "gnomebedtime@ionutbortis.gmail.com"
-          # "gsconnect@andyholmes.github.io"
           "caffeine@patapon.info"
           # "places-menu@gnome-shell-extensions.gcampax.github.com"
           # "drive-menu@gnome-shell-extensions.gcampax.github.com"

@@ -35,10 +35,9 @@ in
     };
   };
 
-  # programs.kdeconnect = lib.mkIf (config.rg.class == "workstation") {
+  # programs.kdeconnect = {
   #   enable = true;
   #   package = pkgs.gnomeExtensions.gsconnect;
-
   # };
 
   # Custom error sound on e.g firefox when Ctrl-f search fails
