@@ -49,12 +49,11 @@
         ".local/share/ykman"
         ".config/JetBrains"
         ".local/share/JetBrains"
+        ".config/BraveSoftware"
         ".m2"
       ];
     };
   };
-
-  # boot.initrd.systemd.enable = true;
 
   environment.persistence."/pst" = {
     directories =
