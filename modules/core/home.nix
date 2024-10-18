@@ -56,6 +56,7 @@ in
       extraConfig = ''
         # Allows searching stdout buffer with `Ctrl /`
         bind-key / copy-mode \; send-keys C-S
+        bind b set-window-option synchronize-panes
       '';
     };
 
