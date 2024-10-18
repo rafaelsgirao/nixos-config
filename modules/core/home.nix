@@ -185,6 +185,7 @@ in
           ruff.enable = true; # Python
           pylyzer.enable = true; # Python
           typst-lsp.enable = true; # Typst
+          terraformls.enable = true; # Terraform
         };
       };
       extraConfigVim = ''
