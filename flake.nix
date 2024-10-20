@@ -116,12 +116,13 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    # nixos-cosmic = {
-    #   url = "github:lilyinstarlight/nixos-cosmic";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.nixpkgs-stable.follows = "nixpkgs";
-    #   inputs.flake-compat.follows = "flake-compat";
-    # };
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+      inputs.flake-compat.follows = "flake-compat";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
     # simple-nixos-mailserver = {
     #   url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
     #   inputs.nixpkgs.follows = "nixpkgs";
