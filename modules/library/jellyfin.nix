@@ -8,7 +8,6 @@ in
   # Common group for library files
   users.groups.library = { };
 
-
   services.caddy.virtualHosts = {
     "media.${domain}" = {
       serverAliases = [ "jf.${fqdn}" ];
@@ -22,14 +21,9 @@ in
   };
   services.jellyfin.enable = true;
 
+  environment.persistence."/state".directories = [ "/var/cache/jellyfin" ];
 
-  environment.persistence."/state".directories = [
-    "/var/cache/jellyfin"
-  ];
-
-  environment.persistence."/pst".directories = [
-    "/var/lib/jellyfin"
-  ];
+  environment.persistence."/pst".directories = [ "/var/lib/jellyfin" ];
   # systemd.services.jellyfin.serviceConfig = {
   # ProtectHome = true;
   # ProtectSystem = "strict";
@@ -41,7 +35,11 @@ in
   # DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" "/dev/dri/card0" "/dev/dri/card1" ];
   # };
 
-  users.users.jellyfin.extraGroups = [ "render" "video" "library" ];
+  users.users.jellyfin.extraGroups = [
+    "render"
+    "video"
+    "library"
+  ];
   #hardware accelerated Playback
   # 1. enable vaapi on OS-level
   nixpkgs.config.packageOverrides = pkgs: {
@@ -49,7 +47,7 @@ in
   };
   environment.systemPackages = with pkgs; [
     glxinfo
-    libva-utils #libva-utils --run vainfo
+    libva-utils # libva-utils --run vainfo
   ];
   # hardware.opengl = {
   #   enable = true;

@@ -1,4 +1,9 @@
-{ config, hostSecretsDir, inputs, ... }:
+{
+  config,
+  hostSecretsDir,
+  inputs,
+  ...
+}:
 let
   port = toString 33763;
   dbUser = config.services.atticd.user;
@@ -6,9 +11,7 @@ let
 
 in
 {
-  imports = [
-    inputs.attic.nixosModules.atticd
-  ];
+  imports = [ inputs.attic.nixosModules.atticd ];
 
   age.secrets = {
     ENV-attic = {
@@ -26,7 +29,6 @@ in
     ensureDatabases = [ dbUser ];
   };
 
-
   services.atticd = {
     enable = true;
     credentialsFile = config.age.secrets.ENV-attic.path;
@@ -38,12 +40,13 @@ in
 
       database.url = "postgresql:///${dbUser}";
 
-      compression = { type = "zstd"; };
-
+      compression = {
+        type = "zstd";
+      };
 
       storage = {
         type = "local";
-        path = "/var/lib/atticd"; #service is DynamicUser
+        path = "/var/lib/atticd"; # service is DynamicUser
       };
 
       garbage-collection = {
@@ -71,14 +74,19 @@ in
     };
   };
 
-
   environment.persistence."/state".directories = [
     #FIXME: /var/lib/private should also be mode 0700
-    { directory = "/var/lib/private/atticd"; mode = "0700"; } #service is DynamicUser
+    {
+      directory = "/var/lib/private/atticd";
+      mode = "0700";
+    } # service is DynamicUser
   ];
   # The service above is supposed to detect this based on the database string,
   # but since we're using the shorthand, it doesn't.
-  systemd.services.atticd.after = [ "postgresql.service" "nss-lookup.target" ];
+  systemd.services.atticd.after = [
+    "postgresql.service"
+    "nss-lookup.target"
+  ];
 
   services.caddy.virtualHosts."${host}" = {
     useACMEHost = "rafael.ovh";

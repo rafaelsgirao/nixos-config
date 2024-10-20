@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   imports = [ ./reset-rootfs.nix ];
   #ZFS configs so pool works as root
   boot.supportedFilesystems = [ "zfs" ];

@@ -1,4 +1,11 @@
-{ config, secretsDir, inputs, lib, pkgs, ... }:
+{
+  config,
+  secretsDir,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
   isGnome = config.services.xserver.desktopManager.gnome.enable;
   #handlr is SO much better.
@@ -13,9 +20,7 @@ let
   inherit (lib) mkIf;
 in
 {
-  imports = [
-    ./vscode.nix
-  ];
+  imports = [ ./vscode.nix ];
   hm.imports = [
     inputs.lan-mouse.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
@@ -51,7 +56,8 @@ in
       Inherits=freedesktop
       Directories=.
     '';
-    ".config/attic/config.toml".source = hmLib.file.mkOutOfStoreSymlink "${config.age.secrets.attic-user-config.path}";
+    ".config/attic/config.toml".source = hmLib.file.mkOutOfStoreSymlink "${config.age.secrets.attic-user-config.path
+    }";
   };
 
   networking.useDHCP = false;
@@ -89,46 +95,44 @@ in
     platformTheme.name = "gtk";
   };
 
+  hm.xdg.desktopEntries = {
 
-  hm.xdg.desktopEntries =
-    {
-
-      # devdocs = {
-      #   name = "DevDocs";
-      #   # icon = "${configDir}/icons/Notion.png";
-      #   exec = "${pre}/chromium --new-window --app=\"https://devdocs.io\"";
-      #   terminal = false;
-      #   categories = [ "Application" ];
-      # };
-      # protonmail = {
-      #   name = "Proton Mail";
-      #   # icon = "${configDir}/icons/Notion.png";
-      #   exec = "${pre}/chromium --new-window --app=\"https://mail.proton.me\"";
-      #   terminal = false;
-      #   categories = [ "Application" ];
-      # };
-      # discord = {
-      #   name = "Discord";
-      #   # icon = "${configDir}/icons/Notion.png";
-      #   exec = "${pre}/chromium --new-window --app=\"https://discord.com\"";
-      #   terminal = false;
-      #   categories = [ "Application" ];
-      # };
-      # protoncalendar = {
-      #   name = "Proton Calendar";
-      #   # icon = "${configDir}/icons/Notion.png";
-      #   exec = "${pre}/chromium --new-window --app=\"https://calendar.proton.me\"";
-      #   terminal = false;
-      #   categories = [ "Application" ];
-      # };
-      # whatsappweb = {
-      #   name = "Whatsapp Web";
-      #   # icon = "${configDir}/icons/Notion.png";
-      #   exec = "${pre}/chromium --new-window --app=\"https://web.whatsapp.com\"";
-      #   terminal = false;
-      #   categories = [ "Application" ];
-      # };
-    };
+    # devdocs = {
+    #   name = "DevDocs";
+    #   # icon = "${configDir}/icons/Notion.png";
+    #   exec = "${pre}/chromium --new-window --app=\"https://devdocs.io\"";
+    #   terminal = false;
+    #   categories = [ "Application" ];
+    # };
+    # protonmail = {
+    #   name = "Proton Mail";
+    #   # icon = "${configDir}/icons/Notion.png";
+    #   exec = "${pre}/chromium --new-window --app=\"https://mail.proton.me\"";
+    #   terminal = false;
+    #   categories = [ "Application" ];
+    # };
+    # discord = {
+    #   name = "Discord";
+    #   # icon = "${configDir}/icons/Notion.png";
+    #   exec = "${pre}/chromium --new-window --app=\"https://discord.com\"";
+    #   terminal = false;
+    #   categories = [ "Application" ];
+    # };
+    # protoncalendar = {
+    #   name = "Proton Calendar";
+    #   # icon = "${configDir}/icons/Notion.png";
+    #   exec = "${pre}/chromium --new-window --app=\"https://calendar.proton.me\"";
+    #   terminal = false;
+    #   categories = [ "Application" ];
+    # };
+    # whatsappweb = {
+    #   name = "Whatsapp Web";
+    #   # icon = "${configDir}/icons/Notion.png";
+    #   exec = "${pre}/chromium --new-window --app=\"https://web.whatsapp.com\"";
+    #   terminal = false;
+    #   categories = [ "Application" ];
+    # };
+  };
 
   # ---
   # hm.fonts.fontconfig.enable = true;
@@ -141,8 +145,7 @@ in
     after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
-      ExecStart =
-        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
@@ -152,13 +155,14 @@ in
   hm.programs.kitty = {
     enable = true;
     theme = "Catppuccin-Macchiato";
-    settings = { font_family = "FantasqueSans Mono Regular"; };
+    settings = {
+      font_family = "FantasqueSans Mono Regular";
+    };
   };
-
 
   # rtkit is optional but recommended
   security.rtkit.enable = true;
-  hardware.pulseaudio.enable = false; #Gnome can be stupid and try to enable this.
+  hardware.pulseaudio.enable = false; # Gnome can be stupid and try to enable this.
 
   services.pipewire = {
     enable = true;
@@ -187,14 +191,17 @@ in
     source-code-pro
     overpass
     (nerdfonts.override {
-      fonts = [ "FiraCode" "DroidSansMono" "DejaVuSansMono" ];
+      fonts = [
+        "FiraCode"
+        "DroidSansMono"
+        "DejaVuSansMono"
+      ];
     })
   ];
 
   hardware.acpilight.enable = true;
   services.gnome.gnome-keyring.enable = true;
   programs.dconf.enable = true;
-
 
   #--------------------------------------------
   #--------------Yubikey Settings-------------
@@ -221,7 +228,6 @@ in
     SUBSYSTEM=="usb", ATTRS{idVendor}=="15a2", ATTRS{idProduct}=="0063", MODE="0660", GROUP="users"
 
   '';
-
 
   #--------------------------------------------
   #--------------Programs----------------------
@@ -353,7 +359,11 @@ in
 
   hm.dconf.settings = {
     "org/gnome/pomodoro/preferences" = {
-      enabled-plugins = [ "sounds" "notifications" "dark-theme" ];
+      enabled-plugins = [
+        "sounds"
+        "notifications"
+        "dark-theme"
+      ];
       pomodoro-duration = 3120.0;
       short-break-duration = 1020.0;
       long-break-duration = 2040.0;
@@ -371,7 +381,12 @@ in
   };
 
   hm.programs.lan-mouse.settings = {
-    release_bind = [ "KeyA" "KeyS" "KeyD" "KeyF" ];
+    release_bind = [
+      "KeyA"
+      "KeyS"
+      "KeyD"
+      "KeyF"
+    ];
     port = 7742;
     frontend = "gtk";
     systemd = true;
@@ -383,7 +398,7 @@ in
       7236 # Gnome Network Displays
     ];
     allowedUDPPorts = [
-      53317 #  LocalSend (installed thru flatpak)
+      53317 # LocalSend (installed thru flatpak)
       7236 # Gnome Network Displays
     ];
   };
@@ -431,6 +446,6 @@ in
     ventoy-bin
     libnotify
     nodePackages.prettier
-    typst-lsp #for VSCode and such
+    typst-lsp # for VSCode and such
   ];
 }

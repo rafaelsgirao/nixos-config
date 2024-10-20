@@ -1,4 +1,11 @@
-{ config, pkgs, lib, inputs, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
   # Credits to this awesome person for (most of) these:
   # https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/global/nix.nix
 
@@ -10,9 +17,10 @@
   # Only adding each flake input to the registry in workstations, 
   # Since all registries add ~200-400MB to each system's closure.
   nix.registry =
-    if (config.rg.class == "workstation")
-    then lib.mapAttrs (_: value: { flake = value; }) inputs
-    else { nixpkgs.flake = inputs.nixpkgs; };
+    if (config.rg.class == "workstation") then
+      lib.mapAttrs (_: value: { flake = value; }) inputs
+    else
+      { nixpkgs.flake = inputs.nixpkgs; };
 
   nix.daemonIOSchedClass = "idle";
   nix.daemonCPUSchedPolicy = "idle";
@@ -41,13 +49,9 @@
       trusted-users = [ ];
 
       substituters = [ "https://cache.rafael.ovh/rgnet" ];
-      trusted-substituters = [
-        "https://cache.rafael.ovh/rgnet"
-      ];
+      trusted-substituters = [ "https://cache.rafael.ovh/rgnet" ];
 
-      trusted-public-keys = [
-        "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="
-      ];
+      trusted-public-keys = [ "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs=" ];
 
       # Fallback quickly if substituters are not available.
       connect-timeout = 2;
@@ -82,7 +86,6 @@
   # Add nixpkgs input to NIX_PATH
   # This lets nix2 commands still use <nixpkgs>
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
-
 
   nix.distributedBuilds = !config.rg.isBuilder && config.rg.class == "workstation";
 
@@ -137,7 +140,6 @@
     # mandatoryFeatures = [ ];
     # }
 
-
     # {
     #   hostName = "eu.nixbuild.net";
     #   protocol = "ssh-ng";
@@ -157,7 +159,10 @@
     {
       hostName = "lab0p5.rnl.tecnico.ulisboa.pt";
       protocol = "ssh-ng";
-      systems = [ "x86_64-linux" "i686-linux" ];
+      systems = [
+        "x86_64-linux"
+        "i686-linux"
+      ];
       maxJobs = 100;
       speedFactor = 3;
       supportedFeatures = [ ];
@@ -165,7 +170,10 @@
     {
       hostName = "lab0p2.rnl.tecnico.ulisboa.pt";
       protocol = "ssh-ng";
-      systems = [ "x86_64-linux" "i686-linux" ];
+      systems = [
+        "x86_64-linux"
+        "i686-linux"
+      ];
       maxJobs = 1;
       speedFactor = 3;
       supportedFeatures = [ "benchmark" ];
@@ -175,7 +183,10 @@
     {
       hostName = "lab0p3.rnl.tecnico.ulisboa.pt";
       protocol = "ssh-ng";
-      systems = [ "x86_64-linux" "i686-linux" ];
+      systems = [
+        "x86_64-linux"
+        "i686-linux"
+      ];
       maxJobs = 1;
       speedFactor = 3;
       supportedFeatures = [ "benchmark" ];
@@ -185,7 +196,10 @@
     {
       hostName = "lab0p4.rnl.tecnico.ulisboa.pt";
       protocol = "ssh-ng";
-      systems = [ "x86_64-linux" "i686-linux" ];
+      systems = [
+        "x86_64-linux"
+        "i686-linux"
+      ];
       maxJobs = 1;
       speedFactor = 3;
       supportedFeatures = [ "benchmark" ];

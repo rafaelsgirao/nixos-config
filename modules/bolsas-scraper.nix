@@ -1,4 +1,9 @@
-{ config, pkgs, hostSecretsDir, ... }:
+{
+  config,
+  pkgs,
+  hostSecretsDir,
+  ...
+}:
 
 let
   dir = "bolsas-scraper";
@@ -14,7 +19,12 @@ in
   };
 
   environment.persistence."/pst".directories = [
-    { directory = stateDir; user = "bolsas-scraper"; group = "bolsas-scraper"; mode = "700"; }
+    {
+      directory = stateDir;
+      user = "bolsas-scraper";
+      group = "bolsas-scraper";
+      mode = "700";
+    }
   ];
 
   users.groups.bolsas-scraper = { };
@@ -52,8 +62,7 @@ in
 
       EnvironmentFile = config.age.secrets.ENV-bolsas-scraper.path;
     };
-    script =
-      "${pkgs.mypkgs.bolsas-scraper}/bin/bolsas-scraper && ${pkgs.curl}/bin/curl -fsS -m 10 -retry 5 -o /dev/null $HC_URL";
+    script = "${pkgs.mypkgs.bolsas-scraper}/bin/bolsas-scraper && ${pkgs.curl}/bin/curl -fsS -m 10 -retry 5 -o /dev/null $HC_URL";
   };
 
   systemd.timers.bolsas-scraper-trigger = {

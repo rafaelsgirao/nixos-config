@@ -1,4 +1,10 @@
-{ pkgs, config, hostSecretsDir, ... }: {
+{
+  pkgs,
+  config,
+  hostSecretsDir,
+  ...
+}:
+{
 
   age.secrets.HC-alive = {
     file = "${hostSecretsDir}/HC-alive.age";
@@ -18,8 +24,7 @@
       SupplementaryGroups = "hc-alive-env";
       ReadOnlyPaths = [ config.age.secrets.HC-alive.path ];
       ProtectSystem = "strict";
-      ExecStart =
-        "${pkgs.bash}/bin/bash -c '${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null $(${pkgs.coreutils}/bin/cat ${config.age.secrets.HC-alive.path})'";
+      ExecStart = "${pkgs.bash}/bin/bash -c '${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null $(${pkgs.coreutils}/bin/cat ${config.age.secrets.HC-alive.path})'";
     };
   };
 

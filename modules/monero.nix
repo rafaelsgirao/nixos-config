@@ -44,8 +44,7 @@ in
   systemd.services.monero.serviceConfig = {
     CapabilityBoundingSet = [ "" ];
     SystemCallArchitectures = "native";
-    SystemCallFilter =
-      [ "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation" ];
+    SystemCallFilter = [ "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation" ];
     PrivateDevices = true;
     RemoveIPC = true;
     PrivateIPC = true;

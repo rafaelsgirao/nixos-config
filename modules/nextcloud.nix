@@ -1,4 +1,10 @@
-{ config, pkgs, lib, hostSecretsDir, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  hostSecretsDir,
+  ...
+}:
 let
   # fqdn = config.networking.fqdn;
   ncHost = "cloud.rafael.ovh";
@@ -47,7 +53,11 @@ in
       # "A value of 1 e.g. will only run these background jobs between 01:00am UTC and 05:00am UTC".
       maintenance_window_start = 1;
       trusted_domains = [ altHost ];
-      trusted_proxies = [ config.rg.ip "127.0.0.1" "192.168.10.9" ];
+      trusted_proxies = [
+        config.rg.ip
+        "127.0.0.1"
+        "192.168.10.9"
+      ];
       overwriteprotocol = "https";
       default_phone_region = "PT";
       #Enables imaginary support.
@@ -65,7 +75,6 @@ in
       memories.vod.ffprobe = "${pkgs.jellyfin-ffmpeg}/bin/ffprobe";
     };
 
-
     notify_push = {
       enable = true;
       bendDomainToLocalhost = true;
@@ -76,7 +85,6 @@ in
     # };
     # extraAppsEnable = true;
   };
-
 
   services.nginx.enableReload = true;
 
@@ -115,28 +123,31 @@ in
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "nextcloud" ];
-    ensureUsers = [{
-      name = "nextcloud";
-      # ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES"; - deprecated
-      ensureDBOwnership = true;
-    }];
+    ensureUsers = [
+      {
+        name = "nextcloud";
+        # ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES"; - deprecated
+        ensureDBOwnership = true;
+      }
+    ];
   };
 
   # https://github.com/NixOS/nixpkgs/blob/master/nixos/tests/nextcloud/with-postgresql-and-redis.nix
   # https://www.chvp.be/blog/unifiedpush-nextcloud-nixos/
   services.redis.vmOverCommit = true;
 
-  environment.persistence."/state".directories = [
-    "/var/lib/redis-nextcloud"
-  ];
+  environment.persistence."/state".directories = [ "/var/lib/redis-nextcloud" ];
 
   systemd.services."phpfpm-nextcloud".serviceConfig = {
     DeviceAllow = [ "/dev/dri/renderD128" ];
-    SupplementaryGroups = [ "render" "video" ];
+    SupplementaryGroups = [
+      "render"
+      "video"
+    ];
   };
   # For debugging
   # systemd.services."phpfpm-nextcloud".path = with pkgs; [
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
     redis
     #Adds nodejs 14 to nextcloud's path.
     #Nextcloud marks it as obsolete, but Recognize app only supports v14.
@@ -163,12 +174,18 @@ in
     go-vod = {
       group = "go-vod";
       isSystemUser = true;
-      extraGroups = [ "render" "video" ];
+      extraGroups = [
+        "render"
+        "video"
+      ];
     };
   };
   #https://memories.gallery/troubleshooting/#issues-with-nixos
   systemd.services.nextcloud-cron = {
-    path = with pkgs; [ perl exiftool ];
+    path = with pkgs; [
+      perl
+      exiftool
+    ];
   };
 
   systemd.services."go-vod" =
@@ -201,11 +218,14 @@ in
         Restart = "on-failure";
         RestartSec = "5s";
 
-
         ExecStart = "${pkgs.mypkgs.go-vod}/bin/go-vod ${GoVodConfigFile}";
         # DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" ];
         ReadOnlyPaths = config.services.nextcloud.home;
-        SupplementaryGroups = [ "nextcloud" "video" "render" ];
+        SupplementaryGroups = [
+          "nextcloud"
+          "video"
+          "render"
+        ];
       };
     };
 

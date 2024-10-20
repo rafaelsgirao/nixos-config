@@ -22,10 +22,9 @@ in
     stateDir = lib.mkDefault "/data/gitea";
     settings = {
       # actions.ENABLED = true;
-      DEFAULT =
-        {
-          APP_NAME = appName;
-        };
+      DEFAULT = {
+        APP_NAME = appName;
+      };
       mailer = {
         ENABLED = true;
         PROTOCOL = "sendmail";
@@ -55,8 +54,10 @@ in
       };
       log.LEVEL = "Warn";
       server =
-        let sshPort = 4222;
-        in {
+        let
+          sshPort = 4222;
+        in
+        {
           BUILTIN_SSH_SERVER_USER = "git";
           PROTOCOL = "http+unix";
           ROOT_URL = "https://git.${fqdn}";

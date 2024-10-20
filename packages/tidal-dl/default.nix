@@ -1,7 +1,8 @@
-{ lib
-, python3
-, fetchPypi
-, lyricsgenius
+{
+  lib,
+  python3,
+  fetchPypi,
+  lyricsgenius,
 }:
 
 python3.pkgs.buildPythonApplication rec {
@@ -32,4 +33,3 @@ python3.pkgs.buildPythonApplication rec {
 
   meta = with lib; { };
 }
-

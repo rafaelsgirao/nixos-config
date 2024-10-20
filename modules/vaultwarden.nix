@@ -1,4 +1,9 @@
-{ config, hostSecretsDir, lib, ... }:
+{
+  config,
+  hostSecretsDir,
+  lib,
+  ...
+}:
 
 let
   inherit (config.rg) domain;
@@ -46,9 +51,7 @@ in
   systemd.services.backup-vaultwarden.serviceConfig = {
     UMask = "007";
   };
-  environment.persistence."/pst".directories = [
-    "/var/lib/bitwarden_rs"
-  ];
+  environment.persistence."/pst".directories = [ "/var/lib/bitwarden_rs" ];
 
   services.caddy.virtualHosts = {
     # "vault.${domain}" = {

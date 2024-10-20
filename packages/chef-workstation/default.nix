@@ -16,7 +16,6 @@ symlinkJoin {
   inherit (chefWorkstationEnv) ruby;
 }
 
-
 #{ (other-stuff), openssl }:
 #bundlerEnv {
 #  name = "chef-workstation";
@@ -50,4 +49,3 @@ symlinkJoin {
 #    badPlatforms = [ "aarch64-linux" ];
 #  };
 # }
-

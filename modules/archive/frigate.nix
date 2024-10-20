@@ -19,14 +19,19 @@ in
   };
 
   systemd.services.frigate.serviceConfig = {
-    SupplementaryGroups = [ "video" "render" ];
+    SupplementaryGroups = [
+      "video"
+      "render"
+    ];
     EnvironmentFile = config.age.secrets.Frigate-env.path;
   };
 
-  services.nginx.virtualHosts.${hostname}.listen = [{
-    addr = "127.0.0.1";
-    inherit port;
-  }];
+  services.nginx.virtualHosts.${hostname}.listen = [
+    {
+      addr = "127.0.0.1";
+      inherit port;
+    }
+  ];
 
   services.caddy.virtualHosts = {
     "${hostname}" = {
@@ -46,10 +51,12 @@ in
         Cam1 = {
           ffmpeg.inputs = [
             {
-              path =
-                "rtsp://{FRIGATE_RTSP_USER1}:{FRIGATE_RTSP_PWD1}@192.168.1.175:554/stream1";
+              path = "rtsp://{FRIGATE_RTSP_USER1}:{FRIGATE_RTSP_PWD1}@192.168.1.175:554/stream1";
               # roles = [ "detect" "record" "audio" ];
-              roles = [ "detect" "record" ];
+              roles = [
+                "detect"
+                "record"
+              ];
 
             }
           ];
@@ -65,8 +72,6 @@ in
   };
 
 }
-
-
 
 # admin
 # Comic4.Hatching.Fiber

@@ -1,6 +1,5 @@
-{ lib
-, ...
-}: {
+{ lib, ... }:
+{
   # enabling ip_forward on the host machine is important for the docker container to be able to perform networking tasks (such as cloning the gitlab repo)
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = true; # 1
@@ -14,7 +13,6 @@
       registrationConfigFile = "/pst/gitlab_runner.env";
       dockerDisableCache = true;
       dockerImage = "alpine";
-
 
     };
     # settings = {
@@ -53,7 +51,5 @@
     };
   };
 
-  environment.persistence."/state".directories = [
-    "/var/lib/gitlab-runner"
-  ];
+  environment.persistence."/state".directories = [ "/var/lib/gitlab-runner" ];
 }

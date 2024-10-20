@@ -6,7 +6,12 @@ in
 {
 
   environment.persistence."/pst".directories = [
-    { directory = stateDir; user = "ipfs"; group = "ipfs"; mode = "700"; }
+    {
+      directory = stateDir;
+      user = "ipfs";
+      group = "ipfs";
+      mode = "700";
+    }
   ];
 
   services.kubo = {

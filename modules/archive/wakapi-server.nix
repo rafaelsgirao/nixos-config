@@ -26,7 +26,7 @@ let
       name = "/var/lib/wakapi/wakapi.db";
     };
     security = {
-      allow_signup = true; #TODO: disable
+      allow_signup = true; # TODO: disable
       disable_frontpage = false;
     };
     mail = {
@@ -37,9 +37,7 @@ let
 in
 {
 
-  environment.persistence."/pst".directories = [
-    "/var/lib/wakapi"
-  ];
+  environment.persistence."/pst".directories = [ "/var/lib/wakapi" ];
 
   services.caddy.virtualHosts."${host}" = {
     useACMEHost = "rafael.ovh";
@@ -53,7 +51,7 @@ in
         
       @api path_regexp "^/api.*"
       @notapi not path_regexp "^/api.*"
-    
+
       push @notapi /assets/vendor/source-sans-3.css
       push @notapi /assets/css/app.dist.css
       push @notapi /assets/vendor/petite-vue.min.js
@@ -100,7 +98,6 @@ in
       # https://ma.ttias.be/auto-restart-crashed-service-systemd/
       Restart = "on-failure";
       RestartSec = "90s";
-
 
       #Security Hardening
       PrivateTmp = true;

@@ -1,7 +1,20 @@
 {
   activesupport = {
-    dependencies = [ "base64" "bigdecimal" "concurrent-ruby" "connection_pool" "drb" "i18n" "minitest" "mutex_m" "tzinfo" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "base64"
+      "bigdecimal"
+      "concurrent-ruby"
+      "connection_pool"
+      "drb"
+      "i18n"
+      "minitest"
+      "mutex_m"
+      "tzinfo"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -14,7 +27,10 @@
   };
   addressable = {
     dependencies = [ "public_suffix" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -26,7 +42,10 @@
     version = "2.8.5";
   };
   appbundler = {
-    dependencies = [ "mixlib-cli" "mixlib-shellout" ];
+    dependencies = [
+      "mixlib-cli"
+      "mixlib-shellout"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -51,7 +70,12 @@
     version = "3.0.15";
   };
   ast = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -63,7 +87,10 @@
     version = "2.4.2";
   };
   aws-eventstream = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -75,7 +102,10 @@
     version = "1.2.0";
   };
   aws-partitions = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -87,8 +117,14 @@
     version = "1.836.0";
   };
   aws-sdk-account = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -100,8 +136,14 @@
     version = "1.18.0";
   };
   aws-sdk-alexaforbusiness = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -113,8 +155,14 @@
     version = "1.65.0";
   };
   aws-sdk-amplify = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -126,8 +174,14 @@
     version = "1.32.0";
   };
   aws-sdk-apigateway = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -139,8 +193,14 @@
     version = "1.88.0";
   };
   aws-sdk-apigatewayv2 = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -152,8 +212,14 @@
     version = "1.51.0";
   };
   aws-sdk-applicationautoscaling = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -165,8 +231,14 @@
     version = "1.51.0";
   };
   aws-sdk-athena = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -178,8 +250,14 @@
     version = "1.75.0";
   };
   aws-sdk-autoscaling = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -191,8 +269,14 @@
     version = "1.92.0";
   };
   aws-sdk-batch = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -204,8 +288,14 @@
     version = "1.73.0";
   };
   aws-sdk-budgets = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -217,8 +307,14 @@
     version = "1.60.0";
   };
   aws-sdk-cloudformation = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -230,8 +326,14 @@
     version = "1.91.0";
   };
   aws-sdk-cloudfront = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -243,8 +345,14 @@
     version = "1.83.0";
   };
   aws-sdk-cloudhsm = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -256,8 +364,14 @@
     version = "1.48.0";
   };
   aws-sdk-cloudhsmv2 = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -269,8 +383,14 @@
     version = "1.51.0";
   };
   aws-sdk-cloudtrail = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -282,8 +402,14 @@
     version = "1.69.0";
   };
   aws-sdk-cloudwatch = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -295,8 +421,14 @@
     version = "1.81.0";
   };
   aws-sdk-cloudwatchevents = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -308,8 +440,14 @@
     version = "1.62.0";
   };
   aws-sdk-cloudwatchlogs = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -321,8 +459,14 @@
     version = "1.71.0";
   };
   aws-sdk-codecommit = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -334,8 +478,14 @@
     version = "1.60.0";
   };
   aws-sdk-codedeploy = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -347,8 +497,14 @@
     version = "1.60.0";
   };
   aws-sdk-codepipeline = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -360,8 +516,14 @@
     version = "1.62.0";
   };
   aws-sdk-cognitoidentity = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -373,8 +535,14 @@
     version = "1.45.0";
   };
   aws-sdk-cognitoidentityprovider = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -386,8 +554,14 @@
     version = "1.76.0";
   };
   aws-sdk-configservice = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -399,8 +573,16 @@
     version = "1.99.0";
   };
   aws-sdk-core = {
-    dependencies = [ "aws-eventstream" "aws-partitions" "aws-sigv4" "jmespath" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-eventstream"
+      "aws-partitions"
+      "aws-sigv4"
+      "jmespath"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -412,8 +594,14 @@
     version = "3.185.1";
   };
   aws-sdk-costandusagereportservice = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -425,8 +613,14 @@
     version = "1.50.0";
   };
   aws-sdk-databasemigrationservice = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -438,8 +632,14 @@
     version = "1.80.0";
   };
   aws-sdk-dynamodb = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -451,8 +651,14 @@
     version = "1.95.0";
   };
   aws-sdk-ec2 = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -464,8 +670,14 @@
     version = "1.413.0";
   };
   aws-sdk-ecr = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -477,8 +689,14 @@
     version = "1.65.0";
   };
   aws-sdk-ecrpublic = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -490,8 +708,14 @@
     version = "1.23.0";
   };
   aws-sdk-ecs = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -503,8 +727,14 @@
     version = "1.130.0";
   };
   aws-sdk-efs = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -516,8 +746,14 @@
     version = "1.67.0";
   };
   aws-sdk-eks = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -529,8 +765,14 @@
     version = "1.90.0";
   };
   aws-sdk-elasticache = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -542,8 +784,14 @@
     version = "1.92.0";
   };
   aws-sdk-elasticbeanstalk = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -555,8 +803,14 @@
     version = "1.61.0";
   };
   aws-sdk-elasticloadbalancing = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -568,8 +822,14 @@
     version = "1.49.0";
   };
   aws-sdk-elasticloadbalancingv2 = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -581,8 +841,14 @@
     version = "1.93.0";
   };
   aws-sdk-elasticsearchservice = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -594,8 +860,14 @@
     version = "1.77.0";
   };
   aws-sdk-emr = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -607,8 +879,14 @@
     version = "1.53.0";
   };
   aws-sdk-eventbridge = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -620,8 +898,14 @@
     version = "1.46.0";
   };
   aws-sdk-firehose = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -633,8 +917,14 @@
     version = "1.58.0";
   };
   aws-sdk-glue = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -646,8 +936,14 @@
     version = "1.145.0";
   };
   aws-sdk-guardduty = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -659,8 +955,14 @@
     version = "1.80.0";
   };
   aws-sdk-iam = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -672,8 +974,14 @@
     version = "1.87.0";
   };
   aws-sdk-kafka = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -685,8 +993,14 @@
     version = "1.63.0";
   };
   aws-sdk-kinesis = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -698,8 +1012,14 @@
     version = "1.52.0";
   };
   aws-sdk-kms = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -711,8 +1031,14 @@
     version = "1.72.0";
   };
   aws-sdk-lambda = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -724,8 +1050,14 @@
     version = "1.106.0";
   };
   aws-sdk-mq = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -737,8 +1069,14 @@
     version = "1.40.0";
   };
   aws-sdk-networkfirewall = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -750,8 +1088,14 @@
     version = "1.35.0";
   };
   aws-sdk-networkmanager = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -763,8 +1107,14 @@
     version = "1.37.0";
   };
   aws-sdk-organizations = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -776,8 +1126,14 @@
     version = "1.77.0";
   };
   aws-sdk-ram = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -789,8 +1145,14 @@
     version = "1.26.0";
   };
   aws-sdk-rds = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -802,8 +1164,14 @@
     version = "1.197.0";
   };
   aws-sdk-redshift = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -815,8 +1183,14 @@
     version = "1.99.0";
   };
   aws-sdk-route53 = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -828,8 +1202,14 @@
     version = "1.80.0";
   };
   aws-sdk-route53domains = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -841,8 +1221,14 @@
     version = "1.52.0";
   };
   aws-sdk-route53resolver = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -854,8 +1240,15 @@
     version = "1.49.0";
   };
   aws-sdk-s3 = {
-    dependencies = [ "aws-sdk-core" "aws-sdk-kms" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sdk-kms"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -867,8 +1260,14 @@
     version = "1.136.0";
   };
   aws-sdk-s3control = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -880,8 +1279,14 @@
     version = "1.43.0";
   };
   aws-sdk-secretsmanager = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -893,8 +1298,14 @@
     version = "1.46.0";
   };
   aws-sdk-securityhub = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -906,8 +1317,14 @@
     version = "1.94.0";
   };
   aws-sdk-servicecatalog = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -919,8 +1336,14 @@
     version = "1.60.0";
   };
   aws-sdk-ses = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -932,8 +1355,14 @@
     version = "1.41.0";
   };
   aws-sdk-shield = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -945,8 +1374,14 @@
     version = "1.58.0";
   };
   aws-sdk-signer = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -958,8 +1393,14 @@
     version = "1.32.0";
   };
   aws-sdk-simpledb = {
-    dependencies = [ "aws-sdk-core" "aws-sigv2" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv2"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -971,8 +1412,14 @@
     version = "1.29.0";
   };
   aws-sdk-sms = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -984,8 +1431,14 @@
     version = "1.50.0";
   };
   aws-sdk-sns = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -997,8 +1450,14 @@
     version = "1.67.0";
   };
   aws-sdk-sqs = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1010,8 +1469,14 @@
     version = "1.64.0";
   };
   aws-sdk-ssm = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1023,8 +1488,14 @@
     version = "1.158.0";
   };
   aws-sdk-states = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1036,8 +1507,14 @@
     version = "1.39.0";
   };
   aws-sdk-synthetics = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1049,8 +1526,14 @@
     version = "1.19.0";
   };
   aws-sdk-transfer = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1062,8 +1545,14 @@
     version = "1.73.0";
   };
   aws-sdk-waf = {
-    dependencies = [ "aws-sdk-core" "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-core"
+      "aws-sigv4"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1075,7 +1564,10 @@
     version = "1.43.0";
   };
   aws-sigv2 = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1088,7 +1580,10 @@
   };
   aws-sigv4 = {
     dependencies = [ "aws-eventstream" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1101,7 +1596,10 @@
   };
   azure_graph_rbac = {
     dependencies = [ "ms_rest_azure" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1114,7 +1612,10 @@
   };
   azure_mgmt_key_vault = {
     dependencies = [ "ms_rest_azure" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1127,7 +1628,10 @@
   };
   azure_mgmt_resources = {
     dependencies = [ "ms_rest_azure" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1140,7 +1644,10 @@
   };
   azure_mgmt_security = {
     dependencies = [ "ms_rest_azure" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1153,7 +1660,10 @@
   };
   azure_mgmt_storage = {
     dependencies = [ "ms_rest_azure" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1165,7 +1675,10 @@
     version = "0.23.0";
   };
   base64 = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1189,7 +1702,20 @@
     version = "1.1.0";
   };
   berkshelf = {
-    dependencies = [ "chef" "chef-config" "cleanroom" "concurrent-ruby" "minitar" "mixlib-archive" "mixlib-config" "mixlib-shellout" "octokit" "retryable" "solve" "thor" ];
+    dependencies = [
+      "chef"
+      "chef-config"
+      "cleanroom"
+      "concurrent-ruby"
+      "minitar"
+      "mixlib-archive"
+      "mixlib-config"
+      "mixlib-shellout"
+      "octokit"
+      "retryable"
+      "solve"
+      "thor"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -1202,7 +1728,10 @@
     version = "8.0.9";
   };
   bigdecimal = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1215,7 +1744,10 @@
   };
   binding_of_caller = {
     dependencies = [ "debug_inspector" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1227,7 +1759,10 @@
     version = "1.0.0";
   };
   bson = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1239,7 +1774,10 @@
     version = "4.15.0";
   };
   builder = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1251,7 +1789,10 @@
     version = "3.2.4";
   };
   byebug = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1263,7 +1804,41 @@
     version = "11.1.3";
   };
   chef = {
-    dependencies = [ "addressable" "aws-sdk-s3" "aws-sdk-secretsmanager" "chef-config" "chef-utils" "chef-vault" "chef-zero" "corefoundation" "diff-lcs" "erubis" "ffi" "ffi-libarchive" "ffi-yajl" "iniparse" "inspec-core" "license-acceptance" "mixlib-archive" "mixlib-authentication" "mixlib-cli" "mixlib-log" "mixlib-shellout" "net-ftp" "net-sftp" "ohai" "plist" "proxifier2" "syslog-logger" "train-core" "train-rest" "train-winrm" "unf_ext" "uuidtools" "vault" ];
+    dependencies = [
+      "addressable"
+      "aws-sdk-s3"
+      "aws-sdk-secretsmanager"
+      "chef-config"
+      "chef-utils"
+      "chef-vault"
+      "chef-zero"
+      "corefoundation"
+      "diff-lcs"
+      "erubis"
+      "ffi"
+      "ffi-libarchive"
+      "ffi-yajl"
+      "iniparse"
+      "inspec-core"
+      "license-acceptance"
+      "mixlib-archive"
+      "mixlib-authentication"
+      "mixlib-cli"
+      "mixlib-log"
+      "mixlib-shellout"
+      "net-ftp"
+      "net-sftp"
+      "ohai"
+      "plist"
+      "proxifier2"
+      "syslog-logger"
+      "train-core"
+      "train-rest"
+      "train-winrm"
+      "unf_ext"
+      "uuidtools"
+      "vault"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -1276,7 +1851,22 @@
     version = "18.3.0";
   };
   chef-apply = {
-    dependencies = [ "chef" "chef-cli" "chef-telemetry" "license-acceptance" "mixlib-cli" "mixlib-config" "mixlib-install" "mixlib-log" "pastel" "r18n-desktop" "toml-rb" "train-core" "train-winrm" "tty-spinner" ];
+    dependencies = [
+      "chef"
+      "chef-cli"
+      "chef-telemetry"
+      "license-acceptance"
+      "mixlib-cli"
+      "mixlib-config"
+      "mixlib-install"
+      "mixlib-log"
+      "pastel"
+      "r18n-desktop"
+      "toml-rb"
+      "train-core"
+      "train-winrm"
+      "tty-spinner"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -1302,7 +1892,19 @@
     version = "18.3.0";
   };
   chef-cli = {
-    dependencies = [ "addressable" "chef" "cookbook-omnifetch" "diff-lcs" "ffi-yajl" "license-acceptance" "minitar" "mixlib-cli" "mixlib-shellout" "pastel" "solve" ];
+    dependencies = [
+      "addressable"
+      "chef"
+      "cookbook-omnifetch"
+      "diff-lcs"
+      "ffi-yajl"
+      "license-acceptance"
+      "minitar"
+      "mixlib-cli"
+      "mixlib-shellout"
+      "pastel"
+      "solve"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -1315,8 +1917,18 @@
     version = "5.6.14";
   };
   chef-config = {
-    dependencies = [ "addressable" "chef-utils" "fuzzyurl" "mixlib-config" "mixlib-shellout" "tomlrb" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "addressable"
+      "chef-utils"
+      "fuzzyurl"
+      "mixlib-config"
+      "mixlib-shellout"
+      "tomlrb"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1328,8 +1940,14 @@
     version = "18.3.0";
   };
   chef-telemetry = {
-    dependencies = [ "chef-config" "concurrent-ruby" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "chef-config"
+      "concurrent-ruby"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1354,7 +1972,10 @@
     version = "18.3.0";
   };
   chef-vault = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1366,8 +1987,18 @@
     version = "4.1.11";
   };
   chef-zero = {
-    dependencies = [ "ffi-yajl" "hashie" "mixlib-log" "rack" "uuidtools" "webrick" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "ffi-yajl"
+      "hashie"
+      "mixlib-log"
+      "rack"
+      "uuidtools"
+      "webrick"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1391,7 +2022,11 @@
     version = "0.2.0";
   };
   cheffish = {
-    dependencies = [ "chef-utils" "chef-zero" "net-ssh" ];
+    dependencies = [
+      "chef-utils"
+      "chef-zero"
+      "net-ssh"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -1404,7 +2039,11 @@
     version = "17.1.5";
   };
   chefspec = {
-    dependencies = [ "chef" "chef-cli" "rspec" ];
+    dependencies = [
+      "chef"
+      "chef-cli"
+      "rspec"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -1430,7 +2069,10 @@
     version = "2.2.2";
   };
   citrus = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1442,7 +2084,10 @@
     version = "3.0.2";
   };
   cleanroom = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1454,7 +2099,12 @@
     version = "1.0.0";
   };
   coderay = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1466,7 +2116,10 @@
     version = "1.1.3";
   };
   concurrent-ruby = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1478,7 +2131,10 @@
     version = "1.2.2";
   };
   connection_pool = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1491,7 +2147,10 @@
   };
   cookbook-omnifetch = {
     dependencies = [ "mixlib-archive" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1504,7 +2163,11 @@
   };
   cookstyle = {
     dependencies = [ "rubocop" ];
-    groups = [ "development" "omnibus_package" "test" ];
+    groups = [
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1517,7 +2180,10 @@
   };
   corefoundation = {
     dependencies = [ "ffi" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1529,7 +2195,10 @@
     version = "0.3.13";
   };
   date = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1541,7 +2210,10 @@
     version = "3.3.3";
   };
   debug_inspector = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1553,7 +2225,10 @@
     version = "1.1.0";
   };
   declarative = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1577,7 +2252,10 @@
     version = "1.3.5";
   };
   dep_selector = {
-    dependencies = [ "dep-selector-libgecode" "ffi" ];
+    dependencies = [
+      "dep-selector-libgecode"
+      "ffi"
+    ];
     groups = [ "dep_selector" ];
     platforms = [ ];
     source = {
@@ -1590,7 +2268,10 @@
     version = "1.0.6";
   };
   diff-lcs = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1602,7 +2283,10 @@
     version = "1.3";
   };
   docker-api = {
-    dependencies = [ "excon" "multi_json" ];
+    dependencies = [
+      "excon"
+      "multi_json"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -1616,7 +2300,10 @@
   };
   domain_name = {
     dependencies = [ "unf" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1629,7 +2316,10 @@
   };
   drb = {
     dependencies = [ "ruby2_keywords" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1641,8 +2331,14 @@
     version = "2.1.1";
   };
   dry-configurable = {
-    dependencies = [ "concurrent-ruby" "dry-core" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "concurrent-ruby"
+      "dry-core"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1655,7 +2351,10 @@
   };
   dry-container = {
     dependencies = [ "concurrent-ruby" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1667,8 +2366,14 @@
     version = "0.11.0";
   };
   dry-core = {
-    dependencies = [ "concurrent-ruby" "zeitwerk" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "concurrent-ruby"
+      "zeitwerk"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1680,7 +2385,10 @@
     version = "0.9.1";
   };
   dry-inflector = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1692,8 +2400,15 @@
     version = "0.3.0";
   };
   dry-logic = {
-    dependencies = [ "concurrent-ruby" "dry-core" "zeitwerk" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "concurrent-ruby"
+      "dry-core"
+      "zeitwerk"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1705,8 +2420,16 @@
     version = "1.3.0";
   };
   dry-struct = {
-    dependencies = [ "dry-core" "dry-types" "ice_nine" "zeitwerk" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "dry-core"
+      "dry-types"
+      "ice_nine"
+      "zeitwerk"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1718,8 +2441,18 @@
     version = "1.5.2";
   };
   dry-types = {
-    dependencies = [ "concurrent-ruby" "dry-container" "dry-core" "dry-inflector" "dry-logic" "zeitwerk" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "concurrent-ruby"
+      "dry-container"
+      "dry-core"
+      "dry-inflector"
+      "dry-logic"
+      "zeitwerk"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1743,7 +2476,10 @@
     version = "1.3.0";
   };
   erubi = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1755,7 +2491,10 @@
     version = "1.12.0";
   };
   erubis = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1767,7 +2506,10 @@
     version = "2.7.0";
   };
   excon = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1779,8 +2521,23 @@
     version = "0.104.0";
   };
   faraday = {
-    dependencies = [ "faraday-em_http" "faraday-em_synchrony" "faraday-excon" "faraday-httpclient" "faraday-multipart" "faraday-net_http" "faraday-net_http_persistent" "faraday-patron" "faraday-rack" "faraday-retry" "ruby2_keywords" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "faraday-em_http"
+      "faraday-em_synchrony"
+      "faraday-excon"
+      "faraday-httpclient"
+      "faraday-multipart"
+      "faraday-net_http"
+      "faraday-net_http_persistent"
+      "faraday-patron"
+      "faraday-rack"
+      "faraday-retry"
+      "ruby2_keywords"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1792,8 +2549,14 @@
     version = "1.10.3";
   };
   faraday-cookie_jar = {
-    dependencies = [ "faraday" "http-cookie" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "faraday"
+      "http-cookie"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1805,7 +2568,10 @@
     version = "0.0.7";
   };
   faraday-em_http = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1817,7 +2583,10 @@
     version = "1.0.0";
   };
   faraday-em_synchrony = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1829,7 +2598,10 @@
     version = "1.0.0";
   };
   faraday-excon = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1842,7 +2614,10 @@
   };
   faraday-follow_redirects = {
     dependencies = [ "faraday" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1854,7 +2629,10 @@
     version = "0.3.0";
   };
   faraday-httpclient = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1867,7 +2645,10 @@
   };
   faraday-multipart = {
     dependencies = [ "multipart-post" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1879,7 +2660,10 @@
     version = "1.0.4";
   };
   faraday-net_http = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1891,7 +2675,10 @@
     version = "1.0.1";
   };
   faraday-net_http_persistent = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1903,7 +2690,10 @@
     version = "1.2.0";
   };
   faraday-patron = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1915,7 +2705,10 @@
     version = "1.0.0";
   };
   faraday-rack = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1927,7 +2720,10 @@
     version = "1.0.0";
   };
   faraday-retry = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1940,7 +2736,10 @@
   };
   faraday_middleware = {
     dependencies = [ "faraday" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1965,7 +2764,13 @@
     version = "9.3.8";
   };
   ffi = {
-    groups = [ "default" "dep_selector" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "dep_selector"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1978,7 +2783,11 @@
   };
   ffi-libarchive = {
     dependencies = [ "ffi" ];
-    groups = [ "development" "omnibus_package" "test" ];
+    groups = [
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -1991,7 +2800,10 @@
   };
   ffi-yajl = {
     dependencies = [ "libyajl2" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2003,8 +2815,16 @@
     version = "2.6.0";
   };
   fog-core = {
-    dependencies = [ "builder" "excon" "formatador" "mime-types" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "builder"
+      "excon"
+      "formatador"
+      "mime-types"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2016,8 +2836,14 @@
     version = "2.3.0";
   };
   fog-json = {
-    dependencies = [ "fog-core" "multi_json" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "fog-core"
+      "multi_json"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2029,8 +2855,14 @@
     version = "1.2.0";
   };
   fog-openstack = {
-    dependencies = [ "fog-core" "fog-json" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "fog-core"
+      "fog-json"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2042,7 +2874,12 @@
     version = "1.1.0";
   };
   formatador = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2054,7 +2891,10 @@
     version = "1.1.0";
   };
   fuzzyurl = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2067,7 +2907,10 @@
   };
   gcewinpass = {
     dependencies = [ "google-api-client" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2079,8 +2922,20 @@
     version = "1.1.0";
   };
   google-api-client = {
-    dependencies = [ "addressable" "googleauth" "httpclient" "mini_mime" "representable" "retriable" "rexml" "signet" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "addressable"
+      "googleauth"
+      "httpclient"
+      "mini_mime"
+      "representable"
+      "retriable"
+      "rexml"
+      "signet"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2092,8 +2947,18 @@
     version = "0.52.0";
   };
   googleauth = {
-    dependencies = [ "faraday" "jwt" "memoist" "multi_json" "os" "signet" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "faraday"
+      "jwt"
+      "memoist"
+      "multi_json"
+      "os"
+      "signet"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2106,7 +2971,10 @@
   };
   gssapi = {
     dependencies = [ "ffi" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2118,8 +2986,21 @@
     version = "1.3.1";
   };
   guard = {
-    dependencies = [ "formatador" "listen" "lumberjack" "nenv" "notiffany" "pry" "shellany" "thor" ];
-    groups = [ "development" "omnibus_package" "test" ];
+    dependencies = [
+      "formatador"
+      "listen"
+      "lumberjack"
+      "nenv"
+      "notiffany"
+      "pry"
+      "shellany"
+      "thor"
+    ];
+    groups = [
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2131,8 +3012,14 @@
     version = "2.18.1";
   };
   gyoku = {
-    dependencies = [ "builder" "rexml" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "builder"
+      "rexml"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2144,7 +3031,10 @@
     version = "1.4.0";
   };
   hashdiff = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2156,7 +3046,10 @@
     version = "1.0.1";
   };
   hashie = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2168,7 +3061,10 @@
     version = "4.1.0";
   };
   highline = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2180,7 +3076,10 @@
     version = "2.1.0";
   };
   http-accept = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2193,7 +3092,10 @@
   };
   http-cookie = {
     dependencies = [ "domain_name" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2205,7 +3107,10 @@
     version = "1.0.5";
   };
   httpclient = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2218,7 +3123,10 @@
   };
   i18n = {
     dependencies = [ "concurrent-ruby" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2230,7 +3138,10 @@
     version = "1.14.1";
   };
   ice_nine = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2242,7 +3153,10 @@
     version = "0.11.2";
   };
   inifile = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2254,7 +3168,10 @@
     version = "3.0.0";
   };
   iniparse = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2266,8 +3183,23 @@
     version = "1.5.0";
   };
   inspec = {
-    dependencies = [ "cookstyle" "faraday_middleware" "inspec-core" "mongo" "progress_bar" "rake" "train" "train-aws" "train-habitat" "train-kubernetes" "train-winrm" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "cookstyle"
+      "faraday_middleware"
+      "inspec-core"
+      "mongo"
+      "progress_bar"
+      "rake"
+      "train"
+      "train-aws"
+      "train-habitat"
+      "train-kubernetes"
+      "train-winrm"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2292,8 +3224,34 @@
     version = "5.22.3";
   };
   inspec-core = {
-    dependencies = [ "addressable" "chef-telemetry" "faraday" "faraday-follow_redirects" "hashie" "license-acceptance" "method_source" "mixlib-log" "multipart-post" "parallel" "parslet" "pry" "rspec" "rspec-its" "rubyzip" "semverse" "sslshake" "thor" "tomlrb" "train-core" "tty-prompt" "tty-table" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "addressable"
+      "chef-telemetry"
+      "faraday"
+      "faraday-follow_redirects"
+      "hashie"
+      "license-acceptance"
+      "method_source"
+      "mixlib-log"
+      "multipart-post"
+      "parallel"
+      "parslet"
+      "pry"
+      "rspec"
+      "rspec-its"
+      "rubyzip"
+      "semverse"
+      "sslshake"
+      "thor"
+      "tomlrb"
+      "train-core"
+      "tty-prompt"
+      "tty-table"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2305,7 +3263,10 @@
     version = "5.22.3";
   };
   ipaddress = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2317,7 +3278,10 @@
     version = "0.8.3";
   };
   jmespath = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2329,7 +3293,10 @@
     version = "1.6.2";
   };
   json = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2341,8 +3308,14 @@
     version = "2.6.3";
   };
   jsonpath = {
-    dependencies = [ "multi_json" "to_regexp" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "multi_json"
+      "to_regexp"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2354,7 +3327,10 @@
     version = "0.9.9";
   };
   jwt = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2366,8 +3342,21 @@
     version = "2.7.1";
   };
   k8s-ruby = {
-    dependencies = [ "dry-configurable" "dry-struct" "dry-types" "excon" "hashdiff" "jsonpath" "recursive-open-struct" "yajl-ruby" "yaml-safe_load_stream3" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "dry-configurable"
+      "dry-struct"
+      "dry-types"
+      "excon"
+      "hashdiff"
+      "jsonpath"
+      "recursive-open-struct"
+      "yajl-ruby"
+      "yaml-safe_load_stream3"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2379,7 +3368,11 @@
     version = "0.14.0";
   };
   kitchen-dokken = {
-    dependencies = [ "docker-api" "lockfile" "test-kitchen" ];
+    dependencies = [
+      "docker-api"
+      "lockfile"
+      "test-kitchen"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -2392,7 +3385,11 @@
     version = "2.19.1";
   };
   kitchen-google = {
-    dependencies = [ "gcewinpass" "google-api-client" "test-kitchen" ];
+    dependencies = [
+      "gcewinpass"
+      "google-api-client"
+      "test-kitchen"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -2405,7 +3402,11 @@
     version = "2.4.0";
   };
   kitchen-inspec = {
-    dependencies = [ "hashie" "inspec" "test-kitchen" ];
+    dependencies = [
+      "hashie"
+      "inspec"
+      "test-kitchen"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -2418,7 +3419,11 @@
     version = "2.6.2";
   };
   kitchen-openstack = {
-    dependencies = [ "fog-openstack" "ohai" "test-kitchen" ];
+    dependencies = [
+      "fog-openstack"
+      "ohai"
+      "test-kitchen"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -2431,7 +3436,30 @@
     version = "6.2.0";
   };
   knife = {
-    dependencies = [ "bcrypt_pbkdf" "chef" "chef-config" "chef-utils" "chef-vault" "erubis" "ffi" "ffi-yajl" "highline" "license-acceptance" "mixlib-archive" "mixlib-cli" "net-ssh" "net-ssh-multi" "ohai" "pastel" "proxifier2" "train-core" "train-winrm" "tty-prompt" "tty-screen" "tty-table" ];
+    dependencies = [
+      "bcrypt_pbkdf"
+      "chef"
+      "chef-config"
+      "chef-utils"
+      "chef-vault"
+      "erubis"
+      "ffi"
+      "ffi-yajl"
+      "highline"
+      "license-acceptance"
+      "mixlib-archive"
+      "mixlib-cli"
+      "net-ssh"
+      "net-ssh-multi"
+      "ohai"
+      "pastel"
+      "proxifier2"
+      "train-core"
+      "train-winrm"
+      "tty-prompt"
+      "tty-screen"
+      "tty-table"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -2445,7 +3473,10 @@
   };
   kramdown = {
     dependencies = [ "rexml" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2458,7 +3489,10 @@
   };
   kramdown-parser-gfm = {
     dependencies = [ "kramdown" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2470,7 +3504,10 @@
     version = "1.1.0";
   };
   libyajl2 = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2482,8 +3519,16 @@
     version = "2.1.0";
   };
   license-acceptance = {
-    dependencies = [ "pastel" "tomlrb" "tty-box" "tty-prompt" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "pastel"
+      "tomlrb"
+      "tty-box"
+      "tty-prompt"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2495,8 +3540,15 @@
     version = "2.1.13";
   };
   listen = {
-    dependencies = [ "rb-fsevent" "rb-inotify" ];
-    groups = [ "development" "omnibus_package" "test" ];
+    dependencies = [
+      "rb-fsevent"
+      "rb-inotify"
+    ];
+    groups = [
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2508,7 +3560,10 @@
     version = "3.8.0";
   };
   little-plugger = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2520,7 +3575,10 @@
     version = "1.1.4";
   };
   lockfile = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2532,8 +3590,14 @@
     version = "2.1.3";
   };
   logging = {
-    dependencies = [ "little-plugger" "multi_json" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "little-plugger"
+      "multi_json"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2545,7 +3609,12 @@
     version = "2.3.1";
   };
   lumberjack = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2557,7 +3626,13 @@
     version = "1.2.9";
   };
   mdl = {
-    dependencies = [ "kramdown" "kramdown-parser-gfm" "mixlib-cli" "mixlib-config" "mixlib-shellout" ];
+    dependencies = [
+      "kramdown"
+      "kramdown-parser-gfm"
+      "mixlib-cli"
+      "mixlib-config"
+      "mixlib-shellout"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -2570,7 +3645,10 @@
     version = "0.13.0";
   };
   memoist = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2582,7 +3660,12 @@
     version = "0.16.2";
   };
   method_source = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2595,7 +3678,10 @@
   };
   mime-types = {
     dependencies = [ "mime-types-data" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2607,7 +3693,10 @@
     version = "3.5.1";
   };
   mime-types-data = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2619,7 +3708,10 @@
     version = "3.2023.1003";
   };
   mini_mime = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2631,7 +3723,10 @@
     version = "1.1.5";
   };
   minitar = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2643,7 +3738,11 @@
     version = "0.9";
   };
   minitest = {
-    groups = [ "development" "omnibus_package" "test" ];
+    groups = [
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2668,7 +3767,10 @@
     version = "1.1.7";
   };
   mixlib-authentication = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2680,7 +3782,10 @@
     version = "3.0.10";
   };
   mixlib-cli = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2693,7 +3798,10 @@
   };
   mixlib-config = {
     dependencies = [ "tomlrb" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2705,7 +3813,11 @@
     version = "3.0.27";
   };
   mixlib-install = {
-    dependencies = [ "mixlib-shellout" "mixlib-versioning" "thor" ];
+    dependencies = [
+      "mixlib-shellout"
+      "mixlib-versioning"
+      "thor"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -2718,7 +3830,10 @@
     version = "3.12.27";
   };
   mixlib-log = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2731,7 +3846,10 @@
   };
   mixlib-shellout = {
     dependencies = [ "chef-utils" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2743,7 +3861,10 @@
     version = "3.2.7";
   };
   mixlib-versioning = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2755,7 +3876,10 @@
     version = "1.2.12";
   };
   molinillo = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2768,7 +3892,10 @@
   };
   mongo = {
     dependencies = [ "bson" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2780,8 +3907,15 @@
     version = "2.13.2";
   };
   ms_rest = {
-    dependencies = [ "concurrent-ruby" "faraday" "timeliness" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "concurrent-ruby"
+      "faraday"
+      "timeliness"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2793,8 +3927,16 @@
     version = "0.7.6";
   };
   ms_rest_azure = {
-    dependencies = [ "concurrent-ruby" "faraday" "faraday-cookie_jar" "ms_rest" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "concurrent-ruby"
+      "faraday"
+      "faraday-cookie_jar"
+      "ms_rest"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2806,7 +3948,10 @@
     version = "0.12.0";
   };
   multi_json = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2818,7 +3963,10 @@
     version = "1.15.0";
   };
   multipart-post = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2830,7 +3978,10 @@
     version = "2.3.0";
   };
   mutex_m = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2842,7 +3993,12 @@
     version = "0.1.2";
   };
   nenv = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2854,8 +4010,14 @@
     version = "0.3.0";
   };
   net-ftp = {
-    dependencies = [ "net-protocol" "time" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "net-protocol"
+      "time"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2868,7 +4030,10 @@
   };
   net-protocol = {
     dependencies = [ "timeout" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2881,7 +4046,10 @@
   };
   net-scp = {
     dependencies = [ "net-ssh" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2894,7 +4062,10 @@
   };
   net-sftp = {
     dependencies = [ "net-ssh" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2919,7 +4090,10 @@
   };
   net-ssh-gateway = {
     dependencies = [ "net-ssh" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2931,8 +4105,14 @@
     version = "2.0.0";
   };
   net-ssh-multi = {
-    dependencies = [ "net-ssh" "net-ssh-gateway" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "net-ssh"
+      "net-ssh-gateway"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2944,7 +4124,10 @@
     version = "1.2.1";
   };
   netrc = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2960,14 +4143,15 @@
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = null;
-    targets = [{
-      remotes = [ "https://rubygems.org" ];
-      sha256 = "0hhqzm7p4lww7v3i33im26bmiryfqr0p3iknbadyv5ypf8yysb47";
-      target = "x86_64-linux";
-      targetCPU = "x86_64";
-      targetOS = "linux";
-      type = "gem";
-    }
+    targets = [
+      {
+        remotes = [ "https://rubygems.org" ];
+        sha256 = "0hhqzm7p4lww7v3i33im26bmiryfqr0p3iknbadyv5ypf8yysb47";
+        target = "x86_64-linux";
+        targetCPU = "x86_64";
+        targetOS = "linux";
+        type = "gem";
+      }
       {
         remotes = [ "https://rubygems.org" ];
         sha256 = "1f2a532j8hbz2f0d3ixnx156b9rgfgnmqz9z450a8ibhw03il28l";
@@ -2975,11 +4159,15 @@
         targetCPU = "aarch64";
         targetOS = "linux";
         type = "gem";
-      }];
+      }
+    ];
     version = "1.15.4";
   };
   nori = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -2991,8 +4179,16 @@
     version = "2.6.0";
   };
   notiffany = {
-    dependencies = [ "nenv" "shellany" ];
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    dependencies = [
+      "nenv"
+      "shellany"
+    ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3004,8 +4200,14 @@
     version = "0.1.3";
   };
   octokit = {
-    dependencies = [ "faraday" "sawyer" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "faraday"
+      "sawyer"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3017,7 +4219,20 @@
     version = "4.25.1";
   };
   ohai = {
-    dependencies = [ "chef-config" "chef-utils" "ffi" "ffi-yajl" "ipaddress" "mixlib-cli" "mixlib-config" "mixlib-log" "mixlib-shellout" "plist" "train-core" "wmi-lite" ];
+    dependencies = [
+      "chef-config"
+      "chef-utils"
+      "ffi"
+      "ffi-yajl"
+      "ipaddress"
+      "mixlib-cli"
+      "mixlib-config"
+      "mixlib-log"
+      "mixlib-shellout"
+      "plist"
+      "train-core"
+      "wmi-lite"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -3030,7 +4245,10 @@
     version = "18.1.3";
   };
   options = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3042,7 +4260,10 @@
     version = "2.3.2";
   };
   os = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3054,7 +4275,12 @@
     version = "1.1.4";
   };
   parallel = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3066,8 +4292,16 @@
     version = "1.23.0";
   };
   parser = {
-    dependencies = [ "ast" "racc" ];
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    dependencies = [
+      "ast"
+      "racc"
+    ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3079,7 +4313,10 @@
     version = "3.2.2.4";
   };
   parslet = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3092,7 +4329,10 @@
   };
   pastel = {
     dependencies = [ "tty-color" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3104,7 +4344,10 @@
     version = "0.8.0";
   };
   plist = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3116,8 +4359,14 @@
     version = "3.7.0";
   };
   progress_bar = {
-    dependencies = [ "highline" "options" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "highline"
+      "options"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3129,7 +4378,10 @@
     version = "1.3.3";
   };
   proxifier2 = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3141,8 +4393,15 @@
     version = "1.1.0";
   };
   pry = {
-    dependencies = [ "coderay" "method_source" ];
-    groups = [ "development" "omnibus_package" "test" ];
+    dependencies = [
+      "coderay"
+      "method_source"
+    ];
+    groups = [
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3154,7 +4413,10 @@
     version = "0.13.0";
   };
   pry-byebug = {
-    dependencies = [ "byebug" "pry" ];
+    dependencies = [
+      "byebug"
+      "pry"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -3167,7 +4429,10 @@
     version = "3.10.1";
   };
   pry-remote = {
-    dependencies = [ "pry" "slop" ];
+    dependencies = [
+      "pry"
+      "slop"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -3180,7 +4445,10 @@
     version = "0.1.8";
   };
   pry-stack_explorer = {
-    dependencies = [ "binding_of_caller" "pry" ];
+    dependencies = [
+      "binding_of_caller"
+      "pry"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -3193,7 +4461,10 @@
     version = "0.6.1";
   };
   public_suffix = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3205,7 +4476,10 @@
     version = "5.0.3";
   };
   r18n-core = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3218,7 +4492,10 @@
   };
   r18n-desktop = {
     dependencies = [ "r18n-core" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3230,7 +4507,12 @@
     version = "5.0.1";
   };
   racc = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3242,7 +4524,10 @@
     version = "1.7.1";
   };
   rack = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3254,7 +4539,12 @@
     version = "2.2.8";
   };
   rainbow = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3266,7 +4556,11 @@
     version = "3.1.1";
   };
   rake = {
-    groups = [ "development" "omnibus_package" "test" ];
+    groups = [
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3278,7 +4572,12 @@
     version = "13.0.1";
   };
   rb-fsevent = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3291,7 +4590,12 @@
   };
   rb-inotify = {
     dependencies = [ "ffi" ];
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3315,7 +4619,10 @@
     version = "0.5.5";
   };
   recursive-open-struct = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3327,7 +4634,12 @@
     version = "1.1.3";
   };
   regexp_parser = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3339,8 +4651,15 @@
     version = "2.8.2";
   };
   representable = {
-    dependencies = [ "declarative" "trailblazer-option" "uber" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "declarative"
+      "trailblazer-option"
+      "uber"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3352,8 +4671,16 @@
     version = "3.2.0";
   };
   rest-client = {
-    dependencies = [ "http-accept" "http-cookie" "mime-types" "netrc" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "http-accept"
+      "http-cookie"
+      "mime-types"
+      "netrc"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3365,7 +4692,10 @@
     version = "2.1.0";
   };
   retriable = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3377,7 +4707,10 @@
     version = "3.1.2";
   };
   retryable = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3389,7 +4722,12 @@
     version = "3.0.5";
   };
   rexml = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3401,8 +4739,15 @@
     version = "3.2.6";
   };
   rspec = {
-    dependencies = [ "rspec-core" "rspec-expectations" "rspec-mocks" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "rspec-core"
+      "rspec-expectations"
+      "rspec-mocks"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3415,7 +4760,10 @@
   };
   rspec-core = {
     dependencies = [ "rspec-support" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3427,8 +4775,14 @@
     version = "3.11.0";
   };
   rspec-expectations = {
-    dependencies = [ "diff-lcs" "rspec-support" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "diff-lcs"
+      "rspec-support"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3440,8 +4794,14 @@
     version = "3.11.1";
   };
   rspec-its = {
-    dependencies = [ "rspec-core" "rspec-expectations" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "rspec-core"
+      "rspec-expectations"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3453,8 +4813,14 @@
     version = "1.3.0";
   };
   rspec-mocks = {
-    dependencies = [ "diff-lcs" "rspec-support" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "diff-lcs"
+      "rspec-support"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3466,7 +4832,10 @@
     version = "3.11.2";
   };
   rspec-support = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3478,8 +4847,22 @@
     version = "3.11.1";
   };
   rubocop = {
-    dependencies = [ "parallel" "parser" "rainbow" "regexp_parser" "rexml" "rubocop-ast" "ruby-progressbar" "unicode-display_width" ];
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    dependencies = [
+      "parallel"
+      "parser"
+      "rainbow"
+      "regexp_parser"
+      "rexml"
+      "rubocop-ast"
+      "ruby-progressbar"
+      "unicode-display_width"
+    ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3492,7 +4875,12 @@
   };
   rubocop-ast = {
     dependencies = [ "parser" ];
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3504,7 +4892,12 @@
     version = "1.29.0";
   };
   ruby-progressbar = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3517,15 +4910,11 @@
   };
   ruby-shadow = {
     groups = [ "ruby_shadow" ];
-    platforms = [{
-      engine = "maglev";
-    }
-      {
-        engine = "rbx";
-      }
-      {
-        engine = "ruby";
-      }];
+    platforms = [
+      { engine = "maglev"; }
+      { engine = "rbx"; }
+      { engine = "ruby"; }
+    ];
     source = {
       fetchSubmodules = false;
       rev = "3b8ea40b0e943b5de721d956741308ce805a5c3c";
@@ -3537,7 +4926,10 @@
     version = "2.5.0";
   };
   ruby2_keywords = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3549,7 +4941,10 @@
     version = "0.0.5";
   };
   rubyntlm = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3561,7 +4956,10 @@
     version = "0.6.3";
   };
   rubyzip = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3573,8 +4971,14 @@
     version = "2.3.2";
   };
   sawyer = {
-    dependencies = [ "addressable" "faraday" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "addressable"
+      "faraday"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3586,7 +4990,10 @@
     version = "0.9.2";
   };
   semverse = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3598,7 +5005,12 @@
     version = "3.0.2";
   };
   shellany = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3610,8 +5022,16 @@
     version = "0.0.1";
   };
   signet = {
-    dependencies = [ "addressable" "faraday" "jwt" "multi_json" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "addressable"
+      "faraday"
+      "jwt"
+      "multi_json"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3623,7 +5043,10 @@
     version = "0.18.0";
   };
   slop = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3635,8 +5058,14 @@
     version = "3.6.0";
   };
   solve = {
-    dependencies = [ "molinillo" "semverse" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "molinillo"
+      "semverse"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3648,7 +5077,10 @@
     version = "4.0.4";
   };
   sslshake = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3660,8 +5092,15 @@
     version = "1.3.1";
   };
   strings = {
-    dependencies = [ "strings-ansi" "unicode-display_width" "unicode_utils" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "strings-ansi"
+      "unicode-display_width"
+      "unicode_utils"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3673,7 +5112,10 @@
     version = "0.2.1";
   };
   strings-ansi = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3685,7 +5127,10 @@
     version = "0.2.0";
   };
   syslog-logger = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3697,7 +5142,21 @@
     version = "1.6.8";
   };
   test-kitchen = {
-    dependencies = [ "bcrypt_pbkdf" "chef-utils" "ed25519" "license-acceptance" "mixlib-install" "mixlib-shellout" "net-scp" "net-ssh" "net-ssh-gateway" "thor" "winrm" "winrm-elevated" "winrm-fs" ];
+    dependencies = [
+      "bcrypt_pbkdf"
+      "chef-utils"
+      "ed25519"
+      "license-acceptance"
+      "mixlib-install"
+      "mixlib-shellout"
+      "net-scp"
+      "net-ssh"
+      "net-ssh-gateway"
+      "thor"
+      "winrm"
+      "winrm-elevated"
+      "winrm-fs"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -3710,7 +5169,12 @@
     version = "3.5.0";
   };
   thor = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3723,7 +5187,10 @@
   };
   time = {
     dependencies = [ "date" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3735,7 +5202,10 @@
     version = "0.2.2";
   };
   timeliness = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3747,7 +5217,10 @@
     version = "0.3.10";
   };
   timeout = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3759,7 +5232,10 @@
     version = "0.4.0";
   };
   to_regexp = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3772,7 +5248,10 @@
   };
   toml-rb = {
     dependencies = [ "citrus" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3784,7 +5263,10 @@
     version = "2.2.0";
   };
   tomlrb = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3796,7 +5278,10 @@
     version = "1.3.0";
   };
   trailblazer-option = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3808,8 +5293,24 @@
     version = "0.1.2";
   };
   train = {
-    dependencies = [ "activesupport" "azure_graph_rbac" "azure_mgmt_key_vault" "azure_mgmt_resources" "azure_mgmt_security" "azure_mgmt_storage" "docker-api" "google-api-client" "googleauth" "inifile" "train-core" "train-winrm" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "activesupport"
+      "azure_graph_rbac"
+      "azure_mgmt_key_vault"
+      "azure_mgmt_resources"
+      "azure_mgmt_security"
+      "azure_mgmt_storage"
+      "docker-api"
+      "google-api-client"
+      "googleauth"
+      "inifile"
+      "train-core"
+      "train-winrm"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3821,8 +5322,88 @@
     version = "3.10.8";
   };
   train-aws = {
-    dependencies = [ "aws-sdk-account" "aws-sdk-alexaforbusiness" "aws-sdk-amplify" "aws-sdk-apigateway" "aws-sdk-apigatewayv2" "aws-sdk-applicationautoscaling" "aws-sdk-athena" "aws-sdk-autoscaling" "aws-sdk-batch" "aws-sdk-budgets" "aws-sdk-cloudformation" "aws-sdk-cloudfront" "aws-sdk-cloudhsm" "aws-sdk-cloudhsmv2" "aws-sdk-cloudtrail" "aws-sdk-cloudwatch" "aws-sdk-cloudwatchevents" "aws-sdk-cloudwatchlogs" "aws-sdk-codecommit" "aws-sdk-codedeploy" "aws-sdk-codepipeline" "aws-sdk-cognitoidentity" "aws-sdk-cognitoidentityprovider" "aws-sdk-configservice" "aws-sdk-core" "aws-sdk-costandusagereportservice" "aws-sdk-databasemigrationservice" "aws-sdk-dynamodb" "aws-sdk-ec2" "aws-sdk-ecr" "aws-sdk-ecrpublic" "aws-sdk-ecs" "aws-sdk-efs" "aws-sdk-eks" "aws-sdk-elasticache" "aws-sdk-elasticbeanstalk" "aws-sdk-elasticloadbalancing" "aws-sdk-elasticloadbalancingv2" "aws-sdk-elasticsearchservice" "aws-sdk-emr" "aws-sdk-eventbridge" "aws-sdk-firehose" "aws-sdk-glue" "aws-sdk-guardduty" "aws-sdk-iam" "aws-sdk-kafka" "aws-sdk-kinesis" "aws-sdk-kms" "aws-sdk-lambda" "aws-sdk-mq" "aws-sdk-networkfirewall" "aws-sdk-networkmanager" "aws-sdk-organizations" "aws-sdk-ram" "aws-sdk-rds" "aws-sdk-redshift" "aws-sdk-route53" "aws-sdk-route53domains" "aws-sdk-route53resolver" "aws-sdk-s3" "aws-sdk-s3control" "aws-sdk-secretsmanager" "aws-sdk-securityhub" "aws-sdk-servicecatalog" "aws-sdk-ses" "aws-sdk-shield" "aws-sdk-signer" "aws-sdk-simpledb" "aws-sdk-sms" "aws-sdk-sns" "aws-sdk-sqs" "aws-sdk-ssm" "aws-sdk-states" "aws-sdk-synthetics" "aws-sdk-transfer" "aws-sdk-waf" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sdk-account"
+      "aws-sdk-alexaforbusiness"
+      "aws-sdk-amplify"
+      "aws-sdk-apigateway"
+      "aws-sdk-apigatewayv2"
+      "aws-sdk-applicationautoscaling"
+      "aws-sdk-athena"
+      "aws-sdk-autoscaling"
+      "aws-sdk-batch"
+      "aws-sdk-budgets"
+      "aws-sdk-cloudformation"
+      "aws-sdk-cloudfront"
+      "aws-sdk-cloudhsm"
+      "aws-sdk-cloudhsmv2"
+      "aws-sdk-cloudtrail"
+      "aws-sdk-cloudwatch"
+      "aws-sdk-cloudwatchevents"
+      "aws-sdk-cloudwatchlogs"
+      "aws-sdk-codecommit"
+      "aws-sdk-codedeploy"
+      "aws-sdk-codepipeline"
+      "aws-sdk-cognitoidentity"
+      "aws-sdk-cognitoidentityprovider"
+      "aws-sdk-configservice"
+      "aws-sdk-core"
+      "aws-sdk-costandusagereportservice"
+      "aws-sdk-databasemigrationservice"
+      "aws-sdk-dynamodb"
+      "aws-sdk-ec2"
+      "aws-sdk-ecr"
+      "aws-sdk-ecrpublic"
+      "aws-sdk-ecs"
+      "aws-sdk-efs"
+      "aws-sdk-eks"
+      "aws-sdk-elasticache"
+      "aws-sdk-elasticbeanstalk"
+      "aws-sdk-elasticloadbalancing"
+      "aws-sdk-elasticloadbalancingv2"
+      "aws-sdk-elasticsearchservice"
+      "aws-sdk-emr"
+      "aws-sdk-eventbridge"
+      "aws-sdk-firehose"
+      "aws-sdk-glue"
+      "aws-sdk-guardduty"
+      "aws-sdk-iam"
+      "aws-sdk-kafka"
+      "aws-sdk-kinesis"
+      "aws-sdk-kms"
+      "aws-sdk-lambda"
+      "aws-sdk-mq"
+      "aws-sdk-networkfirewall"
+      "aws-sdk-networkmanager"
+      "aws-sdk-organizations"
+      "aws-sdk-ram"
+      "aws-sdk-rds"
+      "aws-sdk-redshift"
+      "aws-sdk-route53"
+      "aws-sdk-route53domains"
+      "aws-sdk-route53resolver"
+      "aws-sdk-s3"
+      "aws-sdk-s3control"
+      "aws-sdk-secretsmanager"
+      "aws-sdk-securityhub"
+      "aws-sdk-servicecatalog"
+      "aws-sdk-ses"
+      "aws-sdk-shield"
+      "aws-sdk-signer"
+      "aws-sdk-simpledb"
+      "aws-sdk-sms"
+      "aws-sdk-sns"
+      "aws-sdk-sqs"
+      "aws-sdk-ssm"
+      "aws-sdk-states"
+      "aws-sdk-synthetics"
+      "aws-sdk-transfer"
+      "aws-sdk-waf"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3834,8 +5415,18 @@
     version = "0.2.36";
   };
   train-core = {
-    dependencies = [ "addressable" "ffi" "json" "mixlib-shellout" "net-scp" "net-ssh" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "addressable"
+      "ffi"
+      "json"
+      "mixlib-shellout"
+      "net-scp"
+      "net-ssh"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3847,7 +5438,10 @@
     version = "3.10.8";
   };
   train-habitat = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3859,8 +5453,14 @@
     version = "0.2.22";
   };
   train-kubernetes = {
-    dependencies = [ "k8s-ruby" "train" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "k8s-ruby"
+      "train"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3872,8 +5472,15 @@
     version = "0.1.12";
   };
   train-rest = {
-    dependencies = [ "aws-sigv4" "rest-client" "train-core" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "aws-sigv4"
+      "rest-client"
+      "train-core"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3885,8 +5492,15 @@
     version = "0.5.0";
   };
   train-winrm = {
-    dependencies = [ "winrm" "winrm-elevated" "winrm-fs" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "winrm"
+      "winrm-elevated"
+      "winrm-fs"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3898,8 +5512,15 @@
     version = "0.2.13";
   };
   tty-box = {
-    dependencies = [ "pastel" "strings" "tty-cursor" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "pastel"
+      "strings"
+      "tty-cursor"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3911,7 +5532,10 @@
     version = "0.7.0";
   };
   tty-color = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3923,7 +5547,10 @@
     version = "0.6.0";
   };
   tty-cursor = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3935,8 +5562,14 @@
     version = "0.7.1";
   };
   tty-prompt = {
-    dependencies = [ "pastel" "tty-reader" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "pastel"
+      "tty-reader"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3948,8 +5581,15 @@
     version = "0.23.1";
   };
   tty-reader = {
-    dependencies = [ "tty-cursor" "tty-screen" "wisper" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "tty-cursor"
+      "tty-screen"
+      "wisper"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3961,7 +5601,10 @@
     version = "0.9.0";
   };
   tty-screen = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3974,7 +5617,10 @@
   };
   tty-spinner = {
     dependencies = [ "tty-cursor" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -3986,8 +5632,15 @@
     version = "0.9.3";
   };
   tty-table = {
-    dependencies = [ "pastel" "strings" "tty-screen" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "pastel"
+      "strings"
+      "tty-screen"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4000,7 +5653,10 @@
   };
   tzinfo = {
     dependencies = [ "concurrent-ruby" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4012,7 +5668,10 @@
     version = "2.0.6";
   };
   uber = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4025,7 +5684,10 @@
   };
   unf = {
     dependencies = [ "unf_ext" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4049,7 +5711,12 @@
     version = "0.0.8.2";
   };
   unicode-display_width = {
-    groups = [ "default" "development" "omnibus_package" "test" ];
+    groups = [
+      "default"
+      "development"
+      "omnibus_package"
+      "test"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4061,7 +5728,10 @@
     version = "2.5.0";
   };
   unicode_utils = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4073,7 +5743,10 @@
     version = "1.4.0";
   };
   uuidtools = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4086,7 +5759,10 @@
   };
   vault = {
     dependencies = [ "aws-sigv4" ];
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4098,7 +5774,10 @@
     version = "0.18.1";
   };
   webrick = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4110,8 +5789,20 @@
     version = "1.8.1";
   };
   winrm = {
-    dependencies = [ "builder" "erubi" "gssapi" "gyoku" "httpclient" "logging" "nori" "rubyntlm" ];
-    groups = [ "default" "omnibus_package" ];
+    dependencies = [
+      "builder"
+      "erubi"
+      "gssapi"
+      "gyoku"
+      "httpclient"
+      "logging"
+      "nori"
+      "rubyntlm"
+    ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4123,7 +5814,11 @@
     version = "2.3.6";
   };
   winrm-elevated = {
-    dependencies = [ "erubi" "winrm" "winrm-fs" ];
+    dependencies = [
+      "erubi"
+      "winrm"
+      "winrm-fs"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -4136,7 +5831,12 @@
     version = "1.2.3";
   };
   winrm-fs = {
-    dependencies = [ "erubi" "logging" "rubyzip" "winrm" ];
+    dependencies = [
+      "erubi"
+      "logging"
+      "rubyzip"
+      "winrm"
+    ];
     groups = [ "omnibus_package" ];
     platforms = [ ];
     source = {
@@ -4149,7 +5849,10 @@
     version = "1.3.5";
   };
   wisper = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4161,7 +5864,10 @@
     version = "2.0.1";
   };
   wmi-lite = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4173,7 +5879,10 @@
     version = "1.0.7";
   };
   yajl-ruby = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4185,7 +5894,10 @@
     version = "1.4.3";
   };
   yaml-safe_load_stream3 = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];
@@ -4197,7 +5909,10 @@
     version = "0.1.2";
   };
   zeitwerk = {
-    groups = [ "default" "omnibus_package" ];
+    groups = [
+      "default"
+      "omnibus_package"
+    ];
     platforms = [ ];
     source = {
       remotes = [ "https://rubygems.org" ];

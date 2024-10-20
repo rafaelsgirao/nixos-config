@@ -1,6 +1,16 @@
-{ config, options, lib, ... }:
+{
+  config,
+  options,
+  lib,
+  ...
+}:
 let
-  inherit (lib) mkAliasDefinitions mkOption types mkEnableOption;
+  inherit (lib)
+    mkAliasDefinitions
+    mkOption
+    types
+    mkEnableOption
+    ;
 in
 {
   options = {
@@ -8,10 +18,17 @@ in
     rg = {
       enable = mkEnableOption "rg";
       machineType = mkOption {
-        type = types.enum [ "virt" "intel" "amd" ];
+        type = types.enum [
+          "virt"
+          "intel"
+          "amd"
+        ];
       };
       class = mkOption {
-        type = types.enum [ "workstation" "server" ];
+        type = types.enum [
+          "workstation"
+          "server"
+        ];
       };
 
       isBuilder = mkOption {
@@ -65,10 +82,16 @@ in
     assertions =
       let
         rgMsg = x: "The option ${x} must have a value!";
-        assertRgNotNull = x: { assertion = x != null; message = rgMsg x; };
+        assertRgNotNull = x: {
+          assertion = x != null;
+          message = rgMsg x;
+        };
       in
       [
-        { assertion = config.rg.vCores != 0; message = "The option config.rg.vCores must be set."; }
+        {
+          assertion = config.rg.vCores != 0;
+          message = "The option config.rg.vCores must be set.";
+        }
         (assertRgNotNull config.rg.domain)
         # (assertRgNotNull config.hm.home.stateVersion)
         (assertRgNotNull config.system.stateVersion)

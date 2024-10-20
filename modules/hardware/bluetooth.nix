@@ -1,9 +1,6 @@
-_:
-{
+_: {
   #Bluetooth.
-  environment.persistence."/pst".directories = [
-    "/var/lib/bluetooth"
-  ];
+  environment.persistence."/pst".directories = [ "/var/lib/bluetooth" ];
 
   #Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -24,7 +21,10 @@ _:
     RestrictSUIDSGID = true;
     NoNewPrivileges = true;
 
-    SystemCallFilter = [ "@system-service" "~@resources @privileged" ];
+    SystemCallFilter = [
+      "@system-service"
+      "~@resources @privileged"
+    ];
 
     SystemCallArchitecture = "native";
   };

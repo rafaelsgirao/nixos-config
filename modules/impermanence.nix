@@ -6,24 +6,17 @@ in
 
   #Home as tmpfs.
 
-
-
   environment.persistence."/state" = {
     hideMounts = true;
-    directories = [
-      "/var/log/journal"
+    directories = [ "/var/log/journal" ];
+    users.rg.directories = lib.mkIf isWorkstation [
+      ".cache"
+      ".cert"
     ];
-    users.rg.directories = lib.mkIf isWorkstation
-      [
-        ".cache"
-        ".cert"
-      ];
   };
 
   environment.persistence."/pst" = {
     hideMounts = true;
-    directories = [
-      "/var/lib/nixos"
-    ];
+    directories = [ "/var/lib/nixos" ];
   };
 }

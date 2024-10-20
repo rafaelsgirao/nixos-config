@@ -1,11 +1,10 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
 
   # Being headless, we don't need a GRUB splash image.
   boot.loader.grub.splashImage = null;
 
-  imports = [
-    ./blocky.nix
-  ];
+  imports = [ ./blocky.nix ];
   # Don't start a tty on the serial consoles.
   # systemd.services."serial-getty@ttyS0".enable = lib.mkDefault false;
   # systemd.services."serial-getty@hvc0".enable = false;
@@ -24,7 +23,6 @@
   networking.networkmanager.enable = false;
   networking.dhcpcd.enable = !config.systemd.network.enable;
   networking.useDHCP = !config.systemd.network.enable;
-
 
   programs.command-not-found.enable = lib.mkDefault false;
 
@@ -49,7 +47,10 @@
   services.logind.lidSwitch = "ignore";
 
   services.resolved.enable = false;
-  networking.nameservers = [ "127.0.0.1" "1.1.1.1" ]; #Blocky (and fallback)
+  networking.nameservers = [
+    "127.0.0.1"
+    "1.1.1.1"
+  ]; # Blocky (and fallback)
 
   #Separate user to run docker containers and other things on
   # users.users.apps = {
@@ -127,6 +128,5 @@
 
   # Ensure a clean & sparkling /tmp on fresh boots.
   boot.tmp.cleanOnBoot = lib.mkDefault true;
-
 
 }

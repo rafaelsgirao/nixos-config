@@ -1,14 +1,8 @@
 {
   nixConfig = {
-    extra-substituters = [
-      "https://cache.rafael.ovh/rgnet"
-    ];
-    extra-trusted-public-keys = [
-      "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="
-    ];
-    flake-registry = [
-      "https://rafael.ovh/flake-registry.json"
-    ];
+    extra-substituters = [ "https://cache.rafael.ovh/rgnet" ];
+    extra-trusted-public-keys = [ "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs=" ];
+    flake-registry = [ "https://rafael.ovh/flake-registry.json" ];
   };
   inputs = {
     #--------------
@@ -38,8 +32,9 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #-------------------
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
+    #-------------------
 
     # -----------------------
     # Utilities.
@@ -57,16 +52,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pre-commit-hooks-nix =
-      {
-        url = "github:cachix/pre-commit-hooks.nix";
-        inputs = {
-          flake-compat.follows = "flake-compat";
-          nixpkgs.follows = "nixpkgs";
-          nixpkgs-stable.follows = "nixpkgs";
-          gitignore.follows = "gitignore";
-        };
+    pre-commit-hooks-nix = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        flake-compat.follows = "flake-compat";
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+        gitignore.follows = "gitignore";
       };
+    };
 
     ruby-nix = {
       url = "github:inscapist/ruby-nix";
@@ -91,7 +85,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # ------------------------
-
 
     # ----------------------
     # Inputs that add notable features.
@@ -133,25 +126,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    bolsas-scraper =
-      {
-        url = "github:ist-bot-team/bolsas-scraper";
-        inputs = {
-          flake-parts.follows = "flake-parts";
-          nixpkgs.follows = "nixpkgs";
-        };
+    bolsas-scraper = {
+      url = "github:ist-bot-team/bolsas-scraper";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
       };
-    wc-bot =
-      {
-        # url = "github:ist-chan-bot-team/ist-chan-bot";
-        url = "git+ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git";
-        inputs = {
-          nixpkgs.follows = "nixpkgs";
-          flake-parts.follows = "flake-parts";
-          pre-commit-hooks-nix.follows = "";
-          treefmt-nix.follows = "";
-        };
+    };
+    wc-bot = {
+      # url = "github:ist-chan-bot-team/ist-chan-bot";
+      url = "git+ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        pre-commit-hooks-nix.follows = "";
+        treefmt-nix.follows = "";
       };
+    };
 
     # ist-discord-bot = {
     #   url = "github:ist-bot-team/ist-discord-bot/rg/make-nix-package";
@@ -164,7 +155,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home";
-        darwin.follows = ""; #If in the future I get a Mac (unlikely), remove this line.
+        darwin.follows = ""; # If in the future I get a Mac (unlikely), remove this line.
       };
     };
     #Not pinning to 0.3.0 anymore because master allows me to cancel the 'pre-commit-hooks-nix' input.
@@ -181,12 +172,16 @@
 
   };
 
-  outputs = inputs@{ self, ... }:
+  outputs =
+    inputs@{ self, ... }:
 
     let
       inherit (self) outputs;
       inherit (builtins) attrNames readDir listToAttrs;
-      lib = inputs.nixpkgs.lib // inputs.flake-parts.lib // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib);
+      lib =
+        inputs.nixpkgs.lib
+        // inputs.flake-parts.lib
+        // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib);
       inherit (lib) mapAttrs;
       fs = lib.fileset;
 
@@ -203,9 +198,10 @@
       secretsDir = self + "/secrets";
 
       # Imports every host defined in a directory.
-      mkHosts = dir:
-        listToAttrs (map
-          (name: {
+      mkHosts =
+        dir:
+        listToAttrs (
+          map (name: {
             inherit name;
             value = inputs.nixpkgs.lib.nixosSystem rec {
               specialArgs = {
@@ -237,13 +233,17 @@
                 inputs.agenix.nixosModules.default
                 inputs.home.nixosModules.home-manager
                 inputs.disko.nixosModules.disko
+                inputs.nixos-cosmic.nixosModules.default
+
                 (dir + "/${name}/hardware.nix")
                 (dir + "/${name}/machine.nix")
                 {
                   home-manager = {
                     useGlobalPkgs = true;
                     useUserPackages = true;
-                    extraSpecialArgs = { hostName = name; };
+                    extraSpecialArgs = {
+                      hostName = name;
+                    };
                     # users.${user} = import (dir + "/${name}/home.nix");
                     # users.${user} = import ./modules/home.nix;
                   };
@@ -252,24 +252,31 @@
                 inputs.impermanence.nixosModules.impermanence
               ];
             };
-          })
-          (attrNames (readDir dir)));
+          }) (attrNames (readDir dir))
+        );
 
     in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; }
-      {
-        imports = [
-          inputs.pre-commit-hooks-nix.flakeModule
-          inputs.treefmt-nix.flakeModule
-          inputs.nixinate.flakeModule
-        ];
-        systems = [
-          # systems for which you want to build the `perSystem` attributes
-          "x86_64-linux"
-          "aarch64-linux"
-        ];
-        # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
-        perSystem = { config, pkgs, inputs', system, ... }: {
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        inputs.pre-commit-hooks-nix.flakeModule
+        inputs.treefmt-nix.flakeModule
+        inputs.nixinate.flakeModule
+      ];
+      systems = [
+        # systems for which you want to build the `perSystem` attributes
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
+      perSystem =
+        {
+          config,
+          pkgs,
+          inputs',
+          system,
+          ...
+        }:
+        {
           apps =
             let
               buildAllHosts = pkgs.writeShellScriptBin "build-all-configs" ''
@@ -311,10 +318,10 @@
               htop
               age-plugin-yubikey
             ];
-            shellHook = '' 
-            # export DEBUG=1
-            ${config.pre-commit.installationScript}
-       '';
+            shellHook = ''
+              # export DEBUG=1
+              ${config.pre-commit.installationScript}
+            '';
           };
           pre-commit.settings.hooks = {
             treefmt.enable = true;
@@ -328,7 +335,8 @@
           };
           treefmt.projectRootFile = ./flake.nix;
           treefmt.programs = {
-            nixpkgs-fmt.enable = true;
+            # nixpkgs-fmt.enable = true;
+            nixfmt.enable = true;
             shellcheck.enable = true;
             shfmt.enable = true;
             mdformat.enable = true;
@@ -336,72 +344,66 @@
             ruff-check.enable = true;
             ruff-format.enable = true;
             statix.enable = true;
-            statix.disabled-lints = [
-              "repeated_keys"
-            ];
+            statix.disabled-lints = [ "repeated_keys" ];
 
           };
-          packages = import ./packages { inherit pkgs; inherit inputs; inherit inputs'; };
+          packages = import ./packages {
+            inherit pkgs;
+            inherit inputs;
+            inherit inputs';
+          };
+          _module.args.debug = true;
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
-            overlays = [
-              outputs.overlays.pkgs-sets-unstable
-            ];
+            overlays = [ outputs.overlays.pkgs-sets-unstable ];
             # config = { contentAddressedByDefault = true; };
           };
         };
 
-        flake = {
-          #So nix repl can access `self`, through outputs.self
-          inherit self lib;
+      flake = {
+        #So nix repl can access `self`, through outputs.self
+        inherit self lib;
 
-          nixosConfigurations = mkHosts ./hosts;
-          overlays =
-            let
-              # https://nix.dev/tutorials/working-with-local-files.html
-              sourceFiles = fs.unions [
-                (fs.fileFilter
-                  (file: file.hasExt "nix")
-                  ./overlays
-                )
-              ];
-              overlaysDir = fs.toSource {
-                root = ./overlays;
-                fileset = sourceFiles;
-              };
+        nixosConfigurations = mkHosts ./hosts;
+        overlays =
+          let
+            # https://nix.dev/tutorials/working-with-local-files.html
+            sourceFiles = fs.unions [ (fs.fileFilter (file: file.hasExt "nix") ./overlays) ];
+            overlaysDir = fs.toSource {
+              root = ./overlays;
+              fileset = sourceFiles;
+            };
 
-              myOverlays = mapAttrs
+            myOverlays =
+              mapAttrs
                 # Can't use overlaysDir here because I want to access non-overlay files in overlays dir
                 # And `overlaysDir` doesn't have them
                 (name: _: import ./overlays/${name} { inherit inputs; })
                 (readDir overlaysDir);
 
-            in
-            {
+          in
+          {
 
-              pkgs-sets-unstable = final: _prev:
-                let
-                  args = {
-                    inherit (final) system;
-                    config.allowUnfree = true;
-                    # config.contentAddressedByDefault = true;
-                  };
-                in
-                {
-                  unstable = import inputs.nixpkgs-unstable args;
+            pkgs-sets-unstable =
+              final: _prev:
+              let
+                args = {
+                  inherit (final) system;
+                  config.allowUnfree = true;
+                  # config.contentAddressedByDefault = true;
                 };
-              pkgs-sets-mypkgs = final: _prev:
-                {
-                  mypkgs = outputs.packages.${final.system};
-                };
-              pkgs-sets-everythingmusl = final: prev:
-                {
-                  final = prev.pkgsMusl;
-                };
-            } // myOverlays;
+              in
+              {
+                unstable = import inputs.nixpkgs-unstable args;
+              };
+            pkgs-sets-mypkgs = final: _prev: { mypkgs = outputs.packages.${final.system}; };
+            pkgs-sets-everythingmusl = final: prev: { final = prev.pkgsMusl; };
+          }
+          // myOverlays;
 
-          homeConfigurations =
-            mapAttrs (_: host: host.config.home-manager.users."rg".home) outputs.nixosConfigurations;
-        };
+        homeConfigurations = mapAttrs (
+          _: host: host.config.home-manager.users."rg".home
+        ) outputs.nixosConfigurations;
       };
+    };
 }

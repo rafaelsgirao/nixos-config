@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.services.blocky;
 
@@ -11,12 +16,14 @@ in
     after = [ "network-online.target" ];
     wantedBy = [ "network-online.target" ];
     serviceConfig = {
-      ExecStart =
-        lib.mkForce "${pkgs.blocky}/bin/blocky --config ${configFile}";
+      ExecStart = lib.mkForce "${pkgs.blocky}/bin/blocky --config ${configFile}";
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 15";
     };
     # after= [ "network-online.target "];
-    wants = [ "network-online.target" "systemd-networkd-wait-online.service" ];
+    wants = [
+      "network-online.target"
+      "systemd-networkd-wait-online.service"
+    ];
   };
   systemd.services."blocky".serviceConfig = {
     MemoryDenyWriteExecute = true;
@@ -151,7 +158,10 @@ in
     ];
     blocking = {
       clientGroupsBlock = {
-        "192.168.10.1" = [ "normal" "rg" ];
+        "192.168.10.1" = [
+          "normal"
+          "rg"
+        ];
         "192.168.10.2" = [ "none" ];
         "192.168.10.3" = [ "none" ];
         "192.168.10.6" = [ "none" ];
@@ -175,7 +185,7 @@ in
     ports = {
       dns = lib.mkDefault "127.0.0.1:53";
       tls = lib.mkDefault null;
-      http = lib.mkDefault "127.0.0.1:4000"; #Blocky CLI expects port 4000 by default
+      http = lib.mkDefault "127.0.0.1:4000"; # Blocky CLI expects port 4000 by default
     };
     minTlsServeVersion = "1.2";
     bootstrapDns = "tcp+udp:1.1.1.1";

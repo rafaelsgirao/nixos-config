@@ -1,4 +1,10 @@
-{ config, lib, pkgs, secretsDir, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  secretsDir,
+  ...
+}:
 
 let
 

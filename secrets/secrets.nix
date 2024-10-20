@@ -24,13 +24,20 @@ let
 
   cluster-nodes = [
     #TODO: change when prod
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINSnqxAKupYw0c0jIHBdLfPOCVxQHKF033Z3MRg7e9EY" #node-a
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9gdgB5xSKVwTG4fAw4nIBV+HxY4pGOxbE/ciNyzMZW" #node-b
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL+0QmD4kVio9vs9K0dOun2og9iu/B2pH7yYzxG4Vo6O" #node-c
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINSnqxAKupYw0c0jIHBdLfPOCVxQHKF033Z3MRg7e9EY" # node-a
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH9gdgB5xSKVwTG4fAw4nIBV+HxY4pGOxbE/ciNyzMZW" # node-b
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL+0QmD4kVio9vs9K0dOun2og9iu/B2pH7yYzxG4Vo6O" # node-c
   ];
-  workstations = [ scout sazed vin ];
+  workstations = [
+    scout
+    sazed
+    vin
+  ];
 
-  servers = [ spy saxton ] ++ cluster-nodes;
+  servers = [
+    spy
+    saxton
+  ] ++ cluster-nodes;
 
   systems = workstations ++ servers;
 in
@@ -49,7 +56,6 @@ in
 
   # Secrets for cluster nodes.
   "cluster/ENV-garage.age".publicKeys = cluster-nodes ++ users;
-
 
   # secrets for all.
   "restic-env.age".publicKeys = systems ++ users;

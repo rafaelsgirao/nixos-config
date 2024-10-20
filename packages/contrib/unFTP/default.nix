@@ -1,8 +1,9 @@
-{ lib
-, linux-pam
-, rustPlatform
-, fetchFromGitHub
-, buildFeatures ? [ "gnu" ]
+{
+  lib,
+  linux-pam,
+  rustPlatform,
+  fetchFromGitHub,
+  buildFeatures ? [ "gnu" ],
 }:
 
 rustPlatform.buildRustPackage rec {
@@ -18,9 +19,7 @@ rustPlatform.buildRustPackage rec {
   #Extra cargo Build Features
   inherit buildFeatures;
 
-  buildInputs = [
-    linux-pam
-  ];
+  buildInputs = [ linux-pam ];
 
   cargoSha256 = "sha256-vFu1D2GYItVGeTmd/rwmZHM/mf4zQ3tzBLux7vb+yZ0=";
 

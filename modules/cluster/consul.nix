@@ -12,15 +12,15 @@ in
   services.consul = {
     enable = true;
     webUi = true;
-    interface.bind = "eth0"; #nebula0 in production
+    interface.bind = "eth0"; # nebula0 in production
     forceAddrFamily = "ipv4";
-    interface.advertise = "eth0"; #nebula0 in production
+    interface.advertise = "eth0"; # nebula0 in production
     extraConfig = {
       client_addr = "0.0.0.0";
       bootstrap_expect = 3;
       datacenter = "vm";
       domain = "consul";
-      encrypt = "Gj7Lt826mtt+bCujHT8cbJ3xFuwTCJzfnM73iAuBo70="; #change in prod! generate with `consul keygen`.
+      encrypt = "Gj7Lt826mtt+bCujHT8cbJ3xFuwTCJzfnM73iAuBo70="; # change in prod! generate with `consul keygen`.
       server = true;
       log_level = "INFO";
       retry_join = [
@@ -32,7 +32,6 @@ in
         enable_truncate = true;
         only_passing = true;
       };
-
 
     };
   };

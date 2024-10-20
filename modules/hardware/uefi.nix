@@ -60,7 +60,6 @@
   security.tpm2.tctiEnvironment.enable = true;
   users.users.rg.extraGroups = [ "tss" ];
 
-
   hm.home.sessionVariables = {
     TPM2TOOLS_TCTI = "device:/dev/tpmrm0";
     TPM2_PKCS11_TCTI = "device:/dev/tpmrm0";

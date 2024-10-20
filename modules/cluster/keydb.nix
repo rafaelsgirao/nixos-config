@@ -1,4 +1,9 @@
-{ lib, pkgs, nixosConfigurations, ... }:
+{
+  lib,
+  pkgs,
+  nixosConfigurations,
+  ...
+}:
 let
   clusterNodes = lib.filterAttrs (_name: host: host.config.rg.clusterNode) nixosConfigurations;
   redisClusterAddrs = lib.mapAttrsToList (_name: host: "${host.config.rg.ip} 6379") clusterNodes;
@@ -14,8 +19,8 @@ in
       server-threads = 2;
       active-replica = true;
       replicaof = redisClusterAddrs; # Lists in settings will be translated to duplicate entries in the final file.
-      requirePass = "letmein!"; #TODO: change in prod to requirePassFile.
-      masterAuth = requirePass; #TODO: change in prod to requirePassFile.
+      requirePass = "letmein!"; # TODO: change in prod to requirePassFile.
+      masterAuth = requirePass; # TODO: change in prod to requirePassFile.
     };
   };
 

@@ -1,4 +1,9 @@
-{ config, pkgs, hostSecretsDir, ... }:
+{
+  config,
+  pkgs,
+  hostSecretsDir,
+  ...
+}:
 let
   inherit (config.networking) fqdn;
   inherit (config.rg) domain;
@@ -13,9 +18,7 @@ in
       owner = "bitmagnet";
     };
   };
-  environment.persistence."/pst".directories = [
-    "/var/lib/private/woodpecker-server"
-  ];
+  environment.persistence."/pst".directories = [ "/var/lib/private/woodpecker-server" ];
   services.woodpecker-server = {
     enable = true;
     environment = {
@@ -32,7 +35,12 @@ in
   };
   services.woodpecker-agents.agents.baremetal = {
     enable = true;
-    path = with pkgs; [ coreutils git config.nix.package woodpecker-plugin-git ];
+    path = with pkgs; [
+      coreutils
+      git
+      config.nix.package
+      woodpecker-plugin-git
+    ];
     environment = {
       WOODPECKER_BACKEND = "local";
       WOODPECKER_SERVER = "127.0.0.1:${builtins.toString grpcPort}";

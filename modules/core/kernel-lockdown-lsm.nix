@@ -11,13 +11,15 @@ in
   # https://unix.stackexchange.com/questions/117521/what-is-the-difference-between-select-vs-depends-in-the-linux-kernel-kconfig
   # https://android.googlesource.com/kernel/common/+/a4eacf3227bd/certs/Kconfig
   # https://github.com/torvalds/linux/blob/master/security/lockdown/Kconfig
-  boot.kernelPatches = [{
-    name = "enable-lockdown-lsm";
-    patch = null;
-    extraStructuredConfig = {
-      SECURITY_LOCKDOWN_LSM = yes;
-      MODULE_SIG_KEY = "dummy-value-here-so-the-kernel-doesnt-generate-the-key-itself.pem";
-      MODULE_SIG_ALL = no;
-    };
-  }];
+  boot.kernelPatches = [
+    {
+      name = "enable-lockdown-lsm";
+      patch = null;
+      extraStructuredConfig = {
+        SECURITY_LOCKDOWN_LSM = yes;
+        MODULE_SIG_KEY = "dummy-value-here-so-the-kernel-doesnt-generate-the-key-itself.pem";
+        MODULE_SIG_ALL = no;
+      };
+    }
+  ];
 }

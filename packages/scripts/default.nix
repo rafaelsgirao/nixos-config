@@ -1,6 +1,4 @@
-{ python3
-, zlib
-}:
+{ python3, zlib }:
 python3.pkgs.buildPythonApplication rec {
   pname = "scripts";
   version = "1.0.0";

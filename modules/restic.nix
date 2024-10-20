@@ -1,4 +1,10 @@
-{ config, pkgs, lib, secretsDir, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  secretsDir,
+  ...
+}:
 
 let
   hostname = config.networking.hostName;
@@ -10,7 +16,10 @@ let
     environmentFile = config.age.secrets.restic-env.path;
     passwordFile = config.age.secrets.restic-password.path;
 
-    extraBackupArgs = [ "--exclude-caches" "--verbose" ];
+    extraBackupArgs = [
+      "--exclude-caches"
+      "--verbose"
+    ];
     pruneOpts = [
       "--keep-daily 7"
       "--keep-weekly 5"
@@ -39,8 +48,9 @@ in
   #Backups for servers
   services.restic.backups."${provider}" =
     if (config.rg.class == "server") then
-      (commonOpts //
-        {
+      (
+        commonOpts
+        // {
           repository = "rclone:${provider}:/Restic-Backups";
           timerConfig = {
             OnCalendar = "*-*-* 1:15:00";
@@ -52,22 +62,26 @@ in
 
           paths = lib.mkDefault [
             "/pst"
-            "/state/backups" #Backup files/dumps that are created by other tools & services, e.g postgresql, gitea, vaultwarden
+            "/state/backups" # Backup files/dumps that are created by other tools & services, e.g postgresql, gitea, vaultwarden
           ];
-          extraBackupArgs = [ "--exclude-caches" "--verbose" ];
-        })
+          extraBackupArgs = [
+            "--exclude-caches"
+            "--verbose"
+          ];
+        }
+      )
 
     else
-    #Backups for workstations
-      (commonOpts //
-        {
-          timerConfig = null; #only run when explicitly started
+      #Backups for workstations
+      (
+        commonOpts
+        // {
+          timerConfig = null; # only run when explicitly started
           repository = "rclone:${provider}:/Restic-Backups";
           # repositoryFile = "/state/backups/restic-repo";
-          paths = lib.mkDefault [
-            "/pst"
-          ];
+          paths = lib.mkDefault [ "/pst" ];
 
-        });
+        }
+      );
 
 }

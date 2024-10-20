@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   isIntel = config.rg.machineType == "intel";
   isVirt = config.rg.machineType == "virt";
@@ -19,20 +24,18 @@ in
     "/var/cache/fwupdmgr"
   ];
 
-  environment.systemPackages = optionals (!isVirt)
-    [
+  environment.systemPackages =
+    optionals (!isVirt) [
       pkgs.smartmontools
       pkgs.nvme-cli
     ]
-  ++ optional isIntel pkgs.intel-gpu-tools;
+    ++ optional isIntel pkgs.intel-gpu-tools;
 
   hardware.opengl = mkIf (!isVirt) {
     enable = true;
     driSupport = true;
     # driSupport32Bit = true;
-    extraPackages = with pkgs; lib.optionals isIntel [
-      intel-media-driver
-    ];
+    extraPackages = with pkgs; lib.optionals isIntel [ intel-media-driver ];
   };
 
   #Enable SMARTd

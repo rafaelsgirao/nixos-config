@@ -16,25 +16,38 @@
       search.default = "DuckDuckGo";
       search.engines = {
         "Arch Wiki" = {
-          urls = [{
-            template = "https://wiki.archlinux.org/index.php";
-            params = [
-              # { name = "title"; value = "Special"; }
-              { name = "search"; value = "{searchTerms}"; }
-            ];
-          }];
+          urls = [
+            {
+              template = "https://wiki.archlinux.org/index.php";
+              params = [
+                # { name = "title"; value = "Special"; }
+                {
+                  name = "search";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
 
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/distributor-logo-archlinux.svg";
           definedAliases = [ "!aw" ];
         };
         "Nix Packages" = {
-          urls = [{
-            template = "https://search.nixos.org/packages";
-            params = [
-              { name = "type"; value = "packages"; }
-              { name = "query"; value = "{searchTerms}"; }
-            ];
-          }];
+          urls = [
+            {
+              template = "https://search.nixos.org/packages";
+              params = [
+                {
+                  name = "type";
+                  value = "packages";
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
 
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "!nixp" ];
@@ -52,7 +65,7 @@
         # };
 
         "NixOS Wiki" = {
-          urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
+          urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
           iconUpdateURL = "https://nixos.wiki/favicon.png";
           updateInterval = 24 * 60 * 60 * 1000; # every day
           definedAliases = [ "!nix" ];
@@ -257,78 +270,75 @@
     };
   };
 
-  programs.firefox =
-    {
-      # package = pkgs.fakepkg;
-      # package = (pkgs.busybox +;
-      enable = true;
-      package = pkgs.unstable.firefox;
-      # package = custom-firefox;
-      policies = {
-        "3rdparty".Extensions = {
-          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-            environment = {
-              base = "https://vault.rafael.ovh";
-            };
+  programs.firefox = {
+    # package = pkgs.fakepkg;
+    # package = (pkgs.busybox +;
+    enable = true;
+    package = pkgs.unstable.firefox;
+    # package = custom-firefox;
+    policies = {
+      "3rdparty".Extensions = {
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+          environment = {
+            base = "https://vault.rafael.ovh";
           };
         };
-        DisableFirefoxScreenshots = true;
-        DisableFirefoxStudies = true;
-        DisablePocket = true;
-        DNSOverHTTPS = {
-          Enabled = false;
-          Locked = true;
-        };
+      };
+      DisableFirefoxScreenshots = true;
+      DisableFirefoxStudies = true;
+      DisablePocket = true;
+      DNSOverHTTPS = {
+        Enabled = false;
+        Locked = true;
+      };
 
-        EncryptedMediaExtensions = {
-          Enabled = true;
-          Locked = true;
-        };
-        DisableTelemetry = true;
-        PasswordManagerEnabled = false;
+      EncryptedMediaExtensions = {
+        Enabled = true;
+        Locked = true;
+      };
+      DisableTelemetry = true;
+      PasswordManagerEnabled = false;
 
-        UserMessaging = {
-          # WhatsNew = false;
-          ExtensionRecommendations = false;
-          UrlbarInterventions = false;
-          SkipOnboarding = false;
-          MoreFromMozilla = false;
-        };
-        FirefoxHome = {
-          # Search = false;
-          Highlights = false;
-          Pocket = false;
-          SponsoredPocket = false;
-          Snippets = false;
-          SponsoredTopSites = false;
-        };
-        ExtensionSettings =
-          builtins.mapAttrs
-            (
-              _name: value: {
-                installation_mode = "normal_installed";
-                install_url = "https://addons.mozilla.org/firefox/downloads/latest/${value}/latest.xpi";
-              }
-            )
-            {
-              "uBlock0@raymondhill.net" = "ublock-origin";
-              "{b86e4813-687a-43e6-ab65-0bde4ab75758}" = "localcdn-fork-of-decentraleyes";
-              "addon@darkreader.org" = "darkreader";
-              "7esoorv3@alefvanoon.anonaddy.me" = "libredirect";
-              "CookieAutoDelete@kennydo.com" = "cookie-autodelete";
-              "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
-              "jsr@javascriptrestrictor" = "javascript-restrictor";
-              "@contain-facebook" = "facebook-container";
-              "{48748554-4c01-49e8-94af-79662bf34d50}" = "privacy-pass";
-              #This list is not up to date. IDC: firefox account does the job
-            };
-        OfferToSaveLogins = false;
-        SearchSuggestEnabled = false;
-        ShowHomeButton = false;
-        Homepage = {
-          URL = "about:blank";
-          StartPage = "none";
-        };
+      UserMessaging = {
+        # WhatsNew = false;
+        ExtensionRecommendations = false;
+        UrlbarInterventions = false;
+        SkipOnboarding = false;
+        MoreFromMozilla = false;
+      };
+      FirefoxHome = {
+        # Search = false;
+        Highlights = false;
+        Pocket = false;
+        SponsoredPocket = false;
+        Snippets = false;
+        SponsoredTopSites = false;
+      };
+      ExtensionSettings =
+        builtins.mapAttrs
+          (_name: value: {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/${value}/latest.xpi";
+          })
+          {
+            "uBlock0@raymondhill.net" = "ublock-origin";
+            "{b86e4813-687a-43e6-ab65-0bde4ab75758}" = "localcdn-fork-of-decentraleyes";
+            "addon@darkreader.org" = "darkreader";
+            "7esoorv3@alefvanoon.anonaddy.me" = "libredirect";
+            "CookieAutoDelete@kennydo.com" = "cookie-autodelete";
+            "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
+            "jsr@javascriptrestrictor" = "javascript-restrictor";
+            "@contain-facebook" = "facebook-container";
+            "{48748554-4c01-49e8-94af-79662bf34d50}" = "privacy-pass";
+            #This list is not up to date. IDC: firefox account does the job
+          };
+      OfferToSaveLogins = false;
+      SearchSuggestEnabled = false;
+      ShowHomeButton = false;
+      Homepage = {
+        URL = "about:blank";
+        StartPage = "none";
       };
     };
+  };
 }

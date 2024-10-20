@@ -1,33 +1,34 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, meson
-, ninja
-, pkg-config
-, libevdev
-, inih
-, python3
-, python3Packages
-, cmake
-, pam
-, writeText
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  meson,
+  ninja,
+  pkg-config,
+  libevdev,
+  inih,
+  python3,
+  python3Packages,
+  cmake,
+  pam,
+  writeText,
 }:
 let
   pathsFile = writeText "paths.py" ''
     from pathlib import PurePath
-    
+
     # Define the absolute path to the config directory
     config_dir = PurePath("/etc/howdy")
-    
+
     # Define the absolute path to the DLib models data directory
     dlib_data_dir = PurePath("/etc/howdy/dlib-data")
-    
+
     # Define the absolute path to the Howdy user models directory
     user_models_dir = PurePath("/etc/howdy/models")
-    
+
     # Define path to any howdy logs
     log_path = PurePath("/var/log/howdy")
-    
+
     # Define the absolute path to the Howdy data directory
     data_dir = PurePath("/etc/howdy/data")
 
@@ -36,7 +37,7 @@ in
 
 stdenv.mkDerivation rec {
   pname = "howdy";
-  version = "0.0.1"; #Fake!
+  version = "0.0.1"; # Fake!
 
   src = fetchFromGitHub {
     owner = "boltgolt";

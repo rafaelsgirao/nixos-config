@@ -1,4 +1,9 @@
-{ config, pkgs, hostSecretsDir, ... }:
+{
+  config,
+  pkgs,
+  hostSecretsDir,
+  ...
+}:
 let
   rootDir = "/home/rg/Portal";
 in
@@ -38,8 +43,9 @@ in
       RemoveIPC = true;
       CapabilityBoundingSet = [ "" ];
       SystemCallArchitectures = "native";
-      SystemCallFilter =
-        [ "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation @resources" ];
+      SystemCallFilter = [
+        "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation @resources"
+      ];
       PrivateDevices = true;
       PrivateIPC = true;
       ProtectProc = "invisible";

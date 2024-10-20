@@ -1,4 +1,5 @@
-{ lib, modulesPath, ... }: {
+{ lib, modulesPath, ... }:
+{
 
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -15,8 +16,15 @@
 
   rg.vCores = 2;
   rg.resetRootFsPoolName = "neonheavypool";
-  boot.initrd.availableKernelModules =
-    [ "xhci_pci" "ahci" "nvme" "usb_storage" "uas" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usb_storage"
+    "uas"
+    "sd_mod"
+    "sdhci_pci"
+  ];
   boot.initrd.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
@@ -34,7 +42,11 @@
   fileSystems."/home" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" "size=512M" "mode=755" ];
+    options = [
+      "defaults"
+      "size=512M"
+      "mode=755"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -79,7 +91,6 @@
     fsType = "zfs";
     neededForBoot = true;
   };
-
 
   fileSystems."/nix" = {
     device = "neonheavypool/local/nix";

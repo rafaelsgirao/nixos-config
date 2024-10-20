@@ -51,10 +51,15 @@ in
     853 # blocky DNS over TLS - should this be here?
   ];
 
-
   networking.hosts = {
-    "127.0.0.1" = [ "localhost" config.networking.hostName ];
-    "127.0.1.1" = [ "mail.${domain}" config.networking.hostName ];
+    "127.0.0.1" = [
+      "localhost"
+      config.networking.hostName
+    ];
+    "127.0.1.1" = [
+      "mail.${domain}"
+      config.networking.hostName
+    ];
   };
 
   services.nebula.networks."rgnet".settings = {

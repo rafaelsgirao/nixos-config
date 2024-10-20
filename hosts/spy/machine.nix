@@ -1,11 +1,19 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   inherit (config.rg) ip;
   inherit (config.rg) domain;
   inherit (config.networking) fqdn;
 in
 {
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "i686-linux"
+  ];
   services.udisks2.enable = lib.mkDefault false;
 
   imports = [
@@ -63,35 +71,28 @@ in
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
   };
 
-  environment.persistence."/pst".directories = [
-    "/var/lib/postgresql"
-  ];
+  environment.persistence."/pst".directories = [ "/var/lib/postgresql" ];
 
   networking.nameservers = [ "127.0.0.1" ];
   #Blocky - no blocklist by default
   # services.blocky.settings.blocking.clientGroupsBlock."default" = [ "none" ];
   services.blocky.settings = {
     port = "127.0.0.1:53";
-    blocking.blackLists."normal" =
-      lib.mkForce [ ]; # Foolproof way to disable blocking
-    blocking.blackLists."rg" =
-      lib.mkForce [ ]; # Foolproof way to disable blocking
+    blocking.blackLists."normal" = lib.mkForce [ ]; # Foolproof way to disable blocking
+    blocking.blackLists."rg" = lib.mkForce [ ]; # Foolproof way to disable blocking
   };
   systemd.network.enable = true;
-  systemd.network.networks."10-wan" =
-    {
-      # match the interface by name
-      matchConfig.Name = "eth0";
-      DHCP = "no"; #DHCPv6 will still be triggered by RA (Router Advertisements)
+  systemd.network.networks."10-wan" = {
+    # match the interface by name
+    matchConfig.Name = "eth0";
+    DHCP = "no"; # DHCPv6 will still be triggered by RA (Router Advertisements)
 
-      address = [
-        # configure addresses including subnet mask
-        "${config.rg.ipv4}/24"
-      ];
-      routes = [
-        { routeConfig.Gateway = "192.168.1.254"; }
-      ];
-    };
+    address = [
+      # configure addresses including subnet mask
+      "${config.rg.ipv4}/24"
+    ];
+    routes = [ { routeConfig.Gateway = "192.168.1.254"; } ];
+  };
 
   systemd.network.networks."12-usb" =
     #Ensure providing ethernet through USB works
@@ -113,12 +114,13 @@ in
     };
   };
   #Allow fly.io and VPS gateways to access Spy's ports
-  services.nebula.networks."rgnet".firewall.inbound = [{
-    port = "5050-5060";
-    proto = "any";
-    groups = [ "gateway" ];
-  }];
-
+  services.nebula.networks."rgnet".firewall.inbound = [
+    {
+      port = "5050-5060";
+      proto = "any";
+      groups = [ "gateway" ];
+    }
+  ];
 
   #Restic Backups
   services.restic.backups."${config.rg.backupsProvider}" = {
@@ -136,7 +138,6 @@ in
       #TODO: transmission, radarr, sonarr, etc.
       #TODO: remove deprecated stuff
       #TODO: storage
-
 
     ];
     extraBackupArgs = [

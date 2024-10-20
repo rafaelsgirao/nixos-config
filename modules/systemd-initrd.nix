@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   # https://discourse.nixos.org/t/display-contact-info-in-nixos-boot-stage-1/38118/4
 
   boot.initrd.systemd.enable = true;
@@ -14,9 +15,7 @@
     after = [
       # "zfs-import-rpool.service"
     ];
-    before = [
-      "sysroot.mount"
-    ];
+    before = [ "sysroot.mount" ];
     # path = with pkgs; [
     # ];
     unitConfig.DefaultDependencies = "no";

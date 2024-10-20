@@ -48,18 +48,24 @@ in
     group = "library";
     dataDir = "/data/torrents-nix/radarr";
   };
-  systemd.services.radarr.serviceConfig = dotnetHardening // moreHardening // {
-    ReadWritePaths = [ "${config.services.radarr.dataDir} /library" ];
-  };
+  systemd.services.radarr.serviceConfig =
+    dotnetHardening
+    // moreHardening
+    // {
+      ReadWritePaths = [ "${config.services.radarr.dataDir} /library" ];
+    };
 
   services.sonarr = {
     enable = true;
     dataDir = "/data/torrents-nix/sonarr";
     group = "library";
   };
-  systemd.services.sonarr.serviceConfig = dotnetHardening // moreHardening // {
-    ReadWritePaths = [ "${config.services.sonarr.dataDir} /library" ];
-  };
+  systemd.services.sonarr.serviceConfig =
+    dotnetHardening
+    // moreHardening
+    // {
+      ReadWritePaths = [ "${config.services.sonarr.dataDir} /library" ];
+    };
 
   # systemd.services.sonarr.serviceConfig = dotnetHardening // moreHardening // { ReadWritePaths = [ config.services.sonarr.dataDir ]; };
 
@@ -117,7 +123,6 @@ in
   #       Type = "simple";
   #       environmentFile = config.age.secrets.Transmission-creds.path;
 
-
   #       ExecStart =
   #         "${pkgs.flood}/bin/flood"
   #            ++ concatStringsSep "" [extraArgs]  
@@ -132,7 +137,6 @@ in
   #       RemoveIPC = true;
   #   };
   # };
-
 
   services.caddy.virtualHosts = {
     "media.${domain}" = {

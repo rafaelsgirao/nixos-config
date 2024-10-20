@@ -14,8 +14,10 @@ in
   # (after AGISIT ends, also remove environment.persistence entries, further down)
   # AGISIT - end
 
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "i686-linux"
+  ];
 
   imports = [
     ../../modules/systemd-initrd.nix
@@ -61,10 +63,9 @@ in
   #To make VS Code remote SSH work without too much hassle/timesink
   programs.nix-ld.enable = true;
 
-
   rg = {
     ip = "192.168.10.5";
-    isLighthouse = false; #Local firewall doesn't allow world access to 4242.
+    isLighthouse = false; # Local firewall doesn't allow world access to 4242.
     machineId = "4307a85c4d5e403fbd89fc34f27527e1";
     machineType = "amd";
     class = "workstation";
@@ -80,8 +81,7 @@ in
   environment.persistence."/state" = {
     # directories = [ ];
     users.rg = {
-      files = [
-      ];
+      files = [ ];
       directories = [
         ".m2"
         # AGISIT: temporary 
@@ -94,7 +94,6 @@ in
   };
 
   # boot.initrd.systemd.enable = true;
-
 
   networking.networkmanager.unmanaged = [ "eth0" ];
 
@@ -131,10 +130,7 @@ in
   };
 
   environment.persistence."/pst" = {
-    directories =
-      [
-        "/etc/NetworkManager/system-connections"
-      ];
+    directories = [ "/etc/NetworkManager/system-connections" ];
     users.rg = {
       directories = [
         ".config/dconf"
@@ -152,10 +148,8 @@ in
     };
   };
 
-
   environment.variables = {
-    QEMU_OPTS =
-      "-m 4096 -smp 4 -enable-kvm"; # https://github.com/NixOS/nixpkgs/issues/59219
+    QEMU_OPTS = "-m 4096 -smp 4 -enable-kvm"; # https://github.com/NixOS/nixpkgs/issues/59219
   };
 
   #Additional packages

@@ -1,7 +1,4 @@
-{ python3
-, fetchPypi
-, zlib
-}:
+{ python3, fetchPypi }:
 python3.pkgs.buildPythonPackage rec {
   pname = "mailrise";
   version = "1.4.0";
@@ -15,15 +12,12 @@ python3.pkgs.buildPythonPackage rec {
     aiosmtpd
     apprise
 
-
-
     packaging
     setuptools # No module named 'pkg_resources'
 
     # Not sure if needed.
     pkginfo
     importlib-metadata
-
 
   ];
 }

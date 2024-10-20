@@ -1,7 +1,8 @@
-{ config
-, lib
-, secretsDir
-, ...
+{
+  config,
+  lib,
+  secretsDir,
+  ...
 }:
 
 let
@@ -140,9 +141,7 @@ in
           ]
           ++ (
             # private ranges (DSI-assigned)
-            builtins.map
-              (octet: "~" + (builtins.toString octet) + ".16.10.in-addr.arpa")
-              (lib.range 64 127)
+            builtins.map (octet: "~" + (builtins.toString octet) + ".16.10.in-addr.arpa") (lib.range 64 127)
           );
       };
     };

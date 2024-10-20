@@ -1,7 +1,8 @@
-{ python3
-, fetchPypi
-, lib
-, zlib
+{
+  python3,
+  fetchPypi,
+  lib,
+  zlib,
 }:
 python3.pkgs.buildPythonPackage rec {
   pname = "pyinstaller";
@@ -20,7 +21,6 @@ python3.pkgs.buildPythonPackage rec {
     # Not sure if needed.
     pkginfo
     importlib-metadata
-
 
   ];
 }

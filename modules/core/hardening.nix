@@ -9,7 +9,12 @@
 # profile, try disabling it. If you report an issue and use this
 # profile, always mention that you do.
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 
@@ -97,7 +102,6 @@ with lib;
   # Hide kptrs even for processes with CAP_SYSLOG
   boot.kernel.sysctl."kernel.kptr_restrict" = mkOverride 500 2;
 
-
   # Disable bpf() JIT (to eliminate spray attacks)
   boot.kernel.sysctl."net.core.bpf_jit_harden" = mkDefault 2;
 
@@ -127,8 +131,6 @@ with lib;
   # Ignore outgoing ICMP redirects (this is ipv4 only)
   boot.kernel.sysctl."net.ipv4.conf.all.send_redirects" = mkDefault false;
   boot.kernel.sysctl."net.ipv4.conf.default.send_redirects" = mkDefault false;
-
-
 
   #nscd hardening
   systemd.services.nscd.serviceConfig = {

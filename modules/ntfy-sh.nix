@@ -38,12 +38,8 @@ in
     '';
   };
 
-  environment.persistence."/pst".directories = [
-    "/var/lib/ntfy-sh"
-  ];
+  environment.persistence."/pst".directories = [ "/var/lib/ntfy-sh" ];
 
-  environment.persistence."/state".directories = [
-    "/var/cache/ntfy-sh"
-  ];
+  environment.persistence."/state".directories = [ "/var/cache/ntfy-sh" ];
 
 }

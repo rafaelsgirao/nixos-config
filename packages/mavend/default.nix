@@ -1,4 +1,9 @@
-{ lib, fetchFromGitHub, graalvm-ce, maven }:
+{
+  lib,
+  fetchFromGitHub,
+  graalvm-ce,
+  maven,
+}:
 
 maven.buildMavenPackage rec {
   pname = "mvnd";
@@ -15,7 +20,10 @@ maven.buildMavenPackage rec {
   mvnFetchExtraArgs = {
     JAVA_HOME = "${graalvm-ce}";
 
-    nativeBuildInputs = [ maven graalvm-ce ];
+    nativeBuildInputs = [
+      maven
+      graalvm-ce
+    ];
   };
 
   JAVA_HOME = "${graalvm-ce}";

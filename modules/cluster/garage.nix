@@ -1,4 +1,9 @@
-{ config, pkgs, secretsDir, ... }:
+{
+  config,
+  pkgs,
+  secretsDir,
+  ...
+}:
 
 let
   port = 12969;
@@ -15,7 +20,7 @@ in
   systemd.services.garage = {
     environment = {
       #Both these env vars can be generated with `openssl rand -hex 32`.
-      GARAGE_RPC_SECRET = "e70adac6a99e82708199594e78d086e82f4b920743a2a793eaeafaf0bbd36207"; #TODO: regen when prod!  gitleaks:allow
+      GARAGE_RPC_SECRET = "e70adac6a99e82708199594e78d086e82f4b920743a2a793eaeafaf0bbd36207"; # TODO: regen when prod!  gitleaks:allow
       # GARAGE_ADMIN_TOKEN = "c26ce9070ff94c3246e71c9a068f823119c6798197519468b3bcddec6f34794b"; #TODO: move to agenix when prod gitleaks:allow
     };
     serviceConfig = {
@@ -63,8 +68,6 @@ in
     # { directory = config.mailserver.dkimKeyDirectory; user = dkimUser; group = dkimUser; }
   ];
 
-  networking.firewall.allowedTCPPorts = [
-    port
-  ];
+  networking.firewall.allowedTCPPorts = [ port ];
 
 }

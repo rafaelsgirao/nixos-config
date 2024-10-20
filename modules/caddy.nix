@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   services.caddy = {
     enable = true;
     inherit (config.security.acme.defaults) email;
@@ -15,12 +16,10 @@
     80 # caddy-public
   ];
   networking.firewall.allowedUDPPorts = [
-    443 #Caddy may eventually support QUIC
+    443 # Caddy may eventually support QUIC
   ];
 
   users.users.rg.extraGroups = [ "caddy" ];
 
-  environment.persistence."/state".directories = [
-    "/var/lib/caddy"
-  ];
+  environment.persistence."/state".directories = [ "/var/lib/caddy" ];
 }

@@ -1,4 +1,9 @@
-{ config, pkgs, hostSecretsDir, ... }:
+{
+  config,
+  pkgs,
+  hostSecretsDir,
+  ...
+}:
 let
   redisPort = 48485;
   port = 11826;
@@ -29,9 +34,7 @@ in
     port = redisPort;
   };
 
-  environment.persistence."/state".directories = [
-    "/var/lib/redis-bitmagnet"
-  ];
+  environment.persistence."/state".directories = [ "/var/lib/redis-bitmagnet" ];
 
   systemd.services.bitmagnet = {
     after = [ "multi-user.target" ];
@@ -47,61 +50,59 @@ in
       HTTP_SERVER_LOCAL_ADDRESS = "127.0.0.1:${builtins.toString port}";
     };
 
+    serviceConfig = {
+      # DynamicUser = true;
+      User = "bitmagnet";
+      ExecStart = "${pkgs.bitmagnet}/bin/bitmagnet worker run --keys=http_server --keys=queue_server --keys=dht_crawler";
+      # ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
 
-    serviceConfig =
-      {
-        # DynamicUser = true;
-        User = "bitmagnet";
-        ExecStart = "${pkgs.bitmagnet}/bin/bitmagnet worker run --keys=http_server --keys=queue_server --keys=dht_crawler";
-        # ExecStartPre = "${pkgs.coreutils}/bin/sleep 5";
+      # https://ma.ttias.be/auto-restart-crashed-service-systemd/
+      Restart = "on-failure";
+      RestartSec = "30s";
 
-        # https://ma.ttias.be/auto-restart-crashed-service-systemd/
-        Restart = "on-failure";
-        RestartSec = "30s";
+      EnvironmentFile = config.age.secrets.ENV-bitmagnet.path;
 
-        EnvironmentFile = config.age.secrets.ENV-bitmagnet.path;
+      # Hardening
 
-        # Hardening
-
-
-        CapabilityBoundingSet = [ "" ];
-        SystemCallArchitectures = "native";
-        SystemCallFilter =
-          [ "@system-service" ];
-        SystemcallErrorNumber = "EPERM";
-        PrivateDevices = true;
-        PrivateIPC = true;
-        ProtectProc = "invisible";
-        ProtectKernelLogs = true;
-        ProtectKernelModules = true;
-        ProtectKernelTunables = true;
-        ProtectHostname = true;
-        ProtectClock = true;
-        RestrictAddressFamilies = [ "AF_INET AF_INET6 AF_UNIX" ];
-        RestrictNamespaces = true;
-        RestrictRealtime = true;
-        PrivateUsers = true;
-        ProtectControlGroups = true;
-        ProcSubset = "pid";
-        LockPersonality = true;
-        MemoryDenyWriteExecute = true;
-        #Otherwise it fails with a message, regarding CoreCLR
-        ProtectHome = true;
-        NoNewPrivileges = true;
-        PrivateTmp = true;
-        ProtectSystem = "strict";
-        ReadWritePaths = [ "/library" ];
-        RestrictSUIDSGID = true;
-      };
+      CapabilityBoundingSet = [ "" ];
+      SystemCallArchitectures = "native";
+      SystemCallFilter = [ "@system-service" ];
+      SystemcallErrorNumber = "EPERM";
+      PrivateDevices = true;
+      PrivateIPC = true;
+      ProtectProc = "invisible";
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectKernelTunables = true;
+      ProtectHostname = true;
+      ProtectClock = true;
+      RestrictAddressFamilies = [ "AF_INET AF_INET6 AF_UNIX" ];
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
+      PrivateUsers = true;
+      ProtectControlGroups = true;
+      ProcSubset = "pid";
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true;
+      #Otherwise it fails with a message, regarding CoreCLR
+      ProtectHome = true;
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      ProtectSystem = "strict";
+      ReadWritePaths = [ "/library" ];
+      RestrictSUIDSGID = true;
+    };
   };
 
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "bitmagnet" ];
-    ensureUsers = [{
-      name = "bitmagnet";
-      ensureDBOwnership = true;
-    }];
+    ensureUsers = [
+      {
+        name = "bitmagnet";
+        ensureDBOwnership = true;
+      }
+    ];
   };
 
   services.caddy.virtualHosts."bitmagnet.${fqdn}" = {
@@ -118,9 +119,7 @@ in
     3334 # BitTorrent ports
   ];
 
-  networking.firewall.allowedUDPPorts = [
-    3334
-  ];
+  networking.firewall.allowedUDPPorts = [ 3334 ];
 
   environment.systemPackages = [ pkgs.bitmagnet ];
 

@@ -1,11 +1,17 @@
-{ jdk17, gradle, fetchFromGitHub, makeWrapper, stdenv, gnutar }:
+{
+  jdk17,
+  gradle,
+  fetchFromGitHub,
+  makeWrapper,
+  stdenv,
+  gnutar,
+}:
 let
 
   # This is what makes everything work:
   # --write-verification-metadata forces discovered dependencies to be fetched to cache
   GRADLE_ARGS = "--console plain --no-daemon --write-verification-metadata sha512";
   jdk = jdk17;
-
 
   version = "2.50.0";
   src = fetchFromGitHub {
@@ -18,7 +24,10 @@ let
   CIRCLE_TAG = version;
   dependencies = stdenv.mkDerivation {
     name = "gradle-home-dependencies";
-    nativeBuildInputs = [ jdk gradle ];
+    nativeBuildInputs = [
+      jdk
+      gradle
+    ];
     inherit src CIRCLE_TAG;
     dontFixup = true;
 
@@ -49,8 +58,12 @@ stdenv.mkDerivation rec {
   name = "${pname}-${version}";
 
   inherit src dependencies CIRCLE_TAG;
-  nativeBuildInputs = [ jdk gradle gnutar makeWrapper ];
-
+  nativeBuildInputs = [
+    jdk
+    gradle
+    gnutar
+    makeWrapper
+  ];
 
   patches = [ ./exclude-ide-plugins.patch ];
   buildPhase = ''
@@ -84,6 +97,5 @@ stdenv.mkDerivation rec {
   meta = {
     mainProgram = "palantir-java-format";
   };
-
 
 }

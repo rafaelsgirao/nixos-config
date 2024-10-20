@@ -68,14 +68,18 @@
   };
   services.power-profiles-daemon.enable = lib.mkForce false;
 
-
   #Enable upower
   services.upower.enable = true;
 
   # Allow DHCP & DNS so occasional Wi-Fi hotspots work.
-  networking.firewall.allowedTCPPorts = [ 53 67 ];
-  networking.firewall.allowedUDPPorts = [ 53 67 ];
-
+  networking.firewall.allowedTCPPorts = [
+    53
+    67
+  ];
+  networking.firewall.allowedUDPPorts = [
+    53
+    67
+  ];
 
   #Enable Scanning
   # hardware.sane.enable = true;

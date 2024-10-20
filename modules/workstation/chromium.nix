@@ -2,7 +2,8 @@
 # Surprisingly, it also works on Flatpaked Brave!
 # https://github.com/flathub/com.brave.Browser/blob/master/brave.sh
 
-{ ... }: {
+{ ... }:
+{
 
   imports = [ ];
 
@@ -58,4 +59,3 @@
 
   # nixpkgs.config = { chromium = { enableWideVine = true; }; };
 }
-

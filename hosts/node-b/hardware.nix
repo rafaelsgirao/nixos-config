@@ -1,8 +1,5 @@
 { ... }:
 {
-  imports =
-    [
-      ../../modules/cluster/vm-hardware.nix
-    ];
+  imports = [ ../../modules/cluster/vm-hardware.nix ];
 
 }

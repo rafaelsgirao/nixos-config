@@ -1,4 +1,9 @@
-{ config, pkgs, hostSecretsDir, ... }:
+{
+  config,
+  pkgs,
+  hostSecretsDir,
+  ...
+}:
 
 let
   stateDir = "/var/lib/ist-discord-bot";
@@ -12,7 +17,12 @@ in
   };
 
   environment.persistence."/pst".directories = [
-    { directory = stateDir; user = "ist-discord-bot"; group = "ist-discord-bot"; mode = "700"; }
+    {
+      directory = stateDir;
+      user = "ist-discord-bot";
+      group = "ist-discord-bot";
+      mode = "700";
+    }
   ];
 
   users.groups.ist-discord-bot = { };
@@ -23,7 +33,6 @@ in
       isSystemUser = true;
     };
   };
-
 
   systemd.services.ist-discord-bot = {
     # after = [ "network.target" ];
@@ -46,8 +55,7 @@ in
       #Hardening
       CapabilityBoundingSet = [ "" ];
       SystemCallArchitectures = "native";
-      SystemCallFilter =
-        [ "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation" ];
+      SystemCallFilter = [ "~@reboot @privileged @obsolete @raw-io @mount @debug @cpu-emulation" ];
       PrivateDevices = true;
       PrivateIPC = true;
       ProtectProc = "invisible";

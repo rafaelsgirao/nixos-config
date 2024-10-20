@@ -1,7 +1,8 @@
-{ python3
-, fetchFromGitHub
-, lib
-, zlib
+{
+  python3,
+  fetchFromGitHub,
+  lib,
+  zlib,
 }:
 python3.pkgs.buildPythonApplication rec {
   pname = "pre-commit-macadmin";

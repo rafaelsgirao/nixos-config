@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
 
   # disable intel.
   # boot.blacklistedKernelModules = lib.mkIf (config.rg.class == "server") [ "i915" ];
@@ -23,8 +24,6 @@
   };
 
   hardware.opengl = {
-    extraPackages = [
-      pkgs.nvidia-vaapi-driver
-    ];
+    extraPackages = [ pkgs.nvidia-vaapi-driver ];
   };
 }

@@ -1,4 +1,9 @@
-{ pkgs, inputs, inputs', ... }:
+{
+  pkgs,
+  inputs,
+  inputs',
+  ...
+}:
 let
   inherit (pkgs) callPackage;
   rubyNix = inputs.ruby-nix.lib pkgs;
@@ -13,7 +18,6 @@ rec {
   # remarkable-rcu = pkgs.callPackage ./rcu {};
   # TODO: broken.
   # ist-discord-bot = inputs'.ist-discord-bot.packages.default;
-
 
   #Packages defined in this repo.
   fakepkg = pkgs.callPackage ./fakepkg { };
@@ -44,7 +48,10 @@ rec {
 
   #For consistency's sake, both use python3 from unstable (but lyricsgenius doesn't need it)
   lyricsgenius = pkgs.callPackage ./lyricsgenius { inherit (pkgs.unstable) python3; };
-  tidal-dl = pkgs.callPackage ./tidal-dl { inherit (pkgs.unstable) python3; inherit lyricsgenius; };
+  tidal-dl = pkgs.callPackage ./tidal-dl {
+    inherit (pkgs.unstable) python3;
+    inherit lyricsgenius;
+  };
 
   pre-commit-macadmin = pkgs.callPackage ./pre-commit-macadmin { inherit (pkgs) python3; };
 

@@ -9,12 +9,20 @@ in
 {
   security.acme.certs."${fqdn}" = {
     domain = "mail.${domain}";
-    extraDomainNames = [ "${domain}" "mx.${domain}" "mail.${domain}" ];
+    extraDomainNames = [
+      "${domain}"
+      "mx.${domain}"
+      "mail.${domain}"
+    ];
     # group = "maddy";
   };
 
   environment.persistence."/pst".directories = [
-    { directory = config.mailserver.mailDirectory; user = vmailUser; group = vmailUser; }
+    {
+      directory = config.mailserver.mailDirectory;
+      user = vmailUser;
+      group = vmailUser;
+    }
     # { directory = config.mailserver.dkimKeyDirectory; user = dkimUser; group = dkimUser; }
   ];
   #SNM enables postfix's sendmail utility, which conflicts with msmtp.
@@ -66,7 +74,9 @@ in
     ProtectKernelTunables = "yes";
     ProtectKernelModules = "yes";
     ProtectKernelLogs = "yes";
-    CapabilityBoundingSet = [ "CAP_DAC_READ_SEARCH CAP_DAC_OVERRIDE CAP_KILL CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE " ];
+    CapabilityBoundingSet = [
+      "CAP_DAC_READ_SEARCH CAP_DAC_OVERRIDE CAP_KILL CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE "
+    ];
     ProtectHostname = "yes";
     ProtectClock = "yes";
     ProtectControlGroups = "yes";
@@ -76,7 +86,10 @@ in
     RestrictSUIDSGID = "yes";
     RemoveIPC = "yes";
     # SystemCallFilter = [ "@privileged @system-service"  "~@resources" "~@reboot "];
-    SystemCallFilter = [ "@system-service @mount" "~ @resources " ];
+    SystemCallFilter = [
+      "@system-service @mount"
+      "~ @resources "
+    ];
 
     SystemCallArchitectures = "native";
     #Mine
@@ -90,7 +103,6 @@ in
     465 # Docker-mailserver
     587 # Docker-mailserver
     993 # Docker-mailserver
-
 
     4425 # Docker-mailserver
     44143 # Docker-mailserver

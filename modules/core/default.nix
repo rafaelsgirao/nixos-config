@@ -1,9 +1,17 @@
-{ config, pkgs, lib, sshKeys, secretsDir, self, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  sshKeys,
+  secretsDir,
+  self,
+  ...
+}:
 let
   isVirt = config.rg.machineType == "virt";
   inherit (lib) mkDefault;
-  # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 in
+# inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 {
   imports = [
     ./nebula.nix
@@ -15,11 +23,9 @@ in
     # ../wakapi-client.nix
   ];
 
-
   # https://discourse.nixos.org/t/flakes-accessing-selfs-revision/11237/8
   #                                      system.configurationRevision = toString (self.shortRev or self.dirtyShortRev or "unknown");
-  system.configurationRevision =
-    self.shortRev or self.dirtyShortRev or "unknown";
+  system.configurationRevision = self.shortRev or self.dirtyShortRev or "unknown";
   environment.etc."nixos/system-flake".source = self;
   environment.etc."nixos/system-revision".text = self.rev or self.dirtyRev or "unknown";
   rg = {
@@ -55,21 +61,22 @@ in
 
   boot = {
     tmp.cleanOnBoot = mkDefault true;
-    initrd.preDeviceCommands = lib.mkIf
-      (
+    initrd.preDeviceCommands =
+      lib.mkIf
+        (
 
-        !config.boot.initrd.systemd.enable
-      ) ''
-      echo " "
-      echo " "
-      echo "                                       Rafael Girão"
-      echo "                                       E-mail: ${config.networking.hostName}@${config.rg.domain}"
-      echo "                                       E-mail (alternative): rafael.s.girao@tecnico.ulisboa.pt"
-      echo ""
-      echo ""
-    '';
+          !config.boot.initrd.systemd.enable
+        )
+        ''
+          echo " "
+          echo " "
+          echo "                                       Rafael Girão"
+          echo "                                       E-mail: ${config.networking.hostName}@${config.rg.domain}"
+          echo "                                       E-mail (alternative): rafael.s.girao@tecnico.ulisboa.pt"
+          echo ""
+          echo ""
+        '';
   };
-
 
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1;
@@ -80,7 +87,6 @@ in
     # https://www.linuxquestions.org/linux/articles/Technical/Why_can_only_root_listen_to_ports_below_1024
     "net.ipv4.ip_unprivileged_port_start" = 0;
   };
-
 
   zramSwap.enable = mkDefault true;
 
@@ -105,8 +111,7 @@ in
     };
   };
 
-  networking.firewall.logRefusedConnections =
-    false; # This is really spammy w/ pub. IPs. makes desg unreadable
+  networking.firewall.logRefusedConnections = false; # This is really spammy w/ pub. IPs. makes desg unreadable
 
   # Select internationalisation properties.
   i18n = {
@@ -134,20 +139,18 @@ in
       "render"
       "scanner"
       "lp"
-      "uinput" #maybe this will exist but not sure
+      "uinput" # maybe this will exist but not sure
       "input"
-      "caddy" #To access/modify sites' content
+      "caddy" # To access/modify sites' content
       "adbusers"
       "networkmanager"
       "qemu-libvirtd"
     ];
     isNormalUser = true;
-    hashedPassword =
-      "$6$zlh2QjXj/r3oHlO$oxqRDXvfm2EKyZN5wwjCzvTroZKzwwR3G/sJKOfun1UssUANPpg8AVSx6ILQSEDoIolMGbRkS76GdlP3g0Unf/";
+    hashedPassword = "$6$zlh2QjXj/r3oHlO$oxqRDXvfm2EKyZN5wwjCzvTroZKzwwR3G/sJKOfun1UssUANPpg8AVSx6ILQSEDoIolMGbRkS76GdlP3g0Unf/";
     openssh.authorizedKeys.keys = sshKeys;
   };
   users.users.root.hashedPassword = config.users.users.rg.hashedPassword;
-
 
   hardware.nvidia.nvidiaSettings = mkDefault false;
 
@@ -158,12 +161,10 @@ in
   #   extraArgs = [ "--avoid '(^|/)(code|chromium|ferdium|thunderbird)$'" ];
   # };
 
-
   # 'to enable vendor fish completions provided by Nixpkgs you will also want to enable the fish shell in /etc/nixos/configuration.nix:'
   programs.fish.enable = true;
 
   programs.mtr.enable = true;
-
 
   # https://openzfs.github.io/openzfs-docs/Getting%20Started/NixOS/Root%20on%20ZFS/3-optional-configuration.html
   #Aliases to receive root mail
@@ -201,59 +202,60 @@ in
 
   boot.blacklistedKernelModules = [ "mei_me" ];
 
-  environment.systemPackages = with pkgs; [
-    #Basic utils
-    tcpdump
-    viu
-    cloc
-    rsync
-    nebula
-    qrencode
-    jq
-    duf
-    lf
-    dogdns # Better dig alternative
-    wget
-    curl
-    tmux
-    file
-    unzip
-    zip
-    whois
-    ncdu
-    killall
-    ripgrep
-    btop
-    #Nice utils
-    eza # managed by HM, but I might want to use this as root
-    bat
-    fd
-    python3
-    openssh
-    neofetch
-    sshfs
-    rclone
-    speedtest-cli
-    rm-improved
-    delta
-    dua
-    mailutils
-
-    traceroute
-    iperf3
-    nmap
-    rustscan
-    nload
-    nix-output-monitor
-    nix-tree
-  ]
-  ++ lib.optionals (!isVirt)
+  environment.systemPackages =
+    with pkgs;
     [
-      usbutils #Provides lsusb
+      #Basic utils
+      tcpdump
+      viu
+      cloc
+      rsync
+      nebula
+      qrencode
+      jq
+      duf
+      lf
+      dogdns # Better dig alternative
+      wget
+      curl
+      tmux
+      file
+      unzip
+      zip
+      whois
+      ncdu
+      killall
+      ripgrep
+      btop
+      #Nice utils
+      eza # managed by HM, but I might want to use this as root
+      bat
+      fd
+      python3
+      openssh
+      neofetch
+      sshfs
+      rclone
+      speedtest-cli
+      rm-improved
+      delta
+      dua
+      mailutils
+
+      traceroute
+      iperf3
+      nmap
+      rustscan
+      nload
+      nix-output-monitor
+      nix-tree
+    ]
+    ++ lib.optionals (!isVirt) [
+      usbutils # Provides lsusb
       nvme-cli
       dmidecode
       ethtool
-      pciutils #Provides `lspci` command
+      pciutils # Provides `lspci` command
       bashmount
     ];
 }

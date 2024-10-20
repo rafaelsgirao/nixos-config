@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   inherit (config.networking) fqdn;
   isWorkstation = config.rg.class == "workstation";
@@ -13,7 +18,11 @@ in
     enable = true;
     overrideFolders = false;
     overrideDevices = false;
-    extraOptions = { gui = { theme = "dark"; }; };
+    extraOptions = {
+      gui = {
+        theme = "dark";
+      };
+    };
     openDefaultPorts = true;
     user = lib.mkIf isWorkstation "rg";
     dataDir = "/pst/syncthing-data";
@@ -25,7 +34,6 @@ in
     fsType = "none";
     options = [ "bind" ];
   };
-
 
   # home.file.syncthing-px = lib.mkIf isWorkstation {
   #   enable = true;
@@ -41,10 +49,8 @@ in
 
   users.users.rg.extraGroups = [ "syncthing" ];
 
-
   #RESTIC
   # "--exclude '/data/syncthing/st-sync/config/index*-db'"
-
 
   services.caddy.virtualHosts."syncthing.${fqdn}" = lib.mkIf (!isWorkstation) {
     useACMEHost = "rafael.ovh";

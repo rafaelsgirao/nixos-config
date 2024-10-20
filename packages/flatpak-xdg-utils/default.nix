@@ -1,11 +1,12 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, meson
-, ninja
-, pkg-config
-, glib
-, cmake
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  meson,
+  ninja,
+  pkg-config,
+  glib,
+  cmake,
 }:
 
 stdenv.mkDerivation rec {
@@ -26,12 +27,8 @@ stdenv.mkDerivation rec {
   # '';
   dontUseCmakeConfigure = true;
 
-  mesonFlags = [
-    "-Dc_args=-I${glib.dev}/include/gio-unix-2.0"
-  ];
-  buildInputs = [
-    (lib.getDev glib)
-  ];
+  mesonFlags = [ "-Dc_args=-I${glib.dev}/include/gio-unix-2.0" ];
+  buildInputs = [ (lib.getDev glib) ];
   nativeBuildInputs = [
     # glib
     # glib.dev

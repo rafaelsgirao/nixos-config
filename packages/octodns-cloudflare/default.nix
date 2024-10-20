@@ -1,4 +1,9 @@
-{ python3Packages, fetchPypi, octodns, ... }:
+{
+  python3Packages,
+  fetchPypi,
+  octodns,
+  ...
+}:
 
 python3Packages.buildPythonPackage rec {
   pname = "octodns-cloudflare";

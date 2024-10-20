@@ -1,7 +1,4 @@
-{ stdenv
-, pkgs
-, ...
-}:
+{ stdenv, pkgs, ... }:
 stdenv.mkDerivation {
   name = "fakepkg";
   builder = pkgs.writeShellScript "fakepkg" ''

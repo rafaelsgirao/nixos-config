@@ -6,7 +6,11 @@ in
 
   networking.networkmanager = {
     enable = lib.mkDefault isWorkstation;
-    unmanaged = [ "nebula0" "rnl0" "docker0" ];
+    unmanaged = [
+      "nebula0"
+      "rnl0"
+      "docker0"
+    ];
     # dhcpcd doesn't start properly with malloc
     # see https://github.com/NixOS/nixpkgs/issues/151696
     dhcp = "internal";
@@ -24,7 +28,11 @@ in
     #Microsoft is giving up on LLMNR in favour of mDNS.
     llmnr = "false";
     dnssec = "allow-downgrade";
-    fallbackDns = [ "1.1.1.1#one.one.one.one" "9.9.9.9#dns.quad9.net" "2620:fe::9#dns.quad9.net" ];
+    fallbackDns = [
+      "1.1.1.1#one.one.one.one"
+      "9.9.9.9#dns.quad9.net"
+      "2620:fe::9#dns.quad9.net"
+    ];
     extraConfig = ''
       DNSOverTLS=opportunistic
 
@@ -40,8 +48,14 @@ in
   networking.dhcpcd.enable = false;
 
   #Arch wiki recommends opening these ports for mDNS and LLMNR
-  networking.firewall.allowedUDPPorts = [ 5353 5355 ];
-  networking.firewall.allowedTCPPorts = [ 5353 5355 ];
+  networking.firewall.allowedUDPPorts = [
+    5353
+    5355
+  ];
+  networking.firewall.allowedTCPPorts = [
+    5353
+    5355
+  ];
 }
 
 # https://github.com/krathalan/systemd-sandboxing/blob/master/NetworkManager.service.d/hardening.conf

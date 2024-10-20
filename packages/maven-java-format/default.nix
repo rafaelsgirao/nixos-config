@@ -1,7 +1,4 @@
-{ stdenv
-, pkgs
-, ...
-}:
+{ stdenv, pkgs, ... }:
 
 let
   pkgName = "maven-vscode-lsp-server";

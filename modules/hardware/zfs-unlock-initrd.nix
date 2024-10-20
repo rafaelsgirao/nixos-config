@@ -1,4 +1,11 @@
-{ config, lib, pkgs, sshKeys, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  sshKeys,
+  ...
+}:
+{
   #Unlock encrypted zfs via ssh on boot
   #https://nixos.wiki/wiki/ZFS#Unlock_encrypted_zfs_via_ssh_on_boot
   #Inspiration:
@@ -15,7 +22,13 @@
   boot = {
 
     # README: set this parameter on machines you import this file!
-    initrd.kernelModules = [ "r8169" "e1000e" "uas" "atkbd" "usbhid" ];
+    initrd.kernelModules = [
+      "r8169"
+      "e1000e"
+      "uas"
+      "atkbd"
+      "usbhid"
+    ];
     initrd.supportedFilesystems = [ "zfs" ];
     initrd.includeDefaultModules = lib.mkForce true;
     initrd.systemd.emergencyAccess = config.users.users.root.hashedPassword;

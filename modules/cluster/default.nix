@@ -16,25 +16,23 @@
   ];
 
   systemd.network.enable = true;
-  systemd.network.networks."10-wan" =
-    {
-      # match the interface by name
-      matchConfig.Name = "eth0";
-      DHCP = "yes";
+  systemd.network.networks."10-wan" = {
+    # match the interface by name
+    matchConfig.Name = "eth0";
+    DHCP = "yes";
 
-      # To add static addrs:
-      address = [
-        # configure addresses including subnet mask
-        "${config.rg.ipv4}/24"
-      ];
-    };
+    # To add static addrs:
+    address = [
+      # configure addresses including subnet mask
+      "${config.rg.ipv4}/24"
+    ];
+  };
 
   #--- the real stuff
   # services.garage = {
   #    enable = true;
   #    settings = {};
   # };
-
 
   #--- the real stuff END
   #--- FOR TESTING ONLY

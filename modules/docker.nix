@@ -1,7 +1,12 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
 
   virtualisation.containers.enable = true;
-
 
   virtualisation.docker = {
     enable = lib.mkDefault true;
@@ -18,8 +23,10 @@
   #   setSocketVariable = true;
   # };
 
-  services.udev.extraRules = lib.mkIf (config.rg.class == "workstation" && !config.virtualisation.docker.rootless.enable) ''
-    SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl freeze docker.service --no-block"
-    SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl thaw docker.service --no-block"
-  '';
+  services.udev.extraRules =
+    lib.mkIf (config.rg.class == "workstation" && !config.virtualisation.docker.rootless.enable)
+      ''
+        SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl freeze docker.service --no-block"
+        SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl thaw docker.service --no-block"
+      '';
 }
