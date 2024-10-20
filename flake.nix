@@ -32,7 +32,11 @@
       url = "github:hercules-ci/gitignore.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #-------------------
 
@@ -105,12 +109,19 @@
     lan-mouse = {
       url = "github:feschber/lan-mouse";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     impermanence.url = "github:nix-community/impermanence/master";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+    # nixos-cosmic = {
+    #   url = "github:lilyinstarlight/nixos-cosmic";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.nixpkgs-stable.follows = "nixpkgs";
+    #   inputs.flake-compat.follows = "flake-compat";
+    # };
     # simple-nixos-mailserver = {
     #   url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -168,6 +179,7 @@
       inputs.flake-parts.follows = "flake-parts";
       inputs.pre-commit-hooks-nix.follows = "";
       inputs.crane.follows = "crane";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
 
   };
