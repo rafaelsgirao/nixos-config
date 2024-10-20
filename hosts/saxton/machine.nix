@@ -64,6 +64,7 @@ in
 
   services.nebula.networks."rgnet".settings = {
     relay.am_relay = true;
+    listen.port = 31020;
   };
 
   systemd.network.enable = true;
