@@ -86,6 +86,7 @@ in
         ".local/share/vagrant"
         ".config/VirtualBox"
         "VirtualBox VMs" # ewww!
+        ".config/BraveSoftware"
         # AGISIT: end
       ];
     };
