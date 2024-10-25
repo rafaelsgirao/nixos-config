@@ -348,7 +348,6 @@
           };
           treefmt.projectRootFile = ./flake.nix;
           treefmt.programs = {
-            # nixpkgs-fmt.enable = true;
             nixfmt.enable = true;
             shellcheck.enable = true;
             shfmt.enable = true;

@@ -1,8 +1,16 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" "i686-linux" ];
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    "i686-linux"
+  ];
 
   imports = [
     ../../modules/systemd-initrd.nix
@@ -28,7 +36,11 @@
 
   programs.nix-ld.enable = true;
 
-  users.users.rg.extraGroups = [ "docker" "gamemode" ];
+  users.users.rg.extraGroups = [
+    "docker"
+    "gamemode"
+    "dialout"
+  ];
 
   rg = {
     ip = "192.168.10.2";
@@ -42,8 +54,7 @@
   environment.persistence."/state" = {
     # directories = [ ];
     users.rg = {
-      files = [
-      ];
+      files = [ ];
       directories = [
         ".local/share/fly"
         ".local/share/ykman"
@@ -56,10 +67,7 @@
   };
 
   environment.persistence."/pst" = {
-    directories =
-      [
-        "/etc/NetworkManager/system-connections"
-      ];
+    directories = [ "/etc/NetworkManager/system-connections" ];
     users.rg = {
       directories = [
         ".config/dconf"
@@ -85,22 +93,21 @@
     cores = 6; # Dell Latitude has 8 vCores, leave two for rest of the system
   };
 
-
   # boot.crashDump.enable = true;
 
   boot.initrd.systemd.emergencyAccess = true;
 
   environment.variables = {
-    QEMU_OPTS =
-      "-m 4096 -smp 4 -enable-kvm"; # https://github.com/NixOS/nixpkgs/issues/59219
+    QEMU_OPTS = "-m 4096 -smp 4 -enable-kvm"; # https://github.com/NixOS/nixpkgs/issues/59219
   };
 
-
   #SSH daemon only inside Nebula
-  services.openssh.listenAddresses = [{
-    addr = config.rg.ip;
-    port = 22;
-  }];
+  services.openssh.listenAddresses = [
+    {
+      addr = config.rg.ip;
+      port = 22;
+    }
+  ];
 
   # Systemd timer so I go to sleep at decent hours
   # Thanks to abread on #JustNixThings https://discord.com/channels/759576132227694642/874345962515071026/923166110759677992
@@ -163,14 +170,14 @@
   security.pam.services.sudo.text = ''
     # Account management.
     account required pam_unix.so # unix (order 10900)
-    
+
     # Authentication management.
     auth sufficient pam_unix.so likeauth try_first_pass # unix (order 11500)
     auth required pam_deny.so # deny (order 12300)
-    
+
     # Password management.
     password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
-    
+
     # Session management.
     session required pam_env.so conffile=/etc/pam/environment readenv=0 # env (order 10100)
     session required pam_unix.so # unix (order 10200)
