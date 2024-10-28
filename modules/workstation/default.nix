@@ -20,7 +20,10 @@ let
   inherit (lib) mkIf;
 in
 {
-  imports = [ ./vscode.nix ];
+  imports = [
+    ./vscode.nix
+    ../ccache.nix
+  ];
   hm.imports = [
     inputs.lan-mouse.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
@@ -30,7 +33,6 @@ in
   nix.daemonCPUSchedPolicy = "idle";
 
   hm.services.ssh-tpm-agent.enable = true;
-  programs.ccache.enable = true;
 
   age.secrets = {
     attic-user-config = {
