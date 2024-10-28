@@ -89,7 +89,8 @@ in
   # ---
   hm.qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    style.name = "adwaita-dark";
+    platformTheme.name = "gnome";
   };
 
   hm.xdg.desktopEntries = {
@@ -355,6 +356,7 @@ in
   };
 
   hm.dconf.settings = {
+    # Pomodoro setup.
     "org/gnome/pomodoro/preferences" = {
       enabled-plugins = [
         "sounds"
@@ -364,6 +366,17 @@ in
       pomodoro-duration = 3120.0;
       short-break-duration = 1020.0;
       long-break-duration = 2040.0;
+    };
+
+    "org/gnome/desktop/background" = {
+      primary-color = "#241f31";
+      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-l.svg";
+      picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-d.svg";
+    };
+    "org/gnome/desktop/screensaver" = {
+      primary-color = "#241f31";
+      picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-l.svg";
+      picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-d.svg";
     };
   };
 

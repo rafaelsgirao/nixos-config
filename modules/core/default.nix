@@ -220,6 +220,7 @@ in
       curl
       tmux
       file
+      fswatch
       unzip
       zip
       whois
