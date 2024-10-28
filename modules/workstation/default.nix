@@ -40,11 +40,6 @@ in
     };
   };
 
-  # programs.kdeconnect = {
-  #   enable = true;
-  #   package = pkgs.gnomeExtensions.gsconnect;
-  # };
-
   # Custom error sound on e.g firefox when Ctrl-f search fails
   hm.dconf.settings."org/gnome/desktop/sound".event-sounds = true;
   hm.home.file = {
@@ -380,19 +375,19 @@ in
     enable = false;
   };
 
-  hm.programs.lan-mouse.settings = {
-    release_bind = [
-      "KeyA"
-      "KeyS"
-      "KeyD"
-      "KeyF"
-    ];
-    port = 7742;
-    frontend = "gtk";
-    systemd = true;
-  };
+  # hm.programs.lan-mouse.settings = {
+  #   release_bind = [
+  #     "KeyA"
+  #     "KeyS"
+  #     "KeyD"
+  #     "KeyF"
+  #   ];
+  #   port = 7742;
+  #   frontend = "gtk";
+  #   systemd = true;
+  # };
 
-  networking.firewall = {
+  networking.firewall = rec {
     allowedTCPPorts = [
       53317 # LocalSend (installed thru flatpak)
       7236 # Gnome Network Displays
@@ -401,6 +396,13 @@ in
       53317 # LocalSend (installed thru flatpak)
       7236 # Gnome Network Displays
     ];
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
   };
 
   environment.systemPackages = with pkgs; [
