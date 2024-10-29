@@ -14,7 +14,7 @@ in
     ./wc-bot.nix
     ../../modules/ntfy-sh.nix
     # ../../modules/ist-discord-bot.nix
-    ../../modules/docker.nix
+    ../../modules/virt/docker.nix
     ../../modules/restic.nix
     ../../modules/sshguard.nix
     ../../modules/vaultwarden.nix
@@ -26,7 +26,6 @@ in
     ../../modules/caddy.nix
     ../../modules/healthchecks.nix
     ../../modules/acme.nix
-    # ../../modules/docker.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix
   ];

@@ -27,7 +27,7 @@
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/impermanence.nix
-    ../../modules/docker.nix
+    ../../modules/virt/docker.nix
     ../../modules/dei.nix
     ../../modules/restic.nix
   ];

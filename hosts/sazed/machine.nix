@@ -38,9 +38,9 @@ in
     ../../modules/core/lanzaboote.nix
     #    ../../modules/core/hardening.nix
     ../../modules/caddy.nix
-    ../../modules/libvirt.nix
     ../../modules/impermanence.nix
-    ../../modules/docker.nix
+    ../../modules/virt/docker.nix
+    ../../modules/virt/libvirt.nix
     ../../modules/restic.nix
     ../../modules/workstation/cups.nix
     ../../modules/sshguard.nix
