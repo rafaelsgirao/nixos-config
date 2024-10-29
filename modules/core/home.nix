@@ -28,15 +28,13 @@ in
     owner = "rg";
   };
 
-  environment.persistence."/pst".users.rg = {
-    directories = lib.optionals isWorkstation [
-      ".ssh"
-      ".local/share/atuin"
-      ".local/share/keyrings"
-      ".local/share/zoxide"
-      ".local/share/direnv"
-    ];
-  };
+  environment.persistence."/pst".users.rg.directories = lib.optionals isWorkstation [
+    ".ssh"
+    ".local/share/atuin"
+    ".local/share/keyrings"
+    ".local/share/zoxide"
+    ".local/share/direnv"
+  ];
   environment.persistence."/state".users.rg.directories = lib.optionals (!isWorkstation) [
     ".local/share/atuin"
     ".local/share/zoxide"
@@ -333,17 +331,62 @@ in
       programs.atuin = {
         enable = true;
         enableFishIntegration = config.programs.fish.enable;
-        package = pkgs.atuin;
+        # TODO: move to pkgs.atuin on 24.11
+        package = pkgs.unstable.atuin;
         flags = [ "--disable-up-arrow" ];
         settings = {
           dialect = "uk";
           auto_sync = false;
           update_check = false;
+          # Using a daemon works around timeout issues when using ZFS.
+          # https://github.com/atuinsh/atuin/issues/952
+          # Requires atuin >= 18.3.0 (which is why package is in unstable ATM)
+          daemon = {
+            enabled = true;
+            # TODO: ugly hardcoded path!
+            socket_path = "/run/user/1000/atuin.sock";
+          };
+          sync = {
+            records = true;
+          };
           # sync_frequency = "24h";
           # sync_address = lib.mkIf isWorkstation "https://atuin.spy.rafael.ovh";
         };
       };
 
+      # https://github.com/atuinsh/atuin/pull/2172/files
+      systemd.user.services.atuin-daemon = {
+
+        Unit = {
+          Description = "atuin shell history daemon";
+          Requires = [ "atuin-daemon.socket" ];
+        };
+
+        Service = {
+          # Environment = "'SSH_AUTH_SOCK=%t/${socket}'";
+          ExecStart = "${pkgs.unstable.atuin}/bin/atuin daemon";
+          # Type = "simple";
+        };
+        Install = {
+          WantedBy = [ "default.target" ];
+          Also = [ "atuin-daemon.socket" ];
+        };
+      };
+
+      systemd.user.sockets."atuin-daemon" = {
+        Unit = {
+          Description = "Unix socket activation for atuin shell history daemon";
+        };
+        Socket = {
+          ListenStream = "%t/atuin.socket";
+          SocketMode = "0600";
+          # Service = "ssh-tpm-agent.service"; :thinking:
+        };
+        Install = {
+          WantedBy = [ "sockets.target" ];
+        };
+
+      };
       programs.starship = {
         enable = true;
         enableFishIntegration = config.programs.fish.enable;
