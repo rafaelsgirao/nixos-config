@@ -90,7 +90,7 @@ in
   hm.qt = {
     enable = true;
     style.name = "adwaita-dark";
-    platformTheme.name = "gnome";
+    platformTheme.name = "adwaita"; # "value gnome is deprecated"
   };
 
   hm.xdg.desktopEntries = {
