@@ -18,6 +18,7 @@
     ../../modules/workstation/chromium.nix
     ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
+    ../../modules/workstation/cosmic.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
     ../../modules/workstation/nextcloud-client.nix
@@ -50,6 +51,8 @@
     resetRootFs = true;
   };
 
+  services.mullvad-vpn.enable = true;
+  hardware.flipperzero.enable = true;
   environment.persistence."/state" = {
     # directories = [ ];
     users.rg = {
