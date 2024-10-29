@@ -27,7 +27,7 @@
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/impermanence.nix
-    ../../modules/virt/docker.nix
+    ../../modules/virt/podman.nix
     ../../modules/dei.nix
     ../../modules/restic.nix
   ];
@@ -37,7 +37,6 @@
   programs.nix-ld.enable = true;
 
   users.users.rg.extraGroups = [
-    "docker"
     "gamemode"
     "dialout"
   ];

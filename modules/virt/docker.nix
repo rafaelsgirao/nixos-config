@@ -10,11 +10,15 @@
 
   virtualisation.docker = {
     enable = lib.mkDefault true;
-    daemon.settings.shutdown-timeout = 120;
+    daemon.settings.shutdown-timeout = 60;
   };
   networking.networkmanager.unmanaged = [ "docker0" ];
-  environment.systemPackages = with pkgs; [ docker-compose ];
+  environment.systemPackages = with pkgs; [
+    docker-compose
+    dive
+  ];
 
+  users.users.rg.extraGroups = [ "docker" ];
   #TODO: be careful about ist-discord-bot @ sazed!
   #NOTE: this. is. so. painful! please don't use this in the future.
   # You have been warned.
