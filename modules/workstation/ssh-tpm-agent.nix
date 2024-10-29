@@ -65,7 +65,6 @@ in
       Socket = {
         ListenStream = "%t/${socket}";
         SocketMode = "0600";
-        Service = "ssh-tpm-agent.service";
       };
       Install = {
         WantedBy = [ "sockets.target" ];
