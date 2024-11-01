@@ -41,10 +41,11 @@
         # { package = gsconnect; }
         { package = appindicator; }
         { package = caffeine; }
-        { package = cronomix; } # giving this a try but was/am using gnome pomodoro before
-        { package = workspace-indicator-left; }
+        # { package = cronomix; } # not compatible with cur. gnome
+        # { package = workspace-indicator-left; } # not compatible with cur. gnome
+        { package = workspace-indicator; } # not compatible with cur. gnome
         { package = launch-new-instance; }
-        { package = pip-on-top; }
+        # { package = pip-on-top; } # not compatible with cur. gnome
       ];
 
       dconf.enable = true;
