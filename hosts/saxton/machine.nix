@@ -93,8 +93,10 @@ in
   services.blocky.settings = {
     certFile = "/var/lib/acme/${domain}/fullchain.pem";
     keyFile = "/var/lib/acme/${domain}/key.pem";
-    port = "0.0.0.0:53";
-    tlsPort = 853;
+    ports = {
+      dns = "0.0.0.0:53";
+      tls = "0.0.0.0:853";
+    };
   };
 
   nix.settings.max-jobs = 1; # minimise local builds.
