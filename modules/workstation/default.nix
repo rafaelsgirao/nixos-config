@@ -69,7 +69,7 @@ in
       # lock_timeout = "3600";
     };
   };
-  hm.services.safeeyes.enable = true;
+  # hm.services.safeeyes.enable = true;
   hm.gtk = {
     enable = true;
     theme = {
