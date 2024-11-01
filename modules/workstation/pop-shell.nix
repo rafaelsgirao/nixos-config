@@ -5,15 +5,15 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    pop-launcher
-    gnomeExtensions.pop-shell
-    gnomeExtensions.native-window-placement
-  ];
-
   hm =
     { lib, ... }:
     {
+      programs.gnome-shell.enable = true;
+      programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+        { package = native-window-placement; }
+        { package = pop-shell; }
+      ];
+      home.packages = with pkgs; [ pop-launcher ];
       dconf = {
         enable = true;
         settings = {

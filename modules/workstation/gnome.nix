@@ -21,20 +21,13 @@
       epiphany # web browser
       geary # email reader evince # document viewer
       gnome-characters
+      gnome-maps
       totem # video player
       tali # poker game
       iagno # go game
       hitori # sudoku game
       atomix # puzzle game
     ]);
-
-  environment.systemPackages = with pkgs.gnomeExtensions; [
-    gnome-bedtime
-    caffeine
-    #    time-awareness #doesn't support Gnome 45
-    pip-on-top
-    native-window-placement
-  ];
 
   programs.gnome-terminal.enable = false;
 
@@ -43,29 +36,22 @@
     { lib, ... }:
     {
 
-      # programs.gnome-shell.enable = true;
-      #   programs.gnome-shell.extensions = [
-      #      { package = pkgs.gnomeExtensions.gsconnect; }
-      #   ];
+      programs.gnome-shell.enable = true;
+      programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
+        # { package = gsconnect; }
+        { package = appindicator; }
+        { package = caffeine; }
+        { package = cronomix; } # giving this a try but was/am using gnome pomodoro before
+        { package = workspace-indicator-left; }
+        { package = launch-new-instance; }
+        { package = pip-on-top; }
+      ];
 
       dconf.enable = true;
       dconf.settings = {
         "org/gnome/shell" = {
           disable-user-extensions = false;
           remember-mount-password = true;
-          enabled-extensions = [
-            "native-window-placement@gnome-shell-extensions.gcampax.github.com"
-            "appindicatorsupport@rgcjonas.gmail.com"
-            "gnomebedtime@ionutbortis.gmail.com"
-            "caffeine@patapon.info"
-            # "places-menu@gnome-shell-extensions.gcampax.github.com"
-            # "drive-menu@gnome-shell-extensions.gcampax.github.com"
-            "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
-            "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-            "pomodoro@arun.codito.in"
-            # "time-awareness@gnome-extensions.kapranoff.ru"
-            # "browser-tabs@com.github.harshadgavali"
-          ];
         };
         # Use `dconf watch /` to track stateful changes you are doing, then set them here.
         "org/gnome/desktop/input-sources" = {
