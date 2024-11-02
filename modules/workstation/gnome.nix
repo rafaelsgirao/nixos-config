@@ -32,6 +32,7 @@
   programs.gnome-terminal.enable = false;
 
   environment.persistence."/pst".users.rg.directories = [ ".config/valent" ];
+  environment.persistence."/state".users.rg.directories = [ ".local/share/gnome-shell" ];
   #dconf settings
   hm =
     { lib, ... }:
@@ -40,7 +41,7 @@
       programs.gnome-shell.enable = true;
       programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
         # { package = gsconnect; } # appears to be abandoned?
-        { package = valent; } # kde connect reimplementation
+        # { package = valent; } # kde connect reimplementation - nixpkgs version not compatible w/ latest gnome
         { package = appindicator; }
         { package = caffeine; }
         # { package = cronomix; } # not compatible with cur. gnome
