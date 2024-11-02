@@ -34,6 +34,7 @@ in
     ".local/share/keyrings"
     ".local/share/zoxide"
     ".local/share/direnv"
+    ".local/share/nix"
   ];
   environment.persistence."/state".users.rg.directories = lib.optionals (!isWorkstation) [
     ".local/share/atuin"
