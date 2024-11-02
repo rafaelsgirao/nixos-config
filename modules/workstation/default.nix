@@ -414,12 +414,14 @@ in
       53317 # LocalSend (installed thru flatpak)
       7236 # Gnome Network Displays
     ];
+    # For KDEConnect (or reimplementations of it )
     allowedTCPPortRanges = [
       {
         from = 1714;
         to = 1764;
       }
     ];
+    # For KDEConnect (or reimplementations of it )
     allowedUDPPortRanges = allowedTCPPortRanges;
   };
 

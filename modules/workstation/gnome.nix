@@ -31,6 +31,7 @@
 
   programs.gnome-terminal.enable = false;
 
+  environment.persistence."/pst".users.rg.directories = [ ".config/valent" ];
   #dconf settings
   hm =
     { lib, ... }:
@@ -38,7 +39,8 @@
 
       programs.gnome-shell.enable = true;
       programs.gnome-shell.extensions = with pkgs.gnomeExtensions; [
-        # { package = gsconnect; }
+        # { package = gsconnect; } # appears to be abandoned?
+        { package = valent; } # kde connect reimplementation
         { package = appindicator; }
         { package = caffeine; }
         # { package = cronomix; } # not compatible with cur. gnome
