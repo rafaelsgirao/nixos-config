@@ -352,7 +352,11 @@ in
     ".config/Sonixd"
   ];
 
-  users.users.rg.extraGroups = [ "kvm" ];
+  users.users.rg.extraGroups = [
+    "kvm"
+    "wireshark"
+  ];
+
   hm.programs.mpv = {
     enable = true;
     scripts = [ pkgs.mpvScripts.mpris ];
@@ -425,6 +429,8 @@ in
     allowedUDPPortRanges = allowedTCPPortRanges;
   };
 
+  programs.wireshark.enable = true;
+
   environment.systemPackages = with pkgs; [
     mypkgs.agenix
     attic-client
@@ -437,7 +443,6 @@ in
 
     #Gnome and related stuff
     gnome_pomodoro
-    gnomeExtensions.appindicator # Try to fix tray icons (especially jellyfin-mpv-shim and udiskie2)
     gnome.seahorse
     gnome.file-roller
     gnome.nautilus
