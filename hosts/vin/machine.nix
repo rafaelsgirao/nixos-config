@@ -63,6 +63,7 @@
         ".config/JetBrains"
         ".local/share/JetBrains"
         ".config/BraveSoftware"
+        ".config/Mullvad VPN"
         ".m2"
       ];
     };
