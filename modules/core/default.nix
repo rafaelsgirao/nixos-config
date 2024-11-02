@@ -40,6 +40,14 @@ in
   # Now using default for current nixpkgs.
   boot.kernelPackages = pkgs.linuxPackages;
 
+  # Show diff of updates
+  system.activationScripts.diff = {
+    supportsDryActivation = true;
+    text = ''
+      ${pkgs.nvd}/bin/nvd --nix-bin-dir=${config.nix.package}/bin diff /run/current-system "$systemConfig"
+    '';
+  };
+
   # Nixinate options
   deploy = {
     enable = true;
