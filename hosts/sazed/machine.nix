@@ -47,6 +47,8 @@ in
     ../../modules/sshguard.nix
   ];
 
+  boot.initrd.network.ssh.port = 31022;
+
   services.caddy.virtualHosts = {
     # ODEIO.
     "sazed.rnl.tecnico.ulisboa.pt" = {
@@ -92,8 +94,6 @@ in
       ];
     };
   };
-
-  # boot.initrd.systemd.enable = true;
 
   networking.networkmanager.unmanaged = [ "eth0" ];
 

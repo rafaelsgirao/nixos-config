@@ -34,7 +34,7 @@
     initrd.systemd.emergencyAccess = config.users.users.root.hashedPassword;
     initrd.network.ssh = {
       enable = true;
-      port = 2222;
+      port = lib.mkDefault 2222;
       hostKeys = [ /pst/etc/ssh-initrd/ssh_host_ed25519_key ];
       authorizedKeys = sshKeys;
     };
