@@ -132,12 +132,7 @@ in
     # };
   };
 
-  # ---
-  # hm.fonts.fontconfig.enable = true;
-  hm.home.sessionPath = [
-    "$HOME/.local/bin"
-    "$XDG_DATA_HOME/cargo/bin"
-  ];
+  hm.home.sessionPath = [ "${XDG_DATA_HOME}/cargo/bin" ];
 
   hm.systemd.user.services.polkit-gnome = lib.mkIf (!isGnome) {
     description = "polkit-gnome-authentication-agent-1";
