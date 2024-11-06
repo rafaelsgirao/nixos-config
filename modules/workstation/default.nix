@@ -429,16 +429,8 @@ in
     package = pkgs.wireshark;
   };
 
-  environment.systemPackages = with pkgs; [
-    mypkgs.agenix
-    attic-client
-    pamixer
+  hm.home.packages = with pkgs; [
     xdg-ninja
-    mypkgs.flatpak-xdg-utils
-    # handlrXdg
-    nixpkgs-fmt
-    unstable.yt-dlp
-
     #Gnome and related stuff
     gnome_pomodoro
     gnome.seahorse
@@ -450,27 +442,35 @@ in
     pwvucontrol
     xorg.xlsclients
     xorg.xeyes
-    #Utils
-    yubikey-manager
     playerctl
+    virt-manager
+    riff
+    steam-run
+    sonixd
+    libnotify
+    nodePackages.prettier
+    typst-lsp # for VSCode and such
+    unstable.yt-dlp
+
+  ];
+  environment.systemPackages = with pkgs; [
+    mypkgs.agenix
+    attic-client
+    pamixer
+    mypkgs.flatpak-xdg-utils
+    # handlrXdg
+    nixpkgs-fmt
+
+    yubikey-manager
     udiskie
     libqalculate
     ntfs3g
-    steam-run
     ripgrep-all
-    virt-manager
     udisks2
-    riff
+    ventoy-bin
 
     # :eyes:
     # Too new a project. e.g, `rm` hangs on pipes created with mkfifo
     # (pkgs.uutils-coreutils.override { prefix = ""; })
-
-    sonixd
-
-    ventoy-bin
-    libnotify
-    nodePackages.prettier
-    typst-lsp # for VSCode and such
   ];
 }
