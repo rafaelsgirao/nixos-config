@@ -451,6 +451,7 @@ in
     nodePackages.prettier
     typst-lsp # for VSCode and such
     unstable.yt-dlp
+    cargo
 
   ];
   environment.systemPackages = with pkgs; [
