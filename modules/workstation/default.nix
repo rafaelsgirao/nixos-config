@@ -343,7 +343,7 @@ in
   environment.persistence."/state".users.rg.directories = [
     ".local/share/android"
     ".local/share/cargo"
-    ".local/share/rustup"
+    # ".local/share/rustup"
     ".config/Sonixd"
   ];
 
