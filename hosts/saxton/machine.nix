@@ -28,6 +28,7 @@ in
     ../../modules/acme.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix
+    ../../modules/noisedropper.nix
   ];
 
   rg = {
