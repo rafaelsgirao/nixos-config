@@ -187,6 +187,7 @@ in
           # Rust
           rustaceanvim.enable = true;
           #Language Server Providers.
+          lsp.enable = true;
           lsp.servers = {
             nil-ls.enable = true; # Nix
             marksman.enable = true; # Markdown
