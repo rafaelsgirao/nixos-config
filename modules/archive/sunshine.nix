@@ -99,7 +99,7 @@ in
       # https://github.com/WayfireWM/wayfire/issues/1710
       # https://github.com/WayfireWM/wayfire/issues/1730
       environment = {
-        WLR_RENDER_DRM_DEVICE = "/dev/dri/renderD129"; # renderD128 is intel
+        WLR_RENDER_DRM_DEVICE = "/dev/dri/renderD128"; # renderD128 is intel/AMD
         WLR_LIBINPUT_NO_DEVICES = "1";
         WLR_BACKENDS = "headless,libinput";
         WAYFIRE_CONFIG_FILE = configFile;

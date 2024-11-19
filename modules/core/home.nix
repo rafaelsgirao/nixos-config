@@ -69,6 +69,7 @@ in
         '';
       };
 
+      home.preferXdgDirectories = true;
       xdg.enable = true;
       home.enableNixpkgsReleaseCheck = true;
       #Sway files

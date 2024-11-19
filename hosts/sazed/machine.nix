@@ -7,12 +7,6 @@ let
   };
 in
 {
-  #Temporary settings for AGISIT course:
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  users.extraGroups.vboxusers.members = [ "rg" ];
-  # (after AGISIT ends, also remove environment.persistence entries, further down)
-  # AGISIT - end
 
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
@@ -21,9 +15,7 @@ in
 
   imports = [
     ../../modules/systemd-initrd.nix
-    #Firefox through flatpak (testing)
-    # Not using flatpaked firefox while this isn't solved:
-    # https://github.com/flatpak/flatpak/issues/4525
+    #Firefox through flatpak (testing) # Not using flatpaked firefox while this isn't solved: https://github.com/flatpak/flatpak/issues/4525
     ../../modules/workstation/chromium.nix
     ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
@@ -85,12 +77,7 @@ in
       files = [ ];
       directories = [
         ".m2"
-        # AGISIT: temporary 
-        ".local/share/vagrant"
-        ".config/VirtualBox"
-        "VirtualBox VMs" # ewww!
         ".config/BraveSoftware"
-        # AGISIT: end
       ];
     };
   };
