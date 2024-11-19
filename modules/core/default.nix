@@ -66,6 +66,7 @@ in
   #TODO: remove this later
   # https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501/7
   services.logrotate.checkConfig = false;
+  services.bpftune.enable = true;
 
   boot = {
     tmp.cleanOnBoot = mkDefault true;
@@ -229,6 +230,7 @@ in
       tmux
       file
       fswatch
+      lshw
       unzip
       zip
       whois
