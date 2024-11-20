@@ -46,6 +46,8 @@ in
 
   # Secrets to be accessed manually, not programatically by machines.
   "RGNet-key.age".publicKeys = users;
+  "demo/RGNet-key.age".publicKeys = users;
+  "demo/RGNet-cert.age".publicKeys = users;
 
   # Secrets for workstations.
   "RNLDEI-wireguard.age".publicKeys = workstations ++ users;
