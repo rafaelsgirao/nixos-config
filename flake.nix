@@ -205,7 +205,7 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJNh9R6uSjnGxHwxul87AcXs4mzEMSOcjubmuMzO/OkQ demo"
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEwOBxayZyd/zGYyoTRN2rdIQM71nzVT3lISg2pNfrZRAAAABHNzaDo= Yubikey-U2F-Resident:"
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJvkSRd4B8oEvmXI5uduJtrV4GkRc/f1PFaezQ3wobn08apvaTGHLrNPqgqzv+QwNppWkwSX0j2fNqt2dsUmcbw= rg@sazed2[TPM]"
-        "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBxyt2Uhru+PIf9SKRF96AW05P9WuyR7NKbS6OZyElNjOT+1qmkeL82+7B5qeHsACA3ZRo4svorIS1Q8khLmexk= rg@vin-TPM"
+        "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAmpEriJPWGXLbwYzlxpNbnB7DMHypijGRnmqjiCZRQmzQSxIXXTyYvDd9w4wbKOFno0Aag0ysaL8ddZKvBCIK8= rg@vin2[TPM]"
       ];
 
       secretsDir = self + "/secrets";
