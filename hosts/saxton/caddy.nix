@@ -1,10 +1,16 @@
-{ config, ... }:
+{ config, hostSecretsDir, ... }:
 
 let
   inherit (config.rg) domain;
   siteDir = "/pst/site";
 in
 {
+
+  age.secrets.caddy-super-secret-config = {
+    file = "${hostSecretsDir}/Caddy-super-secret-config.age";
+    mode = "400";
+    owner = "caddy";
+  };
 
   #ACME + Caddy
   security.acme.certs."${domain}" = {
@@ -24,6 +30,9 @@ in
 
   services.caddy.globalConfig = ''
     default_bind ${config.rg.ipv4} [${config.rg.ipv6}]
+  '';
+  services.caddy.extraConfig = ''
+    import ${config.age.secrets.caddy-super-secret-config.path}
   '';
 
   services.caddy.virtualHosts = {

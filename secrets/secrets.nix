@@ -102,6 +102,7 @@ in
   "saxton/ENV-vaultwarden.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-rafael.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-machines.age".publicKeys = [ saxton ] ++ users;
+  "saxton/Caddy-super-secret-config.age".publicKeys = [ saxton ] ++ users;
 
   # sazed secrets.
   "sazed/RGNet-key.age".publicKeys = [ sazed ] ++ users;
