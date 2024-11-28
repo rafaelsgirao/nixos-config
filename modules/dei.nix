@@ -120,8 +120,8 @@ in
         ];
         domains =
           [
-            # Main domain, with dns search
-            "rnl.tecnico.ulisboa.pt"
+            # Main domain
+            "~rnl.tecnico.ulisboa.pt"
 
             # alt domains
             # "~rnl.ist.utl.pt"
