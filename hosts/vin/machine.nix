@@ -116,22 +116,26 @@
   # Thanks to abread on #JustNixThings https://discord.com/channels/759576132227694642/874345962515071026/923166110759677992
   systemd.services.go-to-bed = {
     serviceConfig.Type = "oneshot";
-    path = with pkgs; [ "systemd" ];
-    script = "poweroff";
+    path = [ pkgs.systemd ];
+    script = ''
+      #!/bin/sh
+      # https://serverfault.com/a/1130371
+      set -xu
+      TIME=2200 # Desired time, in military time format
+      DELTA=159 # Max delta
+      MAXTIME=$((TIME + DELTA))
+      NOW=$(date +%H%M)
+      if [ "$NOW" -ge "$TIME" ] &&  [ "$NOW" -le "$MAXTIME" ]
+      then
+        poweroff
+      fi
+    '';
   };
   systemd.timers.go-to-bed-2200 = {
     wantedBy = [ "timers.target" ];
     partOf = [ "go-to-bed.service" ];
     timerConfig = {
       OnCalendar = "*-*-* 21:59:59";
-      Unit = "go-to-bed.service";
-    };
-  };
-  systemd.timers.go-to-bed-2230 = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "go-to-bed.service" ];
-    timerConfig = {
-      OnCalendar = "*-*-* 22:30..05:05";
       Unit = "go-to-bed.service";
     };
   };
