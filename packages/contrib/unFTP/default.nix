@@ -21,7 +21,7 @@ rustPlatform.buildRustPackage rec {
 
   buildInputs = [ linux-pam ];
 
-  cargoSha256 = "sha256-vFu1D2GYItVGeTmd/rwmZHM/mf4zQ3tzBLux7vb+yZ0=";
+  cargoHash = "sha256-vFu1D2GYItVGeTmd/rwmZHM/mf4zQ3tzBLux7vb+yZ0=";
 
   meta = with lib; {
     description = "A FTP(S) server with a couple of twists written in Rust";
