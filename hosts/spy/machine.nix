@@ -91,7 +91,7 @@ in
       # configure addresses including subnet mask
       "${config.rg.ipv4}/24"
     ];
-    routes = [ { routeConfig.Gateway = "192.168.1.254"; } ];
+    routes = [ { Gateway = "192.168.1.254"; } ];
   };
 
   systemd.network.networks."12-usb" =

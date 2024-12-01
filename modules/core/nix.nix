@@ -1,6 +1,5 @@
 {
   config,
-  pkgs,
   lib,
   inputs,
   ...
@@ -8,9 +7,6 @@
 {
   # Credits to this awesome person for (most of) these:
   # https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/global/nix.nix
-
-  #Enable use of Flakes.
-  nix.package = pkgs.nixFlakes;
 
   # Add each flake input as a registry
   # To make nix3 commands consistent with the flake
@@ -40,7 +36,6 @@
         "nix-command"
         "flakes"
         "ca-derivations"
-        "repl-flake"
       ];
 
       # being in trusted-users has the same security implications as being in docker group!

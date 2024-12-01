@@ -7,7 +7,7 @@
   inputs = {
     #--------------
     #Important inputs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     #---------------
 
@@ -19,7 +19,6 @@
     };
     crane = {
       url = "github:ipetkov/crane";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils = {
       url = "github:numtide/flake-utils";
@@ -72,7 +71,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.05";
+      url = "github:nix-community/nixvim/nixos-24.11";
       inputs = {
         #FIXME: make PR so that these lines can be uncommented
         nixpkgs.follows = "nixpkgs";
@@ -97,20 +96,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    attic = {
-      url = "github:zhaofengli/attic";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.crane.follows = "crane";
-    };
-
-    lan-mouse = {
-      url = "github:feschber/lan-mouse";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
-    };
+    # lan-mouse = {
+    #   url = "github:feschber/lan-mouse";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.rust-overlay.follows = "rust-overlay";
+    # };
     impermanence.url = "github:nix-community/impermanence/master";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -118,10 +108,10 @@
 
     nixos-cosmic = {
       url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs-stable.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
-      inputs.rust-overlay.follows = "rust-overlay";
+      # inputs.rust-overlay.follows = "rust-overlay";
     };
     # simple-nixos-mailserver = {
     #   url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
@@ -133,7 +123,7 @@
     # };
 
     home = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       # url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -176,7 +166,6 @@
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
       inputs.flake-parts.follows = "flake-parts";
       inputs.pre-commit-hooks-nix.follows = "";
       inputs.crane.follows = "crane";
@@ -306,6 +295,7 @@
                   ${pkgs.nix}/bin/nix build --no-link  --accept-flake-config ".#packages.${system}.$package"
                 done
               '';
+              # TODO: add `<hostname>_build` apps as a shortcut to run `nix build .#nixosConfigurations.<hostname>.config.system.build.toplevel $@`
 
             in
             {

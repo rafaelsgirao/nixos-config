@@ -78,12 +78,10 @@ in
     ];
     routes = [
       # create default routes for both IPv6 and IPv4
-      { routeConfig.Gateway = "fe80::1"; }
+      { Gateway = "fe80::1"; }
       {
-        routeConfig = {
-          Gateway = "172.31.1.1";
-          GatewayOnLink = true;
-        };
+        Gateway = "172.31.1.1";
+        GatewayOnLink = true;
       }
     ];
     # make the routes on this interface a dependency for network-online.target

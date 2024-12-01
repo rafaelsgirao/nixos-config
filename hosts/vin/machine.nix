@@ -158,23 +158,22 @@
   hm.home.packages = with pkgs; [
     mullvad-vpn
     brave
-    gnome.gnome-tweaks
     appimage-run
   ];
 
-  hm.programs.lan-mouse = {
-    enable = false;
-    # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # Optional configuration in nix syntax, see config.toml for available options
-    settings = {
-      top = {
-        # sazed
-        activate_on_startup = false;
-        ips = [ "192.168.10.5" ];
-        port = 7742;
-      };
-    };
-  };
+  # hm.programs.lan-mouse = {
+  #   enable = false;
+  #   # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
+  #   # Optional configuration in nix syntax, see config.toml for available options
+  #   settings = {
+  #     top = {
+  #       # sazed
+  #       activate_on_startup = false;
+  #       ips = [ "192.168.10.5" ];
+  #       port = 7742;
+  #     };
+  #   };
+  # };
 
   # #Default sudo config + howdy config.
   # #Fingers crossed this won't bite me later...

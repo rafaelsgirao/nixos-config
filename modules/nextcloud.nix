@@ -27,7 +27,7 @@ in
   services.nextcloud = {
     enable = true;
     https = true;
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud30;
     webfinger = true;
     hostName = ncHost;
     configureRedis = true;
@@ -37,7 +37,6 @@ in
     # secretFile = config.age.secrets.NC-secretfile.path;
     phpOptions = {
       #  "The amount of memory used to store interned strings, in megabytes."
-
       "opcache.interned_strings_buffer" = "32";
     };
     config = {

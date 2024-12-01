@@ -1,9 +1,4 @@
-{
-  config,
-  hostSecretsDir,
-  inputs,
-  ...
-}:
+{ config, hostSecretsDir, ... }:
 let
   port = toString 33763;
   dbUser = config.services.atticd.user;
@@ -11,8 +6,6 @@ let
 
 in
 {
-  imports = [ inputs.attic.nixosModules.atticd ];
-
   age.secrets = {
     ENV-attic = {
       file = "${hostSecretsDir}/ENV-attic.age";
@@ -31,7 +24,7 @@ in
 
   services.atticd = {
     enable = true;
-    credentialsFile = config.age.secrets.ENV-attic.path;
+    environmentFile = config.age.secrets.ENV-attic.path;
     settings = {
       allowed-hosts = [ host ];
       api-endpoint = "https://${host}/";

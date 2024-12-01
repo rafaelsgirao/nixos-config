@@ -103,7 +103,7 @@ in
           "--group-directories-first"
           "--header"
         ];
-        icons = true;
+        icons = "auto";
       };
 
       programs.git = {
@@ -192,14 +192,16 @@ in
           nvim-autopairs.enable = true;
           # Rust
           rustaceanvim.enable = true;
+          # Dependency of chadtree and trouble
+          web-devicons.enable = true;
           #Language Server Providers.
           lsp.enable = true;
           lsp.servers = {
-            nil-ls.enable = true; # Nix
+            nil_ls.enable = true; # Nix
             marksman.enable = true; # Markdown
             ruff.enable = true; # Python
             pylyzer.enable = true; # Python
-            typst-lsp.enable = true; # Typst
+            typst_lsp.enable = true; # Typst
             terraformls.enable = true; # Terraform
           };
         };

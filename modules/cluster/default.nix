@@ -9,7 +9,7 @@
   imports = [
     ./consul.nix
     ./garage.nix
-    ./keydb.nix
+    # ./keydb.nix #TODO: reenable this. Disabled bc pkgs.keydb is broken atm @ nixos-24.11
     ../../modules/core/hardening.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix

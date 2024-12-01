@@ -25,7 +25,7 @@ in
     ../ccache.nix
   ];
   hm.imports = [
-    inputs.lan-mouse.homeManagerModules.default
+    # inputs.lan-mouse.homeManagerModules.default
     inputs.nix-index-database.hmModules.nix-index
     ./ssh-tpm-agent.nix
   ];
@@ -150,7 +150,7 @@ in
 
   hm.programs.kitty = {
     enable = true;
-    theme = "Catppuccin-Macchiato";
+    themeFile = "Catppuccin-Macchiato";
     settings = {
       font_family = "FantasqueSans Mono Regular";
     };
@@ -178,7 +178,7 @@ in
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     roboto
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-extra
     noto-fonts-emoji
     fantasque-sans-mono
@@ -206,7 +206,9 @@ in
   security.pam.u2f = {
     enable = false;
     control = "optional";
-    cue = true;
+    settings = {
+      cue = true;
+    };
   };
 
   boot.kernelModules = [
@@ -322,7 +324,7 @@ in
   services.gvfs.enable = mkIf (!isGnome) true;
 
   #Attempt to fix tray icons (Jellyfin-mpv-shim and udiskie in particular)
-  services.udev.packages = with pkgs; lib.optionals (!isGnome) [ gnome.gnome-settings-daemon ];
+  services.udev.packages = with pkgs; lib.optionals (!isGnome) [ gnome-settings-daemon ];
 
   services.earlyoom.enableNotifications = true;
 
@@ -432,10 +434,10 @@ in
   hm.home.packages = with pkgs; [
     xdg-ninja
     #Gnome and related stuff
-    gnome_pomodoro
-    gnome.seahorse
-    gnome.file-roller
-    gnome.nautilus
+    gnome-pomodoro
+    seahorse
+    file-roller
+    nautilus
     loupe
     gparted
     pavucontrol

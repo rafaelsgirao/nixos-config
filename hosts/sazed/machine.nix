@@ -95,8 +95,8 @@ in
       "2001:690:2100:82::205/58"
     ];
     routes = [
-      { routeConfig.Gateway = "193.136.164.222"; }
-      { routeConfig.Gateway = "2001:690:2100:82::ffff:1"; }
+      { Gateway = "193.136.164.222"; }
+      { Gateway = "2001:690:2100:82::ffff:1"; }
     ];
 
     dns = [
@@ -144,7 +144,6 @@ in
     appimage-run
     lm_sensors
     colordiff
-    gnome.gnome-tweaks
     easyeffects
   ];
 
@@ -157,20 +156,20 @@ in
       "org/gnome/desktop/a11y".always-show-universal-access-status = false;
       "org/gnome/desktop/interface".text-scaling-factor = 1.0;
     };
-    programs.lan-mouse = {
-      enable = true;
-      # systemd = false;
-      # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
-      # Optional configuration in nix syntax, see config.toml for available options
-      settings = {
-        bottom = {
-          # scout
-          activate_on_startup = true;
-          ips = [ "192.168.10.1" ];
-          port = 7742;
-        };
-      };
-    };
+    # programs.lan-mouse = {
+    #   enable = true;
+    #   # systemd = false;
+    #   # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
+    #   # Optional configuration in nix syntax, see config.toml for available options
+    #   settings = {
+    #     bottom = {
+    #       # scout
+    #       activate_on_startup = true;
+    #       ips = [ "192.168.10.1" ];
+    #       port = 7742;
+    #     };
+    #   };
+    # };
   };
 
   zramSwap.enable = true;

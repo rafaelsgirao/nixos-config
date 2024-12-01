@@ -9,13 +9,8 @@
   services.xserver.desktopManager.gnome.enable = true;
   environment.gnome.excludePackages =
     (with pkgs; [
+      cheese
       gnome-photos
-      gnome-tour
-      xterm
-      gedit
-    ])
-    ++ (with pkgs.gnome; [
-      cheese # webcam tool
       gnome-music
       gnome-terminal
       epiphany # web browser
@@ -27,8 +22,13 @@
       iagno # go game
       hitori # sudoku game
       atomix # puzzle game
-    ]);
+      gnome-tour
+      xterm
+      gedit
+    ])
+    ++ (with pkgs.gnome; [ ]);
 
+  environment.systemPackages = with pkgs; [ gnome-tweaks ];
   programs.gnome-terminal.enable = false;
 
   environment.persistence."/pst".users.rg.directories = [ ".config/valent" ];
