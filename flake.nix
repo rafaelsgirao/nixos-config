@@ -336,7 +336,7 @@
               pass_filenames = false;
             };
           };
-          treefmt.projectRootFile = ./flake.nix;
+          treefmt.projectRootFile = "./flake.nix";
           treefmt.programs = {
             nixfmt.enable = true;
             shellcheck.enable = true;
