@@ -1,24 +1,18 @@
 # sazed(1)
-rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDzCDVaFW2iJmjXHNRdAfa71OFpMzxMDn8bfumxU0f+5wXskNmjgNf+kYYH+lzigPU1rxzLgi8dysaWJd3XBiYw= rg-Signing@sazed[TPM]
 git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDzCDVaFW2iJmjXHNRdAfa71OFpMzxMDn8bfumxU0f+5wXskNmjgNf+kYYH+lzigPU1rxzLgi8dysaWJd3XBiYw= rg-Signing@sazed[TPM]
 
 # vin(1)
-rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKc6a6LE0hQuWTgXxqUST9KETI/h3FXXEO09OhpoAd6BfBniQaPnCRt8fC3o5F4RQKIZnop41mGuYM2fDdvRwdw= rg-Signing@vin[TPM]
 git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKc6a6LE0hQuWTgXxqUST9KETI/h3FXXEO09OhpoAd6BfBniQaPnCRt8fC3o5F4RQKIZnop41mGuYM2fDdvRwdw= rg-Signing@vin[TPM]
 
 # sazed2
-rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI2LO2HXIpJeQcK3H5+AbOhID9fg24eMQ3QeBYHJ8z+hw7YiAzZFVGmasa+ceoMmvAVGZDIFCsdVsvqV7quzwU8= rg-Signing@sazed2[TPM]
 git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI2LO2HXIpJeQcK3H5+AbOhID9fg24eMQ3QeBYHJ8z+hw7YiAzZFVGmasa+ceoMmvAVGZDIFCsdVsvqV7quzwU8= rg-Signing@sazed2[TPM]
 
 # Yubikey
-rafael.s.girao@tecnico.ulisboa.pt namespaces="git" sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPjOSq2fWLz3AyieIcFPYl5jYVvD1G/L35XkPcEKkPXCAAAAEnNzaDpZSy1naXQtc2lnbmluZw== ssh:YK-git-signing
-git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPjOSq2fWLz3AyieIcFPYl5jYVvD1G/L35XkPcEKkPXCAAAAEnNzaDpZSy1naXQtc2lnbmluZw== ssh:YK-git-signing
+git@rafael.ovh namespaces="git" sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIPjOSq2fWLz3AyieIcFPYl5jYVvD1G/L35XkPcEKkPXCAAAAEnNzaDpZSy1naXQtc2lnbmluZw== ssh:YK-git-signing
 
 # vin3
 git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPmgxo7Qybw0V8WCXUxO3nmqL5j7ASX+9fX5Ilz9eoJ37nZbojfiOPSfuZ6FRBHlIkRQx4TSOS2GTOHJgG+UMa4= rg-Signing@vin3[TPM]
-rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPmgxo7Qybw0V8WCXUxO3nmqL5j7ASX+9fX5Ilz9eoJ37nZbojfiOPSfuZ6FRBHlIkRQx4TSOS2GTOHJgG+UMa4= rg-Signing@vin3[TPM]
 
 # sazed3
 git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH+rJ9FPvJBLhBX/17MquTE9bC3tyyn2qt0+9X4lSpChJ1PeQy/q26C+LSstcPfuVNwX9uXUALvuisVG1T8zMAQ= rg-Signing@sazed3[TPM]
-rafael.s.girao@tecnico.ulisboa.pt namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH+rJ9FPvJBLhBX/17MquTE9bC3tyyn2qt0+9X4lSpChJ1PeQy/q26C+LSstcPfuVNwX9uXUALvuisVG1T8zMAQ= rg-Signing@sazed3[TPM]
 

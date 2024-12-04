@@ -190,8 +190,6 @@
       user = "rg";
 
       sshKeys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFDT738i9yW4X/sO5IKD10zE/A4+Kz9ep01TkMLTrd1a rg@Scout"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJNh9R6uSjnGxHwxul87AcXs4mzEMSOcjubmuMzO/OkQ demo"
         "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEwOBxayZyd/zGYyoTRN2rdIQM71nzVT3lISg2pNfrZRAAAABHNzaDo= Yubikey-U2F-Resident:"
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPmgxo7Qybw0V8WCXUxO3nmqL5j7ASX+9fX5Ilz9eoJ37nZbojfiOPSfuZ6FRBHlIkRQx4TSOS2GTOHJgG+UMa4= rg@vin3[TPM]"
         "ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBOM7OW/R8j1PSKlXfSp3Q1boy2ZGr/MSLOGh4Rp/qzrjqplHarCGnzT+EVbTULnCcErOErSmMyyVPY38JIkMLP50EQkx0Yp2bCxZAr/46HQ48Wj016zyd3oHF9wC8NeEIA== rg@sazed3[TPM]"

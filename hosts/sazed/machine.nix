@@ -145,6 +145,9 @@ in
     lm_sensors
     colordiff
     easyeffects
+
+    # DEI
+    gitlab-ci-local
   ];
 
   services.xserver.displayManager.gdm.autoSuspend = false;
