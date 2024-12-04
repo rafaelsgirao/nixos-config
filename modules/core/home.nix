@@ -132,7 +132,7 @@ in
 
           # SSH commit signing. See:
           # https://docs.gitlab.com/ee/user/project/repository/signed_commits/ssh.html
-          gpg.ssh.allowedSignersFile = builtins.readFile ./../../files/allowed_signers;
+          gpg.ssh.allowedSignersFile = "${./../../files/allowed_signers}";
 
           commit.gpgSign = lib.mkIf isWorkstation true;
           gpg.format = "ssh";
