@@ -17,4 +17,4 @@ git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAy
 git@rafael.ovh namespaces="git" ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH+rJ9FPvJBLhBX/17MquTE9bC3tyyn2qt0+9X4lSpChJ1PeQy/q26C+LSstcPfuVNwX9uXUALvuisVG1T8zMAQ= rg-Signing@sazed3[TPM]
 
 # sazed[dec '24]
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7foe85vNDLm0vyVVugR8ThC1VjHuAtqAQ/K2AAVE9r rg@sazed[dec '24]
+git@rafael.ovh namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7foe85vNDLm0vyVVugR8ThC1VjHuAtqAQ/K2AAVE9r rg@sazed[dec '24]
