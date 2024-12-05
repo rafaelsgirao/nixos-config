@@ -170,12 +170,12 @@
           }
           // (builtins.listToAttrs (
             lib.forEach (lib.range 1 9) (
-              x: lib.nameValuePair "move-to-workspace-${toString x}" [ "<Super>${toString x}" ]
+              x: lib.nameValuePair "switch-to-workspace-${toString x}" [ "<Super>${toString x}" ]
             )
           ))
           // (builtins.listToAttrs (
             lib.forEach (lib.range 1 9) (
-              x: lib.nameValuePair "switch-to-workspace-${toString x}" [ "<Super><Shift>${toString x}" ]
+              x: lib.nameValuePair "move-to-workspace-${toString x}" [ "<Super><Shift>${toString x}" ]
             )
           ));
         "org/gnome/shell/keybindings" = {
