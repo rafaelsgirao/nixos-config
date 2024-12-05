@@ -448,6 +448,7 @@ in
     virt-manager
     riff
     steam-run
+    shellcheck
     sonixd
     libnotify
     nodePackages.prettier

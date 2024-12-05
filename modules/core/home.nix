@@ -325,8 +325,7 @@ in
       programs.atuin = {
         enable = true;
         enableFishIntegration = config.programs.fish.enable;
-        # TODO: move to pkgs.atuin on 24.11
-        package = pkgs.unstable.atuin;
+        package = pkgs.atuin;
         flags = [ "--disable-up-arrow" ];
         settings = {
           dialect = "uk";
