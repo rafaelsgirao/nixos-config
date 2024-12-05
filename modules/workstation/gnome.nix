@@ -102,7 +102,7 @@
         "org/gnome/mutter" = {
           edge-tiling = lib.mkDefault true;
           workspaces-only-on-primary = true;
-          dynamic-workspaces = true;
+          dynamic-workspaces = false;
         };
 
         "org/gnome/desktop/wm/preferences" = {
@@ -114,67 +114,70 @@
           # restore the keyboard shortcuts: disable <super>escape
           restore-shortcuts = [ ];
         };
-        "org/gnome/desktop/wm/keybindings" = {
-          # hide window: disable <super>h
-          minimize = [ "<super>comma" ];
-          # switch to workspace left: disable <super>left
-          switch-to-workspace-left = [
-            "<primary><super>left"
-            "<primary><super>h"
-          ];
-          # switch to workspace right: disable <super>right
-          switch-to-workspace-right = [
-            "<primary><super>right"
-            "<primary><super>l"
-          ];
-          # maximize window: disable <super>up
-          maximize = [ ];
-          # restore window: disable <super>down
-          unmaximize = [ ];
-          # move to monitor up: disable <super><shift>up
-          move-to-monitor-up = [ ];
-          # move to monitor down: disable <super><shift>down
-          move-to-monitor-down = [ ];
-          # super + direction keys, move window left and right monitors, or up and down workspaces
-          # move window one monitor to the left
-          move-to-monitor-left = [
-            "<Shift><Super>Left"
-            "<Shift><Super>h"
-          ];
-          # move window one workspace down
-          move-to-workspace-down = [
-            "<Shift><Super>Down"
-            "<Shift><Super>j"
-          ];
-          # move window one workspace up
-          move-to-workspace-up = [
-            "<Shift><Super>Up"
-            "<Shift><Super>k"
-          ];
-          # move window one monitor to the right
-          move-to-monitor-right = [
-            "<Shift><Super>Right"
-            "<Shift><Super>l"
-          ];
-          # super + ctrl + direction keys, change workspaces, move focus between monitors
-          # move to workspace below
-          switch-to-workspace-down = [ ];
-          # move to workspace above
-          switch-to-workspace-up = [ ];
-          # toggle maximization state
-          toggle-maximized = [ "<super>m" ];
-          # close window
-          close = [ "<super>q" ];
+        "org/gnome/desktop/wm/keybindings" =
+          {
+            # hide window: disable <super>h
+            minimize = [ "<super>comma" ];
+            # switch to workspace left: disable <super>left
+            switch-to-workspace-left = [
+              "<primary><super>left"
+              "<primary><super>h"
+            ];
+            # switch to workspace right: disable <super>right
+            switch-to-workspace-right = [
+              "<primary><super>right"
+              "<primary><super>l"
+            ];
+            # maximize window: disable <super>up
+            maximize = [ ];
+            # restore window: disable <super>down
+            unmaximize = [ ];
+            # move to monitor up: disable <super><shift>up
+            move-to-monitor-up = [ ];
+            # move to monitor down: disable <super><shift>down
+            move-to-monitor-down = [ ];
+            # super + direction keys, move window left and right monitors, or up and down workspaces
+            # move window one monitor to the left
+            move-to-monitor-left = [
+              "<Shift><Super>Left"
+              "<Shift><Super>h"
+            ];
+            # move window one workspace down
+            move-to-workspace-down = [
+              "<Shift><Super>Down"
+              "<Shift><Super>j"
+            ];
+            # move window one workspace up
+            move-to-workspace-up = [
+              "<Shift><Super>Up"
+              "<Shift><Super>k"
+            ];
+            # move window one monitor to the right
+            move-to-monitor-right = [
+              "<Shift><Super>Right"
+              "<Shift><Super>l"
+            ];
+            # super + ctrl + direction keys, change workspaces, move focus between monitors
+            # move to workspace below
+            switch-to-workspace-down = [ ];
+            # move to workspace above
+            switch-to-workspace-up = [ ];
+            # toggle maximization state
+            toggle-maximized = [ "<super>m" ];
+            # close window
+            close = [ "<super>q" ];
 
-          switch-to-workspace-1 = [ "<Super>1" ];
-          switch-to-workspace-2 = [ "<Super>2" ];
-          switch-to-workspace-3 = [ "<Super>3" ];
-          switch-to-workspace-4 = [ "<Super>4" ];
-          move-to-workspace-1 = [ "<Super><Shift>1" ];
-          move-to-workspace-2 = [ "<Super><Shift>2" ];
-          move-to-workspace-3 = [ "<Super><Shift>3" ];
-          move-to-workspace-4 = [ "<Super><Shift>4" ];
-        };
+          }
+          // (builtins.listToAttrs (
+            lib.forEach (lib.range 1 9) (
+              x: lib.nameValuePair "move-to-workspace-${toString x}" [ "<Super>${toString x}" ]
+            )
+          ))
+          // (builtins.listToAttrs (
+            lib.forEach (lib.range 1 9) (
+              x: lib.nameValuePair "switch-to-workspace-${toString x}" [ "<Super><Shift>${toString x}" ]
+            )
+          ));
         "org/gnome/shell/keybindings" = {
           open-application-menu = [ ];
           # toggle message tray: disable <super>m
