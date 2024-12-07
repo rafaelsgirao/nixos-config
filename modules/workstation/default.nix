@@ -454,6 +454,7 @@ in
     nodePackages.prettier
     typst-lsp # for VSCode and such
     unstable.yt-dlp
+    yubioath-flutter
     cargo
 
   ];
