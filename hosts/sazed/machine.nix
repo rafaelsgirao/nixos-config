@@ -14,6 +14,7 @@ in
   ];
 
   imports = [
+    ./nvidia.nix
     ../../modules/systemd-initrd.nix
     #Firefox through flatpak (testing) # Not using flatpaked firefox while this isn't solved: https://github.com/flatpak/flatpak/issues/4525
     ../../modules/workstation/chromium.nix
