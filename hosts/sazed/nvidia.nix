@@ -14,7 +14,6 @@ in
       "vfio_pci"
       "vfio"
       "vfio_iommu_type1"
-      "vfio_virqfd"
 
       # "nvidia"
       # "nvidia_modeset"
@@ -22,14 +21,12 @@ in
       # "nvidia_drm"
     ];
 
-    kernelParams =
-      [
-        # enable IOMMU
-        "amd_iommu=on"
-      ]
-      ++
-      # isolate the GPU
-      ("vfio-pci.ids=" + lib.concatStringsSep "," IDs);
+    kernelParams = [
+      # enable IOMMU
+      "amd_iommu=on"
+      ("vfio-pci.ids=" + lib.concatStringsSep "," IDs)
+    ];
+    # isolate the GPU
   };
 
   # hardware.opengl.enable = true;
