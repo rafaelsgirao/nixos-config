@@ -45,9 +45,9 @@
         { package = appindicator; }
         { package = caffeine; }
         # { package = cronomix; } # not compatible with cur. gnome
-        # { package = workspace-indicator-left; } # not compatible with cur. gnome
-        { package = workspace-indicator; } # not compatible with cur. gnome
         { package = launch-new-instance; }
+        { package = just-perfection; }
+        { package = space-bar; }
         # { package = pip-on-top; } # not compatible with cur. gnome
       ];
 
@@ -221,6 +221,31 @@
           command = "kitty";
           name = "Launch terminal";
         };
+        # Configure Just Perfection
+        "org/gnome/shell/extensions/just-perfection" = {
+          animation = 2;
+          dash-app-running = true;
+          workspace = true;
+          workspace-popup = false;
+        };
+        # Configure Blur My Shell
+        "org/gnome/shell/extensions/blur-my-shell/appfolder".blur = false;
+        "org/gnome/shell/extensions/blur-my-shell/lockscreen".blur = false;
+        "org/gnome/shell/extensions/blur-my-shell/screenshot".blur = false;
+        "org/gnome/shell/extensions/blur-my-shell/window-list".blur = false;
+        "org/gnome/shell/extensions/blur-my-shell/panel".blur = false;
+        "org/gnome/shell/extensions/blur-my-shell/overview".blur = true;
+        "org/gnome/shell/extensions/blur-my-shell/overview".pipeline = "pipeline_default";
+        "org/gnome/shell/extensions/blur-my-shell/dash-to-dock".blur = true;
+        "org/gnome/shell/extensions/blur-my-shell/dash-to-dock".brightness = "0/6";
+        "org/gnome/shell/extensions/blur-my-shell/dash-to-dock".sigma = 30;
+        "org/gnome/shell/extensions/blur-my-shell/dash-to-dock".static-blur = true;
+        "org/gnome/shell/extensions/blur-my-shell/dash-to-dock".style-dash-to-dock = 0;
+        # Configure Space Bar
+        "org/gnome/shell/extensions/space-bar/behavior".smart-workspace-names = false;
+        "org/gnome/shell/extensions/space-bar/shortcuts".enable-activate-workspace-shortcuts = false;
+        "org/gnome/shell/extensions/space-bar/shortcuts".enable-move-to-workspace-shortcuts = true;
+        "org/gnome/shell/extensions/space-bar/shortcuts".open-menu = lib.hm.gvariant.mkEmptyArray lib.hm.gvariant.type.string;
       };
 
     };
