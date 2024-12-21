@@ -61,6 +61,7 @@
       # mode = "TODO"; #TODO
       options = {
         ashift = "12";
+        autoexpand = "on";
       };
       # man zfsprops
       rootFsOptions = {

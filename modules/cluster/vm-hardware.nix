@@ -50,6 +50,7 @@
       # mode = "TODO"; #TODO
       options = {
         ashift = "12";
+        autoexpand = "on";
       };
       rootFsOptions = {
         acltype = "posixacl";

@@ -78,6 +78,7 @@ in
         # ashift=14 should be correct value: 1 << 14 = 16384B
         # see man zpoolprops for `ashift`
         ashift = "14";
+        autoexpand = "on";
       };
       # man zfsprops
       rootFsOptions = {
