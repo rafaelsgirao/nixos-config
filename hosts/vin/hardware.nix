@@ -8,6 +8,9 @@
   ...
 }:
 
+let
+  poolName = "${config.networking.hostName}pool";
+in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
@@ -49,11 +52,11 @@
             mountpoint = "/boot";
           };
         };
-        sazedpool = {
+        "${config.networking.hostName}pool" = {
           size = "100%";
           content = {
             type = "zfs";
-            pool = "zpool";
+            pool = poolName;
           };
         };
       };
@@ -66,11 +69,15 @@
         "mode=700"
       ];
     };
-    zpool.zpool = {
+    zpool."${poolName}" = {
       type = "zpool";
       # mode = "TODO"; #TODO
       options = {
-        ashift = "12";
+        # the internet (and man zpoolprops) recommends ashift=12 but zpool status reports that
+        # this value is not the best for WD blue SN580.
+        # ashift=14 should be correct value: 1 << 14 = 16384B
+        # see man zpoolprops for `ashift`
+        ashift = "14";
       };
       # man zfsprops
       rootFsOptions = {
@@ -96,17 +103,17 @@
         "local/root" = {
           type = "zfs_fs";
           mountpoint = "/";
-          postCreateHook = "zfs snapshot zpool/local/root@blank";
+          postCreateHook = "zfs snapshot ${poolName}/local/root@blank";
         };
         "local/docker" = {
           type = "zfs_fs";
           mountpoint = "/var/lib/docker";
-          postCreateHook = "zfs snapshot zpool/local/docker@blank";
+          postCreateHook = "zfs snapshot ${poolName}/local/docker@blank";
         };
         "local/cache" = {
           type = "zfs_fs";
           mountpoint = "/var/cache";
-          postCreateHook = "zfs snapshot zpool/local/cache@blank";
+          postCreateHook = "zfs snapshot ${poolName}/local/cache@blank";
         };
         "local/nix" = {
           type = "zfs_fs";
