@@ -20,7 +20,6 @@ in
     ../../modules/workstation/chromium.nix
     ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
-    # ../../modules/workstation/cosmic.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
     ../../modules/workstation/nextcloud-client.nix
