@@ -9,7 +9,9 @@
 }:
 
 let
-  poolName = "${config.networking.hostName}pool";
+  # disko is also used for importing pool at boot - can't change pool name like that :)
+  # poolName = "${config.networking.hostName}pool";
+  poolName = "zpool";
 in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
