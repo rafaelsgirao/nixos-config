@@ -67,8 +67,10 @@ in
       home.file =
         { }
         // lib.optionalAttrs isWorkstation {
-          ".config/fish/fish_history".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/fish/fish_history";
-          ".config/mimeapps.list".source = config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
+          ".config/fish/fish_history".source =
+            config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/fish/fish_history";
+          ".config/mimeapps.list".source =
+            config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
         };
 
       programs.ssh = {
@@ -116,6 +118,9 @@ in
             editor = "nvim";
             whitespace = "warn";
 
+          };
+          blame = {
+            ignoreRevsFile = ".git-blame-ignore-revs";
           };
 
           pull = {
