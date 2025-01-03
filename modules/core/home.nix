@@ -190,8 +190,15 @@ in
           lsp.servers = {
             nil_ls.enable = true; # Nix
             marksman.enable = true; # Markdown
-            ruff.enable = true; # Python
-            pylyzer.enable = true; # Python
+
+            # Python
+            ruff.enable = true;
+            # pylyzer crashes ALL the time, very annoying
+            # pylyzer.enable = true;
+            pylsp.enable = true;
+            pyre.enable = true;
+
+            ts_ls.enable = true; # Typescript
             typst_lsp.enable = true; # Typst
             terraformls.enable = true; # Terraform
           };
