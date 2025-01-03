@@ -32,7 +32,8 @@ in
     #    ../../modules/core/hardening.nix
     ../../modules/caddy.nix
     ../../modules/impermanence.nix
-    ../../modules/virt/docker.nix
+    # ../../modules/virt/docker.nix
+    ../../modules/virt/podman.nix
     ../../modules/virt/libvirt.nix
     ../../modules/restic.nix
     ../../modules/workstation/cups.nix
