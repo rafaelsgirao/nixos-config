@@ -196,7 +196,7 @@ in
             # pylyzer crashes ALL the time, very annoying
             # pylyzer.enable = true;
             pylsp.enable = true;
-            pyre.enable = true;
+            # pyre.enable = true; # TODO: pyre.package not defined?
 
             ts_ls.enable = true; # Typescript
             typst_lsp.enable = true; # Typst
