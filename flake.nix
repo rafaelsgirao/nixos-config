@@ -187,6 +187,7 @@
         "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPmgxo7Qybw0V8WCXUxO3nmqL5j7ASX+9fX5Ilz9eoJ37nZbojfiOPSfuZ6FRBHlIkRQx4TSOS2GTOHJgG+UMa4= rg@vin3[TPM]"
         "ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzODQAAABhBOM7OW/R8j1PSKlXfSp3Q1boy2ZGr/MSLOGh4Rp/qzrjqplHarCGnzT+EVbTULnCcErOErSmMyyVPY38JIkMLP50EQkx0Yp2bCxZAr/46HQ48Wj016zyd3oHF9wC8NeEIA== rg@sazed3[TPM]"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7foe85vNDLm0vyVVugR8ThC1VjHuAtqAQ/K2AAVE9r rg@sazed[dec '24]"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID97/zlRwgxhnOyqHcawWjlL9XjbdmrWbYwayj1bG67I rg@vin[jan '25]"
       ];
 
       secretsDir = self + "/secrets";
