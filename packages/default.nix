@@ -21,6 +21,7 @@ rec {
 
   #Packages defined in this repo.
   fakepkg = pkgs.callPackage ./fakepkg { };
+  http-cat = pkgs.callPackage ./http-cat { };
 
   flatpak-xdg-utils = pkgs.callPackage ./flatpak-xdg-utils { };
 

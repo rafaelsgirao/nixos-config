@@ -1,4 +1,9 @@
-{ config, hostSecretsDir, ... }:
+{
+  config,
+  hostSecretsDir,
+  pkgs,
+  ...
+}:
 
 let
   inherit (config.rg) domain;
@@ -123,23 +128,17 @@ in
                   hide .git
                 }
             }
+            handle_errors {
+                root * ${pkgs.mypkgs.http-cat}
+            	rewrite * /{err.status_code}.jpg
+            	file_server
+            }
       '';
     };
     "http://idstest.${domain}" = {
       extraConfig = ''
         encode zstd gzip
         respond "uid=0(root) gid=0(root) groups=0(root)"
-      '';
-    };
-    "e.${domain}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        root * ${siteDir}/main/html/evil
-        respond /.git* 404
-        file_server {
-          hide .git
-        }
       '';
     };
   };
