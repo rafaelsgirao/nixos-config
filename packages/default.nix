@@ -20,6 +20,8 @@ rec {
   # ist-discord-bot = inputs'.ist-discord-bot.packages.default;
 
   #Packages defined in this repo.
+
+  exo = pkgs.callPackage ./exo { };
   fakepkg = pkgs.callPackage ./fakepkg { };
   http-cat = pkgs.callPackage ./http-cat { };
 
