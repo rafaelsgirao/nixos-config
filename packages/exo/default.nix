@@ -46,7 +46,7 @@ python3Packages.buildPythonApplication {
     transformers
     tinygrad
     # tensorflow #tensorflow not supported in python3.12
-    torchWithCuda
+    torchWithoutCuda
     # flax - tensorflow not supported in python3.12
   ];
 
