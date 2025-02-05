@@ -10,7 +10,7 @@
 
   # Add each flake input as a registry
   # To make nix3 commands consistent with the flake
-  # Only adding each flake input to the registry in workstations, 
+  # Only adding each flake input to the registry in workstations,
   # Since all registries add ~200-400MB to each system's closure.
   nix.registry =
     if (config.rg.class == "workstation") then
@@ -69,11 +69,11 @@
   nix.gc = lib.mkIf (!config.rg.isBuilder) {
     randomizedDelaySec = "45min";
     automatic = true;
-    dates = if config.rg.isBuilder then "monthly" else "weekly";
+    dates = "monthly";
     #Keep last 5 generations.
     options =
       let
-        days = if config.rg.isBuilder then "90d" else "30d";
+        days = if config.rg.isBuilder then "90d" else "90d";
       in
       "--delete-older-than ${days}";
   };
