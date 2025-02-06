@@ -47,10 +47,9 @@ rec {
 
   refind-ursamajor-theme = pkgs.callPackage ./refind-ursamajor-theme { };
 
-  #For consistency's sake, both use python3 from unstable (but lyricsgenius doesn't need it)
-  lyricsgenius = pkgs.callPackage ./lyricsgenius { inherit (pkgs.unstable) python3; };
+  lyricsgenius = pkgs.callPackage ./lyricsgenius { inherit (pkgs) python3; };
   tidal-dl = pkgs.callPackage ./tidal-dl {
-    inherit (pkgs.unstable) python3;
+    inherit (pkgs) python3;
     inherit lyricsgenius;
   };
 

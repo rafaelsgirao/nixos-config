@@ -156,7 +156,7 @@
 
   hm.home.packages = with pkgs; [
     mullvad-vpn
-    brave
+    unstable.brave
     appimage-run
   ];
 
