@@ -27,7 +27,7 @@ with lib;
 
   nix.settings.allowed-users = [ "@users" ];
 
-  #scudo breaks thunderbird & firefox (maybe everything Gecko?) 
+  #scudo breaks thunderbird & firefox (maybe everything Gecko?)
   #Consider opening upstream issue
   # environment.memoryAllocator.provider = mkDefault "scudo";
   # environment.memoryAllocator.provider = mkDefault "graphene-hardened";
@@ -65,7 +65,7 @@ with lib;
     "debugfs=off"
 
     # Disable virtual syscalls:
-    # https://tails.net/contribute/design/kernel_hardening/ 
+    # https://tails.net/contribute/design/kernel_hardening/
     "vsyscall=none"
   ];
 

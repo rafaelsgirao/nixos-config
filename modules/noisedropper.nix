@@ -11,7 +11,7 @@
   # users.groups.hc-alive-env = { };
 
   systemd.services.noisedropper = {
-    # after = [ "network.target" ];     
+    # after = [ "network.target" ];
     restartIfChanged = true;
     serviceConfig = {
       Type = "oneshot";

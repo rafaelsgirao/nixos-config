@@ -29,7 +29,7 @@
   # Since we can't manually respond to a panic, just reboot.
   boot.kernelParams = [
     "panic=120"
-    #  boot.panic_on_fail" 
+    #  boot.panic_on_fail"
   ];
 
   #Blocky - no blocklist by default

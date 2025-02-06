@@ -245,7 +245,8 @@
         "org/gnome/shell/extensions/space-bar/behavior".smart-workspace-names = false;
         "org/gnome/shell/extensions/space-bar/shortcuts".enable-activate-workspace-shortcuts = false;
         "org/gnome/shell/extensions/space-bar/shortcuts".enable-move-to-workspace-shortcuts = true;
-        "org/gnome/shell/extensions/space-bar/shortcuts".open-menu = lib.hm.gvariant.mkEmptyArray lib.hm.gvariant.type.string;
+        "org/gnome/shell/extensions/space-bar/shortcuts".open-menu =
+          lib.hm.gvariant.mkEmptyArray lib.hm.gvariant.type.string;
       };
 
     };

@@ -24,8 +24,8 @@
       FLOOD_OPTION_rundir = "/run/flood-ui";
       FLOOD_OPTION_trurl = "https://transmission.spy.rafael.ovh";
       FLOOD_OPTION_allowedpath = "/library/downloads";
-      #      FLOOD_OPTION_truser 
-      #      FLOOD_OPTION_trpass 
+      #      FLOOD_OPTION_truser
+      #      FLOOD_OPTION_trpass
     };
     serviceConfig = {
       RuntimeDirectory = "flood-ui";

@@ -4,13 +4,13 @@
 #   themeConf = pkgs.writeText "theme.conf" ''
 #     # Ursa Major rEFInd theme
 #     hideui singleuser,hints,arrows,badges
-#       
+#
 #     icons_dir themes/ursamajor-rEFInd/icons
-#       
+#
 #     banner themes/ursamajor-rEFInd/background.png
-#       
+#
 #     banner_scale fillscreen
-#       
+#
 #     selection_big   themes/ursamajor-rEFInd/selection_big.png
 #     selection_small themes/ursamajor-rEFInd/selection_small.png
 #
@@ -27,7 +27,7 @@
     #while that's not done, install rEFIND manually after nixos-install:
     # nix shell nixpkgs#efibootmgr nixpkgs#refind
     #TODO: hacky way of ensuring REFInd is installed.
-    # Figure out a better way 
+    # Figure out a better way
     loader.timeout = 1;
     loader.efi.canTouchEfiVariables = lib.mkDefault false;
     loader.systemd-boot = {
