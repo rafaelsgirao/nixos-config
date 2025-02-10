@@ -49,7 +49,9 @@ in
     };
   };
 
-  services.xserver.videoDrivers = lib.mkIf (isWorkstation && isIntel) [ "intel" ];
+  # "modesetting" is replacing "intel", because the underlying package for intel was unmaintained.
+
+  services.xserver.videoDrivers = lib.mkIf (isWorkstation && isIntel) [ "modesetting" ];
 
   boot.kernelModules = optionals isIntel [ "kvm-intel" ];
 
