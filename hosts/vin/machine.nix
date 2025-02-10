@@ -32,6 +32,13 @@
     ../../modules/restic.nix
   ];
 
+  hardware.bluetooth.input = {
+    General = {
+      ClassicBondedOnly = false;
+      UserspaceHID = false;
+
+    };
+  };
   programs.gamemode.enable = true;
 
   programs.nix-ld.enable = true;
