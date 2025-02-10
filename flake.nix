@@ -200,12 +200,14 @@
             inherit name;
             value = inputs.nixpkgs.lib.nixosSystem {
               specialArgs = {
-                inherit sshKeys;
-                inherit inputs;
-                inherit user;
-                inherit secretsDir;
+                inherit
+                  sshKeys
+                  inputs
+                  user
+                  secretsDir
+                  self
+                  ;
                 inherit (outputs) nixosConfigurations;
-                inherit self;
                 hostSecretsDir = "${secretsDir}/${name}";
               };
               modules = [
