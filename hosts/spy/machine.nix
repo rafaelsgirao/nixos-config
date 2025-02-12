@@ -26,6 +26,7 @@ in
     # ../../modules/core/lanzaboote.nix
     ../../modules/systemd-initrd.nix
     ../../modules/library/jellyfin.nix
+    ../../modules/polaris.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
     ../../modules/attic.nix
@@ -37,7 +38,7 @@ in
     ../../modules/impermanence.nix
     ../../modules/headless.nix
     ../../modules/blocky.nix
-    ../../modules/monero.nix
+    # ../../modules/monero.nix
   ];
 
   services.nextcloud.home = "/data/nextcloud-nixos";
@@ -208,6 +209,13 @@ in
       extraConfig = ''
         encode zstd gzip
         reverse_proxy http://192.168.10.6:33763
+      '';
+    };
+    "polaris.${fqdn}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:${toString config.services.polaris.port}
       '';
     };
   };
