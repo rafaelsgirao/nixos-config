@@ -25,7 +25,7 @@ in
     # DON'T enable just because.
     # ../../modules/core/lanzaboote.nix
     ../../modules/systemd-initrd.nix
-    ../../modules/library/jellyfin.nix
+    # ../../modules/library/jellyfin.nix
     ../../modules/polaris.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
@@ -40,6 +40,9 @@ in
     ../../modules/blocky.nix
     # ../../modules/monero.nix
   ];
+
+  # Common group for library files
+  users.groups.library = { };
 
   services.nextcloud.home = "/data/nextcloud-nixos";
   # This value determines the NixOS release from which the default
