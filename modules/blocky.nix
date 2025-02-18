@@ -61,11 +61,11 @@ in
       customTTL = "24h";
       filterUnmappedTypes = true;
       mapping = {
-        "scout" = "192.168.10.1";
-        "scout.rafael.ovh" = "192.168.10.1";
-
-        "vin" = "192.168.10.2";
-        "vin.rafael.ovh" = "192.168.10.2";
+        # "scout" = "192.168.10.1";
+        # "scout.rafael.ovh" = "192.168.10.1";
+        #
+        # "vin" = "192.168.10.2";
+        # "vin.rafael.ovh" = "192.168.10.2";
 
         # Discontinued
         # "engineer" = "192.168.10.3";
@@ -78,25 +78,25 @@ in
         # "pyro" = "192.168.10.4";
         # "pyro.rafael.ovh" = "192.168.10.4";
 
-        "sazed" = "192.168.10.5";
-        "sazed.rafael.ovh" = "192.168.10.5";
+        # "sazed" = "192.168.10.5";
+        # "sazed.rafael.ovh" = "192.168.10.5";
+        #
+        # "spy" = "192.168.10.6";
+        # "spy.rafael.ovh" = "192.168.10.6";
+        # "media.rafael.ovh" =
+        #   #TODO: hacky. create an option for this.
+        #   lib.mkIf (config.networking.hostName != "saxton") "192.168.10.6";
+        # "cloud.rafael.ovh" = "192.168.10.6";
 
-        "spy" = "192.168.10.6";
-        "spy.rafael.ovh" = "192.168.10.6";
-        "media.rafael.ovh" =
-          #TODO: hacky. create an option for this.
-          lib.mkIf (config.networking.hostName != "saxton") "192.168.10.6";
-        "cloud.rafael.ovh" = "192.168.10.6";
-
-        "demo" = "192.168.10.7";
-        "demo.rafael.ovh" = "192.168.10.7";
+        # "demo" = "192.168.10.7";
+        # "demo.rafael.ovh" = "192.168.10.7";
 
         #TODO: remove. doesn't exist anymore
-        "sniper" = "192.168.10.8";
-        "sniper.rafael.ovh" = "192.168.10.8";
+        # "sniper" = "192.168.10.8";
+        # "sniper.rafael.ovh" = "192.168.10.8";
 
-        "saxton" = "192.168.10.9";
-        "saxton.rafael.ovh" = "192.168.10.9";
+        # "saxton" = "192.168.10.9";
+        # "saxton.rafael.ovh" = "192.168.10.9";
       };
     };
     blocking.loading = {
