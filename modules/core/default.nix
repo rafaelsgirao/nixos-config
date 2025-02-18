@@ -15,6 +15,7 @@ in
 {
   imports = [
     ./nebula.nix
+    ./tailscale.nix
     # ./hardening.nix
     ./nix.nix
     ./ssh.nix

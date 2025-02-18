@@ -44,6 +44,7 @@ in
     ../../modules/sshguard.nix
   ];
 
+  services.tailscale.port = 31070;
   boot.initrd.network.ssh.port = 31022;
 
   services.caddy.virtualHosts = {
