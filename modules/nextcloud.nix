@@ -55,7 +55,8 @@ in
       trusted_proxies = [
         config.rg.ip
         "127.0.0.1"
-        "192.168.10.9"
+        "192.168.10.9" # saxton
+        "100.115.32.53" # saxton
       ];
       overwriteprotocol = "https";
       default_phone_region = "PT";

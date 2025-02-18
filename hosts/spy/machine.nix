@@ -211,7 +211,7 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://192.168.10.6:33763
+        reverse_proxy http://${config.rg.ip}:33763
       '';
     };
     "polaris.${fqdn}" = {

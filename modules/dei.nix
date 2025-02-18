@@ -116,6 +116,8 @@ in
           "193.136.164.1"
         ];
         domains =
+
+          # https://gist.github.com/brasey/fa2277a6d7242cdf4e4b7c720d42b567
           [
             # Main domain
             "~rnl.tecnico.ulisboa.pt"

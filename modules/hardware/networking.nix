@@ -36,12 +36,6 @@ in
     ];
     extraConfig = ''
       DNSOverTLS=opportunistic
-
-      # https://gist.github.com/brasey/fa2277a6d7242cdf4e4b7c720d42b567
-      [Resolve]
-      DNS=192.168.10.9
-      Domains=~rafael.ovh
-      DNSSEC=false
     '';
   };
   services.avahi.enable = false;

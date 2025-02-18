@@ -8,6 +8,7 @@
 let
   inherit (config.rg) domain;
   siteDir = "/pst/site";
+  spyIp = "100.104.162.12";
 in
 {
 
@@ -45,7 +46,7 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://192.168.10.6:8096
+        reverse_proxy http://${spyIp}:8096
       '';
     };
     "dns.${domain}" = {
@@ -83,7 +84,7 @@ in
 
         }
         handle @shared {
-         reverse_proxy http://192.168.10.6:5050
+         reverse_proxy http://${spyIp}:5050
         }
 
         redir https://${domain}
@@ -93,7 +94,7 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://192.168.10.6:33763
+        reverse_proxy http://${spyIp}:33763
       '';
     };
     "www.${domain}" = {
