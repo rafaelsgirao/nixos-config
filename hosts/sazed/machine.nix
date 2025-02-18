@@ -63,7 +63,7 @@ in
   programs.nix-ld.enable = true;
 
   rg = {
-    ip = "192.168.10.5";
+    ip = "100.110.189.41";
     isLighthouse = true;
     machineId = "4307a85c4d5e403fbd89fc34f27527e1";
     machineType = "amd";

@@ -35,7 +35,7 @@ in
     class = "server";
     machineId = "3879c7fb370c4ea6929d4566c286095f";
     machineType = "virt";
-    ip = "192.168.10.9";
+    ip = "100.115.32.53";
     ipv4 = "128.140.110.89";
     ipv6 = "2a01:4f8:1c1e:aead::1";
     isLighthouse = true;

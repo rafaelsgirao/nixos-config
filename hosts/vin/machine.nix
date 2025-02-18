@@ -49,7 +49,7 @@
   ];
 
   rg = {
-    ip = "192.168.10.2";
+    ip = "100.120.144.78";
     machineId = "cdc47ebb53e645aab6576d786aac1084";
     machineType = "intel";
     class = "workstation";
