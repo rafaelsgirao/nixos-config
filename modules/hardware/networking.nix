@@ -10,6 +10,7 @@ in
       "nebula0"
       "rnl0"
       "docker0"
+      "tailscale0"
     ];
     # dhcpcd doesn't start properly with malloc
     # see https://github.com/NixOS/nixpkgs/issues/151696

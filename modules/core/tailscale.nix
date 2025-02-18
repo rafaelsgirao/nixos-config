@@ -4,5 +4,8 @@ _: {
     openFirewall = true;
   };
   environment.persistence."/pst".directories = [ "/var/lib/tailscale" ];
+  networking.firewall = {
+    trustedInterfaces = [ "tailscale0" ];
+  };
 
 }
