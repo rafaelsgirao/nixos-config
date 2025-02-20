@@ -28,7 +28,7 @@ in
 
   services.nebula.networks."rgnet" = {
     inherit isLighthouse;
-    enable = true;
+    enable = false;
     cert = config.age.secrets.RGNet-cert.path;
     key = config.age.secrets.RGNet-key.path;
     tun.device = "nebula0";

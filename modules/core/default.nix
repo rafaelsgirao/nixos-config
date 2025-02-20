@@ -14,7 +14,7 @@ in
 # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 {
   imports = [
-    # ./nebula.nix
+    ./nebula.nix
     ./tailscale.nix
     # ./hardening.nix
     ./nix.nix
