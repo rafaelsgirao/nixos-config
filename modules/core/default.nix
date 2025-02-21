@@ -14,7 +14,6 @@ in
 # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 {
   imports = [
-    ./nebula.nix
     ./tailscale.nix
     # ./hardening.nix
     ./nix.nix
@@ -220,7 +219,6 @@ in
       viu
       cloc
       rsync
-      nebula
       qrencode
       jq
       duf

@@ -62,11 +62,6 @@ in
     ];
   };
 
-  services.nebula.networks."rgnet".settings = {
-    relay.am_relay = true;
-    listen.port = 31020;
-  };
-
   systemd.network.enable = true;
   systemd.network.networks."10-wan" = {
     # match the interface by name

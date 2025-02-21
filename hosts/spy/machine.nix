@@ -117,14 +117,6 @@ in
       ];
     };
   };
-  #Allow fly.io and VPS gateways to access Spy's ports
-  services.nebula.networks."rgnet".firewall.inbound = [
-    {
-      port = "5050-5060";
-      proto = "any";
-      groups = [ "gateway" ];
-    }
-  ];
 
   #Restic Backups
   services.restic.backups."${config.rg.backupsProvider}" = {
