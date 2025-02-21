@@ -38,6 +38,8 @@
         "ca-derivations"
       ];
 
+      fallback = true;
+
       # being in trusted-users has the same security implications as being in docker group!
       # https://nixos.org/manual/nix/stable/command-ref/conf-file.html#conf-trusted-users
       # Thanks @diogotcorreia
