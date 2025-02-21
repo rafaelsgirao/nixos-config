@@ -33,7 +33,6 @@ rec {
 
   drawj2d = callPackage ./drawj2d { };
 
-  palantir-java-format = callPackage ./palantir-java-format { };
   # mavend = callPackage ./mavend { };
   # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
   chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
