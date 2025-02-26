@@ -110,14 +110,6 @@
     QEMU_OPTS = "-m 4096 -smp 4 -enable-kvm"; # https://github.com/NixOS/nixpkgs/issues/59219
   };
 
-  #SSH daemon only inside Nebula
-  services.openssh.listenAddresses = [
-    {
-      addr = config.rg.ip;
-      port = 22;
-    }
-  ];
-
   # Systemd timer so I go to sleep at decent hours
   # Thanks to abread on #JustNixThings https://discord.com/channels/759576132227694642/874345962515071026/923166110759677992
   systemd.services.go-to-bed = {
