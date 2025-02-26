@@ -56,6 +56,7 @@ in
         config.rg.ip
         "127.0.0.1"
         "192.168.10.9" # saxton
+        "saxton"
         "100.115.32.53" # saxton
       ];
       overwriteprotocol = "https";

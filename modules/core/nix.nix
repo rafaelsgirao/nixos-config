@@ -51,7 +51,7 @@
       trusted-public-keys = [ "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs=" ];
 
       # Fallback quickly if substituters are not available.
-      connect-timeout = 2;
+      connect-timeout = 1;
 
       # The default at 10 is rarely enough.
       log-lines = lib.mkDefault 30;
