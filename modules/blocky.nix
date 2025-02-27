@@ -60,8 +60,9 @@ in
     customDNS = {
       customTTL = "24h";
       filterUnmappedTypes = true;
-      # mapping = {
-      # };
+      mapping = {
+        "cloud.rafael.ovh" = "100.104.162.12";
+      };
     };
     blocking.loading = {
       downloads = {
