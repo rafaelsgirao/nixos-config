@@ -236,6 +236,7 @@
                 inputs.agenix.nixosModules.default
                 inputs.home.nixosModules.home-manager
                 inputs.disko.nixosModules.disko
+                inputs.nixos-cosmic.nixosModules.default
 
                 (dir + "/${name}/hardware.nix")
                 (dir + "/${name}/machine.nix")
