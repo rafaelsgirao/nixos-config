@@ -385,6 +385,32 @@
         "type": "github"
       }
     },
+    "nixos-cosmic": {
+      "inputs": {
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nixpkgs-stable": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1740709758,
+        "narHash": "sha256-GjeruX5MrdVwpyaUZvSiRVOQjqkHcRunlOYtX0PReV8=",
+        "owner": "lilyinstarlight",
+        "repo": "nixos-cosmic",
+        "rev": "7e02381dc8a7702481c5bcbb18d2759211a80de4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lilyinstarlight",
+        "repo": "nixos-cosmic",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1738816619,
@@ -532,6 +558,7 @@
         "lanzaboote": "lanzaboote",
         "nix-index-database": "nix-index-database",
         "nixinate": "nixinate",
+        "nixos-cosmic": "nixos-cosmic",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

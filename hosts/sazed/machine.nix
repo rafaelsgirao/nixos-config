@@ -41,7 +41,9 @@ in
     ../../modules/virt/libvirt.nix
     ../../modules/restic.nix
     ../../modules/workstation/cups.nix
+    ../../modules/workstation/cosmic.nix
     ../../modules/sshguard.nix
+
   ];
 
   services.tailscale.port = 31070;
