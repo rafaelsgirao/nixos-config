@@ -31,6 +31,7 @@
     ../../modules/dei.nix
     ../../modules/restic.nix
     ../../modules/workstation/cosmic.nix
+    ../../modules/workstation/cups.nix
   ];
 
   hardware.bluetooth.input = {
