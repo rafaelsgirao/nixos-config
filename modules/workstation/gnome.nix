@@ -97,7 +97,10 @@
 
         #TODO: would be cooler if these two were only enabled on laptops.
         "org/gnome/desktop/a11y".always-show-universal-access-status = lib.mkDefault true;
-        "org/gnome/desktop/interface".text-scaling-factor = lib.mkDefault 1.25;
+        "org/gnome/desktop/interface" = {
+          text-scaling-factor = lib.mkDefault 1.25;
+          show-battery-percentage = true;
+        };
 
         "org/gnome/mutter" = {
           edge-tiling = lib.mkDefault true;
