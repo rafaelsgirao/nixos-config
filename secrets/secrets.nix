@@ -74,7 +74,6 @@ in
   "saxton/ENV-WCBot.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-bolsas-scraper.age".publicKeys = [ saxton ] ++ users;
   "saxton/HC-alive.age".publicKeys = [ saxton ] ++ users;
-  "saxton/ENV-sirptDNSBL.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-vaultwarden.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-rafael.age".publicKeys = [ saxton ] ++ users;
   "saxton/Mailserver-pwd-machines.age".publicKeys = [ saxton ] ++ users;
