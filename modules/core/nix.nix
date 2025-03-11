@@ -45,10 +45,16 @@
       # Thanks @diogotcorreia
       trusted-users = [ ];
 
-      substituters = [ "https://cache.rafael.ovh/rgnet" ];
+      substituters = [
+        "https://cache.rafael.ovh/rgnet"
+        "https://cosmic.cachix.org/"
+      ];
       trusted-substituters = [ "https://cache.rafael.ovh/rgnet" ];
 
-      trusted-public-keys = [ "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs=" ];
+      trusted-public-keys = [
+        "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="
+        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+      ];
 
       # Fallback quickly if substituters are not available.
       connect-timeout = 1;

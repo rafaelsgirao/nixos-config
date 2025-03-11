@@ -112,7 +112,7 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       # inputs.nixpkgs.follows = "nixpkgs";
       # inputs.nixpkgs-stable.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
+      # inputs.flake-compat.follows = "flake-compat";
     };
 
     nix-index-database.url = "github:nix-community/nix-index-database";
