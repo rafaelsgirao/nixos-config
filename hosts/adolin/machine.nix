@@ -14,7 +14,7 @@
 
   imports = [
     ../../modules/systemd-initrd.nix
-    ../../modules/core/lanzaboote.nix
+    #    ../../modules/core/lanzaboote.nix
     ../../modules/workstation/chromium.nix
     ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
@@ -30,7 +30,7 @@
     ../../modules/virt/podman.nix
     ../../modules/dei.nix
     ../../modules/restic.nix
-    ../../modules/workstation/cosmic.nix
+    #    ../../modules/workstation/cosmic.nix
     ../../modules/workstation/cups.nix
   ];
 

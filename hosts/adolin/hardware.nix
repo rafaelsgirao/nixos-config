@@ -23,9 +23,11 @@ in
     "usbhid"
     "usb_storage"
     "uas"
+    "nvme"
     "sd_mod"
     "rtsx_pci_sdmmc"
   ];
+
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -41,7 +43,7 @@ in
     disk.main = {
       type = "disk";
       #TODO: changeme: this is the NVME adapter, not the SSD itself
-      device = "/dev/disk/by-id/usb-Realtek_RTL9210B-CG_012345679039-0:0";
+      device = "/dev/disk/by-id/nvme-WDC_PC_SN520_SDAPMUW-256G-1001_1835C2800054";
       content.type = "gpt";
       content.partitions = {
         ESP = {
