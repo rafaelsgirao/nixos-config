@@ -142,5 +142,11 @@ in
         respond "uid=0(root) gid=0(root) groups=0(root)"
       '';
     };
+    "http://ola-pagarim.${domain}" = {
+      extraConfig = ''
+        encode zstd gzip
+        respond "uid=0(root) gid=0(root) groups=0(root)"
+      '';
+    };
   };
 }

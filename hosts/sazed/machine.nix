@@ -8,8 +8,6 @@ let
 in
 {
 
-  virtualisation.libvirtd.qemu.package = pkgs.my_qemu;
-  # virtualisation.qemu.package = pkgs.mypkgs.my_qemu;
   hardware.flipperzero.enable = true;
 
   boot.binfmt.emulatedSystems = [
