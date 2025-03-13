@@ -1,8 +1,8 @@
 _:
 let
-  hddCfg = _hddDev: {
+  hddCfg = hddDev: {
     type = "disk";
-    device = "/dev/disk/by-id/ata-SSD_2.5__512GB_InnovationIT_QLC_663122209170076";
+    device = "${hddDev}";
     content.type = "gpt";
     content.partitions = {
       ESP = {
