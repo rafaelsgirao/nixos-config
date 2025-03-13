@@ -35,7 +35,7 @@ in
 
   # Both HDDs compete to be the /boot partition: pick one
   #( picked the one that disko picked to mount on /mnt when running nixos-install)
-  filesystems."/boot".device = "/dev/disk/by-partlabel/disk-hdd1-ESP";
+  fileSystems."/boot".device = "/dev/disk/by-partlabel/disk-hdd1-ESP";
   rg.vCores = 16;
 
   boot.initrd.availableKernelModules = [
