@@ -1,6 +1,5 @@
-{ modulesPath, ... }:
+_:
 let
-  # poolName = "hoidpool";
   hddCfg = _hddDev: {
     type = "disk";
     device = "/dev/disk/by-id/ata-SSD_2.5__512GB_InnovationIT_QLC_663122209170076";
@@ -29,7 +28,7 @@ in
 
 {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
+    # (modulesPath + "/installer/scan/not-detected.nix")
     # ../../modules/hardware/bluetooth.nix
     #TODO
   ];
@@ -37,12 +36,13 @@ in
   rg.vCores = 16;
 
   boot.initrd.availableKernelModules = [
+    "nvme"
     "xhci_pci"
     "ahci"
     "usbhid"
     "usb_storage"
     "sd_mod"
-  ]; # TODO
+  ];
 
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
@@ -55,8 +55,8 @@ in
   # Storage.
   disko.devices = {
 
-    disk.hdd1 = hddCfg "/dev/disk/by-id/TODO"; # TODO;
-    disk.hdd2 = hddCfg "/dev/disk/by-id/TODO"; # TODO;
+    disk.hdd1 = hddCfg "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C";
+    disk.hdd2 = hddCfg "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
 
     zpool.hoidpool = {
       type = "zpool";
