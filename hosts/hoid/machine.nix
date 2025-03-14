@@ -55,7 +55,7 @@ in
   };
 
   rg = {
-    ip = "100.104.162.12"; # TODO
+    ip = "100.111.5.34";
     ipv4 = "192.168.1.50";
     machineId = "4ec1b518f0ce471f3fc4313467d368d9";
     machineType = "amd";
