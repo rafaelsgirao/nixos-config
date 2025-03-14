@@ -1,30 +1,30 @@
 { lib, ... }:
-let
-  hddCfg = hddDev: {
-    type = "disk";
-    device = "${hddDev}";
-    content.type = "gpt";
-    content.partitions = {
-      ESP = {
-        size = "512M";
-        type = "EF00";
-        priority = 1; # Needs to be first partition
-        content = {
-          type = "filesystem";
-          format = "vfat";
-          mountpoint = "/boot";
-        };
-      };
-      zpool = {
-        size = "100%";
-        content = {
-          type = "zfs";
-          pool = "zpool";
-        };
-      };
-    };
-  };
-in
+# let
+#   hddCfg = hddDev: {
+#     type = "disk";
+#     device = "${hddDev}";
+#     content.type = "gpt";
+#     content.partitions = {
+#       ESP = {
+#         size = "512M";
+#         type = "EF00";
+#         priority = 1; # Needs to be first partition
+#         content = {
+#           type = "filesystem";
+#           format = "vfat";
+#           mountpoint = "/boot";
+#         };
+#       };
+#       zpool = {
+#         size = "100%";
+#         content = {
+#           type = "zfs";
+#           pool = "zpool";
+#         };
+#       };
+#     };
+#   };
+# in
 
 {
   imports = [
@@ -55,11 +55,60 @@ in
 
   hardware.cpu.amd.updateMicrocode = true;
 
+  # TODO: refactor this. only thing that changes is mountpoint and device
   # Storage.
   disko.devices = {
 
-    disk.hdd1 = hddCfg "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C";
-    disk.hdd2 = hddCfg "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
+    # disk.hdd1 = hddCfg "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C";
+    # disk.hdd2 = hddCfg "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
+    disk.hdd1 = {
+      type = "disk";
+      device = "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
+      content.type = "gpt";
+      content.partitions = {
+        ESP = {
+          size = "512M";
+          type = "EF00";
+          priority = 1; # Needs to be first partition
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            mountpoint = "/boot";
+          };
+        };
+        zpool = {
+          size = "100%";
+          content = {
+            type = "zfs";
+            pool = "zpool";
+          };
+        };
+      };
+    };
+    disk.hdd2 = {
+      type = "disk";
+      device = "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C";
+      content.type = "gpt";
+      content.partitions = {
+        ESP = {
+          size = "512M";
+          type = "EF00";
+          priority = 1; # Needs to be first partition
+          content = {
+            type = "filesystem";
+            format = "vfat";
+            # mountpoint = "/boot";
+          };
+        };
+        zpool = {
+          size = "100%";
+          content = {
+            type = "zfs";
+            pool = "zpool";
+          };
+        };
+      };
+    };
 
     zpool.zpool = {
       type = "zpool";
