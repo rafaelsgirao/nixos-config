@@ -15,11 +15,11 @@ let
           mountpoint = "/boot";
         };
       };
-      hoidpool = {
+      zpool = {
         size = "100%";
         content = {
           type = "zfs";
-          pool = "hoidpool";
+          pool = "zpool";
         };
       };
     };
@@ -61,7 +61,7 @@ in
     disk.hdd1 = hddCfg "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C";
     disk.hdd2 = hddCfg "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
 
-    zpool.hoidpool = {
+    zpool.zpool = {
       type = "zpool";
       mode = "mirror"; # TODO
       options = {
@@ -92,22 +92,22 @@ in
         "local/root" = {
           type = "zfs_fs";
           mountpoint = "/";
-          postCreateHook = "zfs snapshot hoidpool/local/root@blank";
+          postCreateHook = "zfs snapshot zpool/local/root@blank";
         };
         "local/docker" = {
           type = "zfs_fs";
           mountpoint = "/var/lib/docker";
-          postCreateHook = "zfs snapshot hoidpool/local/docker@blank";
+          postCreateHook = "zfs snapshot zpool/local/docker@blank";
         };
         "local/cache" = {
           type = "zfs_fs";
           mountpoint = "/var/cache";
-          postCreateHook = "zfs snapshot hoidpool/local/cache@blank";
+          postCreateHook = "zfs snapshot zpool/local/cache@blank";
         };
         "local/library" = {
           type = "zfs_fs";
           mountpoint = "/var/library";
-          postCreateHook = "zfs snapshot hoidpool/local/library@blank";
+          postCreateHook = "zfs snapshot zpool/local/library@blank";
         };
         "local/nix" = {
           type = "zfs_fs";
