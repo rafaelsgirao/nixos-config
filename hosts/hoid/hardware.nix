@@ -155,6 +155,10 @@
           mountpoint = "/var/library";
           postCreateHook = "zfs snapshot zpool/local/library@blank";
         };
+        "local/monero" = {
+          type = "zfs_fs";
+          mountpoint = "/nix";
+        };
         "local/nix" = {
           type = "zfs_fs";
           mountpoint = "/nix";

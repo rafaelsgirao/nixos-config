@@ -35,7 +35,7 @@ in
     # ../../modules/gitea.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
-    # ../../modules/monero.nix
+    ../../modules/monero.nix
   ];
 
   # Common group for library files
