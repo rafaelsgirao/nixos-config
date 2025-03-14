@@ -157,7 +157,7 @@
         };
         "local/monero" = {
           type = "zfs_fs";
-          mountpoint = "/nix";
+          mountpoint = "/var/lib/monero";
         };
         "local/nix" = {
           type = "zfs_fs";
