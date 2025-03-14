@@ -57,11 +57,11 @@ in
   rg = {
     ip = "100.104.162.12"; # TODO
     ipv4 = "192.168.1.50";
-    machineId = "4ec1b518f0ce471f3fc4313467d368d9"; # TODO
+    machineId = "4ec1b518f0ce471f3fc4313467d368d9";
     machineType = "amd";
     class = "server";
     isBuilder = false;
-    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD"; # TODO
+    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMB0oR/J+r4+k5QVHrIDNqJvM4RARzGd+lQtcxhMfL5w";
   };
 
   environment.persistence."/pst".directories = [ "/var/lib/postgresql" ];
