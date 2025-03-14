@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 # let
 #   hddCfg = hddDev: {
 #     type = "disk";
@@ -33,9 +33,6 @@
     #TODO
   ];
 
-  # Both HDDs compete to be the /boot partition: pick one
-  #( picked the one that disko picked to mount on /mnt when running nixos-install)
-  fileSystems."/boot".device = lib.mkForce "/dev/disk/by-partlabel/disk-hdd1-ESP";
   rg.vCores = 16;
 
   boot.initrd.availableKernelModules = [
