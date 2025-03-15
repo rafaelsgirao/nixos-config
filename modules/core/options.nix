@@ -35,14 +35,6 @@ in
         type = types.bool;
         default = false;
       };
-      clusterNode = mkOption {
-        type = types.bool;
-        default = false;
-      };
-      isLighthouse = mkOption {
-        type = types.bool;
-        default = false;
-      };
       pubKey = mkOption {
         type = types.str;
         default = null;

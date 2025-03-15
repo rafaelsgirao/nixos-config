@@ -38,8 +38,12 @@ in
   # Common group for library files
   users.groups.library = { };
 
-  # services.nextcloud.home = "/data/nextcloud-nixos";
+  services.nextcloud.home = "/var/lib/nextcloud";
 
+  environment.persistence."/pst".directories = [
+    "/var/lib/postgresql"
+    "/var/lib/nextcloud"
+  ];
   # When upgrading postgres, see:
   # https://nixos.org/manual/nixos/stable/#module-services-postgres-upgrading
   services.postgresql.package = pkgs.postgresql_16;
@@ -57,11 +61,10 @@ in
     machineId = "4ec1b518f0ce471f3fc4313467d368d9";
     machineType = "amd";
     class = "server";
-    isBuilder = false;
+    isBuilder = true;
+    resetRootFs = true;
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMB0oR/J+r4+k5QVHrIDNqJvM4RARzGd+lQtcxhMfL5w";
   };
-
-  environment.persistence."/pst".directories = [ "/var/lib/postgresql" ];
 
   networking.nameservers = [ "127.0.0.1" ];
 

@@ -30,7 +30,7 @@
     enable = true;
     # Want to do every 2 weeks but systemd does not support this easily (:
     # https://github.com/systemd/systemd/issues/6024
-    interval = "weekly";
+    interval = "monthly";
   };
   services.zfs.trim.enable = config.rg.machineType != "virt";
 }

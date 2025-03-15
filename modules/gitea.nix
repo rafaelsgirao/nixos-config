@@ -1,9 +1,10 @@
-{ config, lib, ... }:
+{ config, ... }:
 let
   hostname = config.networking.hostName;
   inherit (config.rg) ip;
   inherit (config.networking) fqdn;
   appName = "Gitea RG";
+  backupDir = "/pst/backups/gitea";
 in
 {
 
@@ -17,9 +18,11 @@ in
     '';
   };
 
+  environment.persistence."/pst".directories = [ "/var/lib/gitea" ];
+
   services.gitea = {
     enable = true;
-    stateDir = lib.mkDefault "/data/gitea";
+    stateDir = "/var/lib/gitea";
     settings = {
       # actions.ENABLED = true;
       DEFAULT = {
@@ -74,8 +77,7 @@ in
       enable = true;
       interval = "02:30";
       type = "tar.zst";
-      #TODO: stop using hacky fixed dir
-      backupDir = "/state/backups/gitea";
+      inherit backupDir;
       file = "gitea-dump.tar.zst";
     };
   };

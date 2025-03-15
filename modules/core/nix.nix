@@ -81,7 +81,7 @@
     #Keep last 5 generations.
     options =
       let
-        days = if config.rg.isBuilder then "90d" else "90d";
+        days = if config.rg.isBuilder then "120d" else "90d";
       in
       "--delete-older-than ${days}";
   };
