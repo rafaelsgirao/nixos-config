@@ -43,14 +43,6 @@ in
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
   };
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    853 # blocky DNS over TLS
-  ];
-  networking.firewall.allowedUDPPorts = [
-    853 # blocky DNS over TLS - should this be here?
-  ];
-
   networking.hosts = {
     "127.0.0.1" = [
       "localhost"
@@ -81,16 +73,6 @@ in
     ];
     # make the routes on this interface a dependency for network-online.target
     linkConfig.RequiredForOnline = "routable";
-  };
-
-  # DNS overrides for Saxton for things that wouldn't make sense
-  services.blocky.settings = {
-    certFile = "/var/lib/acme/${domain}/fullchain.pem";
-    keyFile = "/var/lib/acme/${domain}/key.pem";
-    ports = {
-      dns = "0.0.0.0:53";
-      tls = "0.0.0.0:853";
-    };
   };
 
   nix.settings.max-jobs = 1; # minimise local builds.

@@ -18,15 +18,6 @@ in
     owner = "caddy";
   };
 
-  #ACME + Caddy
-  security.acme.certs."${domain}" = {
-    # https://github.com/0xERR0R/blocky/issues/33
-    extraLegoRunFlags = [
-      "--preferred-chain"
-      "ISRG Root X1"
-    ];
-  };
-
   environment.etc."flake-registry/flake-registry.json" = {
     inherit (config.environment.etc."nix/registry.json") source;
     mode = "0444";

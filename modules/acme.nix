@@ -23,8 +23,6 @@ in
     };
   };
 
-  # users.users.nginx.extraGroups = [ "acme" ];
-  systemd.services."blocky".serviceConfig.SupplementaryGroups = [ "caddy" ]; # For acme certificate
   systemd.services."nginx".serviceConfig.SupplementaryGroups = [ "caddy" ]; # For acme certificate
 
   #ACME + Caddy

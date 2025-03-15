@@ -37,7 +37,6 @@ in
     ../../modules/gitea.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
-    ../../modules/blocky.nix
     # ../../modules/monero.nix
   ];
 
@@ -78,13 +77,6 @@ in
   environment.persistence."/pst".directories = [ "/var/lib/postgresql" ];
 
   networking.nameservers = [ "127.0.0.1" ];
-  #Blocky - no blocklist by default
-  # services.blocky.settings.blocking.clientGroupsBlock."default" = [ "none" ];
-  services.blocky.settings = {
-    port = "127.0.0.1:53";
-    blocking.blackLists."normal" = lib.mkForce [ ]; # Foolproof way to disable blocking
-    blocking.blackLists."rg" = lib.mkForce [ ]; # Foolproof way to disable blocking
-  };
   systemd.network.enable = true;
   systemd.network.networks."10-wan" = {
     # match the interface by name
