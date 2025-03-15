@@ -42,6 +42,7 @@
     "usbhid"
     "usb_storage"
     "sd_mod"
+    "igc"
   ];
 
   boot.initrd.kernelModules = [ ];
