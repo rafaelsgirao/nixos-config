@@ -28,7 +28,6 @@ in
     # ../../modules/restic.nix
     ../../modules/acme.nix
     # ../../modules/attic.nix
-    # ../../modules/caddy.nix
     # ../../modules/healthchecks.nix
     # ../../modules/nextcloud.nix
     ../../modules/rss2email.nix

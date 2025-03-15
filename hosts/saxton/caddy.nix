@@ -49,15 +49,6 @@ in
         reverse_proxy http://${spyIp}:8096
       '';
     };
-    "dns.${domain}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        #TODO2: look at dnscrypt-proxy's serviceConfig, harden blocky more with it
-        respond /api/* 404
-        reverse_proxy http://127.0.0.1:4000
-      '';
-    };
     "cloud.${domain}" = {
       useACMEHost = "${domain}";
       extraConfig = ''

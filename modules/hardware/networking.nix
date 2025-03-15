@@ -4,8 +4,8 @@ let
 in
 {
 
-  networking.networkmanager = {
-    enable = lib.mkDefault isWorkstation;
+  networking.networkmanager = lib.mkIf isWorkstation {
+    enable = true;
     unmanaged = [
       "nebula0"
       "rnl0"
@@ -15,7 +15,7 @@ in
     # dhcpcd doesn't start properly with malloc
     # see https://github.com/NixOS/nixpkgs/issues/151696
     dhcp = "internal";
-    dns = if isWorkstation then "systemd-resolved" else "none";
+    dns = "systemd-resolved";
     connectionConfig = {
       mdns = 2;
     };

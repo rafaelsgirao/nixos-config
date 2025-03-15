@@ -4,7 +4,6 @@
   # Being headless, we don't need a GRUB splash image.
   boot.loader.grub.splashImage = null;
 
-  imports = [ ./blocky.nix ];
   # Don't start a tty on the serial consoles.
   # systemd.services."serial-getty@ttyS0".enable = lib.mkDefault false;
   # systemd.services."serial-getty@hvc0".enable = false;
@@ -32,25 +31,13 @@
     #  boot.panic_on_fail"
   ];
 
-  #Blocky - no blocklist by default
-  services.blocky.settings = {
-    # Foolproof way to disable blocking/blocklists
-    #Also makes blocky start almost instantly.
-    blocking.blackLists."normal" = lib.mkIf (config.networking.hostName != "saxton") (lib.mkForce [ ]);
-
-    blocking.clientGroupsBlock = {
-      "${config.rg.ip}" = [ "none" ];
-      "127.0.0.1" = [ "none" ];
-    };
-  };
-
   services.logind.lidSwitch = "ignore";
 
-  services.resolved.enable = false;
-  networking.nameservers = [
-    "127.0.0.1"
-    "1.1.1.1"
-  ]; # Blocky (and fallback)
+  # services.resolved.enable = false;
+  # networking.nameservers = [
+  #   "127.0.0.1"
+  #   "1.1.1.1"
+  # ];
 
   #Separate user to run docker containers and other things on
   # users.users.apps = {
