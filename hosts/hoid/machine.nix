@@ -30,6 +30,7 @@ in
     # ../../modules/healthchecks.nix
     # ../../modules/nextcloud.nix
     ../../modules/rss2email.nix
+    ../../modules/caddy.nix
     ../../modules/gitea.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
