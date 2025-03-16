@@ -40,6 +40,7 @@ in
   # Support old Nextcloud URL
   security.acme.certs."${domain}".extraDomainNames = [
     "cloud.rafael.ovh"
+    "cloud.spy.rafael.ovh"
   ];
 
   # Common group for library files
@@ -172,14 +173,21 @@ in
         reverse_proxy http://192.168.1.254:80
       '';
     };
-    "cloud.${fqdn}" = {
+    "cloud.${domain}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
         reverse_proxy http://127.0.0.1:23700
       '';
     };
-    "cloud.${domain}" = {
+    "cloud.spy.rafael.ovh" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:23700
+      '';
+    };
+    "cloud.rafael.ovh" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
