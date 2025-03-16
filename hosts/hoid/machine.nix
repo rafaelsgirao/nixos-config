@@ -6,6 +6,7 @@
 }:
 let
   inherit (config.rg) ip;
+  inherit (config.networking) fqdn domain;
 in
 {
   boot.binfmt.emulatedSystems = [
@@ -29,7 +30,7 @@ in
     # ../../modules/healthchecks.nix
     # ../../modules/nextcloud.nix
     ../../modules/rss2email.nix
-    # ../../modules/gitea.nix
+    ../../modules/gitea.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
     ../../modules/monero.nix
@@ -134,9 +135,6 @@ in
   #   enable = true;
   # };
   #
-  # services.gitea = {
-  #   stateDir = "/data/gitea-nixos";
-  # };
 
   #Hairpinning of local services.
   networking.hosts = {
@@ -146,59 +144,56 @@ in
   system.stateVersion = "24.11"; # Did you read the comment?
   hm.home.stateVersion = "24.11"; # Did you read the comment?
 
-  # services.caddy.globalConfig = ''
-  #   default_bind ${config.rg.ip}
-  # '';
-  # services.caddy.virtualHosts = {
-  #   "git.${fqdn}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy unix//run/gitea/gitea.sock
-  #     '';
-  #   };
-  #   "kuma.${fqdn}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://127.0.0.1:29377
-  #     '';
-  #   };
-  #   "router.${fqdn}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://192.168.1.254:80
-  #     '';
-  #   };
-  #   "cloud.${fqdn}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://127.0.0.1:80
-  #     '';
-  #   };
-  #   "cloud.${domain}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://127.0.0.1:80
-  #     '';
-  #   };
-  #   "cache.${fqdn}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://${config.rg.ip}:33763
-  #     '';
-  #   };
-  #   "polaris.${fqdn}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://127.0.0.1:${toString config.services.polaris.port}
-  #     '';
-  #   };
-  # };
+  services.caddy.virtualHosts = {
+    "git.${fqdn}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy unix//run/gitea/gitea.sock
+      '';
+    };
+    #   "kuma.${fqdn}" = {
+    #     useACMEHost = "${domain}";
+    #     extraConfig = ''
+    #       encode zstd gzip
+    #       reverse_proxy http://127.0.0.1:29377
+    #     '';
+    #   };
+    "router.${fqdn}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://192.168.1.254:80
+      '';
+    };
+    #   "cloud.${fqdn}" = {
+    #     useACMEHost = "${domain}";
+    #     extraConfig = ''
+    #       encode zstd gzip
+    #       reverse_proxy http://127.0.0.1:80
+    #     '';
+    #   };
+    #   "cloud.${domain}" = {
+    #     useACMEHost = "${domain}";
+    #     extraConfig = ''
+    #       encode zstd gzip
+    #       reverse_proxy http://127.0.0.1:80
+    #     '';
+    #   };
+    #   "cache.${fqdn}" = {
+    #     useACMEHost = "${domain}";
+    #     extraConfig = ''
+    #       encode zstd gzip
+    #       reverse_proxy http://${config.rg.ip}:33763
+    #     '';
+    #   };
+    #   "polaris.${fqdn}" = {
+    #     useACMEHost = "${domain}";
+    #     extraConfig = ''
+    #       encode zstd gzip
+    #       reverse_proxy http://127.0.0.1:${toString config.services.polaris.port}
+    #     '';
+    #   };
+  };
 
 }
