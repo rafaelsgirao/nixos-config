@@ -64,6 +64,16 @@ in
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
 
+  # hoid secrets.
+  "hoid/ENV-attic.age".publicKeys = [ hoid ] ++ users;
+  # "hoid/HC-alive.age".publicKeys = [ hoid ] ++ users;
+  # "hoid/HC-nextcloud.age".publicKeys = [ hoid ] ++ users;
+  # "hoid/HC-backups.age".publicKeys = [ spy ] ++ users;
+  "hoid/Nextcloud-adminpass.age".publicKeys = [ hoid ] ++ users;
+  "hoid/ENV-mediafederation.age".publicKeys = [ hoid ] ++ users ++ dtcKeys;
+  # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
+  # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
+
   # saxton secrets.
   "saxton/ENV-ist-discord-bot.age".publicKeys = [ saxton ] ++ users;
   "saxton/ENV-WCBot.age".publicKeys = [ saxton ] ++ users;
