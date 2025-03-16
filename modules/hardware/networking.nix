@@ -28,7 +28,7 @@ in
     #LLMNR is a Microsoft standard.
     #Microsoft is giving up on LLMNR in favour of mDNS.
     llmnr = "false";
-    dnssec = "allow-downgrade";
+    dnssec = "true";
     fallbackDns = [
       "1.1.1.1#one.one.one.one"
       "9.9.9.9#dns.quad9.net"
