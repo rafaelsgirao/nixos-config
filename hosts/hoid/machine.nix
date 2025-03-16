@@ -28,7 +28,7 @@ in
     ../../modules/acme.nix
     # ../../modules/attic.nix
     # ../../modules/healthchecks.nix
-    # ../../modules/nextcloud.nix
+    ../../modules/nextcloud.nix
     ../../modules/rss2email.nix
     ../../modules/caddy.nix
     ../../modules/gitea.nix
