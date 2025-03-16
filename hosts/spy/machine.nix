@@ -149,7 +149,7 @@ in
 
   #Hairpinning of local services.
   networking.hosts = {
-    "${config.rg.ip}" = [ "cache.rafael.ovh" ];
+    "${config.rg.ip}" = [ "cache.${domain}" ];
   };
 
   services.caddy.globalConfig = ''

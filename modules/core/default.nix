@@ -20,7 +20,6 @@ in
     ./ssh.nix
     ../mailrise.nix
     ../hardware/networking.nix
-    # ../wakapi-client.nix
   ];
 
   # https://discourse.nixos.org/t/flakes-accessing-selfs-revision/11237/8
@@ -30,7 +29,7 @@ in
   environment.etc."nixos/system-revision".text = self.rev or self.dirtyRev or "unknown";
   rg = {
     enable = true;
-    domain = "rafael.ovh";
+    domain = "rsg.ovh";
   };
   zramSwap.memoryPercent = 25;
 
@@ -51,7 +50,7 @@ in
   # Nixinate options
   deploy = {
     enable = true;
-    host = config.rg.ip;
+    host = "${config.networking.hostName}";
     archiveFlake = config.rg.class != "workstation";
     sshUser = "rg";
     buildOn = "remote";

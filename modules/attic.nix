@@ -2,7 +2,8 @@
 let
   port = toString 33763;
   dbUser = config.services.atticd.user;
-  host = "cache.${config.rg.domain}";
+  inherit (config.rg) domain;
+  host = "cache.${domain}";
 
 in
 {
@@ -47,7 +48,7 @@ in
         default-retention-period = "6 months";
       };
 
-      listen = "${config.rg.ip}:${port}";
+      listen = "0.0.0.0:${port}";
       chunking = {
         # The minimum NAR size to trigger chunking
         #
@@ -74,6 +75,7 @@ in
       mode = "0700";
     } # service is DynamicUser
   ];
+
   # The service above is supposed to detect this based on the database string,
   # but since we're using the shorthand, it doesn't.
   systemd.services.atticd.after = [
@@ -82,14 +84,14 @@ in
   ];
 
   services.caddy.virtualHosts."${host}" = {
-    useACMEHost = "rafael.ovh";
+    useACMEHost = "${domain}";
     extraConfig = ''
       encode zstd gzip
 
       header {
           Strict-Transport-Security "max-age=2592000; includeSubDomains"
       }
-      reverse_proxy http://${config.rg.ip}:${port}
+      reverse_proxy http://127.0.0.1:${port}
         
     '';
   };

@@ -4,6 +4,10 @@
   inputs,
   ...
 }:
+let
+  inherit (config.rg) domain;
+in
+
 {
   # Credits to this awesome person for (most of) these:
   # https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/global/nix.nix
@@ -46,10 +50,10 @@
       trusted-users = [ ];
 
       substituters = [
-        "https://cache.rafael.ovh/rgnet"
+        "https://cache.${domain}/rgnet"
         "https://cosmic.cachix.org/"
       ];
-      trusted-substituters = [ "https://cache.rafael.ovh/rgnet" ];
+      trusted-substituters = [ "https://cache.${domain}/rgnet" ];
 
       trusted-public-keys = [
         "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="

@@ -1,14 +1,13 @@
 {
   nixConfig = {
     extra-substituters = [
-      "https://cache.rafael.ovh/rgnet"
+      "https://cache.rsg.ovh/rgnet"
       "https://cosmic.cachix.org/"
     ];
     extra-trusted-public-keys = [
       "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="
       "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
-    flake-registry = [ "https://rafael.ovh/flake-registry.json" ];
   };
   inputs = {
     #--------------

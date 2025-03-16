@@ -139,14 +139,14 @@ in
 
   #Hairpinning of local services.
   networking.hosts = {
-    "${config.rg.ip}" = [ "cache.rafael.ovh" ];
+    "${config.rg.ip}" = [ "cache.${domain}" ];
   };
 
   system.stateVersion = "24.11"; # Did you read the comment?
   hm.home.stateVersion = "24.11"; # Did you read the comment?
 
   services.caddy.virtualHosts = {
-    "git.${fqdn}" = {
+    "git.${domain}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip

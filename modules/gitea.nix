@@ -2,7 +2,7 @@
 let
   hostname = config.networking.hostName;
   inherit (config.rg) ip;
-  inherit (config.networking) fqdn;
+  inherit (config.networking) fqdn domain;
   appName = "Gitea RG";
   backupDir = "/pst/backups/gitea";
 in
@@ -11,7 +11,7 @@ in
   systemd.services."caddy".serviceConfig.SupplementaryGroups = [ "gitea" ]; # For acme certificate
 
   services.caddy.virtualHosts."git.${fqdn}" = {
-    useACMEHost = "rafael.ovh";
+    useACMEHost = "${domain}";
     extraConfig = ''
       encode zstd gzip
       reverse_proxy unix//run/gitea/gitea.sock

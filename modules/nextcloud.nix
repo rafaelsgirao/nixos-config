@@ -6,10 +6,12 @@
   ...
 }:
 let
-  # fqdn = config.networking.fqdn;
-  ncHost = "cloud.rafael.ovh";
-  altHost = "cloud.spy.rafael.ovh";
-  inherit (config.rg) domain;
+  inherit (config.networking) domain fqdn;
+  ncHost = "cloud.${domain}";
+  altHosts = [
+    "cloud.${fqdn}"
+    "cloud.rafael.ovh"
+  ];
 in
 {
 
@@ -51,7 +53,7 @@ in
     settings = {
       # "A value of 1 e.g. will only run these background jobs between 01:00am UTC and 05:00am UTC".
       maintenance_window_start = 1;
-      trusted_domains = [ altHost ];
+      trusted_domains = altHosts;
       trusted_proxies = [
         config.rg.ip
         "127.0.0.1"

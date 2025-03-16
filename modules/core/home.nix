@@ -11,6 +11,7 @@ let
   isWorkstation = config.rg.class == "workstation";
   isVirt = config.rg.machineType == "virt";
   config' = config;
+  inherit (config.networking) domain;
 in
 {
 
@@ -132,7 +133,7 @@ in
 
           url = {
             "git@github.com:".insteadOf = "https://github.com/";
-            "git@git.spy.rafael.ovh:2222".insteadOf = "https://git.spy.rafael.ovh/";
+            "git@git.${domain}:2222".insteadOf = "https://git.${domain}/";
           };
 
           # SSH commit signing. See:
