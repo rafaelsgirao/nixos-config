@@ -99,26 +99,8 @@ in
 
     listen = [
       {
-        addr = "127.0.0.1";
-        port = 80;
-      }
-      {
-        addr = "127.0.0.1";
-        port = 443;
-        ssl = true;
-      }
-      {
-        addr = "[::1]";
-        port = 80;
-      }
-      {
-        addr = "[::1]";
-        port = 443;
-        ssl = true;
-      }
-      {
-        addr = config.rg.ip;
-        port = 5050;
+        addr = "0.0.0.0";
+        port = 23700;
       }
     ];
   };

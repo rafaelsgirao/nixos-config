@@ -37,6 +37,11 @@ in
     ../../modules/monero.nix
   ];
 
+  # Support old Nextcloud URL
+  security.acme.certs."${domain}".extraDomainNames = [
+    "cloud.rafael.ovh"
+  ];
+
   # Common group for library files
   users.groups.library = { };
 
@@ -167,20 +172,20 @@ in
         reverse_proxy http://192.168.1.254:80
       '';
     };
-    #   "cloud.${fqdn}" = {
-    #     useACMEHost = "${domain}";
-    #     extraConfig = ''
-    #       encode zstd gzip
-    #       reverse_proxy http://127.0.0.1:80
-    #     '';
-    #   };
-    #   "cloud.${domain}" = {
-    #     useACMEHost = "${domain}";
-    #     extraConfig = ''
-    #       encode zstd gzip
-    #       reverse_proxy http://127.0.0.1:80
-    #     '';
-    #   };
+    "cloud.${fqdn}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:23700
+      '';
+    };
+    "cloud.${domain}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:23700
+      '';
+    };
     #   "cache.${fqdn}" = {
     #     useACMEHost = "${domain}";
     #     extraConfig = ''
