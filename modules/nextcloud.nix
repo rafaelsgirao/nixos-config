@@ -11,6 +11,7 @@ let
   altHosts = [
     "cloud.${fqdn}"
     "cloud.rafael.ovh"
+    "cloud.spy.rafael.ovh"
   ];
 in
 {
@@ -57,8 +58,6 @@ in
       trusted_proxies = [
         config.rg.ip
         "127.0.0.1"
-        "192.168.10.9" # saxton
-        "saxton"
         "100.115.32.53" # saxton
       ];
       overwriteprotocol = "https";
@@ -89,6 +88,9 @@ in
     # extraAppsEnable = true;
   };
 
+  systemd.services.nextcloud-notify_push.environment = {
+    NEXTCLOUD_URL = lib.mkForce "http://127.0.0.1:23700/";
+  };
   services.nginx.enableReload = true;
 
   users.users.nginx.extraGroups = [ "caddy" ];
