@@ -44,7 +44,7 @@ in
       };
 
       garbage-collection = {
-        interval = "7 days";
+        interval = "30 days";
         default-retention-period = "6 months";
       };
 

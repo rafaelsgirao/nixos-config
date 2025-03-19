@@ -194,13 +194,13 @@ in
         reverse_proxy http://127.0.0.1:23700
       '';
     };
-    #   "cache.${fqdn}" = {
-    #     useACMEHost = "${domain}";
-    #     extraConfig = ''
-    #       encode zstd gzip
-    #       reverse_proxy http://${config.rg.ip}:33763
-    #     '';
-    #   };
+    "cache.${domain}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:33763
+      '';
+    };
     #   "polaris.${fqdn}" = {
     #     useACMEHost = "${domain}";
     #     extraConfig = ''
