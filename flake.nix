@@ -5,7 +5,7 @@
       "https://cosmic.cachix.org/"
     ];
     extra-trusted-public-keys = [
-      "rgnet:q980JJH0BwxSKeu0mfn40xc6wTMF76/PZpZv1XAZGXs="
+      "rgnet:KGvhLKw9yQzWbzy+/+KiTCFMqyOCxN12c0Cf/mk+dwE="
       "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
   };
