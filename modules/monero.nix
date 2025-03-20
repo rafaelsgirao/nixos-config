@@ -26,7 +26,6 @@ in
     };
     extraConfig = ''
       no-zmq=1
-      no-igd=1
       db-sync-mode=fastest:async:250000000bytes
       out-peers=256
       in-peers=128             # The default is unlimited; we prefer to put a cap on this
