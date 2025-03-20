@@ -145,7 +145,7 @@ in
 
   #Hairpinning of local services.
   networking.hosts = {
-    "${config.rg.ip}" = [ "cache.${domain}" ];
+    "127.0.0.1" = [ "cache.${domain}" ];
   };
 
   system.stateVersion = "24.11"; # Did you read the comment?
@@ -170,7 +170,7 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://192.168.1.254:80
+        reverse_proxy http://192.168.1.1:80
       '';
     };
     "cloud.${domain}" = {
