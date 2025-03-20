@@ -73,6 +73,8 @@ in
   "hoid/ENV-mediafederation.age".publicKeys = [ hoid ] ++ users ++ dtcKeys;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
+  # - attic cfg for builders: allows pushing store paths to my cache.
+  "attic-config-builder.age".publicKeys = [ hoid ] ++ users;
 
   # saxton secrets.
   "saxton/ENV-ist-discord-bot.age".publicKeys = [ saxton ] ++ users;

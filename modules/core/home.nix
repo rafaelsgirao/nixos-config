@@ -12,13 +12,29 @@ let
   isVirt = config.rg.machineType == "virt";
   config' = config;
   inherit (config.networking) domain;
+  inherit (config.rg) isBuilder;
 in
 {
 
-  age.secrets.ssh-config = lib.mkIf isWorkstation {
-    file = "${secretsDir}/SSH-config.age";
-    owner = "rg";
+  age.secrets = {
+
+    ssh-config = lib.mkIf isWorkstation {
+      file = "${secretsDir}/SSH-config.age";
+      owner = "rg";
+    };
+    attic-builder-config = lib.mkIf isBuilder {
+      file = "${secretsDir}/attic-config-builder.age";
+      mode = "400";
+      owner = "rg";
+    };
   };
+
+  environment.systemPackages = lib.mkIf isBuilder (
+    with pkgs;
+    [
+      attic-client
+    ]
+  );
 
   environment.persistence."/pst".users.rg.directories = lib.optionals isWorkstation [
     ".ssh"
@@ -34,6 +50,10 @@ in
   ];
   hm =
     { config, ... }:
+    let
+      hmLib = config.lib;
+    in
+
     {
       imports = [
         (inputs.impermanence + "/home-manager.nix")
@@ -45,8 +65,8 @@ in
       news.display = "show";
 
       home.packages = with pkgs; [
-        pkgs.mypkgs.randomport
-        pkgs.mypkgs.python-scripts
+        mypkgs.randomport
+        mypkgs.python-scripts
       ];
 
       programs.tmux = {
@@ -69,9 +89,14 @@ in
         { }
         // lib.optionalAttrs isWorkstation {
           ".config/fish/fish_history".source =
-            config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/fish/fish_history";
+            hmLib.file.mkOutOfStoreSymlink "/state/home/rg/.config/fish/fish_history";
           ".config/mimeapps.list".source =
-            config.lib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
+            hmLib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
+        }
+        // lib.optionalAttrs isBuilder {
+
+          ".config/attic/config.toml".source =
+            hmLib.file.mkOutOfStoreSymlink "${config'.age.secrets.attic-builder-config.path}";
         };
 
       programs.ssh = {
@@ -219,66 +244,6 @@ in
           set expandtab
         '';
       };
-
-      #    programs.neovim = {
-      #      enable = true;
-      #      coc.enable = true;
-      #      #    defaultEditor = true;
-      #      extraConfig = ''
-      #        syntax on
-      #        set ruler
-      #        set number
-      #        let no_buffers_menu=1
-      #        set smartcase
-      #        set ignorecase
-      #        set incsearch
-      #        set tabstop=4
-      #        set softtabstop=4
-      #        set shiftwidth=4
-      #        set mouse=
-      #        set expandtab
-      #        colorscheme catppuccin-macchiato
-      #      '';
-      #      plugins = with pkgs.vimPlugins; [
-      #        {
-      #          plugin = gitsigns-nvim;
-      #          type = "lua";
-      #          config = ''
-      #            require('gitsigns').setup{
-      #              signs = {
-      #                add = {  text = '+' },
-      #              },
-      #              current_line_blame = true,
-      #              on_attach = function(bufnr)
-      #                local gs = package.loaded.gitsigns
-      #
-      #                local function map(mode, l, r, opts)
-      #                  opts = opts or {}
-      #                  opts.buffer = bufnr
-      #                  vim.keymap.set(mode, l, r, opts)
-      #                end
-      #
-      #                map('n', '<leader>gb', gs.toggle_current_line_blame)
-      #              end,
-      #            }
-      #          '';
-      #        }
-      #
-      #        vim-nix
-      #        vim-eunuch
-      #        {
-      #          plugin = vim-illuminate;
-      #          config = "let g:Illuminate_delay = 100";
-      #        }
-      #        {
-      #          plugin = delimitMate;
-      #          config = ''
-      #            let delimitMate_expand_cr = 2
-      #            let delimitMate_expand_space = 1
-      #          '';
-      #        }
-      #      ];
-      #    };
 
       programs.fish = {
         enable = true;
