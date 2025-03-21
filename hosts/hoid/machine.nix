@@ -22,6 +22,7 @@ in
     ../../modules/hardware/zfs-unlock-initrd.nix
     ../../modules/core/lanzaboote.nix
     ../../modules/systemd-initrd.nix
+    ../../modules/builder.nix
     # ../../modules/library/jellyfin.nix
     # ../../modules/polaris.nix
     # ../../modules/restic.nix
