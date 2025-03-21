@@ -133,19 +133,26 @@ in
 
   '';
 
-  nix.buildMachines = lib.mkIf (false && !config.rg.isBuilder && config.rg.class == "workstation") [
-    # {
-    # sshUser = "rg";
-    # sshKey = "/home/rg/.ssh/id_ed25519";
-    # protocol = "ssh-ng";
-    # # publicHostKey = "bla";
-    # hostName = "192.168.10.6";
-    # systems = [ "x86_64-linux" "aarch64-linux" ];
-    # maxJobs = 4;
-    # speedFactor = 2;
-    # supportedFeatures = [ "big-parallel" "kvm" ];
-    # mandatoryFeatures = [ ];
-    # }
+  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [
+    {
+      sshUser = "nixremote";
+      sshKey = "/home/rg/.ssh/id_ed25519";
+      protocol = "ssh-ng";
+      hostName = "hoid";
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      maxJobs = 4;
+      speedFactor = 10;
+      supportedFeatures = [
+        "benchmark"
+        "nixos-test"
+        "big-parallel"
+        "kvm"
+      ];
+      mandatoryFeatures = [ ];
+    }
 
     # {
     #   hostName = "eu.nixbuild.net";
@@ -163,54 +170,6 @@ in
     #   speedFactor = 2;
     #   supportedFeatures = [ "benchmark" "big-parallel" ];
     # }
-    {
-      hostName = "lab0p5.rnl.tecnico.ulisboa.pt";
-      protocol = "ssh-ng";
-      systems = [
-        "x86_64-linux"
-        "i686-linux"
-      ];
-      maxJobs = 100;
-      speedFactor = 3;
-      supportedFeatures = [ ];
-    }
-    {
-      hostName = "lab0p2.rnl.tecnico.ulisboa.pt";
-      protocol = "ssh-ng";
-      systems = [
-        "x86_64-linux"
-        "i686-linux"
-      ];
-      maxJobs = 1;
-      speedFactor = 3;
-      supportedFeatures = [ "benchmark" ];
-      mandatoryFeatures = [ "big-parallel" ];
-    }
 
-    {
-      hostName = "lab0p3.rnl.tecnico.ulisboa.pt";
-      protocol = "ssh-ng";
-      systems = [
-        "x86_64-linux"
-        "i686-linux"
-      ];
-      maxJobs = 1;
-      speedFactor = 3;
-      supportedFeatures = [ "benchmark" ];
-      mandatoryFeatures = [ "big-parallel" ];
-    }
-
-    {
-      hostName = "lab0p4.rnl.tecnico.ulisboa.pt";
-      protocol = "ssh-ng";
-      systems = [
-        "x86_64-linux"
-        "i686-linux"
-      ];
-      maxJobs = 1;
-      speedFactor = 3;
-      supportedFeatures = [ "benchmark" ];
-      mandatoryFeatures = [ "big-parallel" ];
-    }
   ];
 }
