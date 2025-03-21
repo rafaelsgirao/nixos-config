@@ -22,7 +22,6 @@ in
 {
   imports = [
     ./vscode.nix
-    # ../ccache.nix
   ];
   hm.imports = [
     # inputs.lan-mouse.homeManagerModules.default

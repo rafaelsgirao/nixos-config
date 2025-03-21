@@ -20,6 +20,7 @@ in
     ./ssh.nix
     ../mailrise.nix
     ../hardware/networking.nix
+    ../ccache.nix
   ];
 
   # https://discourse.nixos.org/t/flakes-accessing-selfs-revision/11237/8

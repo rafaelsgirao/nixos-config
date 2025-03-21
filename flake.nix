@@ -416,8 +416,12 @@
               let
                 args = {
                   inherit (final) system;
-                  config.allowUnfree = true;
-                  # config.contentAddressedByDefault = true;
+                  config = {
+                    # https://nixos.org/manual/nixpkgs/unstable/#chap-packageconfig
+                    allowUnfree = true;
+                    # contentAddressedByDefault = true;
+                    warnUndeclaredOptions = true;
+                  };
                 };
               in
               {
