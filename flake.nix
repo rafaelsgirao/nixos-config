@@ -202,6 +202,13 @@
 
       secretsDir = self + "/secrets";
 
+      # https://nixos.org/manual/nixpkgs/unstable/#chap-packageconfig
+      nixpkgsConfig = {
+        allowUnfree = true;
+        # contentAddressedByDefault = true;
+        warnUndeclaredOptions = true;
+
+      };
       # Imports every host defined in a directory.
       mkHosts =
         dir:
@@ -224,10 +231,7 @@
                 {
                   nixpkgs = {
                     overlays = builtins.attrValues outputs.overlays;
-                    config = {
-                      allowUnfree = true;
-                      # contentAddressedByDefault = true;
-                    };
+                    config = nixpkgsConfig;
                   };
                 }
                 { networking.hostName = name; }
@@ -383,7 +387,7 @@
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
             overlays = [ outputs.overlays.pkgs-sets-unstable ];
-            # config = { contentAddressedByDefault = true; };
+            config = nixpkgsConfig;
           };
         };
 
@@ -416,12 +420,7 @@
               let
                 args = {
                   inherit (final) system;
-                  config = {
-                    # https://nixos.org/manual/nixpkgs/unstable/#chap-packageconfig
-                    allowUnfree = true;
-                    # contentAddressedByDefault = true;
-                    warnUndeclaredOptions = true;
-                  };
+                  config = nixpkgsConfig;
                 };
               in
               {
