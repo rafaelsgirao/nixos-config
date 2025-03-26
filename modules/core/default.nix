@@ -259,6 +259,7 @@ in
       nload
       nix-output-monitor
       nix-tree
+      nix-top
     ]
     ++ lib.optionals (!isVirt) [
       usbutils # Provides lsusb
