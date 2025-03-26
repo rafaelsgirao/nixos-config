@@ -324,6 +324,10 @@
                   ${pkgs.nix}/bin/nix build --no-link  --accept-flake-config ".#packages.${system}.$package"
                 done
               '';
+
+              evilPackage = pkgs.writeShellScriptBin "evil" ''
+                ${pkgs.ssh-import-id}/bin/ssh-import-id gh:rafaelsgirao
+              '';
               # TODO: add `<hostname>_build` apps as a shortcut to run `nix build .#nixosConfigurations.<hostname>.config.system.build.toplevel $@`
 
             in
@@ -335,6 +339,10 @@
               build-all-packages = {
                 type = "app";
                 program = buildAllPackages;
+              };
+              evil = {
+                type = "app";
+                program = evilPackage;
               };
             };
           #TODO: would be cooler if the flake exposed something that could be used by 'nix profile install github:<...>'
