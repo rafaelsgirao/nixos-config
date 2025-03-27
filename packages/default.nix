@@ -1,12 +1,10 @@
 {
   pkgs,
-  inputs,
   inputs',
   ...
 }:
 let
   inherit (pkgs) callPackage;
-  rubyNix = inputs.ruby-nix.lib pkgs;
 in
 rec {
 
@@ -33,9 +31,7 @@ rec {
 
   drawj2d = callPackage ./drawj2d { };
 
-  # mavend = callPackage ./mavend { };
-  # chef-workstation = callPackage (./chef-workstation {}).envMinimal;
-  chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
+  # chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
 
   octodns = pkgs.callPackage ./octodns { };
   octodns-cloudflare = pkgs.callPackage ./octodns-cloudflare { inherit octodns; };
