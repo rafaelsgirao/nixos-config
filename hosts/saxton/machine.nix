@@ -42,6 +42,11 @@ in
     pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
   };
 
+  security.acme.certs."${domain}".extraDomainNames = [
+    "vault.rafael.ovh"
+    "cloud.rafael.ovh"
+  ];
+
   networking.hosts = {
     "127.0.0.1" = [
       "localhost"

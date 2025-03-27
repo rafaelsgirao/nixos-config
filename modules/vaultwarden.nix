@@ -7,8 +7,8 @@
 
 let
   inherit (config.rg) domain;
-  inherit (config.networking) fqdn;
-  backupDir = "/pst/backups";
+  # inherit (config.networking) fqdn;
+  # backupDir = "/pst/backups";
 
 in
 {
@@ -48,24 +48,15 @@ in
 
     };
   };
+
   systemd.services.backup-vaultwarden.serviceConfig = {
     UMask = "007";
   };
   environment.persistence."/pst".directories = [ "/var/lib/bitwarden_rs" ];
 
   services.caddy.virtualHosts = {
-    # "vault.${domain}" = {
-    #   useACMEHost = "${domain}";
-    #   extraConfig = ''
-    #     encode zstd gzip
-    #     # Notifications redirected to the WebSocket server
-    #     reverse_proxy /notifications/hub 127.0.0.1:3012
 
-    #     reverse_proxy http://127.0.0.1:52378
-    #   '';
-    # };
-
-    "vault.${domain}" = {
+    "vault.rafael.ovh" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
@@ -76,15 +67,5 @@ in
       '';
     };
 
-    "vault.${fqdn}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        # Notifications redirected to the WebSocket server
-        reverse_proxy /notifications/hub 127.0.0.1:3012
-
-        reverse_proxy http://127.0.0.1:52378
-      '';
-    };
   };
 }
