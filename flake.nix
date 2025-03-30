@@ -187,7 +187,8 @@
       lib =
         inputs.nixpkgs.lib
         // inputs.flake-parts.lib
-        // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib);
+        // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib)
+        // (import ./lib.nix { inherit lib; });
       inherit (lib) mapAttrs;
       fs = lib.fileset;
 
