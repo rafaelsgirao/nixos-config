@@ -31,7 +31,7 @@ in
     environmentFile = config.age.secrets.ENV-vaultwarden.path;
     config = {
       # DATA_FOLDER = "/pst/vaultwarden";
-      DOMAIN = "https://vault.${domain}";
+      DOMAIN = "https://vault.rafael.ovh";
       ROCKET_ADDRESS = "127.0.0.1";
       ROCKET_PORT = 52378;
       WEBSOCKET_ENABLED = true;
@@ -39,7 +39,7 @@ in
       WEBSOCKET_PORT = 3012;
       SIGNUPS_ALLOWED = false;
       SIGNUPS_VERIFY = true;
-      SIGNUPS_DOMAINS_WHITELIST = domain;
+      SIGNUPS_DOMAINS_WHITELIST = "rafael.ovh";
       INVITATION_ORG_NAME = "RGVault";
       ICON_CACHE_TTL = "31536000";
       USE_SENDMAIL = true;
