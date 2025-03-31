@@ -100,11 +100,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # lan-mouse = {
-    #   url = "github:feschber/lan-mouse";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.rust-overlay.follows = "rust-overlay";
-    # };
     impermanence.url = "github:nix-community/impermanence/master";
 
     nixos-cosmic = {
@@ -116,15 +111,6 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
-    # simple-nixos-mailserver = {
-    #   url = "gitlab:simple-nixos-mailserver/nixos-mailserver/nixos-23.11";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.nixpkgs-22_11.follows = "nixpkgs";
-    #   inputs.nixpkgs-23_05.follows = "nixpkgs";
-    #   inputs.utils.follows = "flake-utils";
-    #   inputs.flake-compat.follows = "flake-utils";
-    # };
 
     home = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -150,12 +136,6 @@
       };
     };
 
-    # ist-discord-bot = {
-    #   url = "github:ist-bot-team/ist-discord-bot/rg/make-nix-package";
-    #   # url = "github:nix-community/home-manager/master";
-    #   # inputs.nixpkgs.follows = "nixpkgs"; WARNING: test right after uncommenting this, if you do.
-    # };
-
     agenix = {
       url = "github:ryantm/agenix";
       inputs = {
@@ -164,6 +144,7 @@
         darwin.follows = ""; # If in the future I get a Mac (unlikely), remove this line.
       };
     };
+
     #Not pinning to 0.3.0 anymore because master allows me to cancel the 'pre-commit-hooks-nix' input.
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
