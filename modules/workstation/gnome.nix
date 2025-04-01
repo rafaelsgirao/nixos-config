@@ -72,6 +72,9 @@
           ];
         };
 
+        "org/gnome/GWeather4" = {
+          "temperature-unit" = "centigrade";
+        };
         "org/gnome/desktop/peripherals/keyboard" = {
           delay = lib.hm.gvariant.mkUint32 246;
           repeat-interval = lib.hm.gvariant.mkUint32 18;
