@@ -8,7 +8,7 @@
 let
   inherit (config.rg) domain;
   siteDir = "/pst/site";
-  spyIp = "100.104.162.12";
+  pub = "rafael.ovh";
 in
 {
 
@@ -33,67 +33,53 @@ in
   '';
 
   services.caddy.virtualHosts = {
-    "media.${domain}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://${spyIp}:8096
-      '';
-    };
-    "cloud.${domain}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-
-        @shared {
-            # Common
-            path /apps/theming/img/*
-            path *.js *.css *.ico *.svg
-
-            # Photos
-            path /apps/photos/public/*
-            path /apps/photos/api/v1/publicPreview/
-            path /remote.php/dav/photospublic/*
-
-            # Memories
-            path /apps/memories/a/*
-            path /apps/memories/s/*
-            path /apps/memories/api/* # Would be better if this was more fine-grained
-
-            # Cospend
-            path /apps/cospend/s/*
-            path /ocs/v2.php/apps/cospend/api/v1/public/*
-
-        }
-        handle @shared {
-         reverse_proxy http://${spyIp}:5050
-        }
-
-        redir https://${domain}
-      '';
-    };
-    "cache.${domain}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://${spyIp}:33763
-      '';
-    };
-    "www.${domain}" = {
+    # "cloud.${pub}" = {
+    #   useACMEHost = "${domain}";
+    #   extraConfig = ''
+    #     encode zstd gzip
+    #
+    #     @shared {
+    #         # Common
+    #         path /apps/theming/img/*
+    #         path *.js *.css *.ico *.svg
+    #
+    #         # Photos
+    #         path /apps/photos/public/*
+    #         path /apps/photos/api/v1/publicPreview/
+    #         path /remote.php/dav/photospublic/*
+    #
+    #         # Memories
+    #         path /apps/memories/a/*
+    #         path /apps/memories/s/*
+    #         path /apps/memories/api/* # Would be better if this was more fine-grained
+    #
+    #         # Cospend
+    #         path /apps/cospend/s/*
+    #         path /ocs/v2.php/apps/cospend/api/v1/public/*
+    #
+    #     }
+    #     handle @shared {
+    #      reverse_proxy http://${spyIp}:5050
+    #     }
+    #
+    #     redir https://${pub}
+    #   '';
+    # };
+    "www.${pub}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
         redir https://${domain}{uri}
       '';
     };
-    "*.${domain}" = {
+    "*.${pub}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
         redir https://${domain}
       '';
     };
-    "${domain}" = {
+    "${pub}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
             encode zstd gzip
@@ -118,13 +104,13 @@ in
             }
       '';
     };
-    "http://idstest.${domain}" = {
+    "http://idstest.${pub}" = {
       extraConfig = ''
         encode zstd gzip
         respond "uid=0(root) gid=0(root) groups=0(root)"
       '';
     };
-    "http://ola-pagarim.${domain}" = {
+    "http://ola-pagarim.${pub}" = {
       extraConfig = ''
         encode zstd gzip
         respond "uid=0(root) gid=0(root) groups=0(root)"
