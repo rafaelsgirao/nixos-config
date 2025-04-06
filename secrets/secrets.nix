@@ -55,10 +55,10 @@ in
   "ENV-mailrise.age".publicKeys = systems ++ users;
 
   # spy secrets.
-  "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;
-  "spy/HC-alive.age".publicKeys = [ spy ] ++ users;
-  "spy/HC-nextcloud.age".publicKeys = [ spy ] ++ users;
-  "spy/HC-backups.age".publicKeys = [ spy ] ++ users;
+  # "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;
+  # "spy/HC-alive.age".publicKeys = [ spy ] ++ users;
+  # "spy/HC-nextcloud.age".publicKeys = [ spy ] ++ users;
+  # "spy/HC-backups.age".publicKeys = [ spy ] ++ users;
   "spy/Nextcloud-adminpass.age".publicKeys = [ spy ] ++ users;
   "spy/ENV-mediafederation.age".publicKeys = [ spy ] ++ users ++ dtcKeys;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
@@ -66,9 +66,9 @@ in
 
   # hoid secrets.
   "hoid/ENV-attic.age".publicKeys = [ hoid ] ++ users;
-  # "hoid/HC-alive.age".publicKeys = [ hoid ] ++ users;
-  # "hoid/HC-nextcloud.age".publicKeys = [ hoid ] ++ users;
-  # "hoid/HC-backups.age".publicKeys = [ spy ] ++ users;
+  "hoid/HC-alive.age".publicKeys = [ hoid ] ++ users;
+  "hoid/HC-nextcloud.age".publicKeys = [ hoid ] ++ users;
+  "hoid/HC-backups.age".publicKeys = [ spy ] ++ users;
   "hoid/Nextcloud-adminpass.age".publicKeys = [ hoid ] ++ users;
   "hoid/ENV-mediafederation.age".publicKeys = [ hoid ] ++ users ++ dtcKeys;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
