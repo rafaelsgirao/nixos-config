@@ -29,6 +29,7 @@
     ../../modules/impermanence.nix
     ../../modules/virt/podman.nix
     ../../modules/dei.nix
+    # ../../modules/cage.nix
     ../../modules/restic.nix
     ../../modules/workstation/cosmic.nix
     ../../modules/workstation/cups.nix
