@@ -24,8 +24,8 @@ in
     ../../modules/systemd-initrd.nix
     ../../modules/builder.nix
     # ../../modules/library/jellyfin.nix
-    # ../../modules/polaris.nix
-    # ../../modules/restic.nix
+    ../../modules/polaris.nix
+    ../../modules/restic.nix
     ../../modules/acme.nix
     ../../modules/attic.nix
     ../../modules/healthchecks.nix
@@ -111,29 +111,26 @@ in
   };
 
   #Restic Backups
-  # services.restic.backups."${config.rg.backupsProvider}" = {
-  #   backupPrepareCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --on";
-  #   backupCleanupCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --off && ${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_SPY";
-  #   paths = [
-  #
-  #     #TODO: revamp this
-  #     # decide  how to backup jellyfin (firstly, /state or /pst? then, do we backup directly (ignoring ./metadata or copy the relevant stuff to /state/backups?
-  #     #maybe only use /state/backups if the files to backup need preprocessing (i.e, cant be backed up directly, e.g sqlite, postgres data, etc)
-  #     "/pst"
-  #     "${config.services.nextcloud.home}"
-  #     "/state/backups"
-  #     #TODO: kuma
-  #     #TODO: transmission, radarr, sonarr, etc.
-  #     #TODO: remove deprecated stuff
-  #     #TODO: storage
-  #
-  #   ];
-  #   extraBackupArgs = [
-  #     "--one-file-system" # TODO: CHECK IF THIS WORKS AS INTENDED! Does it only use one filesystem per backup, or per path?
-  #     "--exclude-caches"
-  #     "--verbose"
-  #   ];
-  # };
+  services.restic.backups."${config.rg.backupsProvider}" = {
+    backupPrepareCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --on";
+    backupCleanupCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --off && ${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_HOID";
+    paths = [
+
+      "/pst"
+      # "${config.services.nextcloud.home}"
+      "/state/backups"
+      #TODO: kuma
+      #TODO: transmission, radarr, sonarr, etc.
+      #TODO: remove deprecated stuff
+      #TODO: storage
+
+    ];
+    extraBackupArgs = [
+      "--one-file-system" # TODO: CHECK IF THIS WORKS AS INTENDED! Does it only use one filesystem per backup, or per path?
+      "--exclude-caches"
+      "--verbose"
+    ];
+  };
 
   # services.uptime-kuma = {
   #   settings = {
@@ -202,13 +199,13 @@ in
         reverse_proxy http://127.0.0.1:33763
       '';
     };
-    #   "polaris.${fqdn}" = {
-    #     useACMEHost = "${domain}";
-    #     extraConfig = ''
-    #       encode zstd gzip
-    #       reverse_proxy http://127.0.0.1:${toString config.services.polaris.port}
-    #     '';
-    #   };
+    "polaris.${fqdn}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:${toString config.services.polaris.port}
+      '';
+    };
   };
 
 }
