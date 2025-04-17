@@ -49,6 +49,7 @@ in
           {
 
             PublicKey = "g08PXxMmzC6HA+Jxd+hJU0zJdI6BaQJZMgUrv2FdLBY=";
+            # TODO: missing IPv6 endpoint
             Endpoint = "193.136.164.211:34266";
             AllowedIPs = [
               # public RNL-operated ranges
@@ -104,6 +105,7 @@ in
             InvertRule = true;
             FirewallMark = wgrnlFwmark;
             Table = "rnl";
+            Family = "both";
           }
         ];
 
