@@ -36,6 +36,7 @@ in
     ../../modules/impermanence.nix
     ../../modules/headless.nix
     ../../modules/monero.nix
+    ../../modules/service/irc.nix
   ];
 
   # Support old Nextcloud URL
