@@ -34,7 +34,9 @@ in
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   services.throttled.enable = true;
-  services.thermald.enable = true;
+  # Thermald conflicts with throttled in a negative way:
+  # https://github.com/dipch/Thinkpad-T480-cpu-throttling-fix-linux?tab=readme-ov-file#thermald
+  # services.thermald.enable = true;
 
   # Storage.
   disko.devices = {
