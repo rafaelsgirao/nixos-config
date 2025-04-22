@@ -20,5 +20,5 @@ in
     ]
     ++ lib.optionals (!isGnome) [ wdisplays ];
 
-  environment.systemPackages = with pkgs; [ ];
+  # environment.systemPackages = with pkgs; [ ];
 }
