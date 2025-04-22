@@ -34,6 +34,9 @@
     ../../modules/workstation/cups.nix
   ];
 
+  boot.kernelParams = [
+    "mitigations=off"
+  ];
   hardware.bluetooth.input = {
     General = {
       ClassicBondedOnly = false;
