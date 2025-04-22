@@ -34,6 +34,8 @@ in
   };
   zramSwap.memoryPercent = 25;
 
+  services.irqbalance.enable = ture;
+
   # Note to future self:
   # This used to be the latest kernel ZFS supported (there's a nix option for that),
   # but on `vin` this broke Intel WiFi/bluetooth drivers when switched to kernel 6.10-gnu something (was 6.6.48)
