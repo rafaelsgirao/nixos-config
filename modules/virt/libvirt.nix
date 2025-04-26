@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  inherit (lib) optional mkIf;
+  inherit (lib) mkIf;
   isWorkstation = config.rg.class == "workstation";
 in
 {
@@ -17,6 +17,7 @@ in
 
   environment.persistence."/state".directories = [ "/var/lib/libvirt" ];
 
-  users.users.rg.extraGroups = optional isWorkstation [ "libvirtd" ];
+  # Also required for management over ssh w/ virt-manager
+  users.users.rg.extraGroups = [ "libvirtd" ];
   networking.firewall.trustedInterfaces = [ "virbr0" ];
 }
