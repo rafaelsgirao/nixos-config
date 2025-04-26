@@ -36,6 +36,8 @@
 
   boot.kernelParams = [
     "mitigations=off"
+    "thinkpad_acpi.force_load=1" # libreboot-recommended workaround
+    "iomem=relaxed"
   ];
   hardware.bluetooth.input = {
     General = {

@@ -7,7 +7,7 @@ in
   #Enable libvirtd
   virtualisation.libvirtd.enable = true;
   virtualisation.libvirtd = {
-    onBoot = mkIf "ignore";
+    onBoot = mkIf isWorkstation "ignore";
     onShutdown = "shutdown";
     qemu = {
       swtpm.enable = true; # Enables creation of software TPM
