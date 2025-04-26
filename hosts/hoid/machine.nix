@@ -33,6 +33,7 @@ in
     ../../modules/rss2email.nix
     ../../modules/caddy.nix
     ../../modules/gitea.nix
+    ../../modules/virt/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
     ../../modules/monero.nix
