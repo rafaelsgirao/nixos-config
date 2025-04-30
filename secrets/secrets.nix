@@ -54,6 +54,7 @@ in
   "sendmail-pass.age".publicKeys = systems ++ users;
   "rclone-config.age".publicKeys = systems ++ users;
   "ENV-mailrise.age".publicKeys = systems ++ users;
+  "ENV-mediafederation.age".publicKeys = [ hoid ] ++ users ++ mediaKeys;
 
   # spy secrets.
   # "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;
@@ -61,7 +62,6 @@ in
   # "spy/HC-nextcloud.age".publicKeys = [ spy ] ++ users;
   # "spy/HC-backups.age".publicKeys = [ spy ] ++ users;
   "spy/Nextcloud-adminpass.age".publicKeys = [ spy ] ++ users;
-  "spy/ENV-mediafederation.age".publicKeys = [ spy ] ++ users ++ mediaKeys;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
 
@@ -71,7 +71,6 @@ in
   "hoid/HC-nextcloud.age".publicKeys = [ hoid ] ++ users;
   "hoid/HC-backups.age".publicKeys = [ spy ] ++ users;
   "hoid/Nextcloud-adminpass.age".publicKeys = [ hoid ] ++ users;
-  "hoid/ENV-mediafederation.age".publicKeys = [ hoid ] ++ users ++ mediaKeys;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
   # - attic cfg for builders: allows pushing store paths to my cache.
