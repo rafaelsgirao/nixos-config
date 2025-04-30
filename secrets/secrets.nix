@@ -6,10 +6,11 @@ let
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINb+ipW3JOFhud1apnnMH4Ycm95Br/Fz8/0b1SqaNO6s rg@adolin"
   ];
 
-  dtcKeys = [
+  mediaKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICYiuCHjX9Dmq69WoAn7EfgovnFLv0VhjL7BSTYQcFa7 dtc@apollo"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlaWu32ANU+sWFcwKrPlqD/oW3lC3/hrA1Z3+ubuh5A dtc@bacchus"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICmAw3MrBc3MERcNBkerJwfh9fmfD1OCeYnLVJVxs2Rs dtc@xiaomi11tpro"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICG5lKQD5jhYAT7hOLLV/3nD6IJ6BG/2OKIl/Ry5lRDg ft@geoff"
   ];
 
   sazed = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
@@ -60,7 +61,7 @@ in
   # "spy/HC-nextcloud.age".publicKeys = [ spy ] ++ users;
   # "spy/HC-backups.age".publicKeys = [ spy ] ++ users;
   "spy/Nextcloud-adminpass.age".publicKeys = [ spy ] ++ users;
-  "spy/ENV-mediafederation.age".publicKeys = [ spy ] ++ users ++ dtcKeys;
+  "spy/ENV-mediafederation.age".publicKeys = [ spy ] ++ users ++ mediaKeys;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
 
@@ -70,7 +71,7 @@ in
   "hoid/HC-nextcloud.age".publicKeys = [ hoid ] ++ users;
   "hoid/HC-backups.age".publicKeys = [ spy ] ++ users;
   "hoid/Nextcloud-adminpass.age".publicKeys = [ hoid ] ++ users;
-  "hoid/ENV-mediafederation.age".publicKeys = [ hoid ] ++ users ++ dtcKeys;
+  "hoid/ENV-mediafederation.age".publicKeys = [ hoid ] ++ users ++ mediaKeys;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
   # - attic cfg for builders: allows pushing store paths to my cache.
