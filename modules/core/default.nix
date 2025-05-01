@@ -156,6 +156,7 @@ in
       "adbusers"
       "networkmanager"
       "qemu-libvirtd"
+      "games"
     ];
     isNormalUser = true;
     hashedPassword = "$6$zlh2QjXj/r3oHlO$oxqRDXvfm2EKyZN5wwjCzvTroZKzwwR3G/sJKOfun1UssUANPpg8AVSx6ILQSEDoIolMGbRkS76GdlP3g0Unf/";

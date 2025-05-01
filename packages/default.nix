@@ -10,6 +10,7 @@ rec {
 
   #Packages from inputs.
   agenix = inputs'.agenix.packages.default;
+  disko = inputs'.disko.packages.default;
   bolsas-scraper = inputs'.bolsas-scraper.packages.default;
   wc-bot = inputs'.wc-bot.packages.default;
   #TODO.

@@ -55,6 +55,20 @@ in
     "/var/lib/postgresql"
     "/var/lib/nextcloud"
   ];
+
+  environment.persistence."/state".directories = [
+    "/var/games"
+  ];
+
+  users.users.games = {
+    isNormalUser = true;
+    home = "/var/games";
+    group = "games";
+    homeMode = "770";
+  };
+  # Common group for library files
+  users.groups.games = { };
+
   # When upgrading postgres, see:
   # https://nixos.org/manual/nixos/stable/#module-services-postgres-upgrading
   services.postgresql.package = pkgs.postgresql_16;
