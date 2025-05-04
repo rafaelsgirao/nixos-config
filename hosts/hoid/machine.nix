@@ -30,7 +30,7 @@ in
     ../../modules/systemd-initrd.nix
     ../../modules/builder.nix
     # ../../modules/library/jellyfin.nix
-    ../../modules/polaris.nix
+    ../../modules/service/polaris.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
     ../../modules/attic.nix

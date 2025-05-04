@@ -20,6 +20,7 @@ rec {
 
   #Packages defined in this repo.
 
+  polaris = pkgs.callPackage ./polaris { };
   exo = pkgs.callPackage ./exo { };
   fakepkg = pkgs.callPackage ./fakepkg { };
   http-cat = pkgs.callPackage ./http-cat { };
