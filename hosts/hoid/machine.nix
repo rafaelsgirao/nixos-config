@@ -60,6 +60,7 @@ in
   environment.persistence."/pst".directories = [
     "/var/lib/postgresql"
     "/var/lib/nextcloud"
+    "/var/data"
   ];
 
   environment.persistence."/state".directories = [
