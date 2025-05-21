@@ -33,6 +33,7 @@ in
 
   hardware.graphics = mkIf (!isVirt) {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; lib.optionals isIntel [ intel-media-driver ];
   };
 
