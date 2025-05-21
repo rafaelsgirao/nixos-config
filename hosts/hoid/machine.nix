@@ -48,8 +48,8 @@ in
 
   # Support old Nextcloud URL
   security.acme.certs."${domain}".extraDomainNames = [
-    "cloud.rafael.ovh"
-    "cloud.spy.rafael.ovh"
+    "*.rafael.ovh"
+    "*.spy.rafael.ovh"
   ];
 
   # Common group for library files

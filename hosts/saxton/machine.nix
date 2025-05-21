@@ -43,8 +43,8 @@ in
   };
 
   security.acme.certs."${domain}".extraDomainNames = [
-    "vault.rafael.ovh"
-    "cloud.rafael.ovh"
+    "rafael.ovh"
+    "*.rafael.ovh"
   ];
 
   networking.hosts = {
