@@ -182,7 +182,7 @@ in
         # NVENC = true;
         # NVENCTemporalAQ = true;
         # NVENCScale = "cuda";
-        VAAPI = false; # currently using AMD gpu that doesnt expose /dev/dri for some reason
+        VAAPI = true;
         #        VAAPILowPower  = true; ?untested
         FFmpeg = "${pkg}/bin/ffmpeg";
         FFprobe = "${pkg}/bin/ffprobe";
