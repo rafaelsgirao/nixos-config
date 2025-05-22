@@ -12,8 +12,8 @@ buildGoModule rec {
     (fetchgit {
       url = "https://github.com/pulsejet/memories.git";
       sparseCheckout = [ "go-vod" ];
-      rev = "385836b9d14ecb4a28802b4f9cf0ff47505772ce";
-      hash = "sha256-PIqNFGdfUKEf9/YUKJJqrOmVAzLpX/q9pz6wBsVhvBs=";
+      rev = "go-vod/0.2.6";
+      hash = "sha256-y2kphOhkgUHQjnqsxFajU/ahByBh4669gcndpFaVYR0=";
     })
     + "/go-vod";
 
