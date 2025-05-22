@@ -386,7 +386,6 @@ in
     sonixd
     libnotify
     nodePackages.prettier
-    typst-lsp # for VSCode and such
     unstable.yt-dlp
     yubioath-flutter
     cargo
@@ -406,7 +405,6 @@ in
     ntfs3g
     ripgrep-all
     udisks2
-    ventoy-bin
 
     # :eyes:
     # Too new a project. e.g, `rm` hangs on pipes created with mkfifo

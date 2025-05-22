@@ -16,13 +16,11 @@
     ../../modules/systemd-initrd.nix
     #    ../../modules/core/lanzaboote.nix
     ../../modules/workstation/chromium.nix
-    ../../modules/workstation/firefox.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
     ../../modules/workstation/nextcloud-client.nix
 
-    ../../modules/captive-portal.nix
     ../../modules/hardware/laptop.nix
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix

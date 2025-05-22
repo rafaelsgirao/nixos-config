@@ -18,6 +18,8 @@ in
 
   services.fwupd.enable = !isVirt;
 
+  hardware.enableRedistributableFirmware = !isVirt;
+
   environment.persistence."/state".directories = optionals (!isVirt) [
     "/var/lib/fwupd"
     "/var/cache/fwupd"

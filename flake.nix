@@ -12,7 +12,7 @@
   inputs = {
     #--------------
     #Important inputs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     #---------------
 
@@ -75,17 +75,11 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-24.11";
+      url = "github:nix-community/nixvim/nixos-25.05";
       inputs = {
         #FIXME: make PR so that these lines can be uncommented
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home";
         flake-parts.follows = "flake-parts";
-        nix-darwin.follows = "";
-        #        devshell.follows = "";
-        #        git-hooks.follows = "";
-        flake-compat.follows = "flake-compat";
-        #        treefmt-nix.follows = "";
       };
     };
 
@@ -113,7 +107,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     home = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       # url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };

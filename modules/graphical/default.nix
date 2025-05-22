@@ -29,7 +29,7 @@
 
   # rtkit is optional but recommended
   security.rtkit.enable = true;
-  hardware.pulseaudio.enable = false; # Gnome can be stupid and try to enable this.
+  services.pulseaudio.enable = false; # Gnome can be stupid and try to enable this.
 
   services.pipewire = {
     enable = true;
@@ -57,13 +57,9 @@
     #    powerline-fonts
     source-code-pro
     overpass
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "DroidSansMono"
-        "DejaVuSansMono"
-      ];
-    })
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.dejavu-sans-mono
   ];
 
   hardware.acpilight.enable = true;

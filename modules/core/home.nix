@@ -225,7 +225,6 @@ in
             # pyre.enable = true; # TODO: pyre.package not defined?
 
             ts_ls.enable = true; # Typescript
-            typst_lsp.enable = true; # Typst
             terraformls.enable = true; # Terraform
           };
         };

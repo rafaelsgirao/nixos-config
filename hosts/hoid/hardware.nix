@@ -51,6 +51,8 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  hardware.amdgpu.amdvlk.enable = true;
+
   hardware.cpu.amd.updateMicrocode = true;
 
   # TODO: refactor this. only thing that changes is mountpoint and device
