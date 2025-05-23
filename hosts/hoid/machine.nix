@@ -44,6 +44,7 @@ in
     ../../modules/headless.nix
     ../../modules/monero.nix
     ../../modules/service/irc.nix
+    ../../modules/service/jellyfin.nix
   ];
 
   # Support old Nextcloud URL
@@ -61,6 +62,7 @@ in
     "/var/lib/postgresql"
     "/var/lib/nextcloud"
     "/var/data"
+    "/var/music"
   ];
 
   environment.persistence."/state".directories = [
@@ -73,7 +75,8 @@ in
     group = "games";
     homeMode = "770";
   };
-  # Common group for library files
+
+  # Common group for games files
   users.groups.games = { };
 
   # When upgrading postgres, see:
