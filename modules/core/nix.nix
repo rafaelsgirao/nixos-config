@@ -33,6 +33,7 @@ in
       max-jobs = lib.mkDefault nixJobs;
       cores = lib.mkDefault nixCores;
 
+      download-buffer-size = 536870912;
       auto-optimise-store = true;
 
       # Enable flakes
