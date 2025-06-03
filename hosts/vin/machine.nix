@@ -74,7 +74,7 @@
         ".config/JetBrains"
         ".local/share/JetBrains"
         ".config/BraveSoftware"
-        ".config/Mullvad VPN"
+        ".config/PCSX2"
         ".m2"
       ];
     };
@@ -162,6 +162,7 @@
     mullvad-vpn
     unstable.brave
     appimage-run
+    pcsx2
   ];
 
   # hm.programs.lan-mouse = {
