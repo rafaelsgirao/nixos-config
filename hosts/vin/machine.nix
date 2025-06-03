@@ -14,7 +14,7 @@
 
   imports = [
     ../../modules/systemd-initrd.nix
-    ../../modules/core/lanzaboote.nix
+    # ../../modules/core/lanzaboote.nix # libreboot/u-boot doesnt have secureboot atm :-)
     ../../modules/workstation/chromium.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
