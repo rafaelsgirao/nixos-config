@@ -32,6 +32,10 @@ in
       # Recommended for fast zlib compression
       # https://www.home-assistant.io/integrations/isal
       "isal"
+
+      # rg: components required by local-network discovered devices
+      "androidtv_remote"
+      "cast"
     ];
     config.default_config = {
       # Includes dependencies for a basic setup
