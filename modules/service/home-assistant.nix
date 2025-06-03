@@ -11,6 +11,11 @@ in
         "127.0.0.1"
         "::1"
       ];
+      trusted_proxies = [
+        "::1"
+        "127.0.0.1"
+      ];
+      use_x_forwarded_for = true;
     };
     config.homeassistant = {
       name = "Home";
