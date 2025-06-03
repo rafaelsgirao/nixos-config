@@ -7,7 +7,10 @@ in
   services.home-assistant = {
     enable = true;
     config.http = {
-      server_host = "127.0.0.1";
+      server_host = [
+        "127.0.0.1"
+        "::1"
+      ];
     };
     config.homeassistant = {
       name = "Home";
