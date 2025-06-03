@@ -26,7 +26,7 @@
       echo " "
       echo " "
       echo "                                  Rafael Girão"
-      echo "                                  E-mail: ${config.networking.hostName}@${config.rg.domain}"
+      echo "                                  E-mail: ${config.networking.hostName}@rafael.ovh"
       echo "                                  E-mail 2: rafael.s.girao@tecnico.ulisboa.pt"
       echo ""
       echo ""
