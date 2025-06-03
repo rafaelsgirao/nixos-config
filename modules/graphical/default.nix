@@ -41,10 +41,6 @@
     jack.enable = true;
   };
 
-  location.latitude = 38.7223;
-  location.longitude = -9.1393;
-  location.provider = "manual";
-
   #Fonts
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [

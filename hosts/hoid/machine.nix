@@ -45,6 +45,7 @@ in
     ../../modules/monero.nix
     ../../modules/service/irc.nix
     ../../modules/service/jellyfin.nix
+    ../../modules/service/home-assistant.nix
   ];
 
   # Support old Nextcloud URL

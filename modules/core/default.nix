@@ -108,6 +108,10 @@ in
     Defaults lecture="never"
   '';
 
+  location.latitude = 38.7223;
+  location.longitude = -9.1393;
+  location.provider = "manual";
+
   networking = {
     inherit (config.rg) domain;
     usePredictableInterfaceNames = false;
