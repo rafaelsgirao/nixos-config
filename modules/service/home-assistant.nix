@@ -36,6 +36,8 @@ in
       # rg: components required by local-network discovered devices
       "androidtv_remote"
       "cast"
+      "homeassistant_sky_connect"
+      "zha"
     ];
     config.default_config = {
       # Includes dependencies for a basic setup

@@ -80,6 +80,12 @@
     };
   };
 
+  programs.steam = {
+    enable = true;
+    extest.enable = true;
+    protontricks.enable = true;
+  };
+
   environment.persistence."/pst" = {
     directories = [ "/etc/NetworkManager/system-connections" ];
     users.rg = {
