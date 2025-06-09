@@ -38,6 +38,13 @@ in
       "cast"
       "homeassistant_sky_connect"
       "zha"
+
+      # rg: other components
+      "jellyfin"
+
+      # mlf demo
+      "apple_tv"
+      "samsungtv"
     ];
     config.default_config = {
       # Includes dependencies for a basic setup
