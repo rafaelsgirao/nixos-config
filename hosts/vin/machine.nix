@@ -73,6 +73,7 @@
         ".local/share/ykman"
         ".config/JetBrains"
         ".local/share/JetBrains"
+        ".local/share/Steam"
         ".config/BraveSoftware"
         ".config/PCSX2"
         ".m2"
