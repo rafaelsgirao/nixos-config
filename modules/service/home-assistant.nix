@@ -41,6 +41,7 @@ in
 
       # rg: other components
       "jellyfin"
+      "bthome"
 
       # mlf demo
       "apple_tv"

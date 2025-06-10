@@ -29,8 +29,7 @@
 {
   imports = [
     # (modulesPath + "/installer/scan/not-detected.nix")
-    # ../../modules/hardware/bluetooth.nix
-    #TODO
+    ../../modules/hardware/bluetooth.nix
   ];
 
   rg.vCores = 16;
