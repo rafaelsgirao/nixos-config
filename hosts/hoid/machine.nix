@@ -14,12 +14,6 @@ in
     "i686-linux"
   ];
   services.udisks2.enable = lib.mkDefault false;
-  services.tailscale = {
-    useRoutingFeatures = "server";
-    extraSetFlags = [
-      "--advertise-exit-node"
-    ];
-  };
 
   imports = [
 
