@@ -46,6 +46,7 @@ in
     ../../modules/service/irc.nix
     ../../modules/service/jellyfin.nix
     ../../modules/service/home-assistant.nix
+    ../../modules/service/bitmagnet.nix
   ];
 
   # Support old Nextcloud URL
