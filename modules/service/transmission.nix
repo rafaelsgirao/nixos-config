@@ -23,6 +23,8 @@ in
       rpc-bind-address = "127.0.0.1";
       rpc-username = "rg";
       rpc-authentication-required = true;
+      watch-dir-enabled = true;
+      watch-dir = "/pst/data/torrent_files";
     };
 
   };
