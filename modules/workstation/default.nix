@@ -344,10 +344,12 @@ in
     allowedTCPPorts = [
       53317 # LocalSend (installed thru flatpak)
       7236 # Gnome Network Displays
+      1844 # QBT
     ];
     allowedUDPPorts = [
       53317 # LocalSend (installed thru flatpak)
       7236 # Gnome Network Displays
+      1844 # QBT
     ];
     # For KDEConnect (or reimplementations of it )
     allowedTCPPortRanges = [
