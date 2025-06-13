@@ -17,14 +17,21 @@ in
     credentialsFile = config.age.secrets.Transmission-creds.path;
     performanceNetParameters = true;
     settings = {
-      peer-port = 1844;
       peer-limit-global = 1000;
       rpc-port = port;
       rpc-bind-address = "127.0.0.1";
       rpc-username = "rg";
       rpc-authentication-required = true;
+
       watch-dir-enabled = true;
       watch-dir = "/pst/data/torrent_files";
+      start-added-torrents = false;
+
+      speed-limit-up-enabled = true;
+      speed-limit-down-enabled = true;
+
+      speed-limit-up = 100000;
+      speed-limit-down = 100000;
     };
 
   };
@@ -41,8 +48,5 @@ in
 
   age.secrets.Transmission-creds = {
     file = "${hostSecretsDir}/Transmission-creds.age";
-    # mode = "440";
-    # owner = config.users.users.vaultwarden.name;
-    # group = config.users.groups.vaultwarden.name;
   };
 }
