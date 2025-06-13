@@ -1,7 +1,6 @@
 {
   config,
   hostSecretsDir,
-  pkgs,
   ...
 }:
 let
@@ -12,7 +11,8 @@ in
 {
   services.transmission = {
     enable = true;
-    webHome = "${pkgs.flood-for-transmission}";
+    # incomplete theme.
+    # webHome = "${pkgs.flood-for-transmission}";
     openPeerPorts = true;
     credentialsFile = config.age.secrets.Transmission-creds.path;
     performanceNetParameters = true;
