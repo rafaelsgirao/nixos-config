@@ -25,6 +25,12 @@ in
       rpc-authentication-required = true;
       watch-dir-enabled = true;
       watch-dir = "/pst/data/torrent_files";
+
+      speed-limit-up-enable = true;
+      speed-limit-down-enable = true;
+
+      speed-limit-up = 100000;
+      speed-limit-down = 100000;
     };
 
   };
