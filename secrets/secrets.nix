@@ -71,6 +71,7 @@ in
   "hoid/HC-nextcloud.age".publicKeys = [ hoid ] ++ users;
   "hoid/HC-backups.age".publicKeys = [ spy ] ++ users;
   "hoid/Nextcloud-adminpass.age".publicKeys = [ hoid ] ++ users;
+  "hoid/Transmission-creds.age".publicKeys = [ hoid ] ++ users;
   # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
   # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
   # - attic cfg for builders: allows pushing store paths to my cache.

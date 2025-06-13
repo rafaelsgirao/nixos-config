@@ -41,6 +41,7 @@ in
     ../../modules/service/jellyfin.nix
     ../../modules/service/home-assistant.nix
     ../../modules/service/bitmagnet.nix
+    ../../modules/service/transmission.nix
   ];
 
   # Support old Nextcloud URL
