@@ -11,14 +11,14 @@ in
 {
   services.transmission = {
     enable = true;
-    # incomplete theme.
-    # webHome = "${pkgs.flood-for-transmission}";
+    webHome = "${pkgs.flood-for-transmission}";
     openPeerPorts = true;
     credentialsFile = config.age.secrets.Transmission-creds.path;
     performanceNetParameters = true;
     settings = {
       peer-limit-global = 1000;
       rpc-port = port;
+      peer-port = 1844;
       rpc-bind-address = "127.0.0.1";
       rpc-username = "rg";
       rpc-authentication-required = true;
