@@ -50,6 +50,8 @@ rec {
 
   pre-commit-macadmin = pkgs.callPackage ./pre-commit-macadmin { inherit (pkgs) python3; };
 
+  isponsorblocktv = pkgs.callPackage ./isponsorblock { inherit (pkgs) python3; };
+
   # Scripts
   noisedropper = pkgs.callPackage ./scripts/noisedropper.nix { };
   python-scripts = pkgs.callPackage ./scripts { inherit (pkgs) python3; };

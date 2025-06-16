@@ -1,6 +1,7 @@
 {
   config,
   hostSecretsDir,
+  pkgs,
   ...
 }:
 let
