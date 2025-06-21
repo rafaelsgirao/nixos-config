@@ -14,6 +14,7 @@ in
   #SSH Server.
   services.openssh = {
     enable = true;
+    openFirewall = false;
     #Users shouldn't be able to add SSH keys outside this configuration
     authorizedKeysFiles = lib.mkForce [ "/etc/ssh/authorized_keys.d/%u" ];
     extraConfig = ''
