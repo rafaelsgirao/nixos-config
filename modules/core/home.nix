@@ -192,7 +192,7 @@ in
 
         viAlias = true;
         vimAlias = true;
-        plugins = {
+        plugins = lib.mkIf isWorkstation {
           #Fully featured file explorer.
           chadtree.enable = true;
           #"Fast AF completion".
