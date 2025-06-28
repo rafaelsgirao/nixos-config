@@ -115,6 +115,7 @@
       options = {
         ashift = "12";
         autoexpand = "on";
+        failmode = "continue";
       };
       # man zfsprops
       rootFsOptions = {

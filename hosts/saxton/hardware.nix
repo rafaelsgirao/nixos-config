@@ -49,6 +49,7 @@
       options = {
         ashift = "12";
         autoexpand = "on";
+        failmode = "continue";
       };
       rootFsOptions = {
         acltype = "posixacl";

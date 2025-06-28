@@ -80,6 +80,7 @@ in
         # see man zpoolprops for `ashift`
         ashift = "14";
         autoexpand = "on";
+        failmode = "continue";
       };
       # man zfsprops
       rootFsOptions = {
