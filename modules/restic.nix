@@ -65,6 +65,7 @@ in
           ];
           extraBackupArgs = [
             "--exclude-caches"
+            "--one-file-system" # don't attempt to backup bindmounts and others.
             "--verbose"
           ];
         }
