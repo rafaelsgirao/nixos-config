@@ -45,6 +45,8 @@ in
     ../../modules/service/actual.nix
   ];
 
+  services.openssh.openFirewall = lib.mkForce true;
+
   # Support old Nextcloud URL
   security.acme.certs."${domain}".extraDomainNames = [
     "*.rafael.ovh"
