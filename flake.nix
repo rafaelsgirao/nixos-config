@@ -159,12 +159,13 @@
     let
       inherit (self) outputs;
       inherit (builtins) attrNames readDir listToAttrs;
+      inherit (lib) mapAttrs filter;
+      enabledPred = n: !lib.hasSuffix ".disabled" n;
       lib =
         inputs.nixpkgs.lib
         // inputs.flake-parts.lib
         // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib)
         // (import ./lib.nix { inherit lib; });
-      inherit (lib) mapAttrs;
       fs = lib.fileset;
 
       user = "rg";
@@ -239,7 +240,7 @@
                 inputs.impermanence.nixosModules.impermanence
               ];
             };
-          }) (attrNames (readDir dir))
+          }) (filter enabledPred (attrNames (readDir dir)))
         );
 
     in
