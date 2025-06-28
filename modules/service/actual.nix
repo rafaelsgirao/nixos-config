@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 let
   inherit (config.networking) domain;
   port = 53545;
@@ -14,7 +14,7 @@ in
   };
 
   systemd.services.actual.serviceConfig = {
-    DynamicUser = false;
+    DynamicUser = lib.mkForce false;
     User = "actual";
     Group = "actual";
   };
