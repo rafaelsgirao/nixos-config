@@ -1,13 +1,14 @@
 { lib, config, ... }:
 let
   inherit (config.networking) domain;
-  port = 53545;
+  port = 27345;
 in
 {
   services.actual = {
     enable = true;
 
     settings = {
+      inherit port;
       hostname = "127.0.0.1";
       trustedProxies = [ "127.0.0.1" ];
     };
