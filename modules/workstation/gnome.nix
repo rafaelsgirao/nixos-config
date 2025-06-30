@@ -49,6 +49,7 @@
         { package = launch-new-instance; }
         { package = just-perfection; }
         { package = space-bar; }
+        { package = vitals; }
         # { package = pip-on-top; } # not compatible with cur. gnome
       ];
 
