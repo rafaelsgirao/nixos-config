@@ -14,7 +14,8 @@
       gnome-music
       gnome-terminal
       epiphany # web browser
-      geary # email reader evince # document viewer
+      geary # email reader
+      evince # document viewer
       gnome-characters
       gnome-maps
       totem # video player
