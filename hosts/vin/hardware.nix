@@ -65,14 +65,6 @@ in
         };
       };
     };
-    nodev."/home/rg/Screenshots" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "defaults"
-        "size=100M"
-        "mode=700"
-      ];
-    };
     zpool."${poolName}" = {
       type = "zpool";
       # mode = "TODO"; #TODO

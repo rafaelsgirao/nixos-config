@@ -219,7 +219,7 @@ in
         drawThickness = 4;
         filenamePattern = "Screenshot %d-%m-%Y - %H-%M-%S";
         saveAfterCopy = true;
-        savePath = "/home/rg/Pictures/Screenshots";
+        savePath = "/home/rg/Screenshots";
         savePathFixed = true;
         uiColor = "#db6b73";
       };
