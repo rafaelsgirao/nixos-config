@@ -9,6 +9,12 @@ let
   inherit (config.networking) fqdn domain;
 in
 {
+
+  nix.settings = {
+    max-jobs = 8;
+    cores = 6;
+  };
+
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
     "i686-linux"

@@ -107,6 +107,15 @@ in
       ControlPath ~/.ssh--master-%r@%n:%p
       ControlPersist 10m
 
+    Host hoid
+      PubkeyAcceptedKeyTypes ssh-ed25519
+      ServerAliveInterval 60
+      IPQoS throughput
+      IdentityFile /home/rg/.ssh/id_ed25519
+      ControlMaster auto
+      ControlPath ~/.ssh--master-%r@%n:%p
+      ControlPersist 10m
+
     Host lab*p*.rnl.tecnico.ulisboa.pt
       AddressFamily inet
       User ist199309
@@ -136,15 +145,14 @@ in
 
   nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [
     {
-      sshUser = "nixremote";
-      sshKey = "/home/rg/.ssh/id_ed25519";
-      protocol = "ssh-ng";
       hostName = "hoid";
+      sshUser = "nixremote";
+      protocol = "ssh-ng";
+      maxJobs = 100;
       systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
-      maxJobs = 4;
       speedFactor = 10;
       supportedFeatures = [
         "benchmark"
@@ -152,7 +160,7 @@ in
         "big-parallel"
         "kvm"
       ];
-      mandatoryFeatures = [ ];
+      # mandatoryFeatures = [ ];
     }
 
     # {
