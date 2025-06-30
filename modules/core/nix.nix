@@ -107,15 +107,6 @@ in
       ControlPath ~/.ssh--master-%r@%n:%p
       ControlPersist 10m
 
-    Host hoid
-      PubkeyAcceptedKeyTypes ssh-ed25519
-      ServerAliveInterval 60
-      IPQoS throughput
-      IdentityFile /home/rg/.ssh/id_ed25519
-      ControlMaster auto
-      ControlPath ~/.ssh--master-%r@%n:%p
-      ControlPersist 10m
-
     Host lab*p*.rnl.tecnico.ulisboa.pt
       AddressFamily inet
       User ist199309
@@ -139,47 +130,57 @@ in
       ControlMaster auto
       ControlPath ~/.ssh--master-%r@%n:%p
       ControlPersist 10m
-
-
   '';
 
-  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [
-    {
-      hostName = "hoid";
-      sshUser = "nixremote";
-      protocol = "ssh-ng";
-      maxJobs = 100;
-      systems = [
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
-      speedFactor = 10;
-      supportedFeatures = [
+  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") (
+
+    let
+      # nixbuild.net has 'kvm' feature, but in early-access and on request.
+      feats = [
         "benchmark"
         "nixos-test"
         "big-parallel"
-        "kvm"
       ];
-      # mandatoryFeatures = [ ];
-    }
 
-    # {
-    #   hostName = "eu.nixbuild.net";
-    #   protocol = "ssh-ng";
-    #   systems = [ "x86_64-linux" "i686-linux" ];
-    #   maxJobs = 100;
-    #   speedFactor = 2;
-    #   supportedFeatures = [ "benchmark" "big-parallel" ];
-    # }
-    # {
-    #   hostName = "eu.nixbuild.net";
-    #   protocol = "ssh-ng";
-    #   system = "aarch64-linux";
-    #   maxJobs = 100;
-    #   speedFactor = 2;
-    #   supportedFeatures = [ "benchmark" "big-parallel" ];
-    # }
+      nixbuildFun = system: {
+        hostName = "eu.nixbuild.net";
+        protocol = "ssh-ng";
+        inherit system;
+        maxJobs = 100;
+        supportedFeatures = feats;
+        speedFactor = 80;
+        mandatoryFeatures = [ ];
+      };
+    in
+    [
+      {
+        hostName = "hoid";
+        sshUser = "nixremote";
+        protocol = "ssh-ng";
+        maxJobs = 10;
+        systems = [
+          "i686-linux"
+          "x86_64-linux"
+          "aarch64-linux"
+        ];
+        speedFactor = 10;
+        supportedFeatures = [
+          "benchmark"
+          "nixos-test"
+          "big-parallel"
+          "kvm"
+        ];
+        mandatoryFeatures = [ ];
+      }
 
-  ];
+    ]
+    ++ (map nixbuildFun [
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-linux"
+    ])
+  );
+
+  #TODO: disable heavy supported-features on non-builders (but locally, not remote builders!)
+  # One nixbuild.net entry per 'system'.
 }
