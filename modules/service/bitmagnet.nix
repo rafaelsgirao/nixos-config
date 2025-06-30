@@ -28,5 +28,5 @@ in
     '';
   };
 
-  environment.persistence."/pst".directories = [ "/var/lib/bitmagnet" ];
+  environment.persistence."/state".directories = [ "/var/lib/bitmagnet" ];
 }
