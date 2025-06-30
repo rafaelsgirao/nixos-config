@@ -150,6 +150,7 @@ in
       protocol = "ssh-ng";
       maxJobs = 100;
       systems = [
+        "i686-linux"
         "x86_64-linux"
         "aarch64-linux"
       ];
