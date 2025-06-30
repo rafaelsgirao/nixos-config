@@ -62,6 +62,10 @@ in
         type = types.ints.u8;
         default = 0;
       };
+      enableCosmic = mkOption {
+        type = types.bool;
+        default = false;
+      };
     };
 
   };
