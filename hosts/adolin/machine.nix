@@ -58,7 +58,6 @@
     resetRootFs = true;
   };
 
-  services.mullvad-vpn.enable = true;
   hardware.flipperzero.enable = true;
   environment.persistence."/state" = {
     # directories = [ ];
@@ -70,7 +69,6 @@
         ".config/JetBrains"
         ".local/share/JetBrains"
         ".config/BraveSoftware"
-        ".config/Mullvad VPN"
         ".m2"
       ];
     };
@@ -155,7 +153,6 @@
   system.stateVersion = "24.11";
 
   hm.home.packages = with pkgs; [
-    mullvad-vpn
     unstable.brave
     appimage-run
   ];
