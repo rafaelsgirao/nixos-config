@@ -92,6 +92,12 @@ in
             hmLib.file.mkOutOfStoreSymlink "/state/home/rg/.config/fish/fish_history";
           ".config/mimeapps.list".source =
             hmLib.file.mkOutOfStoreSymlink "/state/home/rg/.config/mimeapps.list";
+
+          # "Although deprecated, several applications still read/write to ~/.local/share/applications/mimeapps.list."
+          # "To simplify maintenance, simply symlink it to ~/.config/mimeapps.list:"
+          # ^ https://wiki.archlinux.org/title/XDG_MIME_Applications#mimeapps.list
+          ".local/share/applications/mimeapps.list".source =
+            hmLib.file.mkOutOfStoreSymlink "/home/rg/.config/mimeapps.list";
         }
         // lib.optionalAttrs isBuilder {
 
