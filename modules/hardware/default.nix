@@ -35,7 +35,9 @@ in
 
   hardware.graphics = mkIf (!isVirt) {
     enable = true;
-    enable32Bit = true;
+    # 32-bit support is intentionally not enabled here.
+    # programs.steam.enable enables 32Bit support,
+    # and I don't think any other software I use still needs it.
     extraPackages = with pkgs; lib.optionals isIntel [ intel-media-driver ];
   };
 

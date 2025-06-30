@@ -7,11 +7,6 @@
 
 {
 
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-    "i686-linux"
-  ];
-
   imports = [
     ../../modules/systemd-initrd.nix
     #    ../../modules/core/lanzaboote.nix
@@ -75,7 +70,6 @@
   };
 
   environment.persistence."/pst" = {
-    directories = [ "/etc/NetworkManager/system-connections" ];
     users.rg = {
       directories = [
         ".config/dconf"

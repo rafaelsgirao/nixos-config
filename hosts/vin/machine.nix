@@ -1,35 +1,33 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }:
 
 {
 
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-    "i686-linux"
-  ];
-
   imports = [
-    ../../modules/systemd-initrd.nix
     # ../../modules/core/lanzaboote.nix # libreboot/u-boot doesnt have secureboot atm :-)
+
     ../../modules/workstation/chromium.nix
     ../../modules/workstation/default.nix
     ../../modules/workstation/gnome.nix
     ../../modules/workstation/flatpak.nix
     ../../modules/workstation/nextcloud-client.nix
+    ../../modules/workstation/cosmic.nix
+    ../../modules/workstation/cups.nix
 
     ../../modules/hardware/laptop.nix
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
+
     ../../modules/impermanence.nix
     ../../modules/virt/podman.nix
     ../../modules/dei.nix
     ../../modules/restic.nix
-    ../../modules/workstation/cosmic.nix
-    ../../modules/workstation/cups.nix
+    ../../modules/systemd-initrd.nix
+
+    ../../modules/program/steam.nix
+
   ];
 
   boot.kernelParams = [
@@ -37,21 +35,8 @@
     "thinkpad_acpi.force_load=1" # libreboot-recommended workaround
     "iomem=relaxed"
   ];
-  hardware.bluetooth.input = {
-    General = {
-      ClassicBondedOnly = false;
-      UserspaceHID = false;
-
-    };
-  };
-  programs.gamemode.enable = true;
 
   programs.nix-ld.enable = true;
-
-  users.users.rg.extraGroups = [
-    "gamemode"
-    "dialout"
-  ];
 
   rg = {
     enableCosmic = false;
@@ -64,6 +49,7 @@
   };
 
   hardware.flipperzero.enable = true;
+
   environment.persistence."/state" = {
     # directories = [ ];
     users.rg = {
@@ -73,7 +59,6 @@
         ".local/share/ykman"
         ".config/JetBrains"
         ".local/share/JetBrains"
-        ".local/share/Steam"
         ".config/BraveSoftware"
         ".config/PCSX2"
         ".m2"
@@ -81,14 +66,7 @@
     };
   };
 
-  programs.steam = {
-    enable = true;
-    extest.enable = true;
-    protontricks.enable = true;
-  };
-
   environment.persistence."/pst" = {
-    directories = [ "/etc/NetworkManager/system-connections" ];
     users.rg = {
       directories = [
         ".config/dconf"
@@ -157,7 +135,6 @@
     lm_sensors
     colordiff
     easyeffects
-    # mypkgs.howdy
   ];
 
   zramSwap.enable = true;
@@ -170,50 +147,5 @@
     appimage-run
     pcsx2
   ];
-
-  # hm.programs.lan-mouse = {
-  #   enable = false;
-  #   # package = inputs.lan-mouse.packages.${pkgs.stdenv.hostPlatform.system}.default
-  #   # Optional configuration in nix syntax, see config.toml for available options
-  #   settings = {
-  #     top = {
-  #       # sazed
-  #       activate_on_startup = false;
-  #       ips = [ "192.168.10.5" ];
-  #       port = 7742;
-  #     };
-  #   };
-  # };
-
-  # #Default sudo config + howdy config.
-  # #Fingers crossed this won't bite me later...
-  # security.pam.services.sudo.text = ''
-  #   # Account management.
-  #   account required pam_unix.so # unix (order 10900)
-  #
-  #   # Authentication management.
-  #   auth sufficient pam_unix.so likeauth try_first_pass # unix (order 11500)
-  #   auth required pam_deny.so # deny (order 12300)
-  #
-  #   # Password management.
-  #   password sufficient pam_unix.so nullok yescrypt # unix (order 10200)
-  #
-  #   # Session management.
-  #   session required pam_env.so conffile=/etc/pam/environment readenv=0 # env (order 10100)
-  #   session required pam_unix.so # unix (order 10200)
-  #
-  #   # Howdy config.
-  #   auth sufficient pam_howdy.so
-  #
-  # '';
-  services.udev.extraRules = lib.mkIf (config.rg.class == "workstation") ''
-    # DualShock 3 over USB
-    KERNEL=="hidraw", ATTRS{idVendor}=="054c", ATTRS{idProduct}=="0268", MODE="0666"
-
-    # DualShock 3 over Bluetooth
-    KERNEL=="hidraw*", KERNELS=="*054C:0268*", MODE="0666"
-
-    KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"
-  '';
 
 }

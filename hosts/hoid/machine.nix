@@ -15,10 +15,12 @@ in
     cores = 6;
   };
 
+  # TODO: this should be associated with the isBuilder bool.
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
     "i686-linux"
   ];
+
   services.udisks2.enable = lib.mkDefault false;
 
   imports = [

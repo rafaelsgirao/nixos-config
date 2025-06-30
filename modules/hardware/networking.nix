@@ -1,10 +1,11 @@
 { lib, config, ... }:
 let
   isWorkstation = config.rg.class == "workstation";
+  inherit (lib) mkIf;
 in
 {
 
-  networking.networkmanager = lib.mkIf isWorkstation {
+  networking.networkmanager = mkIf isWorkstation {
     enable = true;
     unmanaged = [
       "nebula0"
@@ -21,9 +22,13 @@ in
     };
   };
 
+  environment.persistence."/pst".directories = mkIf config.networking.networkmanager.enable [
+    "/etc/NetworkManager/system-connections"
+  ];
+
   #resolved is bad software. it just doesn't work reliably.
   # Only keeping it in workstations for now, for mDNS/service-discovery.
-  services.resolved = lib.mkIf isWorkstation {
+  services.resolved = mkIf isWorkstation {
     enable = true;
     #LLMNR is a Microsoft standard.
     #Microsoft is giving up on LLMNR in favour of mDNS.

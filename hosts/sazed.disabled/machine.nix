@@ -10,11 +10,6 @@ in
 
   hardware.flipperzero.enable = true;
 
-  boot.binfmt.emulatedSystems = [
-    "aarch64-linux"
-    "i686-linux"
-  ];
-
   imports = [
     ./nvidia.nix
     ../../modules/systemd-initrd.nix
@@ -115,7 +110,6 @@ in
   };
 
   environment.persistence."/pst" = {
-    directories = [ "/etc/NetworkManager/system-connections" ];
     users.rg = {
       directories = [
         ".config/dconf"
