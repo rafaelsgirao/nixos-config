@@ -1,0 +1,16 @@
+diff --git a/gio/gdesktopappinfo.c b/gio/gdesktopappinfo.c
+index f5c7c28ec..0c68cde87 100644
+--- a/gio/gdesktopappinfo.c
++++ b/gio/gdesktopappinfo.c
+@@ -3793,6 +3793,11 @@ update_mimeapps_list (const char  *desktop_id,
+     return FALSE;
+ 
+   filename = g_build_filename (dirname, "mimeapps.list", NULL);
++
++  while (g_file_test(filename, G_FILE_TEST_IS_SYMLINK)) {
++    filename = g_file_read_link(filename, error);
++  }
++
+   g_free (dirname);
+ 
+   key_file = g_key_file_new ();
