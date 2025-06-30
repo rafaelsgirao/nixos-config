@@ -1,14 +1,4 @@
 {
-  nixConfig = {
-    extra-substituters = [
-      "https://cache.rsg.ovh/rgnet"
-      "https://cosmic.cachix.org/"
-    ];
-    extra-trusted-public-keys = [
-      "rgnet:KGvhLKw9yQzWbzy+/+KiTCFMqyOCxN12c0Cf/mk+dwE="
-      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-    ];
-  };
   inputs = {
     #--------------
     #Important inputs.
