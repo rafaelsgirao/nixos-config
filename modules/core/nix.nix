@@ -52,13 +52,11 @@ in
 
       substituters = [
         "https://cache.${domain}/rgnet"
-        "https://cosmic.cachix.org/"
       ];
       trusted-substituters = [ "https://cache.${domain}/rgnet" ];
 
       trusted-public-keys = [
         "rgnet:KGvhLKw9yQzWbzy+/+KiTCFMqyOCxN12c0Cf/mk+dwE="
-        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
       ];
 
       # Fallback quickly if substituters are not available.
