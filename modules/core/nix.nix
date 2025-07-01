@@ -130,54 +130,27 @@ in
       ControlPersist 10m
   '';
 
-  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") (
-
-    let
-      # nixbuild.net has 'kvm' feature, but in early-access and on request.
-      feats = [
+  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [
+    {
+      hostName = "hoid";
+      sshUser = "nixremote";
+      protocol = "ssh-ng";
+      maxJobs = 10;
+      systems = [
+        "i686-linux"
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      speedFactor = 10;
+      supportedFeatures = [
         "benchmark"
         "nixos-test"
         "big-parallel"
+        "kvm"
       ];
-
-      nixbuildFun = system: {
-        hostName = "eu.nixbuild.net";
-        protocol = "ssh-ng";
-        inherit system;
-        maxJobs = 100;
-        supportedFeatures = feats;
-        speedFactor = 80;
-        mandatoryFeatures = [ ];
-      };
-    in
-    [
-      {
-        hostName = "hoid";
-        sshUser = "nixremote";
-        protocol = "ssh-ng";
-        maxJobs = 10;
-        systems = [
-          "i686-linux"
-          "x86_64-linux"
-          "aarch64-linux"
-        ];
-        speedFactor = 10;
-        supportedFeatures = [
-          "benchmark"
-          "nixos-test"
-          "big-parallel"
-          "kvm"
-        ];
-        mandatoryFeatures = [ ];
-      }
-
-    ]
-    ++ (map nixbuildFun [
-      "i686-linux"
-      "x86_64-linux"
-      "aarch64-linux"
-    ])
-  );
+      mandatoryFeatures = [ ];
+    }
+  ];
 
   #TODO: disable heavy supported-features on non-builders (but locally, not remote builders!)
   # One nixbuild.net entry per 'system'.
