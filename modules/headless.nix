@@ -102,7 +102,6 @@
       rebootTime = "30s";
     };
     sleep.extraConfig = ''
-      AllowSuspend=no
       AllowHibernation=no
     '';
   };
