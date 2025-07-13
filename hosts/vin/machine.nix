@@ -24,7 +24,6 @@
     ../../modules/virt/podman.nix
     ../../modules/dei.nix
     ../../modules/restic.nix
-    ../../modules/systemd-initrd.nix
   ];
 
   boot.kernelParams = [

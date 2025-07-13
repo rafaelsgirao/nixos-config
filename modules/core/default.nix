@@ -14,10 +14,12 @@ in
 # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 {
   imports = [
-    ./tailscale.nix
     # ./hardening.nix
     ./nix.nix
     ./ssh.nix
+    ./systemd-initrd.nix
+    ./tailscale.nix
+
     ../mailrise.nix
     ../hardware/networking.nix
     ../ccache.nix

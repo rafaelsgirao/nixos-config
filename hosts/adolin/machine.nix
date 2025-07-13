@@ -6,7 +6,6 @@
 {
 
   imports = [
-    ../../modules/systemd-initrd.nix
     #    ../../modules/core/lanzaboote.nix
     ../../modules/workstation/chromium.nix
     ../../modules/workstation/default.nix
