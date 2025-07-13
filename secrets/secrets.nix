@@ -35,24 +35,13 @@ in
   "ENV-mailrise.age".publicKeys = systemsKeys ++ rgKeys;
   "ENV-mediafederation.age".publicKeys = [ systems.hoid ] ++ users ++ mediaKeys;
 
-  # spy secrets.
-  # "spy/ENV-attic.age".publicKeys = [ systems.spy ] ++ rgKeys;
-  # "spy/HC-alive.age".publicKeys = [ systems.spy ] ++ rgKeys;
-  # "spy/HC-nextcloud.age".publicKeys = [ systems.spy ] ++ rgKeys;
-  # "spy/HC-backups.age".publicKeys = [ systems.spy ] ++ rgKeys;
-  "spy/Nextcloud-adminpass.age".publicKeys = [ systems.spy ] ++ rgKeys;
-  # "spy/Nextcloud-redispass.age".publicKeys = [ systems.spy ] ++ rgKeys;
-  # "spy/Nextcloud-secretfile.age".publicKeys = [ systems.spy ] ++ rgKeys;
-
   # hoid secrets.
   "hoid/ENV-attic.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/HC-alive.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/HC-nextcloud.age".publicKeys = [ systems.hoid ] ++ rgKeys;
-  "hoid/HC-backups.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  "hoid/HC-backups.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/Nextcloud-adminpass.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/Transmission-creds.age".publicKeys = [ systems.hoid ] ++ rgKeys;
-  # "spy/Nextcloud-redispass.age".publicKeys = [ systems.spy ] ++ rgKeys;
-  # "spy/Nextcloud-secretfile.age".publicKeys = [ systems.spy ] ++ rgKeys;
   # - attic cfg for builders: allows pushing store paths to my cache.
   "attic-config-builder.age".publicKeys = [ systems.hoid ] ++ rgKeys;
 
