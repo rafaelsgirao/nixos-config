@@ -1,90 +1,68 @@
 let
-  users = [
-    "age1yubikey1qfwmheguzsuma4n9dq2vknkkh28d4vcnmvrv82gtzd6gf2scnel45wnnz44" # Yubikey age recipient
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7foe85vNDLm0vyVVugR8ThC1VjHuAtqAQ/K2AAVE9r rg@sazed[dec '24]"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID97/zlRwgxhnOyqHcawWjlL9XjbdmrWbYwayj1bG67I rg@vin[jan '25]"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINb+ipW3JOFhud1apnnMH4Ycm95Br/Fz8/0b1SqaNO6s rg@adolin"
-  ];
 
-  mediaKeys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICYiuCHjX9Dmq69WoAn7EfgovnFLv0VhjL7BSTYQcFa7 dtc@apollo"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINlaWu32ANU+sWFcwKrPlqD/oW3lC3/hrA1Z3+ubuh5A dtc@bacchus"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICmAw3MrBc3MERcNBkerJwfh9fmfD1OCeYnLVJVxs2Rs dtc@xiaomi11tpro"
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICG5lKQD5jhYAT7hOLLV/3nD6IJ6BG/2OKIl/Ry5lRDg ft@geoff"
-  ];
+  keys = import ../keys.nix { };
 
-  sazed = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
-  vin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin";
-  adolin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBECHNAitjjdOJA3IGsl8OEH+HQVlJh04ISHCizA5p+Z root@adolin";
+  inherit (keys)
+    users
+    categories
+    systems
+    flattenKeys
+    ;
 
-  spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
-  saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
-  hoid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMB0oR/J+r4+k5QVHrIDNqJvM4RARzGd+lQtcxhMfL5w root@hoid";
+  rgKeys = users.rg;
+  mediaKeys = users.media;
+  workstationsKeys = flattenKeys categories.workstations;
+  # serversKeys = flattenKeys categories.servers;
+  systemsKeys = flattenKeys systems;
 
-  workstations = [
-    sazed
-    vin
-    adolin
-  ];
-
-  servers = [
-    spy
-    saxton
-    hoid
-  ];
-
-  systems = workstations ++ servers;
 in
 {
-  #TODO: this so ugly!
-
   # Secrets for workstations.
-  "RNLDEI-wireguard.age".publicKeys = workstations ++ users;
-  "SSH-config.age".publicKeys = workstations ++ users;
-  "attic-config.age".publicKeys = workstations ++ users;
+  "RNLDEI-wireguard.age".publicKeys = workstationsKeys ++ rgKeys;
+  "SSH-config.age".publicKeys = workstationsKeys ++ rgKeys;
+  "attic-config.age".publicKeys = workstationsKeys ++ rgKeys;
 
   # Secrets for servers.
   # empty.
 
   # secrets for all.
-  "restic-env.age".publicKeys = systems ++ users;
-  "restic-password.age".publicKeys = systems ++ users;
-  "wakatime-config.age".publicKeys = systems ++ users;
-  "ACME-env.age".publicKeys = systems ++ users;
-  "sendmail-pass.age".publicKeys = systems ++ users;
-  "rclone-config.age".publicKeys = systems ++ users;
-  "ENV-mailrise.age".publicKeys = systems ++ users;
-  "ENV-mediafederation.age".publicKeys = [ hoid ] ++ users ++ mediaKeys;
+  "restic-env.age".publicKeys = systemsKeys ++ rgKeys;
+  "restic-password.age".publicKeys = systemsKeys ++ rgKeys;
+  "wakatime-config.age".publicKeys = systemsKeys ++ rgKeys;
+  "ACME-env.age".publicKeys = systemsKeys ++ rgKeys;
+  "sendmail-pass.age".publicKeys = systemsKeys ++ rgKeys;
+  "rclone-config.age".publicKeys = systemsKeys ++ rgKeys;
+  "ENV-mailrise.age".publicKeys = systemsKeys ++ rgKeys;
+  "ENV-mediafederation.age".publicKeys = [ systems.hoid ] ++ users ++ mediaKeys;
 
   # spy secrets.
-  # "spy/ENV-attic.age".publicKeys = [ spy ] ++ users;
-  # "spy/HC-alive.age".publicKeys = [ spy ] ++ users;
-  # "spy/HC-nextcloud.age".publicKeys = [ spy ] ++ users;
-  # "spy/HC-backups.age".publicKeys = [ spy ] ++ users;
-  "spy/Nextcloud-adminpass.age".publicKeys = [ spy ] ++ users;
-  # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
-  # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
+  # "spy/ENV-attic.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  # "spy/HC-alive.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  # "spy/HC-nextcloud.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  # "spy/HC-backups.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  "spy/Nextcloud-adminpass.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  # "spy/Nextcloud-redispass.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  # "spy/Nextcloud-secretfile.age".publicKeys = [ systems.spy ] ++ rgKeys;
 
   # hoid secrets.
-  "hoid/ENV-attic.age".publicKeys = [ hoid ] ++ users;
-  "hoid/HC-alive.age".publicKeys = [ hoid ] ++ users;
-  "hoid/HC-nextcloud.age".publicKeys = [ hoid ] ++ users;
-  "hoid/HC-backups.age".publicKeys = [ spy ] ++ users;
-  "hoid/Nextcloud-adminpass.age".publicKeys = [ hoid ] ++ users;
-  "hoid/Transmission-creds.age".publicKeys = [ hoid ] ++ users;
-  # "spy/Nextcloud-redispass.age".publicKeys = [ spy ] ++ users;
-  # "spy/Nextcloud-secretfile.age".publicKeys = [ spy ] ++ users;
+  "hoid/ENV-attic.age".publicKeys = [ systems.hoid ] ++ rgKeys;
+  "hoid/HC-alive.age".publicKeys = [ systems.hoid ] ++ rgKeys;
+  "hoid/HC-nextcloud.age".publicKeys = [ systems.hoid ] ++ rgKeys;
+  "hoid/HC-backups.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  "hoid/Nextcloud-adminpass.age".publicKeys = [ systems.hoid ] ++ rgKeys;
+  "hoid/Transmission-creds.age".publicKeys = [ systems.hoid ] ++ rgKeys;
+  # "spy/Nextcloud-redispass.age".publicKeys = [ systems.spy ] ++ rgKeys;
+  # "spy/Nextcloud-secretfile.age".publicKeys = [ systems.spy ] ++ rgKeys;
   # - attic cfg for builders: allows pushing store paths to my cache.
-  "attic-config-builder.age".publicKeys = [ hoid ] ++ users;
+  "attic-config-builder.age".publicKeys = [ systems.hoid ] ++ rgKeys;
 
   # saxton secrets.
-  "saxton/ENV-ist-discord-bot.age".publicKeys = [ saxton ] ++ users;
-  "saxton/ENV-WCBot.age".publicKeys = [ saxton ] ++ users;
-  "saxton/ENV-bolsas-scraper.age".publicKeys = [ saxton ] ++ users;
-  "saxton/HC-alive.age".publicKeys = [ saxton ] ++ users;
-  "saxton/ENV-vaultwarden.age".publicKeys = [ saxton ] ++ users;
-  "saxton/Mailserver-pwd-rafael.age".publicKeys = [ saxton ] ++ users;
-  "saxton/Mailserver-pwd-machines.age".publicKeys = [ saxton ] ++ users;
-  "saxton/Caddy-super-secret-config.age".publicKeys = [ saxton ] ++ users;
-
+  "saxton/ENV-ist-discord-bot.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/ENV-WCBot.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/ENV-bolsas-scraper.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/HC-alive.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/ENV-vaultwarden.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/Mailserver-pwd-rafael.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/Mailserver-pwd-machines.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/Caddy-super-secret-config.age".publicKeys = [ systems.saxton ] ++ rgKeys;
 }

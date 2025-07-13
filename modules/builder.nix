@@ -1,8 +1,8 @@
-{ pkgs, sshKeys, ... }:
+{ pkgs, keys, ... }:
 {
 
   users.users.nixremote = {
-    openssh.authorizedKeys.keys = sshKeys;
+    openssh.authorizedKeys.keys = keys.users.rg;
     isSystemUser = true;
     group = "nogroup";
     shell = pkgs.bashInteractive;

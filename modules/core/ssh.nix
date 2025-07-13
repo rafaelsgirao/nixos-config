@@ -50,7 +50,7 @@ in
       myKnownHosts = mapAttrs (_: publicKey: { inherit publicKey; }) (allHostsByName // allHostsByIP);
 
     in
-    myKnownHosts
+    myKnownHosts # TODO: generate this from keys.nix.
     // {
       "github.com".publicKey =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";

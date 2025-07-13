@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  sshKeys,
+  keys,
   ...
 }:
 {
@@ -36,7 +36,7 @@
       enable = true;
       port = lib.mkDefault 2222;
       hostKeys = [ /pst/etc/ssh-initrd/ssh_host_ed25519_key ];
-      authorizedKeys = sshKeys;
+      authorizedKeys = keys.users.rg;
     };
 
     initrd.systemd.network = config.systemd.network;

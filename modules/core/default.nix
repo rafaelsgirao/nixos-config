@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  sshKeys,
+  keys,
   secretsDir,
   self,
   ...
@@ -165,7 +165,7 @@ in
     ];
     isNormalUser = true;
     hashedPassword = "$6$zlh2QjXj/r3oHlO$oxqRDXvfm2EKyZN5wwjCzvTroZKzwwR3G/sJKOfun1UssUANPpg8AVSx6ILQSEDoIolMGbRkS76GdlP3g0Unf/";
-    openssh.authorizedKeys.keys = sshKeys;
+    openssh.authorizedKeys.keys = keys.users.rg;
   };
   users.users.root.hashedPassword = config.users.users.rg.hashedPassword;
 

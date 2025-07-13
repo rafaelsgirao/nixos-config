@@ -162,12 +162,7 @@
 
       user = "rg";
 
-      sshKeys = [
-        "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEwOBxayZyd/zGYyoTRN2rdIQM71nzVT3lISg2pNfrZRAAAABHNzaDo= Yubikey-U2F-Resident:"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7foe85vNDLm0vyVVugR8ThC1VjHuAtqAQ/K2AAVE9r rg@sazed[dec '24]"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID97/zlRwgxhnOyqHcawWjlL9XjbdmrWbYwayj1bG67I rg@vin[jan '25]"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINb+ipW3JOFhud1apnnMH4Ycm95Br/Fz8/0b1SqaNO6s rg@adolin[mar '25]"
-      ];
+      keys = import ./keys.nix { };
 
       secretsDir = self + "/secrets";
 
@@ -187,7 +182,7 @@
             value = lib.nixosSystem {
               specialArgs = {
                 inherit
-                  sshKeys
+                  keys
                   inputs
                   user
                   secretsDir
