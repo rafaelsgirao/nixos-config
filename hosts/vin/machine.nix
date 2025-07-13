@@ -25,9 +25,6 @@
     ../../modules/dei.nix
     ../../modules/restic.nix
     ../../modules/systemd-initrd.nix
-
-    ../../modules/program/steam.nix
-
   ];
 
   boot.kernelParams = [
@@ -60,7 +57,6 @@
         ".config/JetBrains"
         ".local/share/JetBrains"
         ".config/BraveSoftware"
-        ".config/PCSX2"
         ".m2"
       ];
     };
@@ -145,7 +141,6 @@
   hm.home.packages = with pkgs; [
     unstable.brave
     appimage-run
-    pcsx2
   ];
 
 }
