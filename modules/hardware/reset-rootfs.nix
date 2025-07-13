@@ -10,17 +10,13 @@ let
   isEnabled = config.rg.resetRootFs;
   isSystemdInitrd = config.boot.initrd.systemd.enable;
   script = ''
-    zfs rollback -r zpool/local/root@blank && echo "  >> >> rollback complete << <<"
+    zfs rollback -r ${poolName}/local/root@blank && echo "  >> >> rollback complete << <<"
   '';
   poolName = config.rg.resetRootFsPoolName;
 in
 {
   #Legacy initrd version.
-  boot.initrd.postDeviceCommands = lib.mkIf (isEnabled && !isSystemdInitrd) (
-    lib.mkAfter ''
-      zfs rollback -r ${poolName}/local/root@blank
-    ''
-  );
+  boot.initrd.postDeviceCommands = lib.mkIf (isEnabled && !isSystemdInitrd) (lib.mkAfter script);
 
   # systemd-initrd version.
   boot.initrd.systemd.services.rollback = lib.mkIf (isEnabled && isSystemdInitrd) {
