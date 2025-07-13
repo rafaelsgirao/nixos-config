@@ -151,11 +151,13 @@
       inherit (builtins) attrNames readDir listToAttrs;
       inherit (lib) mapAttrs filter;
       enabledPred = n: !lib.hasSuffix ".disabled" n;
+      # lib on steroids!
       lib =
         inputs.nixpkgs.lib
         // inputs.flake-parts.lib
         // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib)
         // (import ./lib.nix { inherit lib; });
+
       fs = lib.fileset;
 
       user = "rg";
@@ -182,7 +184,7 @@
         listToAttrs (
           map (name: {
             inherit name;
-            value = inputs.nixpkgs.lib.nixosSystem {
+            value = lib.nixosSystem {
               specialArgs = {
                 inherit
                   sshKeys
@@ -190,6 +192,7 @@
                   user
                   secretsDir
                   self
+                  lib
                   ;
                 inherit (outputs) nixosConfigurations;
                 hostSecretsDir = "${secretsDir}/${name}";
@@ -234,7 +237,7 @@
         );
 
     in
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+    lib.mkFlake { inherit inputs; } {
       imports = [
         inputs.pre-commit-hooks-nix.flakeModule
         inputs.treefmt-nix.flakeModule

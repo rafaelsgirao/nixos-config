@@ -12,6 +12,7 @@ let
   # disko is also used for importing pool at boot - can't change pool name like that :)
   # poolName = "${config.networking.hostName}pool";
   poolName = "zpool";
+  inherit (lib.rg) mkDisk;
 in
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -40,31 +41,12 @@ in
 
   # Storage.
   disko.devices = {
-    disk.main = {
-      type = "disk";
-      #TODO: changeme: this is the NVME adapter, not the SSD itself
-      device = "/dev/disk/by-id/usb-Realtek_RTL9210B-CG_012345679039-0:0";
-      content.type = "gpt";
-      content.partitions = {
-        ESP = {
-          size = "512M";
-          type = "EF00";
-          priority = 1; # Needs to be first partition
-          content = {
-            type = "filesystem";
-            format = "vfat";
-            mountpoint = "/boot";
-          };
-        };
-        "${config.networking.hostName}pool" = {
-          size = "100%";
-          content = {
-            type = "zfs";
-            pool = poolName;
-          };
-        };
+    disk.main = mkDisk {
+    inherit poolName;
+      isBoot = true;
+      #FIXME: this is the NVME adapter, not the SSD itself
+      diskPath =  "/dev/disk/by-id/usb-Realtek_RTL9210B-CG_012345679039-0:0" ;
       };
-    };
     zpool."${poolName}" = {
       type = "zpool";
       # mode = "TODO"; #TODO
@@ -121,7 +103,7 @@ in
           type = "zfs_fs";
           options = {
             mountpoint = "none";
-            refreservation = "2G";
+            refreservation = "20G";
           };
         };
         "local/state" = {

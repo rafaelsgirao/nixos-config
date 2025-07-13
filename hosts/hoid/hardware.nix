@@ -1,34 +1,11 @@
-{ ... }:
-# let
-#   hddCfg = hddDev: {
-#     type = "disk";
-#     device = "${hddDev}";
-#     content.type = "gpt";
-#     content.partitions = {
-#       ESP = {
-#         size = "512M";
-#         type = "EF00";
-#         priority = 1; # Needs to be first partition
-#         content = {
-#           type = "filesystem";
-#           format = "vfat";
-#           mountpoint = "/boot";
-#         };
-#       };
-#       zpool = {
-#         size = "100%";
-#         content = {
-#           type = "zfs";
-#           pool = "zpool";
-#         };
-#       };
-#     };
-#   };
-# in
+{ lib, ... }:
+let
+  inherit (lib.rg) mkDisk;
+  poolName = "zpool"; #Changing this after installation will cause in failed boots due to missing pool.
+in
 
 {
   imports = [
-    # (modulesPath + "/installer/scan/not-detected.nix")
     ../../modules/hardware/bluetooth.nix
   ];
 
@@ -54,64 +31,25 @@
 
   hardware.cpu.amd.updateMicrocode = true;
 
-  # TODO: refactor this. only thing that changes is mountpoint and device
   # Storage.
   disko.devices = {
 
-    # disk.hdd1 = hddCfg "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C";
-    # disk.hdd2 = hddCfg "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
-    disk.hdd1 = {
-      type = "disk";
-      device = "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
-      content.type = "gpt";
-      content.partitions = {
-        ESP = {
-          size = "512M";
-          type = "EF00";
-          priority = 1; # Needs to be first partition
-          content = {
-            type = "filesystem";
-            format = "vfat";
-            mountpoint = "/boot";
-          };
-        };
-        zpool = {
-          size = "100%";
-          content = {
-            type = "zfs";
-            pool = "zpool";
-          };
-        };
+    disk.hdd1 = mkDisk {
+      inherit poolName;
+      isBoot = true;
+      diskPath = "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C" ;
+
       };
-    };
-    disk.hdd2 = {
-      type = "disk";
-      device = "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C";
-      content.type = "gpt";
-      content.partitions = {
-        ESP = {
-          size = "512M";
-          type = "EF00";
-          priority = 1; # Needs to be first partition
-          content = {
-            type = "filesystem";
-            format = "vfat";
-            # mountpoint = "/boot";
-          };
-        };
-        zpool = {
-          size = "100%";
-          content = {
-            type = "zfs";
-            pool = "zpool";
-          };
-        };
+    disk.hdd2 = mkDisk {
+      inherit poolName;
+      isBoot = false;
+      diskPath = "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
+
       };
-    };
 
     zpool.zpool = {
       type = "zpool";
-      mode = "mirror"; # TODO
+      mode = "mirror";
       options = {
         ashift = "12";
         autoexpand = "on";
@@ -170,7 +108,8 @@
           type = "zfs_fs";
           options = {
             mountpoint = "none";
-            refreservation = "2G";
+            # https://wiki.nixos.org/wiki/ZFS#Reservations
+            refreservation = "20G";
           };
         };
         "local/state" = {
