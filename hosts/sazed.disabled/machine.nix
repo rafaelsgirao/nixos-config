@@ -60,7 +60,6 @@ in
     machineId = "4307a85c4d5e403fbd89fc34f27527e1";
     machineType = "amd";
     class = "workstation";
-    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
     resetRootFs = true;
   };
 

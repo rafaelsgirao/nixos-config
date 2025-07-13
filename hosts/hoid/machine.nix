@@ -106,7 +106,6 @@ in
     class = "server";
     isBuilder = true;
     resetRootFs = true;
-    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMB0oR/J+r4+k5QVHrIDNqJvM4RARzGd+lQtcxhMfL5w";
   };
 
   networking.nameservers = [ "127.0.0.1" ];

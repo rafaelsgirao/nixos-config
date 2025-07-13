@@ -35,10 +35,6 @@ in
         type = types.bool;
         default = false;
       };
-      pubKey = mkOption {
-        type = types.str;
-        default = null;
-      };
       # Generate a new one with: dbus-uuidgen
       machineId = mkOption {
         type = types.str;
@@ -97,7 +93,6 @@ in
         (assertRgNotNull config.rg.machineType)
         (assertRgNotNull config.rg.machineId)
         (assertRgNotNull config.rg.class)
-        (assertRgNotNull config.rg.pubKey)
 
       ];
   };

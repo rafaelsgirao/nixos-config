@@ -1,18 +1,23 @@
 _:
 let
-  # mapAttrsToList from https://github.com/hsjobeki/nixpkgs/blob/migrate-doc-comments/lib/attrsets.nix#L1079:C3 , because we don't have lib here.
+  inherit (builtins) listToAttrs attrNames;
 
-  mapAttrsToList = f: attrs: map (name: f name attrs.${name}) (builtins.attrNames attrs);
+  # Functions defined in this scope are from
+  #   https://github.com/hsjobeki/nixpkgs/blob/migrate-doc-comments/lib/attrsets.nix#L1079:C3 , because we don't have lib here.
+  mapAttrsToList = f: attrs: map (name: f name attrs.${name}) (attrNames attrs);
+  mapAttrs' = f: set: listToAttrs (map (attr: f attr set.${attr}) (attrNames set));
+  nameValuePair = name: value: { inherit name value; };
 in
 rec {
-
   categories = {
     workstations = {
       inherit (systems) sazed vin adolin;
     };
+
     servers = {
       inherit (systems) spy saxton adolin;
     };
+
     knownHosts = {
       "borg.rnl.tecnico.ulisboa.pt" =
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJLCDWGT0Uv6Q2fgTTtLMDM3nTyeV5mGCIiH6zx+KI2b";
@@ -32,7 +37,7 @@ rec {
   users = {
     # All user's SSH keys. Users may have multiple SSH keys.
     rg = [
-      "age1yubikey1qfwmheguzsuma4n9dq2vknkkh28d4vcnmvrv82gtzd6gf2scnel45wnnz44" # Yubikey age recipient
+      "age1yubikey1qfwmheguzsuma4n9dq2vknkkh28d4vcnmvrv82gtzd6gf2scnel45wnnz44" # Yubikey age recipient. Not really an SSH key, but oh well
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7foe85vNDLm0vyVVugR8ThC1VjHuAtqAQ/K2AAVE9r rg@sazed[dec '24]"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID97/zlRwgxhnOyqHcawWjlL9XjbdmrWbYwayj1bG67I rg@vin[jan '25]"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINb+ipW3JOFhud1apnnMH4Ycm95Br/Fz8/0b1SqaNO6s rg@adolin"
@@ -52,14 +57,13 @@ rec {
     vin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin";
     adolin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBECHNAitjjdOJA3IGsl8OEH+HQVlJh04ISHCizA5p+Z root@adolin";
 
-    spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD";
-    saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6";
+    spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD root@spy";
+    saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6 root@saxton";
     hoid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMB0oR/J+r4+k5QVHrIDNqJvM4RARzGd+lQtcxhMfL5w root@hoid";
 
   };
 
-  # Auxiliary attrsets.
-  # usersKeys = mapAttrsToList (name: value: value) users;
-  # systemsKeys = mapAttrsToList (name: value: value) systems;
+  # Useful functions.
   flattenKeys = attrs: mapAttrsToList (_name: value: value) attrs;
+  toKnownHosts = attrs: mapAttrs' (name: value: nameValuePair name { publicKey = value; }) attrs;
 }

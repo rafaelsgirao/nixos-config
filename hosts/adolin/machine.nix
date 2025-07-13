@@ -40,7 +40,6 @@
     machineId = "cdc47ebb53e645aab6576d786aac1084"; # TODO wrong
     machineType = "intel";
     class = "workstation";
-    pubKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin"; # TODO wrong
     resetRootFs = true;
   };
 

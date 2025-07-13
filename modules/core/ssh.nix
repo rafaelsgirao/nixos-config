@@ -1,13 +1,8 @@
 {
-  config,
   lib,
-  nixosConfigurations,
+  keys,
   ...
 }:
-
-let
-  inherit (lib) mapAttrs mapAttrs' nameValuePair;
-in
 
 {
 
@@ -40,39 +35,5 @@ in
 
   #SSH Client.
   programs.ssh.knownHosts =
-    let
-      allHostsByName = mapAttrs' (
-        _: host: nameValuePair host.config.networking.hostName host.config.rg.pubKey
-      ) nixosConfigurations;
-      allHostsByIP = mapAttrs' (
-        _: host: nameValuePair host.config.rg.ip host.config.rg.pubKey
-      ) nixosConfigurations;
-      myKnownHosts = mapAttrs (_: publicKey: { inherit publicKey; }) (allHostsByName // allHostsByIP);
-
-    in
-    myKnownHosts # TODO: generate this from keys.nix.
-    // {
-      "github.com".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl";
-      "gitlab.com".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAfuCHKVTjquxvt6CM6tdG4SLp1Btn/nOeHHE5UOzRd";
-      "git.rnl.tecnico.ulisboa.pt".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMGaP0hqVNDA7CPiPC4zd75JKaNpR2kefJ7qmVEiPtCK";
-      "repo.dsi.tecnico.ulisboa.pt".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINAwJLvpcT0ZAZXzxFgvNPr8uwAg4EEAH2eSvPoeL+jX";
-      "lab*p*.rnl.tecnico.ulisboa.pt".publicKey =
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5pvNnQKZ0/a5CA25a/WVi8oqSgG2q2WKfInNP4xEpP";
-      borg = {
-        hostNames = [
-          "borg"
-          "borg.rnl.tecnico.ulisboa.pt"
-          "borg.rnl.ist.utl.pt`"
-        ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJLCDWGT0Uv6Q2fgTTtLMDM3nTyeV5mGCIiH6zx+KI2b";
-      };
-      nixbuild = {
-        hostNames = [ "eu.nixbuild.net" ];
-        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPIQCZc54poJ8vqawd8TraNryQeJnvH1eLpIDgbiqymM";
-      };
-    };
+    (keys.toKnownHosts keys.systems) // (keys.toKnownHosts keys.categories.knownHosts);
 }
