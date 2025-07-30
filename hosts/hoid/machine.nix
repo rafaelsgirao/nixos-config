@@ -184,16 +184,9 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy unix//run/gitea/gitea.sock
+        reverse_proxy unix//run/forgejo/forgejo.sock
       '';
     };
-    #   "kuma.${fqdn}" = {
-    #     useACMEHost = "${domain}";
-    #     extraConfig = ''
-    #       encode zstd gzip
-    #       reverse_proxy http://127.0.0.1:29377
-    #     '';
-    #   };
     "router.${fqdn}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
@@ -227,13 +220,6 @@ in
       extraConfig = ''
         encode zstd gzip
         reverse_proxy http://127.0.0.1:33763
-      '';
-    };
-    "polaris.${fqdn}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://127.0.0.1:${toString config.services.polaris.port}
       '';
     };
   };

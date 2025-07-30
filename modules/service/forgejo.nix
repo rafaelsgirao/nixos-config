@@ -12,7 +12,7 @@ in
 
   systemd.services."caddy".serviceConfig.SupplementaryGroups = [ "forgejo" ]; # For acme certificate
 
-  services.caddy.virtualHosts."git.${fqdn}" = {
+  services.caddy.virtualHosts."forgejo.${fqdn}" = {
     useACMEHost = "${domain}";
     extraConfig = ''
       encode zstd gzip
