@@ -30,8 +30,6 @@ in
     ../../modules/hardware/zfs-unlock-initrd.nix
     # ../../modules/core/lanzaboote.nix
     ../../modules/builder.nix
-    # ../../modules/library/jellyfin.nix
-    # ../../modules/service/polaris.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
     ../../modules/attic.nix
@@ -43,12 +41,13 @@ in
     ../../modules/impermanence.nix
     ../../modules/headless.nix
     ../../modules/monero.nix
+
     ../../modules/service/irc.nix
     ../../modules/service/jellyfin.nix
     ../../modules/service/home-assistant.nix
-    # ../../modules/service/bitmagnet.nix
     ../../modules/service/transmission.nix
     ../../modules/service/actual.nix
+    ../../modules/service/forgejo.nix
   ];
 
   services.openssh.openFirewall = lib.mkForce true;

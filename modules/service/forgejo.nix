@@ -3,28 +3,29 @@ let
   hostname = config.networking.hostName;
   inherit (config.rg) ip;
   inherit (config.networking) fqdn domain;
-  appName = "Gitea RG";
-  backupDir = "/pst/backups/gitea";
+  appName = "Forgejo RG";
+  backupDir = "/pst/backups/forgejo";
+  baseDir = "/var/lib/forgejo";
+  listenAddr = config.services.forgejo.settings.server.HTTP_ADDR;
 in
 {
 
-  systemd.services."caddy".serviceConfig.SupplementaryGroups = [ "gitea" ]; # For acme certificate
+  systemd.services."caddy".serviceConfig.SupplementaryGroups = [ "forgejo" ]; # For acme certificate
 
-  services.caddy.virtualHosts."gitea.${fqdn}" = {
+  services.caddy.virtualHosts."git.${fqdn}" = {
     useACMEHost = "${domain}";
     extraConfig = ''
       encode zstd gzip
-      reverse_proxy unix//run/gitea/gitea.sock
+      reverse_proxy unix/${listenAddr}
     '';
   };
 
-  environment.persistence."/pst".directories = [ "/var/lib/gitea" ];
+  environment.persistence."/pst".directories = [ "${baseDir}" ];
 
-  services.gitea = {
+  services.forgejo = {
     enable = true;
-    stateDir = "/var/lib/gitea";
+    stateDir = "${baseDir}";
     settings = {
-      # actions.ENABLED = true;
       DEFAULT = {
         APP_NAME = appName;
       };
@@ -34,8 +35,7 @@ in
       };
       ui = {
         AUTHOR = appName;
-        DESCRIPTION = "${appName} - Git service";
-
+        DESCRIPTION = "${appName}";
       };
       session = {
         COOKIE_SECURE = true;
@@ -48,12 +48,10 @@ in
       };
       security = {
         INSTALL_LOCK = true;
-
       };
       service = {
         REQUIRE_SIGNIN_VIEW = false;
         DISABLE_REGISTRATION = true;
-
       };
       log.LEVEL = "Warn";
       server =
@@ -64,7 +62,6 @@ in
           BUILTIN_SSH_SERVER_USER = "git";
           PROTOCOL = "http+unix";
           ROOT_URL = "https://git.${domain}";
-          # HTTP_ADDR = "127.0.0.1";
           SSH_PORT = sshPort;
           DOMAIN = hostname;
           SSH_LISTEN_HOST = ip;
@@ -78,7 +75,7 @@ in
       interval = "02:30";
       type = "tar.zst";
       inherit backupDir;
-      file = "gitea-dump.tar.zst";
+      file = "forgejo-dump.tar.zst";
     };
   };
 }
