@@ -391,7 +391,7 @@ in
     unstable.yt-dlp
     yubioath-flutter
     cargo
-
+    exiftool
   ];
   environment.systemPackages = with pkgs; [
     mypkgs.agenix
