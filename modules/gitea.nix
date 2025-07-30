@@ -58,7 +58,7 @@ in
       log.LEVEL = "Warn";
       server =
         let
-          sshPort = 4222;
+          sshPort = 44222;
         in
         {
           BUILTIN_SSH_SERVER_USER = "git";
