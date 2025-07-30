@@ -25,6 +25,13 @@ in
   services.forgejo = {
     enable = true;
     stateDir = "${baseDir}";
+    dump = {
+      enable = true;
+      interval = "02:30";
+      type = "tar.zst";
+      inherit backupDir;
+      file = "forgejo-dump.tar.zst";
+    };
     settings = {
       DEFAULT = {
         APP_NAME = appName;
@@ -69,13 +76,6 @@ in
           START_SSH_SERVER = true;
           OFFLINE_MODE = true;
         };
-    };
-    dump = {
-      enable = true;
-      interval = "02:30";
-      type = "tar.zst";
-      inherit backupDir;
-      file = "forgejo-dump.tar.zst";
     };
   };
 }
