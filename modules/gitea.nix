@@ -63,7 +63,7 @@ in
         {
           BUILTIN_SSH_SERVER_USER = "git";
           PROTOCOL = "http+unix";
-          ROOT_URL = "https://git.${fqdn}";
+          ROOT_URL = "https://git.${domain}";
           # HTTP_ADDR = "127.0.0.1";
           SSH_PORT = sshPort;
           DOMAIN = hostname;
