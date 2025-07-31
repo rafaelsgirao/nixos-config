@@ -1,16 +1,19 @@
 { lib, ... }:
 let
 
-  mkDisk = attrs: let
-    # TODO: isBoot is hack to avoid both disks attempting to mount at /boot, which eval dislikes.
-    # The best fix would be systemd-boot in NixOS supporting mirrored boot...
-    inherit (attrs) poolName diskPath isBoot;
-    extraCfg = lib.optionalAttrs (attrs ? "extraCfg") attrs.extraCfg;
-  in
-  ( extraCfg // {
-    type = "disk";
-    device = diskPath;
-    content.type = "gpt";
+  mkDisk =
+    attrs:
+    let
+      # TODO: isBoot is hack to avoid both disks attempting to mount at /boot, which eval dislikes.
+      # The best fix would be systemd-boot in NixOS supporting mirrored boot...
+      inherit (attrs) poolName diskPath isBoot;
+      extraCfg = lib.optionalAttrs (attrs ? "extraCfg") attrs.extraCfg;
+    in
+    extraCfg
+    // {
+      type = "disk";
+      device = diskPath;
+      content.type = "gpt";
       content.partitions = {
         ESP = {
           size = "512M";
@@ -31,8 +34,7 @@ let
           };
         };
       };
-    }
-  );
+    };
 
   # rakeLeaves Adopted from nixrnl: https://gitlab.rnl.tecnico.ulisboa.pt/rnl/nixrnl/
   rakeLeaves =

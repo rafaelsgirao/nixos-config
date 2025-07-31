@@ -39,11 +39,11 @@ in
   # Storage.
   disko.devices = {
     disk.main = mkDisk {
-    inherit poolName;
+      inherit poolName;
       isBoot = true;
       #FIXME: this is the NVME adapter, not the SSD itself
-      diskPath =  "/dev/disk/by-id/nvme-WDC_PC_SN520_SDAPMUW-256G-1001_1835C2800054" ;
-      };
+      diskPath = "/dev/disk/by-id/nvme-WDC_PC_SN520_SDAPMUW-256G-1001_1835C2800054";
+    };
     zpool."${poolName}" = {
       type = "zpool";
       # mode = "TODO"; #TODO

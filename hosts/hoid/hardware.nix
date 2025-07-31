@@ -1,7 +1,7 @@
 { lib, ... }:
 let
   inherit (lib.rg) mkDisk;
-  poolName = "zpool"; #Changing this after installation will cause in failed boots due to missing pool.
+  poolName = "zpool"; # Changing this after installation will cause in failed boots due to missing pool.
 in
 
 {
@@ -37,15 +37,15 @@ in
     disk.hdd1 = mkDisk {
       inherit poolName;
       isBoot = true;
-      diskPath = "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C" ;
+      diskPath = "/dev/disk/by-id/ata-Hitachi_HDS723030ALA640_MK0313YHG8X71C";
 
-      };
+    };
     disk.hdd2 = mkDisk {
       inherit poolName;
       isBoot = false;
       diskPath = "/dev/disk/by-id/ata-WDC_WD30EFRX-68EUZN0_WD-WCC4N7RE3H0C";
 
-      };
+    };
 
     zpool.zpool = {
       type = "zpool";

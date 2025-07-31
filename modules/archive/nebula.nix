@@ -116,19 +116,18 @@ in
   );
 
   #Firewall rule for Nebula Lighthouse.
-  networking.firewall =
-    {
-      trustedInterfaces = [ "nebula0" ];
-    }
-    // lib.optionalAttrs config.rg.isLighthouse {
-      allowedTCPPorts = [
-        4242
-        nebulaPort
-      ];
-      allowedUDPPorts = [
-        4242
-        nebulaPort
-      ];
-    };
+  networking.firewall = {
+    trustedInterfaces = [ "nebula0" ];
+  }
+  // lib.optionalAttrs config.rg.isLighthouse {
+    allowedTCPPorts = [
+      4242
+      nebulaPort
+    ];
+    allowedUDPPorts = [
+      4242
+      nebulaPort
+    ];
+  };
 
 }

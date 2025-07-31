@@ -81,51 +81,51 @@ stdenv.mkDerivation rec {
     pkg-config
     autoPatchelfHook
     makeWrapper
-  ] ++ lib.optionals cudaSupport [ cudaPackages.autoAddOpenGLRunpathHook ];
+  ]
+  ++ lib.optionals cudaSupport [ cudaPackages.autoAddOpenGLRunpathHook ];
 
-  buildInputs =
-    [
-      avahi
-      libevdev
-      libpulseaudio
-      xorg.libX11
-      libxcb
-      xorg.libXfixes
-      xorg.libXrandr
-      xorg.libXtst
-      xorg.libXi
-      openssl
-      libopus
-      boost
-      libdrm
-      wayland
-      libffi
-      libevdev
-      libcap
-      libdrm
-      curl
-      pcre
-      pcre2
-      libuuid
-      libselinux
-      libsepol
-      libthai
-      libdatrie
-      xorg.libXdmcp
-      libxkbcommon
-      libepoxy
-      libva
-      libvdpau
-      numactl
-      mesa
-      amf-headers
-      svt-av1
-      libappindicator
-      libnotify
-      miniupnpc
-    ]
-    ++ lib.optionals cudaSupport [ cudaPackages.cudatoolkit ]
-    ++ lib.optionals stdenv.isx86_64 [ intel-media-sdk ];
+  buildInputs = [
+    avahi
+    libevdev
+    libpulseaudio
+    xorg.libX11
+    libxcb
+    xorg.libXfixes
+    xorg.libXrandr
+    xorg.libXtst
+    xorg.libXi
+    openssl
+    libopus
+    boost
+    libdrm
+    wayland
+    libffi
+    libevdev
+    libcap
+    libdrm
+    curl
+    pcre
+    pcre2
+    libuuid
+    libselinux
+    libsepol
+    libthai
+    libdatrie
+    xorg.libXdmcp
+    libxkbcommon
+    libepoxy
+    libva
+    libvdpau
+    numactl
+    mesa
+    amf-headers
+    svt-av1
+    libappindicator
+    libnotify
+    miniupnpc
+  ]
+  ++ lib.optionals cudaSupport [ cudaPackages.cudatoolkit ]
+  ++ lib.optionals stdenv.isx86_64 [ intel-media-sdk ];
 
   runtimeDependencies = [
     avahi

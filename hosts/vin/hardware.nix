@@ -42,11 +42,11 @@ in
   # Storage.
   disko.devices = {
     disk.main = mkDisk {
-    inherit poolName;
+      inherit poolName;
       isBoot = true;
       #FIXME: this is the NVME adapter, not the SSD itself
-      diskPath =  "/dev/disk/by-id/usb-Realtek_RTL9210B-CG_012345679039-0:0" ;
-      };
+      diskPath = "/dev/disk/by-id/usb-Realtek_RTL9210B-CG_012345679039-0:0";
+    };
     zpool."${poolName}" = {
       type = "zpool";
       # mode = "TODO"; #TODO

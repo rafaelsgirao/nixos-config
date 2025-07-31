@@ -1,7 +1,7 @@
-{ lib,  modulesPath, ... }:
+{ lib, modulesPath, ... }:
 let
- poolName = "saxton";
- inherit (lib.rg) mkDisk;
+  poolName = "saxton";
+  inherit (lib.rg) mkDisk;
 in
 
 {
@@ -29,7 +29,7 @@ in
       inherit poolName;
       isBoot = true;
       diskPath = "/dev/sda";
-      };
+    };
 
     zpool.saxton = {
       type = "zpool";

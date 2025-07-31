@@ -410,17 +410,16 @@ in
       programs.htop = {
         enable = true;
         package = pkgs.htop-vim;
-        settings =
-          {
-            show_program_path = 0;
-            shadow_other_users = 1;
-            hide_kernel_threads = 1;
-            hide_userland_threads = 1;
-          }
-          // lib.optionalAttrs (!isVirt) {
-            show_cpu_frequency = 1;
-            show_cpu_temperature = 1;
-          };
+        settings = {
+          show_program_path = 0;
+          shadow_other_users = 1;
+          hide_kernel_threads = 1;
+          hide_userland_threads = 1;
+        }
+        // lib.optionalAttrs (!isVirt) {
+          show_cpu_frequency = 1;
+          show_cpu_temperature = 1;
+        };
       };
       programs.direnv = lib.mkIf isWorkstation {
         enable = true;
