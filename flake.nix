@@ -86,13 +86,6 @@
 
     impermanence.url = "github:nix-community/impermanence/master";
 
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      # inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.nixpkgs-stable.follows = "nixpkgs";
-      # inputs.flake-compat.follows = "flake-compat";
-    };
-
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -140,6 +133,8 @@
       inputs.crane.follows = "crane";
       inputs.rust-overlay.follows = "rust-overlay";
     };
+
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
   };
 
@@ -209,7 +204,7 @@
                 inputs.agenix.nixosModules.default
                 inputs.home.nixosModules.home-manager
                 inputs.disko.nixosModules.disko
-                inputs.nixos-cosmic.nixosModules.default
+                inputs.determinate.nixosModules.default
 
                 (dir + "/${name}/hardware.nix")
                 (dir + "/${name}/machine.nix")

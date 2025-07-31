@@ -36,6 +36,9 @@ in
       download-buffer-size = 536870912;
       auto-optimise-store = true;
 
+      # Experimental Determinate Nix feature
+      lazy-trees = true;
+
       # Enable flakes
       experimental-features = [
         "nix-command"
