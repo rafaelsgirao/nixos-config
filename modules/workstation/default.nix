@@ -25,8 +25,7 @@ in
     ../graphical/default.nix
   ];
   hm.imports = [
-    # inputs.lan-mouse.homeManagerModules.default
-    inputs.nix-index-database.hmModules.nix-index
+    inputs.nix-index-database.homeModules.nix-index
     ./ssh-tpm-agent.nix
   ];
 
@@ -327,18 +326,6 @@ in
   programs.command-not-found = {
     enable = false;
   };
-
-  # hm.programs.lan-mouse.settings = {
-  #   release_bind = [
-  #     "KeyA"
-  #     "KeyS"
-  #     "KeyD"
-  #     "KeyF"
-  #   ];
-  #   port = 7742;
-  #   frontend = "gtk";
-  #   systemd = true;
-  # };
 
   networking.firewall = rec {
     allowedTCPPorts = [
