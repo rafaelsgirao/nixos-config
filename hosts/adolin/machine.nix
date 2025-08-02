@@ -35,6 +35,7 @@
   ];
 
   rg = {
+    enableCosmic = false;
     ip = "100.120.144.78"; # TODO wrong
     machineId = "cdc47ebb53e645aab6576d786aac1084"; # TODO wrong
     machineType = "intel";
