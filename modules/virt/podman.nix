@@ -4,6 +4,15 @@
   # https://wiki.nixos.org/wiki/Podman
   # Enable common container config files in /etc/containers
   virtualisation.containers.enable = true;
+  virtualisation.containers = {
+    enable = true;
+    # Having multiple search registries breaks devcontainers
+    #  (forced to select an image from the two registries, but can't interact with prompt)
+    registries.search = [
+      "docker.io"
+    ];
+
+  };
   virtualisation.podman = {
     enable = true;
     # Create a `docker` alias for podman, to use it as a drop-in replacement
