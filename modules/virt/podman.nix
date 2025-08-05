@@ -8,7 +8,7 @@
     # Having multiple search registries breaks devcontainers
     #  (forced to select an image from the two registries, but can't interact with prompt)
     registries.search = [
-      "docker.io"
+      "quay.io"
     ];
 
   };

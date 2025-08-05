@@ -69,7 +69,7 @@ in
     wantedBy = [ "timers.target" ];
     partOf = [ "go-to-bed.service" ];
     timerConfig = {
-      OnCalendar = "*-*-* 21:59:59";
+      OnCalendar = "*-*-* 19:59:59";
       Unit = "go-to-bed.service";
     };
   };
