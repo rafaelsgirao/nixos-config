@@ -3,7 +3,6 @@
 
   # https://wiki.nixos.org/wiki/Podman
   # Enable common container config files in /etc/containers
-  virtualisation.containers.enable = true;
   virtualisation.containers = {
     enable = true;
     # Having multiple search registries breaks devcontainers
