@@ -94,24 +94,11 @@ in
     "/var/music"
   ];
 
-  environment.persistence."/state".directories = [
-    "/var/games"
-  ];
-
-  users.users.games = {
-    isNormalUser = true;
-    home = "/var/games";
-    group = "games";
-    homeMode = "770";
-  };
-
-  # Common group for games files
-  users.groups.games = { };
-
   # When upgrading postgres, see:
   # https://nixos.org/manual/nixos/stable/#module-services-postgres-upgrading
   services.postgresql.package = pkgs.postgresql_16;
 
+  #TODO: add this more generically to all hosts?
   services.postgresqlBackup = {
     enable = true;
     location = "/state/backups/postgres";
@@ -171,13 +158,7 @@ in
     paths = [
 
       "/pst"
-      # "${config.services.nextcloud.home}"
       "/state/backups"
-      #TODO: kuma
-      #TODO: transmission, radarr, sonarr, etc.
-      #TODO: remove deprecated stuff
-      #TODO: storage
-
     ];
     extraBackupArgs = [
       "--one-file-system" # TODO: CHECK IF THIS WORKS AS INTENDED! Does it only use one filesystem per backup, or per path?

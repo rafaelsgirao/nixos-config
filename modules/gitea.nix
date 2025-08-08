@@ -63,7 +63,9 @@ in
         {
           BUILTIN_SSH_SERVER_USER = "git";
           PROTOCOL = "http+unix";
-          ROOT_URL = "https://git.${domain}";
+          # HACK: discontinuing Gitea in favor of Forgejo.
+          # Just hardcode this while its alive so migrations work.
+          ROOT_URL = "https://gitea.hoid.rsg.ovh";
           # HTTP_ADDR = "127.0.0.1";
           SSH_PORT = sshPort;
           DOMAIN = hostname;

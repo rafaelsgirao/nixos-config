@@ -25,6 +25,8 @@ in
   services.forgejo = {
     enable = true;
     stateDir = "${baseDir}";
+    # NixOS service is smart and takes care of the rest if database.type is set.
+    database.type = "postgres";
     dump = {
       enable = true;
       interval = "02:30";
