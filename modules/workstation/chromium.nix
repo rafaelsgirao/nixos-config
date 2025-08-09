@@ -43,7 +43,6 @@
       "BraveRewardsDisabled" = true;
       "BraveVPNDisabled" = true;
       "BraveWalletDisabled" = true;
-      "BraveShieldsEnabledForUrls" = [ ];
       # "IPFSEnabled" = false;
 
     };
