@@ -102,16 +102,6 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    wc-bot = {
-      # url = "github:ist-chan-bot-team/ist-chan-bot";
-      url = "git+ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-        pre-commit-hooks-nix.follows = "";
-        treefmt-nix.follows = "";
-      };
-    };
 
     agenix = {
       url = "github:ryantm/agenix";

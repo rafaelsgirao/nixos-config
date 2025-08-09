@@ -667,8 +667,7 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "ruby-nix": "ruby-nix",
         "rust-overlay": "rust-overlay",
-        "treefmt-nix": "treefmt-nix",
-        "wc-bot": "wc-bot"
+        "treefmt-nix": "treefmt-nix"
       }
     },
     "ruby-nix": {
@@ -789,31 +788,6 @@
         "owner": "numtide",
         "repo": "treefmt-nix",
         "type": "github"
-      }
-    },
-    "wc-bot": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "pre-commit-hooks-nix": [],
-        "treefmt-nix": []
-      },
-      "locked": {
-        "lastModified": 1710785347,
-        "narHash": "sha256-SPsP/7GEiJQFP6BcDP3olagW3J2FAHo02/wXS0QZtnY=",
-        "ref": "refs/heads/main",
-        "rev": "6c5fef87f30390d6595aaae225686615f1ec892a",
-        "revCount": 52,
-        "type": "git",
-        "url": "ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git"
       }
     }
   },
