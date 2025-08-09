@@ -324,6 +324,13 @@
               entry = "${pkgs.gitleaks}/bin/gitleaks protect --verbose --redact --staged";
               pass_filenames = false;
             };
+            secrets-check = {
+              enable = true;
+              name = "secrets-check";
+              description = "Check agenix secrets";
+              entry = "${self'.packages.secrets-check}/bin/secrets-check ./secrets";
+              pass_filenames = false;
+            };
           };
           treefmt.projectRootFile = "./flake.nix";
           treefmt.programs = {
