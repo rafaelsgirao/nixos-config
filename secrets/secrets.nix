@@ -7,9 +7,10 @@ let
     categories
     systems
     flattenKeys
+    filterAgeKeys
     ;
 
-  rgKeys = users.rg;
+  rgKeys = filterAgeKeys users.rg;
   mediaKeys = users.media;
   workstationsKeys = flattenKeys categories.workstations;
   # serversKeys = flattenKeys categories.servers;
@@ -28,12 +29,11 @@ in
   # secrets for all.
   "restic-env.age".publicKeys = systemsKeys ++ rgKeys;
   "restic-password.age".publicKeys = systemsKeys ++ rgKeys;
-  "wakatime-config.age".publicKeys = systemsKeys ++ rgKeys;
   "ACME-env.age".publicKeys = systemsKeys ++ rgKeys;
   "sendmail-pass.age".publicKeys = systemsKeys ++ rgKeys;
   "rclone-config.age".publicKeys = systemsKeys ++ rgKeys;
   "ENV-mailrise.age".publicKeys = systemsKeys ++ rgKeys;
-  "ENV-mediafederation.age".publicKeys = [ systems.hoid ] ++ users ++ mediaKeys;
+  "ENV-mediafederation.age".publicKeys = [ systems.hoid ] ++ rgKeys ++ mediaKeys;
 
   # hoid secrets.
   "hoid/ENV-attic.age".publicKeys = [ systems.hoid ] ++ rgKeys;

@@ -1,12 +1,28 @@
 _:
 let
-  inherit (builtins) listToAttrs attrNames;
+  inherit (builtins) listToAttrs attrNames substring stringLength isPath warn;
 
   # Functions defined in this scope are from
   #   https://github.com/hsjobeki/nixpkgs/blob/migrate-doc-comments/lib/attrsets.nix#L1079:C3 , because we don't have lib here.
+  # Filter: https://github.com/hsjobeki/nixpkgs/blob/migrate-doc-comments/lib/strings.nix#L768:C3
   mapAttrsToList = f: attrs: map (name: f name attrs.${name}) (attrNames attrs);
   mapAttrs' = f: set: listToAttrs (map (attr: f attr set.${attr}) (attrNames set));
   nameValuePair = name: value: { inherit name value; };
+  warnIf = cond: msg: if cond then warn msg else x: x;
+
+  hasPrefix =
+    pref: str:
+    # Before 23.05, paths would be copied to the store before converting them
+    # to strings and comparing. This was surprising and confusing.
+    warnIf (isPath pref)
+      ''
+        lib.strings.hasPrefix: The first argument (${toString pref}) is a path value, but only strings are supported.
+            There is almost certainly a bug in the calling code, since this function always returns `false` in such a case.
+            This function also copies the path to the Nix store, which may not be what you want.
+            This behavior is deprecated and will throw an error in the future.
+            You might want to use `lib.path.hasPrefix` instead, which correctly supports paths.''
+      (substring 0 (stringLength pref) str == pref);
+
 in
 rec {
   categories = {
@@ -69,4 +85,11 @@ rec {
   # Useful functions.
   flattenKeys = attrs: mapAttrsToList (_name: value: value) attrs;
   toKnownHosts = attrs: mapAttrs' (name: value: nameValuePair name { publicKey = value; }) attrs;
+
+  filterAgeKeys = let
+    pred = str: (hasPrefix "ssh-ed25519" str || hasPrefix "age1" str);
+  in
+    keys:
+    builtins.filter pred keys;
+
 }
