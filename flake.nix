@@ -234,6 +234,7 @@
           config,
           pkgs,
           inputs',
+          self',
           system,
           ...
         }:
@@ -307,6 +308,7 @@
               gitui
               htop
               age-plugin-yubikey
+              self'.packages.secrets-check
             ];
             shellHook = ''
               # export DEBUG=1

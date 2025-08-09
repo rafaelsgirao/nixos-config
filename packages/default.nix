@@ -5,10 +5,11 @@
 }:
 let
   inherit (pkgs) callPackage;
-  # Don't add this flake as an input because it's a private repo 
+  # Don't add this flake as an input because it's a private repo
   # and nixos-install won't run without being able to fetch all inputs.
   # a better solution would be flake.parts partitions.
   wcFlake = builtins.getFlake "git+ssh://git@github.com/ist-chan-bot-team/ist-chan-bot.git?ref=master&rev=6c5fef87f30390d6595aaae225686615f1ec892a";
+  rnlFlake = builtins.getFlake "gitlab:rnl/nixrnl/8b0b0b88e4be821e31f9169190cdb9c55ed0418c?host=gitlab.rnl.tecnico.ulisboa.pt";
 in
 rec {
   #Packages from inputs.
@@ -16,6 +17,7 @@ rec {
   disko = inputs'.disko.packages.default;
   bolsas-scraper = inputs'.bolsas-scraper.packages.default;
   wc-bot = wcFlake.packages.${pkgs.system}.default;
+
   #TODO.
   # remarkable-rcu = pkgs.callPackage ./rcu {};
   # TODO: broken.
@@ -54,6 +56,7 @@ rec {
   pre-commit-macadmin = pkgs.callPackage ./pre-commit-macadmin { inherit (pkgs) python3; };
 
   isponsorblocktv = pkgs.callPackage ./isponsorblock { inherit (pkgs) python3; };
+  secrets-check = pkgs.callPackage ./secrets-check {  };
 
   # Scripts
   noisedropper = pkgs.callPackage ./scripts/noisedropper.nix { };
