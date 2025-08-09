@@ -29,7 +29,7 @@
     #TODO: hacky way of ensuring REFInd is installed.
     # Figure out a better way
     loader.timeout = 1;
-    loader.efi.canTouchEfiVariables = lib.mkDefault false;
+    loader.efi.canTouchEfiVariables = lib.mkDefault true;
     loader.systemd-boot = {
       enable = lib.mkDefault true;
       consoleMode = "auto";
@@ -53,6 +53,7 @@
       # '';
     };
   };
+
   #TPM2 support (TPM2 requires UEFI, so leaving the config here)
   # see NixOS Wiki
   security.tpm2.enable = true;
@@ -64,4 +65,8 @@
     TPM2TOOLS_TCTI = "device:/dev/tpmrm0";
     TPM2_PKCS11_TCTI = "device:/dev/tpmrm0";
   };
+
+  environment.systemPackages = with pkgs; [
+    efibootmgr
+  ];
 }
