@@ -77,9 +77,9 @@
         "org/gnome/GWeather4" = {
           "temperature-unit" = "centigrade";
         };
-        
+
         "org/gnome/desktop/peripherals/touchpad" = {
-        speed = 0.49253731343283591;
+          speed = 0.49253731343283591;
         };
         "org/gnome/desktop/peripherals/keyboard" = {
           delay = lib.hm.gvariant.mkUint32 246;

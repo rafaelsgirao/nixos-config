@@ -1,6 +1,13 @@
 _:
 let
-  inherit (builtins) listToAttrs attrNames substring stringLength isPath warn;
+  inherit (builtins)
+    listToAttrs
+    attrNames
+    substring
+    stringLength
+    isPath
+    warn
+    ;
 
   # Functions defined in this scope are from
   #   https://github.com/hsjobeki/nixpkgs/blob/migrate-doc-comments/lib/attrsets.nix#L1079:C3 , because we don't have lib here.
@@ -86,10 +93,10 @@ rec {
   flattenKeys = attrs: mapAttrsToList (_name: value: value) attrs;
   toKnownHosts = attrs: mapAttrs' (name: value: nameValuePair name { publicKey = value; }) attrs;
 
-  filterAgeKeys = let
-    pred = str: (hasPrefix "ssh-ed25519" str || hasPrefix "age1" str);
-  in
-    keys:
-    builtins.filter pred keys;
+  filterAgeKeys =
+    let
+      pred = str: (hasPrefix "ssh-ed25519" str || hasPrefix "age1" str);
+    in
+    keys: builtins.filter pred keys;
 
 }

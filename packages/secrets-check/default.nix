@@ -24,4 +24,3 @@ stdenv.mkDerivation rec {
     wrapProgram $out/bin/${name} --prefix PATH : ${lib.makeBinPath buildInputs}
   '';
 }
-
