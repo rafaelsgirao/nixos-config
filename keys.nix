@@ -11,7 +11,7 @@ in
 rec {
   categories = {
     workstations = {
-      inherit (systems) sazed vin adolin;
+      inherit (systems) vin adolin;
     };
 
     servers = {
@@ -36,11 +36,15 @@ rec {
 
   users = {
     # All user's SSH keys. Users may have multiple SSH keys.
+    #TODO: filter keys based on type (age recipients, YK U2F ssh keys, etc.)
+    # Not all keys are fit for consumption everywhere.
     rg = [
       "age1yubikey1qfwmheguzsuma4n9dq2vknkkh28d4vcnmvrv82gtzd6gf2scnel45wnnz44" # Yubikey age recipient. Not really an SSH key, but oh well
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7foe85vNDLm0vyVVugR8ThC1VjHuAtqAQ/K2AAVE9r rg@sazed[dec '24]"
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIEwOBxayZyd/zGYyoTRN2rdIQM71nzVT3lISg2pNfrZRAAAABHNzaDo= rg@Yubikey"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID97/zlRwgxhnOyqHcawWjlL9XjbdmrWbYwayj1bG67I rg@vin[jan '25]"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINb+ipW3JOFhud1apnnMH4Ycm95Br/Fz8/0b1SqaNO6s rg@adolin"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILUY2bke6anCBK8UJxucRZHoDOdi8mO/3DVTB1SLVQ/U rg@adolin[aug'25]"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINjmT2OgezvMjGgpMUfAX/8LuYzYJeyOMQjFv+e/cofD rg@BW[aug'25]"
+
     ];
     media = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICYiuCHjX9Dmq69WoAn7EfgovnFLv0VhjL7BSTYQcFa7 dtc@apollo"
@@ -53,9 +57,8 @@ rec {
 
   # SSH Key of each system's SSH server. Each system has one and only one key.
   systems = {
-    sazed = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL98QtOSOE5mmB/EXHsINd5mHc46gkynP2FBN939BlEc root@sazed";
     vin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHRXa7/kHjUK8do4degCAvq1Ak2k3BGIn1kLYtjbQsjk root@vin";
-    adolin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBECHNAitjjdOJA3IGsl8OEH+HQVlJh04ISHCizA5p+Z root@adolin";
+    adolin = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC9um3nGRV+p323SDncGx9kxMOyU556EBwcKkN3qQF/r root@adolin";
 
     spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD root@spy";
     saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6 root@saxton";
