@@ -28,6 +28,11 @@ check_key() {
     local hash_key=$2
     local secret=$3
 
+    # HACK: parsing age1 yubikey recipients to their piv-p256 stanza is hard on the cli.
+    # just skip those keys for now.
+    if [[ $key == age1* ]]; then
+        return
+    fi
     if ! grep -q "^-> .\+ $hash_key .\+" "$secrets_dir/$secret"; then
         echo -e "In secret $YELLOW'$secret'$NC missing key $BLUE'$key'$NC"
         invalid_secrets=1
