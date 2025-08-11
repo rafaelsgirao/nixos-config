@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 # let
 #   # See original file for detailed option explanations.
 #   themeConf = pkgs.writeText "theme.conf" ''
