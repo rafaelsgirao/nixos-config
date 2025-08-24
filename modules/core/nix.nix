@@ -99,6 +99,16 @@ in
   nix.distributedBuilds = !config.rg.isBuilder && config.rg.class == "workstation";
 
   programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
+    Host hoid
+      PubkeyAcceptedKeyTypes ssh-ed25519
+      ServerAliveInterval 60
+      IPQoS throughput
+      IdentityFile /home/rg/.ssh/id_ed25519
+      ControlMaster auto
+      ControlPath ~/.ssh--master-%r@%n:%p
+      ControlPersist 10m
+
+
     Host eu.nixbuild.net
       PubkeyAcceptedKeyTypes ssh-ed25519
       ServerAliveInterval 60
