@@ -2,6 +2,7 @@
   config,
   hostSecretsDir,
   lib,
+  pkgs,
   ...
 }:
 
@@ -27,6 +28,7 @@ in
 
   services.vaultwarden = {
     enable = true;
+    package = pkgs.unstable.vaultwarden;
     backupDir = "/state/backups/vaultwarden";
     environmentFile = config.age.secrets.ENV-vaultwarden.path;
     config = {
