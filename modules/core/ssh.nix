@@ -21,7 +21,7 @@
       PasswordAuthentication = false;
       UseDns = false;
       # unbind gnupg sockets if they exists
-
+      AllowAgentForwarding = true;
       PermitRootLogin = lib.mkDefault "no";
     };
     hostKeys = [
