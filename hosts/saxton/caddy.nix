@@ -25,9 +25,10 @@ in
     group = "caddy";
   };
 
-  services.caddy.globalConfig = ''
-    default_bind ${config.rg.ipv4} [${config.rg.ipv6}]
-  '';
+  # services.caddy.globalConfig = ''
+  #   # default_bind ${config.rg.ipv4} [${config.rg.ipv6}]
+  # '';
+
   services.caddy.extraConfig = ''
     import ${config.age.secrets.caddy-super-secret-config.path}
   '';
