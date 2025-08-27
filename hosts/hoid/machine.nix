@@ -102,7 +102,7 @@ in
   #TODO: add this more generically to all hosts?
   services.postgresqlBackup = {
     enable = true;
-    location = "/state/backups/postgres";
+    location = "/pst/backups/postgres";
     compression = "zstd";
     backupAll = true;
   };

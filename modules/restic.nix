@@ -62,6 +62,7 @@ in
           paths = lib.mkDefault [
             "/pst"
             "/state/backups" # Backup files/dumps that are created by other tools & services, e.g postgresql, gitea, vaultwarden
+            # TODO: deprecate this ^ in favor of /pst/backups.
           ];
           extraBackupArgs = [
             "--exclude-caches"
