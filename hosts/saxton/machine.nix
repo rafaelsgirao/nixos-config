@@ -11,7 +11,10 @@ in
     ../../modules/core/hardening.nix
     ../../modules/core/lanzaboote.nix
 
+    ../../modules/service/immich-proxy.nix
+
     ./wc-bot.nix
+
     ../../modules/ntfy-sh.nix
     # ../../modules/ist-discord-bot.nix
     ../../modules/virt/docker.nix
@@ -28,6 +31,7 @@ in
     ../../modules/acme.nix
     ../../modules/headless.nix
     ../../modules/impermanence.nix
+
   ];
 
   # build on remote fails because saxton can't access wc-bot private repo on github
