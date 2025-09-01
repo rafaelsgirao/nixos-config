@@ -13,6 +13,7 @@ let
   config' = config;
   inherit (config.networking) domain;
   inherit (config.rg) isBuilder;
+  inherit (lib) mkIf optionals;
 in
 {
 
@@ -162,7 +163,7 @@ in
             navigate = true;
           };
 
-          url = {
+          url = mkIf isWorkstation {
             "git@github.com:".insteadOf = "https://github.com/";
             "git@git.${domain}:2222".insteadOf = "https://git.${domain}/";
           };
@@ -294,7 +295,6 @@ in
         };
         interactiveShellInit = ''
           set fish_greeting #Disables "Welcome to fish! message"
-
         '';
       };
 
@@ -407,6 +407,7 @@ in
           )
         '';
       };
+
       programs.htop = {
         enable = true;
         package = pkgs.htop-vim;
