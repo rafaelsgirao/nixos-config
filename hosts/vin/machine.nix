@@ -6,7 +6,7 @@
 {
 
   imports = [
-    # ../../modules/core/lanzaboote.nix # libreboot/u-boot doesnt have secureboot atm :-)
+    ../../modules/core/lanzaboote.nix
 
     ../../modules/workstation/chromium.nix
     ../../modules/workstation/default.nix
