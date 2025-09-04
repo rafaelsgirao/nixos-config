@@ -68,5 +68,8 @@
 
   environment.systemPackages = with pkgs; [
     efibootmgr
+    sbctl
+    efibootmgr
+    refind
   ];
 }
