@@ -335,25 +335,11 @@ in
       7236 # Gnome Network Displays
       1844 # QBT
     ];
-    # For KDEConnect (or reimplementations of it )
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    # For KDEConnect (or reimplementations of it )
-    allowedUDPPortRanges = allowedTCPPortRanges;
   };
 
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
-  };
-
-  hm.services.kdeconnect = {
-    enable = true;
-    indicator = true;
   };
 
   hm.home.packages = with pkgs; [
