@@ -24,13 +24,10 @@ in
     ./vscode.nix
     ../graphical/default.nix
   ];
+
   hm.imports = [
     inputs.nix-index-database.homeModules.nix-index
-    ./ssh-tpm-agent.nix
   ];
-
-  # TODO disable
-  hm.services.ssh-tpm-agent.enable = true;
 
   age.secrets = {
     attic-user-config = {
@@ -352,6 +349,11 @@ in
   programs.wireshark = {
     enable = true;
     package = pkgs.wireshark;
+  };
+
+  hm.services.kdeconnect = {
+    enable = true;
+    indicator = true;
   };
 
   hm.home.packages = with pkgs; [

@@ -356,7 +356,7 @@ in
         Socket = {
           ListenStream = "%t/atuin.socket";
           SocketMode = "0600";
-          # Service = "ssh-tpm-agent.service"; :thinking:
+          # Service = e.g "ssh-tpm-agent.service"; :thinking:
         };
         Install = {
           WantedBy = [ "sockets.target" ];
