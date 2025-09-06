@@ -4,6 +4,10 @@
   lib,
   ...
 }:
+let
+  poolName = config.rg.resetRootFsPoolName;
+in
+
 {
   imports = [ ./reset-rootfs.nix ];
   #ZFS configs so pool works as root
@@ -33,4 +37,24 @@
     interval = "monthly";
   };
   services.zfs.trim.enable = config.rg.machineType != "virt";
+
+  # auto snapshots.
+  services.sanoid = {
+    enable = true;
+    interval = "hourly";
+
+    templates.data = {
+      monthly = 12;
+      daily = 15;
+      yearly = 50;
+
+      autoprune = true;
+      autosnap = true;
+    };
+
+    datasets."${poolName}/safe" = {
+      useTemplate = [ "data" ];
+      recursive = true;
+    };
+  };
 }
