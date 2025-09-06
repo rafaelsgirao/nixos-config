@@ -384,6 +384,7 @@ in
     ntfs3g
     ripgrep-all
     udisks2
+    wakeonlan
 
     # :eyes:
     # Too new a project. e.g, `rm` hangs on pipes created with mkfifo
