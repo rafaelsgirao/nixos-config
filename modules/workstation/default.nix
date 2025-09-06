@@ -52,6 +52,8 @@ in
     '';
     ".config/attic/config.toml".source =
       hmLib.file.mkOutOfStoreSymlink "${config.age.secrets.attic-user-config.path}";
+    ".config/rclone/rclone.conf".source =
+      hmLib.file.mkOutOfStoreSymlink "${config.age.secrets."rclone.conf".path}";
   };
 
   networking.useDHCP = false;

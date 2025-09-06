@@ -7,6 +7,9 @@
 }:
 
 let
+  isWorkstation = config.rg.class == "workstation";
+  inherit (lib) mkIf;
+
   hostname = config.networking.hostName;
   hostnameUpper = lib.toUpper hostname;
   provider = config.rg.backupsProvider;
@@ -35,6 +38,7 @@ in
   age.secrets = {
     "rclone.conf" = {
       file = "${secretsDir}/rclone-config.age";
+      owner = mkIf isWorkstation "rg";
     };
     restic-env = {
       file = "${secretsDir}/restic-env.age";
