@@ -261,6 +261,7 @@ in
       delta
       dua
       mailutils
+      pv
 
       traceroute
       iperf3
