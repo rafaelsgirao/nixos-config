@@ -262,6 +262,7 @@ in
       dua
       mailutils
       pv
+      mbuffer
 
       traceroute
       iperf3
