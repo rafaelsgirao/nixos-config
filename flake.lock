@@ -35,11 +35,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710784068,
-        "narHash": "sha256-2yKivCJ79XSi2Dlo0OYZdvn0mThSVSsBlARui8+lLl4=",
+        "lastModified": 1758456854,
+        "narHash": "sha256-G5hn4A0iRnn0qGGRt0JPNDPF/xckyQkU99tVDTssamw=",
         "owner": "ist-bot-team",
         "repo": "bolsas-scraper",
-        "rev": "ef734ddccc6a36f251dc854c57c0d1e9713b99af",
+        "rev": "93901d04b3332c05db9c2c66eefb0b92c0d1cac4",
         "type": "github"
       },
       "original": {
