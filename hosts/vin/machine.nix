@@ -129,6 +129,7 @@
     lm_sensors
     colordiff
     easyeffects
+    unstable.citrix_workspace
   ];
 
   zramSwap.enable = true;
