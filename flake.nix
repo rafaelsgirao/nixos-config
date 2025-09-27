@@ -157,6 +157,12 @@
         # contentAddressedByDefault = true;
         warnUndeclaredOptions = true;
 
+        #Citrix Workspace
+        permittedInsecurePackages = [
+          "libsoup-2.74.3"
+          "libxml2-2.13.8"
+        ];
+
       };
       # Imports every host defined in a directory.
       mkHosts =
