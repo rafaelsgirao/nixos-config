@@ -38,6 +38,10 @@
     pulse.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    pulsemixer
+  ];
+
   #Fonts
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
