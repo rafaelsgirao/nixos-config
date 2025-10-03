@@ -22,6 +22,7 @@ in
           "virt"
           "intel"
           "amd"
+          "mac"
         ];
       };
       class = mkOption {

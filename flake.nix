@@ -95,6 +95,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin.url = "github:LnL7/nix-darwin/master";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
     bolsas-scraper = {
       url = "github:ist-bot-team/bolsas-scraper";
       inputs = {
@@ -233,6 +236,7 @@
         # systems for which you want to build the `perSystem` attributes
         "x86_64-linux"
         "aarch64-linux"
+        "aarch64-darwin"
       ];
       # for reference: perSystem = { config, self', inputs', pkgs, system, ... }: {
       perSystem =
@@ -300,6 +304,7 @@
               evil = {
                 type = "app";
                 program = evilPackage;
+
               };
             };
           #TODO: would be cooler if the flake exposed something that could be used by 'nix profile install github:<...>'
@@ -315,6 +320,8 @@
               htop
               age-plugin-yubikey
               self'.packages.secrets-check
+              neovim
+              self'.packages.nix-darwin
             ];
             shellHook = ''
               # export DEBUG=1
@@ -407,6 +414,21 @@
         homeConfigurations = mapAttrs (
           _: host: host.config.home-manager.users."rg".home
         ) outputs.nixosConfigurations;
+
+        darwinConfigurations."leras" = inputs.nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = { inherit inputs self; };
+          modules = [
+            inputs.home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
+            inputs.nix-index-database.darwinModules.nix-index
+            # { programs.nix-index-database.comma.enable = true; }
+            ./leras.nix
+          ];
+        };
       };
     };
 }

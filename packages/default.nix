@@ -13,6 +13,7 @@ in
 rec {
   #Packages from inputs.
   agenix = inputs'.agenix.packages.default;
+  nix-darwin = inputs'.nix-darwin.packages.default;
   disko = inputs'.disko.packages.default;
   bolsas-scraper = inputs'.bolsas-scraper.packages.default;
   wc-bot = wcFlake.packages.${pkgs.system}.default;
