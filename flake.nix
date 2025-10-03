@@ -95,7 +95,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin.url = "github:LnL7/nix-darwin/master";
+    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     bolsas-scraper = {
@@ -419,7 +419,7 @@
           system = "aarch64-darwin";
           specialArgs = { inherit inputs self; };
           modules = [
-            inputs.home-manager.darwinModules.home-manager
+            inputs.home.darwinModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
