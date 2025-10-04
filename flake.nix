@@ -161,7 +161,7 @@
         inputs.nixpkgs.lib
         // inputs.flake-parts.lib
         // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib)
-        // (import ./lib.nix { inherit lib; });
+        // (import ./lib { inherit lib; });
 
       profiles = lib.rnl.mkProfiles ./profiles;
       fs = lib.fileset;
