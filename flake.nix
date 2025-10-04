@@ -424,6 +424,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
             }
+            ./profiles/darwin
             inputs.nix-index-database.darwinModules.nix-index
             # { programs.nix-index-database.comma.enable = true; }
             ./leras.nix

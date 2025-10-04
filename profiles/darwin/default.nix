@@ -1,4 +1,9 @@
-_: {
+{ self, ... }:
+{
+  imports = [
+    "${self}/profiles/common/nix.nix"
+  ];
+
   homebrew = {
     enable = true;
   };
