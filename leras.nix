@@ -1,4 +1,4 @@
-_:
+{ profiles, ... }:
 
 {
 
@@ -14,6 +14,7 @@ _:
     home.sessionVariables = {
       SSH_AUTH_SOCK = "/Users/rg/.bitwarden-ssh-agent.sock";
     };
+    imports = [ profiles.home.workstation ];
   };
 
   system.stateVersion = 6;

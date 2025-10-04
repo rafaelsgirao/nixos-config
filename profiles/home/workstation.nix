@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }:
+{
 
   programs.kitty = {
     enable = true;
