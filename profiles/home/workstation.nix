@@ -1,12 +1,13 @@
-_: {
+{ pkgs, ... }:
+{
 
   programs.kitty = {
     enable = true;
     themeFile = "Catppuccin-Macchiato";
-    font.package = fonts.nerd-fonts.fantasque-sans-mono;
-    settings = {
-      font_family = "FantasqueSans Mono Regular";
-    };
+    font.package = pkgs.nerd-fonts.fantasque-sans-mono;
+
+    # https://wiki.nixos.org/wiki/Fonts#What_font_names_can_be_used_in_fonts.fontconfig.defaultFonts.monospace?
+    font.name = "FantasqueSansM Nerd Font Mono";
   };
 
   programs.mpv = {
