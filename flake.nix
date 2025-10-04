@@ -17,6 +17,7 @@
     };
     flake-utils = {
       url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
     };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -30,6 +31,11 @@
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    systems = {
+      url = "github:nix-systems/default";
+      flake = false;
     };
 
     #-------------------
@@ -70,6 +76,7 @@
         #FIXME: make PR so that these lines can be uncommented
         nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
+        nuschtosSearch.follows = "";
       };
     };
 
@@ -97,6 +104,16 @@
 
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util.inputs = {
+      flake-compat.follows = "flake-compat";
+      flake-utils.follows = "flake-utils";
+      nixpkgs.follows = "nixpkgs";
+      treefmt-nix.follows = "treefmt-nix";
+      systems.follows = "systems";
+    };
+
     #TODO: dedupe darwin
 
     bolsas-scraper = {
@@ -113,6 +130,7 @@
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home";
         darwin.follows = ""; # If in the future I get a Mac (unlikely), remove this line.
+        systems.follows = "systems";
       };
     };
 
@@ -419,6 +437,7 @@
           specialArgs = { inherit inputs profiles; };
           modules = [
             inputs.home.darwinModules.home-manager
+            inputs.mac-app-util.darwinModules.default
             profiles.common.default
             profiles.darwin.default
             ./leras.nix

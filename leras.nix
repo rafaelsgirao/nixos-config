@@ -1,4 +1,4 @@
-{ profiles, ... }:
+{ inputs, profiles, ... }:
 
 {
 
@@ -14,7 +14,11 @@
     home.sessionVariables = {
       SSH_AUTH_SOCK = "/Users/rg/.bitwarden-ssh-agent.sock";
     };
-    imports = [ profiles.home.workstation ];
+    imports = [
+      inputs.mac-app-util.homeManagerModules.default
+
+      profiles.home.workstation
+    ];
   };
 
   system.stateVersion = 6;
