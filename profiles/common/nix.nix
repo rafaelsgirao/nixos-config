@@ -1,43 +1,34 @@
 {
-  config,
   lib,
   inputs,
   ...
 }:
 let
-  inherit (config.rg) domain;
+  inherit (lib) mkDefault;
 in
 
 {
   # Credits to this awesome person for (most of) these:
   # https://git.sr.ht/~misterio/nix-config/tree/main/item/hosts/common/global/nix.nix
 
-  # Add each flake input as a registry
-  # To make nix3 commands consistent with the flake
-  # Only adding each flake input to the registry in workstations,
-  # Since all registries add ~200-400MB to each system's closure.
-  nix.registry =
-    if (config.rg.class == "workstation") then
-      lib.mapAttrs (_: value: { flake = value; }) inputs
-    else
-      { nixpkgs.flake = inputs.nixpkgs; };
+  nix.registry = {
+    nixpkgs.flake = inputs.nixpkgs;
+    nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
+  };
 
-  nix.daemonIOSchedClass = "idle";
-  nix.daemonCPUSchedPolicy = "idle";
   nix.settings =
-    let
-      nixCores = lib.max (config.rg.vCores - 2) 1;
-      nixJobs = lib.max ((config.rg.vCores - 2) / 2) 1;
-    in
+    # let
+    # nixCores = max (config.rg.vCores - 2) 1;
+    # nixJobs = max ((config.rg.vCores - 2) / 2) 1;
+    # in
     {
-      max-jobs = lib.mkDefault nixJobs;
-      cores = lib.mkDefault nixCores;
+      # max-jobs = mkDefault nixJobs;
+      # cores = mkDefault nixCores;
 
       download-buffer-size = 536870912;
-      auto-optimise-store = true;
 
       # Experimental Determinate Nix feature
-      lazy-trees = true;
+      # lazy-trees = true;
 
       # Enable flakes
       experimental-features = [
@@ -54,9 +45,9 @@ in
       trusted-users = [ ];
 
       substituters = [
-        "https://cache.${domain}/rgnet"
+        "https://cache.rsg.ovh/rgnet"
       ];
-      trusted-substituters = [ "https://cache.${domain}/rgnet" ];
+      trusted-substituters = [ "https://cache.rsg.ovh/rgnet" ];
 
       trusted-public-keys = [
         "rgnet:KGvhLKw9yQzWbzy+/+KiTCFMqyOCxN12c0Cf/mk+dwE="
@@ -66,11 +57,11 @@ in
       connect-timeout = 1;
 
       # The default at 10 is rarely enough.
-      log-lines = lib.mkDefault 30;
+      log-lines = mkDefault 30;
 
       # Avoid disk full issues.
-      max-free = lib.mkDefault (3000 * 1024 * 1024);
-      min-free = lib.mkDefault (512 * 1024 * 1024);
+      max-free = mkDefault (3000 * 1024 * 1024);
+      min-free = mkDefault (512 * 1024 * 1024);
 
       # Avoid copying unnecessary stuff over SSH
       builders-use-substitutes = true;
@@ -80,25 +71,13 @@ in
       use-xdg-base-directories = true;
     };
 
-  nix.gc = lib.mkIf (!config.rg.isBuilder) {
-    randomizedDelaySec = "45min";
-    automatic = true;
-    dates = "monthly";
-    #Keep last 5 generations.
-    options =
-      let
-        days = if config.rg.isBuilder then "120d" else "90d";
-      in
-      "--delete-older-than ${days}";
-  };
-
   # Add nixpkgs input to NIX_PATH
   # This lets nix2 commands still use <nixpkgs>
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs.outPath}" ];
 
-  nix.distributedBuilds = !config.rg.isBuilder && config.rg.class == "workstation";
+  nix.distributedBuilds = mkDefault true;
 
-  programs.ssh.extraConfig = lib.mkIf (!config.rg.isBuilder) ''
+  programs.ssh.extraConfig = ''
     Host hoid
       PubkeyAcceptedKeyTypes ssh-ed25519
       ServerAliveInterval 60
@@ -143,7 +122,7 @@ in
       ControlPersist 10m
   '';
 
-  nix.buildMachines = lib.mkIf (!config.rg.isBuilder && config.rg.class == "workstation") [
+  nix.buildMachines = [
     {
       hostName = "hoid";
       sshUser = "nixremote";

@@ -1,18 +1,22 @@
 { self, ... }:
 {
+
   imports = [
     "${self}/profiles/common/nix.nix"
   ];
+
+  system.primaryUser = "rg";
 
   homebrew = {
     enable = true;
   };
 
-  networking.applicationFirewall = {
-    enable = true;
-    blockAllIncoming = true;
-
-  };
+  # TODO: nix-darwin 25.11
+  # networking.applicationFirewall = {
+  #   enable = true;
+  #   blockAllIncoming = true;
+  #
+  # };
 
   nix.channel.enable = false;
 
