@@ -9,6 +9,7 @@
   imports = with profiles.home; [
     nixvim
     git
+    fish
 
     inputs.nixvim.homeModules.nixvim
   ];
