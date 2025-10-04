@@ -17,7 +17,6 @@
     noto-fonts-cjk-sans
     noto-fonts-extra
     noto-fonts-emoji
-    fantasque-sans-mono
     font-awesome
     #    powerline-fonts
     source-code-pro
@@ -58,6 +57,7 @@
   nix.channel.enable = false;
 
   nix.daemonIOLowPriority = true;
+  programs.fish.enable = true; # for /etc/shells entry to work
 
   # TODO:
   # - gc

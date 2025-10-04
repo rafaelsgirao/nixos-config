@@ -3,6 +3,7 @@ _: {
   programs.kitty = {
     enable = true;
     themeFile = "Catppuccin-Macchiato";
+    font.package = fonts.nerd-fonts.fantasque-sans-mono;
     settings = {
       font_family = "FantasqueSans Mono Regular";
     };
