@@ -1,9 +1,9 @@
 {
   config,
   secretsDir,
-  inputs,
   lib,
   pkgs,
+  profiles,
   ...
 }:
 let
@@ -20,13 +20,13 @@ let
   inherit (lib) mkIf;
 in
 {
-  imports = [
+  imports = with profiles; [
     ./vscode.nix
     ../graphical/default.nix
   ];
 
-  hm.imports = [
-    inputs.nix-index-database.homeModules.nix-index
+  hm.imports = with profiles; [
+    home.workstation
   ];
 
   age.secrets = {
@@ -120,14 +120,6 @@ in
       Restart = "on-failure";
       RestartSec = 1;
       TimeoutStopSec = 10;
-    };
-  };
-
-  hm.programs.kitty = {
-    enable = true;
-    themeFile = "Catppuccin-Macchiato";
-    settings = {
-      font_family = "FantasqueSans Mono Regular";
     };
   };
 
@@ -286,11 +278,6 @@ in
     "wireshark"
   ];
 
-  hm.programs.mpv = {
-    enable = true;
-    scripts = [ pkgs.mpvScripts.mpris ];
-  };
-
   hm.dconf.settings = {
     # Pomodoro setup.
     "org/gnome/pomodoro/preferences" = {
@@ -314,12 +301,6 @@ in
       picture-uri = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-l.svg";
       picture-uri-dark = "file:///run/current-system/sw/share/backgrounds/gnome/blobs-d.svg";
     };
-  };
-
-  hm.programs.nix-index = {
-    enable = true;
-    enableFishIntegration = true;
-    enableBashIntegration = true;
   };
 
   programs.command-not-found = {
@@ -370,6 +351,7 @@ in
     cargo
     exiftool
   ];
+
   environment.systemPackages = with pkgs; [
     mypkgs.agenix
     attic-client

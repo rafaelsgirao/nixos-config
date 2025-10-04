@@ -7,11 +7,12 @@
 }:
 {
   imports = with profiles.home; [
+    inputs.nixvim.homeModules.nixvim
+    inputs.nix-index-database.homeModules.nix-index
+
     nixvim
     git
     fish
-
-    inputs.nixvim.homeModules.nixvim
   ];
 
   home.preferXdgDirectories = true;
