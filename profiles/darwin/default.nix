@@ -1,12 +1,28 @@
-{ self, ... }:
+{ inputs, profiles, ... }:
 {
 
   imports = [
-    "${self}/profiles/common/nix.nix"
   ];
 
   system.primaryUser = "rg";
 
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs profiles;
+    };
+  };
+  users.users.rg.home = "/Users/rg"; # Needed by home-manager. Took way to looong to figure this out :)
+
+  home-manager.users.rg = {
+
+    imports = [
+      profiles.home.default
+    ];
+
+  };
+  #
   homebrew = {
     enable = true;
   };

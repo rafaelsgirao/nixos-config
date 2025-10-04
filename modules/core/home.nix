@@ -59,7 +59,7 @@ in
     {
       imports = [
         (inputs.impermanence + "/home-manager.nix")
-        inputs.nixvim.homeManagerModules.nixvim
+        inputs.nixvim.homeModules.nixvim
         "${self}/profiles/home/nixvim.nix"
       ];
 

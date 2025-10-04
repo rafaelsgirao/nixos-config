@@ -1,12 +1,17 @@
 _:
 
 {
-  system.stateVersion = 6;
 
   imports = [
-    ./profiles/common/nix.nix
   ];
+
   # TODOs:
   # use upstream nix instead of determinate
   # block outside caches
+
+  home-manager.users.rg = {
+    home.stateVersion = "25.05";
+  };
+
+  system.stateVersion = 6;
 }

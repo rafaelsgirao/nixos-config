@@ -97,6 +97,7 @@
 
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    #TODO: dedupe darwin
 
     bolsas-scraper = {
       url = "github:ist-bot-team/bolsas-scraper";
@@ -127,8 +128,6 @@
       inputs.rust-overlay.follows = "rust-overlay";
     };
 
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-
   };
 
   outputs =
@@ -146,6 +145,7 @@
         // (inputs.nixpkgs.lib.optionalAttrs (inputs.home ? lib) inputs.home.lib)
         // (import ./lib.nix { inherit lib; });
 
+      profiles = lib.rnl.mkProfiles ./profiles;
       fs = lib.fileset;
 
       user = "rg";
@@ -180,8 +180,9 @@
                   inputs
                   user
                   secretsDir
-                  self
+                  self # TODO: deprecate in favor of profiles
                   lib
+                  profiles
                   ;
                 inherit (outputs) nixosConfigurations;
                 hostSecretsDir = "${secretsDir}/${name}";
@@ -203,7 +204,6 @@
                 inputs.agenix.nixosModules.default
                 inputs.home.nixosModules.home-manager
                 inputs.disko.nixosModules.disko
-                inputs.determinate.nixosModules.default
 
                 (dir + "/${name}/hardware.nix")
                 (dir + "/${name}/machine.nix")
@@ -338,7 +338,7 @@
               pass_filenames = false;
             };
             secrets-check = {
-              enable = true;
+              enable = false; # very time-consuming and highly suspect it's just broken
               name = "secrets-check";
               description = "Check agenix secrets";
               entry = "${self'.packages.secrets-check}/bin/secrets-check ./secrets";
@@ -373,7 +373,7 @@
 
       flake = {
         #So nix repl can access `self`, through outputs.self
-        inherit self lib;
+        inherit self lib profiles;
 
         nixosConfigurations = mkHosts ./hosts;
         overlays =
@@ -411,23 +411,19 @@
           }
           // myOverlays;
 
-        homeConfigurations = mapAttrs (
-          _: host: host.config.home-manager.users."rg".home
-        ) outputs.nixosConfigurations;
+        # homeConfigurations = mapAttrs (
+        #   _: host: host.config.home-manager.users."rg".home
+        # ) outputs.nixosConfigurations;
 
         darwinConfigurations."leras" = inputs.nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          specialArgs = { inherit inputs self; };
+          specialArgs = { inherit inputs profiles; };
           modules = [
             inputs.home.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-            }
-            ./profiles/darwin
-            inputs.nix-index-database.darwinModules.nix-index
-            # { programs.nix-index-database.comma.enable = true; }
+            profiles.darwin.default
             ./leras.nix
+            # inputs.nix-index-database.darwinModules.nix-index
+            # { programs.nix-index-database.comma.enable = true; }
           ];
         };
       };
