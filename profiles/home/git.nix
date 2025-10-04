@@ -1,6 +1,7 @@
-{ lib, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkDefault;
+  home = config.home.homeDirectory;
 in
 {
   programs.git = {
@@ -55,7 +56,7 @@ in
         # -Y sign:
         #  The key used for signing is specified using the -f option and may refer to either a private key,
         #  or a public key with the private half available via ssh-agent(1).
-        signingkey = "/home/rg/.ssh/id_gitsign.pub";
+        signingkey = "${home}/.ssh/id_gitsign.pub";
       };
     };
   };
