@@ -45,6 +45,11 @@
   #
   homebrew = {
     enable = true;
+
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+    };
   };
 
   # TODO: nix-darwin 25.11

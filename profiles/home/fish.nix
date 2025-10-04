@@ -45,6 +45,9 @@
     };
     interactiveShellInit = ''
       set fish_greeting #Disables "Welcome to fish! message"
+      if test (uname -S) = "Darwin"
+        eval (/opt/homebrew/bin/brew shellenv)
+      end
     '';
   };
 }
