@@ -220,64 +220,12 @@ in
 
   boot.blacklistedKernelModules = [ "mei_me" ];
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      #Basic utils
-      tcpdump
-      viu
-      cloc
-      rsync
-      qrencode
-      jq
-      duf
-      lf
-      dogdns # Better dig alternative
-      wget
-      curl
-      tmux
-      file
-      fswatch
-      lshw
-      unzip
-      zip
-      whois
-      ncdu
-      killall
-      ripgrep
-      btop
-      #Nice utils
-      eza # managed by HM, but I might want to use this as root
-      bat
-      fd
-      python3
-      openssh
-      neofetch
-      sshfs
-      rclone
-      speedtest-cli
-      rm-improved
-      delta
-      dua
-      mailutils
-      pv
-      mbuffer
-
-      traceroute
-      iperf3
-      nmap
-      rustscan
-      nload
-      nix-output-monitor
-      nix-tree
-      nix-top
-    ]
-    ++ lib.optionals (!isVirt) [
-      usbutils # Provides lsusb
-      nvme-cli
-      dmidecode
-      ethtool
-      pciutils # Provides `lspci` command
-      bashmount
-    ];
+  environment.systemPackages = lib.optionals (!isVirt) [
+    usbutils # Provides lsusb
+    nvme-cli
+    dmidecode
+    ethtool
+    pciutils # Provides `lspci` command
+    bashmount
+  ];
 }

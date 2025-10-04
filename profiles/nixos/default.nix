@@ -36,6 +36,11 @@ in
     nix.daemonCPUSchedPolicy = "idle";
     nix.settings.auto-optimise-store = true;
 
+    environment.systemPackages = with pkgs; [
+      lshw
+      mbuffer
+      traceroute
+    ];
     nix.gc = lib.mkIf (!config.rg.isBuilder) {
       randomizedDelaySec = "45min";
       automatic = true;
