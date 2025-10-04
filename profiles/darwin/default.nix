@@ -6,8 +6,6 @@
 
   system.primaryUser = "rg";
 
-  networking.dns = [ "100.100.100.100" ];
-
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
