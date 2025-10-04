@@ -9,12 +9,12 @@
     };
   };
 
-  hm.programs.mpv = {
+  programs.mpv = {
     enable = true;
     scripts = [ pkgs.mpvScripts.mpris ];
   };
 
-  hm.programs.nix-index = {
+  programs.nix-index = {
     enable = true;
     enableFishIntegration = true;
     enableBashIntegration = true;
