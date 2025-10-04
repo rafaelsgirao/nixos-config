@@ -12,6 +12,21 @@
   environment.shells = [ pkgs.fish ];
   system.primaryUser = "rg";
 
+  fonts.packages = with pkgs; [
+    roboto
+    noto-fonts-cjk-sans
+    noto-fonts-extra
+    noto-fonts-emoji
+    fantasque-sans-mono
+    font-awesome
+    #    powerline-fonts
+    source-code-pro
+    overpass
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.dejavu-sans-mono
+  ];
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
