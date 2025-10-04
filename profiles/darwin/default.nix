@@ -25,6 +25,7 @@
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
     nerd-fonts.dejavu-sans-mono
+    nerd-fonts.fantasque-sans-mono
   ];
 
   home-manager = {
