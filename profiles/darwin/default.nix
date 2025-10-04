@@ -1,9 +1,15 @@
-{ inputs, profiles, ... }:
+{
+  inputs,
+  pkgs,
+  profiles,
+  ...
+}:
 {
 
   imports = [
   ];
 
+  environment.shells = [ pkgs.fish ];
   system.primaryUser = "rg";
 
   home-manager = {
