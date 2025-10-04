@@ -320,7 +320,6 @@
               htop
               age-plugin-yubikey
               self'.packages.secrets-check
-              neovim
               self'.packages.nix-darwin
             ];
             shellHook = ''
@@ -420,6 +419,7 @@
           specialArgs = { inherit inputs profiles; };
           modules = [
             inputs.home.darwinModules.home-manager
+            profiles.common.default
             profiles.darwin.default
             ./leras.nix
             # inputs.nix-index-database.darwinModules.nix-index

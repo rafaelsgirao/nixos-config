@@ -1,4 +1,5 @@
-_: {
+{ lib, ... }:
+{
 
   # Thanks =^)
   # https://github.com/Pesteves2002/dotfiles/tree/nixos/profiles/nixvim
@@ -16,7 +17,7 @@ _: {
     viAlias = true;
     vimAlias = true;
 
-    plugins = {
+    plugins = lib.mkDefault {
       #Fully featured file explorer.
       chadtree.enable = true;
       #"Fast AF completion".

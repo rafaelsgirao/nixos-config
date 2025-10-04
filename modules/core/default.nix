@@ -5,6 +5,7 @@
   keys,
   secretsDir,
   self,
+  profiles,
   ...
 }:
 let
@@ -13,7 +14,7 @@ let
 in
 # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 {
-  imports = [
+  imports = with profiles; [
     # ./hardening.nix
     ./nix.nix
     ./ssh.nix
@@ -23,6 +24,8 @@ in
     ../mailrise.nix
     ../hardware/networking.nix
     ../ccache.nix
+
+    common.default
   ];
 
   # https://discourse.nixos.org/t/flakes-accessing-selfs-revision/11237/8
@@ -30,10 +33,6 @@ in
   system.configurationRevision = self.shortRev or self.dirtyShortRev or "unknown";
   environment.etc."nixos/system-flake".source = self;
   environment.etc."nixos/system-revision".text = self.rev or self.dirtyRev or "unknown";
-  rg = {
-    enable = true;
-    domain = "rsg.ovh";
-  };
   zramSwap.memoryPercent = 25;
 
   services.irqbalance.enable = true;

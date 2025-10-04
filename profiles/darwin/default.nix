@@ -16,7 +16,6 @@
   users.users.rg.home = "/Users/rg"; # Needed by home-manager. Took way to looong to figure this out :)
 
   home-manager.users.rg = {
-
     imports = [
       profiles.home.default
     ];
