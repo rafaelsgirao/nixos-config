@@ -104,7 +104,7 @@ in
   zramSwap.enable = mkDefault true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Lisbon";
+  time.timeZone = "Europe/London";
   security.sudo.execWheelOnly = true;
   security.sudo.extraConfig = ''
     Defaults lecture="never"
