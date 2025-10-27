@@ -109,7 +109,7 @@ in
 
   rg = {
     ip = "100.111.5.34";
-    ipv4 = "192.168.40.50";
+    ipv4 = "192.168.1.50";
     machineId = "4ec1b518f0ce471f3fc4313467d368d9";
     machineType = "amd";
     class = "server";
@@ -130,7 +130,7 @@ in
       "${config.rg.ipv4}/24"
       "192.168.1.50/24"
     ];
-    routes = [ { Gateway = "192.168.40.1"; } ];
+    routes = [ { Gateway = "192.168.1.1"; } ];
   };
 
   systemd.network.networks."12-usb" =

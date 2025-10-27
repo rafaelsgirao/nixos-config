@@ -37,7 +37,7 @@ in
       auto-optimise-store = true;
 
       # Experimental Determinate Nix feature
-      lazy-trees = true;
+      # lazy-trees = true;
 
       # Enable flakes
       experimental-features = [
