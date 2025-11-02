@@ -41,12 +41,8 @@ in
 
       # rg: other components
       "jellyfin"
-      "bthome"
-      "ipp"
-
-      # mlf demo
-      "apple_tv"
-      "samsungtv"
+      # "bthome"
+      # "ipp"
     ];
     config.default_config = {
       # Includes dependencies for a basic setup

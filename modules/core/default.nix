@@ -111,8 +111,8 @@ in
     Defaults lecture="never"
   '';
 
-  location.latitude = 38.7223;
-  location.longitude = -9.1393;
+  location.latitude = 51.5008349;
+  location.longitude = -0.1430045;
   location.provider = "manual";
 
   networking = {
