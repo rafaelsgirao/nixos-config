@@ -10,6 +10,7 @@
 let
   isVirt = config.rg.machineType == "virt";
   inherit (lib) mkDefault;
+  inherit (config.networking) hostName;
 in
 # inherit (lib) filterAttrs mapAttrs mapAttrs' nameValuePair;
 {
@@ -55,7 +56,7 @@ in
   # Nixinate options
   deploy = {
     enable = true;
-    host = "${config.networking.hostName}";
+    host = "${hostName}";
     archiveFlake = config.rg.class != "workstation";
     sshUser = "rg";
     buildOn = "remote";
@@ -84,7 +85,7 @@ in
           echo " "
           echo " "
           echo "                                       Rafael Girão"
-          echo "                                       E-mail: ${config.networking.hostName}@${config.rg.domain}"
+          echo "                                       E-mail: ${hostName}@rafael.ovh"
           echo "                                       E-mail (alternative): rafael.s.girao@tecnico.ulisboa.pt"
           echo ""
           echo ""

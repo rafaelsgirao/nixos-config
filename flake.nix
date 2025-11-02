@@ -108,11 +108,15 @@
     };
 
     agenix = {
+      # TODO: ragenix
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         home-manager.follows = "home";
-        darwin.follows = ""; # If in the future I get a Mac (unlikely), remove this line.
+        darwin.follows = "nix-darwin";
+
+        # Hahahaha - keeping this line because funny
+        # darwin.follows = ""; # If in the future I get a Mac (unlikely), remove this line.
       };
     };
 
@@ -322,6 +326,7 @@
               self'.packages.secrets-check
               neovim
               self'.packages.nix-darwin
+              inputs'.agenix.packages.default
             ];
             shellHook = ''
               # export DEBUG=1
