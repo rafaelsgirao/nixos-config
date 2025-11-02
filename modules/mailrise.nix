@@ -11,12 +11,6 @@ let
   #Config is matched by order, so it's important wildcard is the last one!
   configFile = pkgs.writeText "mailrise_config.yml" ''
     configs:
-      'rss-ist@rafael.ovh':
-        urls:
-        - !env_var MAILRISE_RSS_IST_URL
-      'rss-feeds@rafael.ovh':
-        urls:
-        - !env_var MAILRISE_RSS_FEEDS_URL
       '*@*':
         urls:
         - !env_var MAILRISE_MACHINES_URL
