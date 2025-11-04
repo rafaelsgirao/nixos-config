@@ -52,28 +52,28 @@ in
   ];
 
   # Servers need rest too! Maybe.
-  systemd.services.go-to-bed =
-    let
-      #
-      sleepTime = 6 * 3600;
-    in
-    {
-      serviceConfig.Type = "oneshot";
-      path = [ pkgs.util-linux ];
-      script = ''
-        #!/bin/sh
-        rtcwake -u -s ${toString sleepTime} -m mem
-      '';
-    };
-
-  systemd.timers.go-to-bed-2200 = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "go-to-bed.service" ];
-    timerConfig = {
-      OnCalendar = "*-*-* 19:59:59";
-      Unit = "go-to-bed.service";
-    };
-  };
+  # systemd.services.go-to-bed =
+  #   let
+  #     #
+  #     sleepTime = 6 * 3600;
+  #   in
+  #   {
+  #     serviceConfig.Type = "oneshot";
+  #     path = [ pkgs.util-linux ];
+  #     script = ''
+  #       #!/bin/sh
+  #       rtcwake -u -s ${toString sleepTime} -m mem
+  #     '';
+  #   };
+  #
+  # systemd.timers.go-to-bed-2200 = {
+  #   wantedBy = [ "timers.target" ];
+  #   partOf = [ "go-to-bed.service" ];
+  #   timerConfig = {
+  #     OnCalendar = "*-*-* 19:59:59";
+  #     Unit = "go-to-bed.service";
+  #   };
+  # };
 
   services.openssh.openFirewall = lib.mkForce true;
 
