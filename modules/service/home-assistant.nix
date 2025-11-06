@@ -41,6 +41,9 @@ in
 
       # rg: other components
       "jellyfin"
+      # sth sth eletricity map
+      "co2signal"
+      "apple_tv"
       # "bthome"
       # "ipp"
     ];
