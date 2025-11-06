@@ -36,16 +36,12 @@ in
     ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
     ../../modules/caddy.nix
-    ../../modules/gitea.nix
     ../../modules/virt/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
-    # ../../modules/monero.nix
-
     ../../modules/service/irc.nix
     ../../modules/service/jellyfin.nix
     ../../modules/service/home-assistant.nix
-    # ../../modules/service/transmission.nix
     ../../modules/service/actual.nix
     ../../modules/service/forgejo.nix
     ../../modules/service/immich.nix
