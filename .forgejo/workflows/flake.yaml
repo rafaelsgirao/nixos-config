@@ -14,7 +14,7 @@ jobs:
       - run: echo All good!
       - uses: actions/checkout@v4
       - run: nix config check
-      - run: nix build .#nixosConfigurations.${{ matrix.machine.host }}.config.system.build.toplevel
+      - run: nix build .#nixosConfigurations.${{ matrix.machine.host }}.config.system.build.toplevel --keep-going --print-build-logs
     # Once built, we login to Attic and push the built system to our cache!
       - name: Push system
         # if: steps.build-needed.outputs.needs-build == '1'
