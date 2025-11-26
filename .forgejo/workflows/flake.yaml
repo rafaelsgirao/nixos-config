@@ -9,8 +9,8 @@ jobs:
       - run: nix build .#nixosConfigurations.adolin.config.system.build.toplevel
     # Once built, we login to Attic and push the built system to our cache!
       - name: Push system
-        if: steps.build-needed.outputs.needs-build == '1'
+        # if: steps.build-needed.outputs.needs-build == '1'
         run: |
-          nix run .#attic login rgnet https://cache.rsg.ovh ${{ secrets.ATTIC_TOKEN }}
-          nix run .#attic push rgnet result -j 2
+          attic login rgnet https://cache.rsg.ovh ${{ secrets.ATTIC_TOKEN }}
+          attic push rgnet result -j 2
 

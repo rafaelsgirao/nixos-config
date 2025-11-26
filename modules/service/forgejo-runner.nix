@@ -14,7 +14,7 @@
       name = "monolith";
       url = "https://git.rsg.ovh";
       hostPackages = with pkgs; [
-        atuin
+        attic
         nix
 
         # Packages that came by default.
