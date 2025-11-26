@@ -2,7 +2,7 @@
   inputs = {
     #--------------
     #Important inputs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     #---------------
 
@@ -90,7 +90,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     home = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       # url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -125,9 +125,7 @@
       url = "github:nix-community/lanzaboote";
       # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-parts.follows = "flake-parts";
-      inputs.pre-commit-hooks-nix.follows = "";
+      inputs.pre-commit.follows = "";
       inputs.crane.follows = "crane";
       inputs.rust-overlay.follows = "rust-overlay";
     };
