@@ -4,3 +4,6 @@ jobs:
     runs-on: native
     steps:
       - run: echo All good!
+      - uses: actions/checkout@v4
+      - run: nix run .#build-all-hosts
+
