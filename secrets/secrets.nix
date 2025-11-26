@@ -37,6 +37,7 @@ in
 
   # hoid secrets.
   "hoid/ENV-attic.age".publicKeys = [ systems.hoid ] ++ rgKeys;
+  "hoid/ENV-forgejo-runner.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/HC-alive.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/HC-backups.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/Nextcloud-adminpass.age".publicKeys = [ systems.hoid ] ++ rgKeys;

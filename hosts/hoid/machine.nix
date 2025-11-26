@@ -44,6 +44,7 @@ in
     ../../modules/service/home-assistant.nix
     ../../modules/service/actual.nix
     ../../modules/service/forgejo.nix
+    ../../modules/service/forgejo-runner.nix
     ../../modules/service/immich.nix
   ];
 

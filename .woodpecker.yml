@@ -1,5 +1,0 @@
-pipeline:
-  first-job:
-    image: bash
-    commands:
-      - echo "first run"
