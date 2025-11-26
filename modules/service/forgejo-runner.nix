@@ -41,6 +41,9 @@
       settings.host = {
         workdir_parent = "/var/cache/gitea-runner-default";
       };
+      settings.runner = {
+        capacity = 3;
+      };
     };
   };
 
