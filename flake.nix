@@ -255,6 +255,10 @@
         {
           apps =
             let
+              inherit (lib) getExe;
+              nix = getExe pkgs.nix;
+              jq = getExe pkgs.jq;
+
               buildAllHosts = pkgs.writeShellScriptBin "build-all-configs" ''
                 set -euo pipefail
                 shopt -s expand_aliases
@@ -262,11 +266,11 @@
                 if command -v nom &>/dev/null; then
                   alias nixbin='nom'
                 else
-                  alias nixbin='${pkgs.nix}/bin/nix'
+                  alias nixbin='${nix}'
                 fi
 
                 targets=()
-                for host in $(${pkgs.nix}/bin/nix flake show --accept-flake-config --json --quiet --all-systems | jq -r '.nixosConfigurations | keys[]'); do
+                for host in $(${nix} flake show --accept-flake-config --json --quiet --all-systems | ${jq} -r '.nixosConfigurations | keys[]'); do
                     targets+=(".#nixosConfigurations.$host.config.system.build.toplevel")
                 done
 
@@ -277,16 +281,12 @@
                 if [ ''${#targets[@]} -gt 0 ]; then
                     nixbin build --no-link --accept-flake-config "''${targets[@]}"
                 fi
-
-
-
-
               '';
               buildAllPackages = pkgs.writeShellScriptBin "build-all-packages" ''
                 set -euo pipefail
-                for package in $(${pkgs.nix}/bin/nix flake show --accept-flake-config --json --quiet | jq '.packages."${system}" | keys[]' ); do
+                for package in $(${nix} flake show --accept-flake-config --json --quiet | ${jq} '.packages."${system}" | keys[]' ); do
                   echo "Building package $package"
-                  ${pkgs.nix}/bin/nix build --no-link  --accept-flake-config ".#packages.${system}.$package"
+                  ${nix} build --no-link  --accept-flake-config ".#packages.${system}.$package"
                 done
               '';
 
