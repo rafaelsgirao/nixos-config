@@ -375,7 +375,7 @@ in
     mypkgs.agenix
     attic-client
     pamixer
-    mypkgs.flatpak-xdg-utils
+    flatpak-xdg-utils
     # handlrXdg
     nixpkgs-fmt
 
