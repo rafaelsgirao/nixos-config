@@ -7,7 +7,7 @@
   ...
 }:
 let
-  isGnome = config.services.xserver.desktopManager.gnome.enable;
+  isGnome = config.services.desktopManager.gnome.enable;
   #handlr is SO much better.
   #...but now we're thinking with portals!
   #handlrXdg = pkgs.writeShellScriptBin "xdg-open" ''
