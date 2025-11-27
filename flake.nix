@@ -65,7 +65,8 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.05";
+      # url = "github:nix-community/nixvim/nixos-25.05";
+      url = "github:nix-community/nixvim/main"; #FIXME
       inputs = {
         #FIXME: make PR so that these lines can be uncommented
         nixpkgs.follows = "nixpkgs";
@@ -91,11 +92,11 @@
 
     home = {
       url = "github:nix-community/home-manager/release-25.11";
-      # url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+    # nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+    nix-darwin.url = "github:LnL7/nix-darwin/master"; # FIXME
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     #TODO: dedupe darwin
 
