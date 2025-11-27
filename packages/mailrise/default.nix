@@ -32,6 +32,7 @@ python3.pkgs.buildPythonPackage rec {
 
     packaging
     setuptools # No module named 'pkg_resources'
+    setuptools-scm
 
     # Not sure if needed.
     pkginfo
