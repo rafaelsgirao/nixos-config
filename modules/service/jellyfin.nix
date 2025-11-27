@@ -28,7 +28,7 @@ in
   ];
 
   environment.systemPackages = with pkgs; [
-    glxinfo
+    mesa-demos
     libva-utils # libva-utils --run vainfo
   ];
 
