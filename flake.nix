@@ -362,9 +362,7 @@
 
           };
           packages = import ./packages {
-            inherit pkgs;
-            inherit inputs;
-            inherit inputs';
+            inherit lib inputs inputs' pkgs system;
           };
           _module.args.debug = true;
           _module.args.pkgs = import inputs.nixpkgs {

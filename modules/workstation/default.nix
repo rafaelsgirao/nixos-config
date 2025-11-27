@@ -59,6 +59,7 @@ in
   networking.useDHCP = false;
   #Enable SSH agent on boot
   programs.ssh.startAgent = true;
+  services.gnome.gcr-ssh-agent.enable = false;
 
   hm.programs.rbw = {
     enable = true;

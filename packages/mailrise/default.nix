@@ -23,6 +23,8 @@ python3.pkgs.buildPythonPackage rec {
     hash = "sha256-BKl5g4R9L5IrygMd9Vbi20iF2APpxSSfKxU25naPGTc=";
   };
   doCheck = false;
+  pyproject = true;
+  build-system = with python3.pkgs; [ setuptools ];
   propagatedBuildInputs = with python3.pkgs; [
     pyyaml
     aiosmtpd

@@ -14,6 +14,8 @@ python3.pkgs.buildPythonApplication rec {
     hash = "sha256-jj0G8NC6xueVl3pfAu9/Xv0Vkp37Y83y8ncpG7CHkUo=";
   };
   doCheck = false;
+  pyproject = true;
+build-system = with python3.pkgs; [ setuptools];
   propagatedBuildInputs = with python3.pkgs; [
     (lib.getDev zlib)
     altgraph
