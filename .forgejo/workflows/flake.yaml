@@ -1,6 +1,6 @@
 on: [push]
 jobs:
-  test:
+  build-host:
     runs-on: native
     strategy:
       fail-fast: false
@@ -16,6 +16,26 @@ jobs:
       - run: nix config check
       - run: nix build .#nixosConfigurations.${{ matrix.machine.host }}.config.system.build.toplevel --keep-going --print-build-logs
     # Once built, we login to Attic and push the built system to our cache!
+      - name: Push system
+        # if: steps.build-needed.outputs.needs-build == '1'
+        run: |
+          attic login rgnet https://cache.rsg.ovh ${{ secrets.ATTIC_TOKEN }}
+          attic push rgnet result -j 2
+
+  build-other:
+    runs-on: native
+    strategy:
+      fail-fast: false
+      # Here we specify the matrix of our hosts and their target platform architectures
+      matrix:
+        flake:
+          - output: .#darwinConfigurations.leras.config.system.build.toplevel
+    steps:
+      - run: echo All good!
+      - uses: actions/checkout@v4
+      - run: nix config check
+      - run: nix build ${{ matrix.flake.output }} --keep-going --print-build-logs
+       # Once built, we login to Attic and push the built system to our cache!
       - name: Push system
         # if: steps.build-needed.outputs.needs-build == '1'
         run: |
