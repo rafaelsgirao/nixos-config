@@ -1,6 +1,6 @@
 {
   python3,
-  fetchPypi,
+  fetchFromGitHub,
 }:
 python3.pkgs.buildPythonPackage rec {
   pname = "mailrise";
@@ -18,9 +18,12 @@ python3.pkgs.buildPythonPackage rec {
   #   rev = "2ec3167d88676d6b12a6285671d4c19e49ce9285";
   #   ref = "main";
   # };
-  src = fetchPypi {
-    inherit pname version;
-    hash = "sha256-BKl5g4R9L5IrygMd9Vbi20iF2APpxSSfKxU25naPGTc=";
+  src = fetchFromGitHub {
+
+    owner = "YoRyan";
+    repo = "mailrise";
+    rev = "60d485e2ae22ae09ddeac25565c48e3455a8c1a7";
+    hash = "sha256-CG/tYbzy1E6eQ5fW9htqLyvzc32GzlSm1UVn3nuteIg=";
   };
   doCheck = false;
   pyproject = true;
