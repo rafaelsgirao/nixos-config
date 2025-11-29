@@ -46,8 +46,8 @@
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     roboto
+    noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-extra
     noto-fonts-emoji
     fantasque-sans-mono
     font-awesome

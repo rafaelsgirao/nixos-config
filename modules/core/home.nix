@@ -129,6 +129,7 @@ in
         icons = "auto";
       };
 
+programs.delta.enable = true;
       programs.git = {
         enable = true;
         aliases = {
@@ -138,10 +139,11 @@ in
           s = "status";
           d = "diff";
         };
-        delta.enable = true;
         lfs.enable = true;
-        userEmail = lib.mkDefault "git@rafael.ovh";
-        userName = "Rafael Girão";
+        settings = {
+          user.name = "Rafael Girão";
+          user.email = lib.mkDefault "git@rafael.ovh";
+        };
 
         ignores = [
           "*~"
