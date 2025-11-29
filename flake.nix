@@ -103,7 +103,6 @@
       url = "github:ist-bot-team/bolsas-scraper";
       inputs = {
         flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
       };
     };
 
