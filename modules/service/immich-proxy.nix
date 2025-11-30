@@ -23,7 +23,7 @@ in
       downloadOriginalPhoto = true;
       showGalleryTitle = true;
       showHomePage = false;
-      allowDownloadAll = 1;
+      allowDownloadAll = 2;
     };
 
   };
