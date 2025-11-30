@@ -94,7 +94,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-# FIXME
+    # FIXME
     nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     #TODO: dedupe darwin
@@ -358,12 +358,21 @@
 
           };
           packages = import ./packages {
-            inherit lib inputs inputs' pkgs system;
+            inherit
+              lib
+              inputs
+              inputs'
+              pkgs
+              system
+              ;
           };
           _module.args.debug = true;
           _module.args.pkgs = import inputs.nixpkgs {
             inherit system;
-            overlays = [ outputs.overlays.pkgs-sets-unstable ];
+            overlays = with outputs; [
+              overlays.pkgs-sets-unstable
+              overlays."gitui-darwin-fix.nix"
+            ];
             config = nixpkgsConfig;
           };
         };
@@ -404,7 +413,7 @@
                 unstable = import inputs.nixpkgs-unstable args;
               };
             pkgs-sets-mypkgs = final: _prev: { mypkgs = outputs.packages.${final.system}; };
-            pkgs-sets-everythingmusl = final: prev: { final = prev.pkgsMusl; };
+            pkgs-sets-everythingmusl = _final: prev: { final = prev.pkgsMusl; };
           }
           // myOverlays;
 
