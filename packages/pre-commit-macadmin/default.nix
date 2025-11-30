@@ -15,7 +15,7 @@ python3.pkgs.buildPythonApplication rec {
   };
   doCheck = false;
   pyproject = true;
-build-system = with python3.pkgs; [ setuptools];
+  build-system = with python3.pkgs; [ setuptools ];
   propagatedBuildInputs = with python3.pkgs; [
     (lib.getDev zlib)
     altgraph

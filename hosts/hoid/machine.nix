@@ -5,7 +5,6 @@
   ...
 }:
 let
-  inherit (config.rg) ip;
   inherit (config.networking) fqdn domain;
 in
 {

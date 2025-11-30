@@ -1,4 +1,4 @@
-{ fetchFromGitHub, cmake }:
+{ fetchFromGitHub }:
 fetchFromGitHub {
   owner = "kgoettler";
   repo = "ursamajor-rEFInd";
