@@ -24,6 +24,14 @@ in
       showGalleryTitle = true;
       showHomePage = false;
       allowDownloadAll = 2;
+      lightGallery = {
+        controls = true;
+        download = true;
+        # mobileSettings = {
+        #   controls = true;
+        #   download = true;
+        # };
+      };
     };
 
   };

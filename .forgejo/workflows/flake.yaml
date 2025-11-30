@@ -22,7 +22,7 @@ jobs:
           attic login rgnet https://cache.rsg.ovh ${{ secrets.ATTIC_TOKEN }}
           attic push rgnet result -j 2
 
-  build-other:
+  build-outputs:
     runs-on: native
     strategy:
       fail-fast: false
