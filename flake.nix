@@ -323,6 +323,7 @@
                 self'.packages.secrets-check
                 neovim
                 inputs'.agenix.packages.default
+                pre-commit
               ]
               ++ lib.optionals (system == "aarch64-darwin") [
                 self'.packages.nix-darwin
@@ -426,17 +427,17 @@
         #   _: host: host.config.home-manager.users."rg".home
         # ) outputs.nixosConfigurations;
 
-        darwinConfigurations."leras" = inputs.nix-darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          specialArgs = { inherit inputs profiles; };
-          modules = [
-            inputs.home.darwinModules.home-manager
-            profiles.darwin.default
-            ./leras.nix
-            # inputs.nix-index-database.darwinModules.nix-index
-            # { programs.nix-index-database.comma.enable = true; }
-          ];
-        };
+        # darwinConfigurations."leras" = inputs.nix-darwin.lib.darwinSystem {
+        #   system = "aarch64-darwin";
+        #   specialArgs = { inherit inputs profiles; };
+        #   modules = [
+        #     inputs.home.darwinModules.home-manager
+        #     profiles.darwin.default
+        #     ./leras.nix
+        #     # inputs.nix-index-database.darwinModules.nix-index
+        #     # { programs.nix-index-database.comma.enable = true; }
+        #   ];
+        # };
       };
     };
 }
