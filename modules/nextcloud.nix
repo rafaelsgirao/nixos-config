@@ -72,9 +72,6 @@ in
       preview_imaginary_url = "http://${config.services.imaginary.address}:${toString config.services.imaginary.port}";
       mail_smtpmode = "sendmail";
       mail_sendmailmode = "pipe";
-      #Memories options
-      memories.vod.ffmpeg = "${pkgs.jellyfin-ffmpeg}/bin/ffmpeg";
-      memories.vod.ffprobe = "${pkgs.jellyfin-ffmpeg}/bin/ffprobe";
     };
 
     notify_push = {
@@ -136,14 +133,6 @@ in
   # systemd.services."phpfpm-nextcloud".path = with pkgs; [
   environment.systemPackages = with pkgs; [
     redis
-    #Adds nodejs 14 to nextcloud's path.
-    #Nextcloud marks it as obsolete, but Recognize app only supports v14.
-    nodejs
-
-    #Memories app
-    exiftool
-    jellyfin-ffmpeg
-    perl
   ];
 
   services.imaginary = {
@@ -155,65 +144,5 @@ in
     requires = [ "postgresql.service" ];
     after = [ "postgresql.service" ];
   };
-
-  users.groups.go-vod = { };
-  users.users = {
-    go-vod = {
-      group = "go-vod";
-      isSystemUser = true;
-      extraGroups = [
-        "render"
-        "video"
-      ];
-    };
-  };
-  #https://memories.gallery/troubleshooting/#issues-with-nixos
-  systemd.services.nextcloud-cron = {
-    path = with pkgs; [
-      perl
-      exiftool
-    ];
-  };
-
-  systemd.services."go-vod" =
-    let
-      pkg = pkgs.jellyfin-ffmpeg;
-      goVodConfig = rec {
-        # NVENC = true;
-        # NVENCTemporalAQ = true;
-        # NVENCScale = "cuda";
-        VAAPI = true;
-        #        VAAPILowPower  = true; ?untested
-        FFmpeg = "${pkg}/bin/ffmpeg";
-        FFprobe = "${pkg}/bin/ffprobe";
-        useTranspose = VAAPI;
-        ForceSwTranspose = VAAPI;
-      };
-      GoVodConfigFile = pkgs.writeText "go-vod-config.json" (builtins.toJSON goVodConfig);
-    in
-    {
-      after = [ "network.target" ];
-      wantedBy = [ "network.target" ];
-      # path = with pkgs; [
-      #   jellyfin-ffmpeg
-      # ];
-      serviceConfig = {
-        User = "go-vod";
-        Group = "go-vod";
-
-        # https://ma.ttias.be/auto-restart-crashed-service-systemd/
-        Restart = "on-failure";
-        RestartSec = "5s";
-
-        ExecStart = "${pkgs.mypkgs.go-vod}/bin/go-vod ${GoVodConfigFile}";
-        # DeviceAllow = [ "/dev/dri/renderD128" "/dev/dri/renderD129" ];
-        ReadOnlyPaths = config.services.nextcloud.home;
-        SupplementaryGroups = [
-          "nextcloud"
-          "video"
-          "render"
-        ];
-      };
-    };
 
 }
