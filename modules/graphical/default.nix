@@ -48,7 +48,7 @@
     roboto
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     fantasque-sans-mono
     font-awesome
     #    powerline-fonts

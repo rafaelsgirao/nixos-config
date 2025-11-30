@@ -28,7 +28,7 @@ in
 
   # https://discourse.nixos.org/t/flakes-accessing-selfs-revision/11237/8
   #                                      system.configurationRevision = toString (self.shortRev or self.dirtyShortRev or "unknown");
-  system.configurationRevision = self.shortRev or self.dirtyShortRev or "unknown";
+  # system.configurationRevision = self.shortRev or self.dirtyShortRev or "unknown";
   environment.etc."nixos/system-flake".source = self;
   environment.etc."nixos/system-revision".text = self.rev or self.dirtyRev or "unknown";
   rg = {
