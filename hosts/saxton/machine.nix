@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 let
   inherit (config.rg) domain;
@@ -34,8 +34,6 @@ in
 
   ];
 
-  # build on remote fails because saxton can't access wc-bot private repo on github
-  deploy.buildOn = lib.mkForce "local";
   rg = {
     class = "server";
     machineId = "3879c7fb370c4ea6929d4566c286095f";
