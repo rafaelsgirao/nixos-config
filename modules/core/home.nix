@@ -4,7 +4,6 @@
   lib,
   secretsDir,
   inputs,
-  file,
   self,
   ...
 }:
@@ -14,7 +13,7 @@ let
   config' = config;
   inherit (config.networking) domain;
   inherit (config.rg) isBuilder;
-  inherit (lib) mkIf optionals;
+  inherit (lib) mkIf;
 in
 {
 
@@ -129,7 +128,8 @@ in
         icons = "auto";
       };
 
-programs.delta.enable = true;
+      programs.delta.enable = true;
+
       programs.git = {
         enable = true;
         aliases = {
