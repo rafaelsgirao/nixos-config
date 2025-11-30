@@ -28,6 +28,9 @@ jobs:
       fail-fast: false
       # Here we specify the matrix of our hosts and their target platform architectures
       matrix:
+        systems:
+          - system: x86_64-linux
+          - system: aarch64-linux
         flake:
           # - output: .#darwinConfigurations.leras.config.system.build.toplevel
           - output: .#checks.x86_64-linux.pre-commit
@@ -35,7 +38,6 @@ jobs:
           - output: .#devShells.x86_64-linux.default
           - output: .#devShells.aarch64-linux.default
     steps:
-      - run: echo All good!
       - uses: actions/checkout@v4
       - run: nix config check
       - run: nix build ${{ matrix.flake.output }} --keep-going --print-build-logs
