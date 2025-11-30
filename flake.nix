@@ -308,21 +308,25 @@
             };
           #TODO: would be cooler if the flake exposed something that could be used by 'nix profile install github:<...>'
           devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
-              ripgrep
-              fd
-              curl
-              git
-              fish
-              tmux
-              gitui
-              htop
-              age-plugin-yubikey
-              self'.packages.secrets-check
-              neovim
-              self'.packages.nix-darwin
-              inputs'.agenix.packages.default
-            ];
+            packages =
+              with pkgs;
+              [
+                ripgrep
+                fd
+                curl
+                git
+                fish
+                tmux
+                gitui
+                htop
+                age-plugin-yubikey
+                self'.packages.secrets-check
+                neovim
+                inputs'.agenix.packages.default
+              ]
+              ++ lib.optionals (system == "aarch64-darwin") [
+                self'.packages.nix-darwin
+              ];
             shellHook = ''
               # export DEBUG=1
               ${config.pre-commit.installationScript}
