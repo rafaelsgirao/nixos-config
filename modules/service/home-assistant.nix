@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   inherit (config.networking) domain;
   port = config.services.home-assistant.config.http.server_port;
@@ -22,6 +22,9 @@ in
       temperature_unit = "C";
       inherit (config.location) latitude longitude;
     };
+    customComponents = with pkgs.home-assistant-custom-components; [
+      better_thermostat
+    ];
     extraComponents = [
       # Components required to complete the onboarding
       "analytics"
