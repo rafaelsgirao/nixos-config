@@ -16,7 +16,10 @@ in
     };
 
   };
-  services.jellyfin.enable = true;
+  services.jellyfin = {
+    enable = true;
+    logDir = "/var/log/jellyfin";
+  };
 
   environment.persistence."/state".directories = [ "/var/cache/jellyfin" ];
   environment.persistence."/pst".directories = [ "/var/lib/jellyfin" ];
