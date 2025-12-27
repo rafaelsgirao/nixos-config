@@ -6,21 +6,28 @@ in
 {
   services.home-assistant = {
     enable = true;
-    config.http = {
-      server_host = [
-        "127.0.0.1"
-        "::1"
+    config = {
+
+      http = {
+        server_host = [
+          "127.0.0.1"
+          "::1"
+        ];
+        trusted_proxies = [
+          "::1"
+          "127.0.0.1"
+        ];
+        use_x_forwarded_for = true;
+      };
+      homeassistant = {
+        name = "Home";
+        temperature_unit = "C";
+        inherit (config.location) latitude longitude;
+      };
+      "automation nixos" = [
+        # YAML automations go here
       ];
-      trusted_proxies = [
-        "::1"
-        "127.0.0.1"
-      ];
-      use_x_forwarded_for = true;
-    };
-    config.homeassistant = {
-      name = "Home";
-      temperature_unit = "C";
-      inherit (config.location) latitude longitude;
+      "automation ui" = "!include automations.yaml";
     };
     customComponents = with pkgs.home-assistant-custom-components; [
       better_thermostat
@@ -50,10 +57,6 @@ in
       # "bthome"
       # "ipp"
     ];
-    config.default_config = {
-      # Includes dependencies for a basic setup
-      # https://www.home-assistant.io/integrations/default_config/
-    };
 
   };
 
