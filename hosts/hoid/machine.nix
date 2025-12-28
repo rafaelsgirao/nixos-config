@@ -27,7 +27,9 @@ in
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/hardware/zfs-unlock-initrd.nix
+
     # ../../modules/core/lanzaboote.nix
+
     ../../modules/builder.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
@@ -35,9 +37,12 @@ in
     ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
     ../../modules/caddy.nix
-    ../../modules/virt/libvirt.nix
     ../../modules/impermanence.nix
+    ../../modules/monero.nix
+
+    ../../modules/virt/libvirt.nix
     ../../modules/headless.nix
+
     ../../modules/service/irc.nix
     ../../modules/service/jellyfin.nix
     ../../modules/service/home-assistant.nix
