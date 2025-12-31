@@ -30,6 +30,7 @@ in
       "automation ui" = "!include automations.yaml";
     };
     customComponents = with pkgs.home-assistant-custom-components; [
+      auth_oidc
       better_thermostat
     ];
     extraComponents = [
