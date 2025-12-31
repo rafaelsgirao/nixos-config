@@ -47,6 +47,7 @@ in
 
   # saxton secrets.
   "saxton/ENV-ist-discord-bot.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/ENV-pocket-id.age".publicKeys = [ systems.saxton ] ++ rgKeys;
   "saxton/ENV-WCBot.age".publicKeys = [ systems.saxton ] ++ rgKeys;
   "saxton/ENV-bolsas-scraper.age".publicKeys = [ systems.saxton ] ++ rgKeys;
   "saxton/HC-alive.age".publicKeys = [ systems.saxton ] ++ rgKeys;
