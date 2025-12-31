@@ -199,7 +199,10 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://192.168.40.1:80
+      	reverse_proxy 192.168.1.1:443 {
+		transport http {
+			tls_insecure_skip_verify
+		}
       '';
     };
     "cloud.${domain}" = {
