@@ -41,6 +41,8 @@ in
     ../../modules/monero.nix
 
     ../../modules/virt/libvirt.nix
+    ../../modules/virt/podman.nix
+
     ../../modules/headless.nix
 
     ../../modules/service/irc.nix
@@ -198,11 +200,11 @@ in
     "router.${fqdn}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
-        encode zstd gzip
-      	reverse_proxy 192.168.1.1:443 {
-		transport http {
-			tls_insecure_skip_verify
-		}
+                encode zstd gzip
+              	reverse_proxy 192.168.1.1:443 {
+        		transport http {
+        			tls_insecure_skip_verify
+        		}
       '';
     };
     "cloud.${domain}" = {
