@@ -57,6 +57,7 @@ in
       "apple_tv"
       # "bthome"
       # "ipp"
+      "stream"
     ];
 
   };
