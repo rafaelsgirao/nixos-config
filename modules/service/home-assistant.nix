@@ -54,6 +54,8 @@ in
       "jellyfin"
       # sth sth eletricity map
       "co2signal"
+      "mobile_app"
+      "tplink"
       "apple_tv"
       # "bthome"
       # "ipp"
