@@ -6,6 +6,10 @@ in
 {
   services.home-assistant = {
     enable = true;
+    extraPackages = _ps: [
+
+      pkgs.unstable.python313Packages.pytapo
+    ];
     config = {
 
       http = {
