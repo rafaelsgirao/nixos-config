@@ -61,6 +61,7 @@ in
       # "bthome"
       # "ipp"
       "stream"
+      "onvif"
     ];
 
   };
