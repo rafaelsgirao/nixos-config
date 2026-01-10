@@ -12,6 +12,7 @@ in
     });
     extraPackages =
       ps: with ps; [
+        pkgs.ffmpeg
         pytapo
 
         # pkgs.unstable.python313Packages.pytapo
