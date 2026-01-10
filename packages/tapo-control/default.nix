@@ -2,7 +2,7 @@
   # lib,
   buildHomeAssistantComponent,
   fetchFromGitHub,
-  pythonPackages,
+  python3Packages,
 }:
 
 buildHomeAssistantComponent rec {
@@ -13,11 +13,11 @@ buildHomeAssistantComponent rec {
   src = fetchFromGitHub {
     owner = "JurajNyiri";
     repo = "HomeAssistant-Tapo-Control";
-    rev = "v${version}";
-    hash = "";
+    rev = "${version}";
+    hash = "sha256-iZyF320bZ44lOz+A6MxoWfSmMqmTBsMDs/CGnngxySI=";
   };
 
-  dependencies = with pythonPackages; [
+  dependencies = with python3Packages; [
     pytapo
   ];
 

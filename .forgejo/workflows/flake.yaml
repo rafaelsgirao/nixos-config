@@ -9,7 +9,7 @@ jobs:
         machine:
           - host: hoid
           - host: saxton
-          - host: vin
+          # - host: vin
     steps:
       - run: echo All good!
       - uses: actions/checkout@v4
