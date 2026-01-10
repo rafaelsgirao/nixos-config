@@ -2,7 +2,7 @@
   # lib,
   buildHomeAssistantComponent,
   fetchFromGitHub,
-  python3Packages,
+  pytapo,
 }:
 
 buildHomeAssistantComponent rec {
@@ -17,7 +17,7 @@ buildHomeAssistantComponent rec {
     hash = "sha256-iZyF320bZ44lOz+A6MxoWfSmMqmTBsMDs/CGnngxySI=";
   };
 
-  dependencies = with python3Packages; [
+  dependencies = [
     pytapo
   ];
 
