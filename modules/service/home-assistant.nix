@@ -6,10 +6,16 @@ in
 {
   services.home-assistant = {
     enable = true;
-    extraPackages = _ps: [
 
-      pkgs.unstable.python313Packages.pytapo
-    ];
+    package = pkgs.unstable.home-assistant.overrideAttrs (_oldAttrs: {
+      doInstallCheck = false;
+    });
+    extraPackages =
+      ps: with ps; [
+        pytapo
+
+        # pkgs.unstable.python313Packages.pytapo
+      ];
     config = {
 
       http = {
@@ -33,7 +39,7 @@ in
       ];
       "automation ui" = "!include automations.yaml";
     };
-    customComponents = with pkgs.home-assistant-custom-components; [
+    customComponents = with pkgs.unstable.home-assistant-custom-components; [
       auth_oidc
       better_thermostat
       pkgs.mypkgs.tapo-control
