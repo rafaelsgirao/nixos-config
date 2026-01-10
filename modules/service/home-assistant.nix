@@ -32,6 +32,7 @@ in
     customComponents = with pkgs.home-assistant-custom-components; [
       auth_oidc
       better_thermostat
+      pkgs.mypkgs.tapo-control
     ];
     extraComponents = [
       # Components required to complete the onboarding

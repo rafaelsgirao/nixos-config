@@ -41,6 +41,7 @@ rec {
 
   isponsorblocktv = pkgs.callPackage ./isponsorblock { inherit (pkgs) python3; };
   secrets-check = pkgs.callPackage ./secrets-check { };
+  tapo-control = pkgs.callPackage ./tapo-control { };
 
   # Scripts
   noisedropper = pkgs.callPackage ./scripts/noisedropper.nix { };
