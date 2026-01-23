@@ -194,6 +194,12 @@
                   };
                 }
                 { networking.hostName = name; }
+                (dir + "/${name}/hardware.nix")
+                (dir + "/${name}/machine.nix")
+
+              ]
+              ++ (lib.optionals (name != "nas24-nixos") [
+
                 ./modules/core/default.nix
                 ./modules/core/options.nix
                 ./modules/core/home.nix
@@ -204,8 +210,6 @@
                 inputs.home.nixosModules.home-manager
                 inputs.disko.nixosModules.disko
 
-                (dir + "/${name}/hardware.nix")
-                (dir + "/${name}/machine.nix")
                 {
                   home-manager = {
                     useGlobalPkgs = true;
@@ -219,7 +223,7 @@
                 }
                 # ( inputs.impermanence + "/home-manager.nix" )
                 inputs.impermanence.nixosModules.impermanence
-              ];
+              ]);
             };
           }) (filter enabledPred (attrNames (readDir dir)))
         );
