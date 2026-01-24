@@ -30,7 +30,7 @@ in
   services.nextcloud = {
     enable = true;
     https = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     webfinger = true;
     hostName = ncHost;
     configureRedis = true;
