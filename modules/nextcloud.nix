@@ -33,6 +33,7 @@ in
     package = pkgs.nextcloud32;
     webfinger = true;
     hostName = ncHost;
+    maxUploadSize = "0";
     configureRedis = true;
     enableImagemagick = false;
     #Makes sure that wherever this module is imported this variable is changed.
@@ -89,7 +90,6 @@ in
     NEXTCLOUD_URL = lib.mkForce "http://127.0.0.1:23700/";
   };
   services.nginx.enableReload = true;
-  services.nginx.clientMaxBodySize = "0";
 
   users.users.nginx.extraGroups = [ "caddy" ];
 
