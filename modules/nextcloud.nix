@@ -89,6 +89,7 @@ in
     NEXTCLOUD_URL = lib.mkForce "http://127.0.0.1:23700/";
   };
   services.nginx.enableReload = true;
+  services.nginx.clientMaxBodySize = "0";
 
   users.users.nginx.extraGroups = [ "caddy" ];
 
