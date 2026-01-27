@@ -20,10 +20,6 @@ in
     config = {
 
       http = {
-        server_host = [
-          "127.0.0.1"
-          "::1"
-        ];
         trusted_proxies = [
           "::1"
           "127.0.0.1"
