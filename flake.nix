@@ -93,6 +93,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # FIXME
     # nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
@@ -209,6 +213,7 @@
                 inputs.agenix.nixosModules.default
                 inputs.home.nixosModules.home-manager
                 inputs.disko.nixosModules.disko
+                inputs.jovian.nixosModules.default
 
                 {
                   home-manager = {

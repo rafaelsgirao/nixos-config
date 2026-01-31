@@ -9,7 +9,8 @@ jobs:
         machine:
           - host: hoid
           - host: saxton
-          - host: nas24-nixos
+          - host: jovian
+          # - host: nas24-nixos
           # - host: vin
 
     steps:
