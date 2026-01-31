@@ -36,6 +36,10 @@
     steam.enable = true;
     steam.autoStart = true;
     steam.user = "rg";
+    steam.desktopSession = "gnome";
+    devices.steamdeck.enable = true;
+    hardware.has.amd.gpu = true;
+    # decky-loader.enable = true;
   };
 
   rg = {
@@ -103,7 +107,6 @@
     lm_sensors
     colordiff
     easyeffects
-    # unstable.citrix_workspace
   ];
 
   zramSwap.enable = true;
@@ -114,6 +117,8 @@
   hm.home.packages = with pkgs; [
     unstable.brave
     appimage-run
+    unstable.citrix_workspace
+    bitwarden-cli
   ];
 
 }
