@@ -259,7 +259,7 @@ in
   #Attempt to fix tray icons (Jellyfin-mpv-shim and udiskie in particular)
   services.udev.packages = with pkgs; lib.optionals (!isGnome) [ gnome-settings-daemon ];
 
-  services.earlyoom.enableNotifications = true;
+  # services.earlyoom.enableNotifications = true;
 
   hm.home.sessionVariables = {
     #xdg-ninja recommendations
