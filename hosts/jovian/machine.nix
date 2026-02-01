@@ -39,7 +39,7 @@
     steam.desktopSession = "gnome";
     devices.steamdeck.enable = true;
     hardware.has.amd.gpu = true;
-    # decky-loader.enable = true;
+    decky-loader.enable = true;
   };
 
   rg = {
