@@ -13,7 +13,7 @@ in
     extraPackages =
       ps: with ps; [
         pkgs.ffmpeg
-        pytapo
+        # pytapo
 
         # pkgs.unstable.python313Packages.pytapo
       ];
@@ -39,7 +39,7 @@ in
     customComponents = with pkgs.unstable.home-assistant-custom-components; [
       auth_oidc
       better_thermostat
-      pkgs.mypkgs.tapo-control
+      # pkgs.mypkgs.tapo-control
     ];
     extraComponents = [
       # Components required to complete the onboarding
