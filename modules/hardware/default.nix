@@ -45,6 +45,7 @@ in
   services.smartd = mkIf (!isVirt) {
     enable = true;
     autodetect = true;
+    defaults.monitored = "-a -o on -s (S/../.././02|L/../../7/04)";
     notifications = {
       test = !isWorkstation;
       mail = {
