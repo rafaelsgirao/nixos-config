@@ -119,9 +119,6 @@
     appimage-run
     unstable.citrix_workspace
     bitwarden-cli
-    ryubing
-    dolphin-emu
-    pcsx2
   ];
 
 }
