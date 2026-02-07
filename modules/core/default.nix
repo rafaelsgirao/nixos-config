@@ -239,7 +239,6 @@ in
       wget
       curl
       tmux
-      zellij
       file
       fswatch
       lshw

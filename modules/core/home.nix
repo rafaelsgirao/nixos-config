@@ -82,6 +82,9 @@ in
           bind b set-window-option synchronize-panes
         '';
       };
+      programs.zellij = {
+        attachExistingSession = true;
+      };
 
       home.preferXdgDirectories = true;
       xdg.enable = true;
