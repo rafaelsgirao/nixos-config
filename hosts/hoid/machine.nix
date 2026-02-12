@@ -9,6 +9,21 @@ let
 in
 {
 
+  services.resolved.enable = lib.mkForce false;
+  services.avahi = {
+    enable = lib.mkForce true;
+    ipv4 = true;
+    ipv6 = true;
+    nssmdns4 = true;
+    nssmdns6 = true;
+    publish = {
+      enable = true;
+      userServices = true;
+    };
+    allowInterfaces = [ "eth0" ];
+    openFirewall = true;
+  };
+
   nix.settings = {
     max-jobs = 8;
     cores = 6;
