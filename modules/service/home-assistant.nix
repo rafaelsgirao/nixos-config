@@ -19,7 +19,7 @@ in
       ps: with ps; [
         pkgs.ffmpeg
         # pytapo
-        ];
+      ];
     config = {
 
       http = {
