@@ -92,11 +92,11 @@ in
     Group = "matter-server";
   };
 
-  users.groups.actual = { };
+  users.groups.matter-server = { };
 
   users.users = {
-    actual = {
-      group = "actual";
+    matter-server = {
+      group = "matter-server";
       # extraGroups = [ "caddy" ];
       isSystemUser = true;
     };
