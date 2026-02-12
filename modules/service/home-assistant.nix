@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (config.networking) domain;
   port = config.services.home-assistant.config.http.server_port;
@@ -14,9 +19,7 @@ in
       ps: with ps; [
         pkgs.ffmpeg
         # pytapo
-
-        # pkgs.unstable.python313Packages.pytapo
-      ];
+        ];
     config = {
 
       http = {
@@ -65,12 +68,38 @@ in
       "mobile_app"
       "tplink"
       "apple_tv"
+      "default_config"
+      "ffmpeg"
       # "bthome"
       # "ipp"
       "stream"
       "onvif"
+      "matter"
+      "thread"
+      "otbr"
     ];
 
+  };
+
+  services.matter-server = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  systemd.services.matter-server.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    User = "matter-server";
+    Group = "matter-server";
+  };
+
+  users.groups.actual = { };
+
+  users.users = {
+    actual = {
+      group = "actual";
+      # extraGroups = [ "caddy" ];
+      isSystemUser = true;
+    };
   };
 
   services.caddy.virtualHosts."home.${domain}" = {
@@ -81,6 +110,12 @@ in
     '';
   };
 
-  environment.persistence."/pst".directories = [ "/var/lib/hass" ];
+  environment.persistence."/pst".directories = [
+    "/var/lib/hass"
+    "/var/lib/matter-server"
+  ];
+
+  environment.systemPackages = with pkgs; [ ffmpeg ];
+  systemd.services.home-assistant.path = [ pkgs.ffmpeg ];
 
 }

@@ -3,6 +3,7 @@
   buildHomeAssistantComponent,
   fetchFromGitHub,
   pytapo,
+  ffmpeg,
 }:
 
 buildHomeAssistantComponent rec {
@@ -20,5 +21,8 @@ buildHomeAssistantComponent rec {
   dependencies = [
     pytapo
   ];
+  buildInputs = [ ffmpeg ];
+  nativeBuildInputs = [ ffmpeg ];
+  propagatedBuildInputs = [ ffmpeg ];
 
 }
