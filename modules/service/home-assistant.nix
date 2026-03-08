@@ -82,7 +82,8 @@ in
   };
 
   services.matter-server = {
-    enable = true;
+    enable = false;
+    logLevel = "debug";
     openFirewall = true;
   };
 
@@ -118,4 +119,11 @@ in
   environment.systemPackages = with pkgs; [ ffmpeg ];
   systemd.services.home-assistant.path = [ pkgs.ffmpeg ];
 
+  # Thread links:
+  #  https://openthread.io/codelabs/openthread-border-router#4
+
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.eth0.accept_ra" = 2;
+    "net.ipv6.conf.eth0.accept_ra_rt_info_max_plen" = 64;
+  };
 }

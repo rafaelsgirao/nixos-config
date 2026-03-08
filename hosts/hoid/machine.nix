@@ -67,6 +67,7 @@ in
     ../../modules/service/forgejo.nix
     ../../modules/service/forgejo-runner.nix
     ../../modules/service/immich.nix
+    # ../../modules/service/openthread-border-router.nix
   ];
 
   # Servers need rest too! Maybe.
@@ -142,6 +143,10 @@ in
     # match the interface by name
     matchConfig.Name = "eth0";
     DHCP = "no"; # DHCPv6 will still be triggered by RA (Router Advertisements)
+
+    # DHCPv6Client = "always";
+    # UseDNS = true;
+    # IPV6AcceptRA = true;
 
     address = [
       # configure addresses including subnet mask
