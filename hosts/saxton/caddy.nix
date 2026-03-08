@@ -80,6 +80,14 @@ in
         redir https://${domain}
       '';
     };
+    "media.${pub}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://hoid.rsg.ovh:8096
+      '';
+    };
+
     "${pub}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
