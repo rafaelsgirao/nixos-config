@@ -5,7 +5,7 @@
     ./wayland.nix
   ];
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gdm.enable = false;
   services.desktopManager.gnome.enable = true;
   environment.gnome.excludePackages =
     (with pkgs; [
