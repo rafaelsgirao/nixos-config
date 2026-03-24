@@ -27,7 +27,8 @@ in
 
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
-    # ../../modules/hardware/zfs-unlock-initrd.nix
+    ../../modules/hardware/nvidia.nix
+    ../../modules/hardware/zfs-unlock-initrd.nix
     # ../../modules/core/lanzaboote.nix
     ../../modules/builder.nix
     # ../../modules/restic.nix
@@ -49,6 +50,7 @@ in
     # ../../modules/service/actual.nix
     # ../../modules/service/forgejo.nix
     # ../../modules/service/immich.nix
+    # ../../modules/program/steam.nix
   ];
 
   services.openssh.openFirewall = lib.mkForce true;

@@ -126,4 +126,5 @@ in
 
   fileSystems."/pst".neededForBoot = true;
   fileSystems."/state".neededForBoot = true;
+  fileSystems."/var/cache".neededForBoot = true;
 }
