@@ -88,12 +88,10 @@ in
   # };
 
   rg = {
-    ip = "100.111.5.34";
-    ipv4 = "192.168.40.50";
-    machineId = "4ec1b518f0ce471f3fc4313467d368d9";
+    machineId = "586da0b7ff007fbcf4e2d69e69c37e30";
     machineType = "intel";
     class = "server";
-    isBuilder = true;
+    isBuilder = false;
     resetRootFs = true;
   };
 
@@ -107,7 +105,6 @@ in
 
     address = [
       # configure addresses including subnet mask
-      "${config.rg.ipv4}/24"
       "192.168.1.60/24"
     ];
     routes = [ { Gateway = "192.168.1.1"; } ];

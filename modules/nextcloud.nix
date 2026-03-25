@@ -57,9 +57,7 @@ in
       maintenance_window_start = 1;
       trusted_domains = altHosts;
       trusted_proxies = [
-        config.rg.ip
         "127.0.0.1"
-        "100.115.32.53" # saxton
       ];
       overwriteprotocol = "https";
       default_phone_region = "PT";

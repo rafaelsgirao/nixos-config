@@ -43,9 +43,6 @@ in
       };
       domain = mkOption { type = types.str; };
       backupsProvider = mkOption { type = types.str; };
-      ip = mkOption { type = types.str; };
-      ipv4 = mkOption { type = types.str; };
-      ipv6 = mkOption { type = types.str; };
       resetRootFs = mkOption {
         type = types.bool;
         default = false;
@@ -88,7 +85,6 @@ in
         (assertRgNotNull config.rg.domain)
         # (assertRgNotNull config.hm.home.stateVersion)
         (assertRgNotNull config.system.stateVersion)
-        (assertRgNotNull config.rg.ip)
         # (assertRgNotNull config.rg.ipv4)
         # (assertRgNotNull config.rg.ipv6)
         (assertRgNotNull config.rg.machineType)
