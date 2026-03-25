@@ -39,9 +39,6 @@ in
     class = "server";
     machineId = "3879c7fb370c4ea6929d4566c286095f";
     machineType = "virt";
-    ip = "100.115.32.53";
-    ipv4 = "128.140.110.89";
-    ipv6 = "2a01:4f8:1c1e:aead::1";
     resetRootFs = true;
   };
 
@@ -67,8 +64,8 @@ in
     matchConfig.Name = "eth0";
     address = [
       # configure addresses including subnet mask
-      "${config.rg.ipv6}/64"
-      "${config.rg.ipv4}/32"
+      "2a01:4f8:1c1e:aead::1/64"
+      "128.140.110.89/32"
     ];
     routes = [
       # create default routes for both IPv6 and IPv4

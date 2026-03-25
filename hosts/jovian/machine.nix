@@ -44,7 +44,6 @@
 
   rg = {
     enableCosmic = false;
-    ip = "100.120.144.78";
     machineId = "afed3fd3c2b7c4b8cfb823ec697e2efd";
     machineType = "amd";
     class = "workstation";
