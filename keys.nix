@@ -88,6 +88,7 @@ rec {
     spy = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINC8PlErcHHqvX6xT0Kk9yjDPqZ3kzlmUznn+6kdLxjD root@spy";
     saxton = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIIgLXN8cCbZ19eQtmtRsn1R1JEF0gg9lLYWajB2VeE6 root@saxton";
     hoid = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMB0oR/J+r4+k5QVHrIDNqJvM4RARzGd+lQtcxhMfL5w root@hoid";
+    razer = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/SGvj89H5S506dd6MPsVpQAB/OlU38hGgLJ4m+pMTf root@razer";
 
   };
 

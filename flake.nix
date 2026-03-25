@@ -328,7 +328,7 @@
                 git
                 fish
                 tmux
-                gitui
+                # gitui
                 htop
                 age-plugin-yubikey
                 self'.packages.secrets-check
@@ -388,7 +388,6 @@
             inherit system;
             overlays = with outputs; [
               overlays.pkgs-sets-unstable
-              overlays."gitui-darwin-fix.nix"
             ];
             config = nixpkgsConfig;
           };

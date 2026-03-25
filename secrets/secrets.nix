@@ -33,7 +33,12 @@ in
   "sendmail-pass.age".publicKeys = systemsKeys ++ rgKeys;
   "rclone-config.age".publicKeys = systemsKeys ++ rgKeys;
   "ENV-mailrise.age".publicKeys = systemsKeys ++ rgKeys;
-  "ENV-mediafederation.age".publicKeys = [ systems.hoid ] ++ rgKeys ++ mediaKeys;
+  "ENV-mediafederation.age".publicKeys = [
+    systems.hoid
+    systems.razer
+  ]
+  ++ rgKeys
+  ++ mediaKeys;
 
   # hoid secrets.
   "hoid/ENV-attic.age".publicKeys = [ systems.hoid ] ++ rgKeys;
@@ -41,7 +46,6 @@ in
   "hoid/HC-alive.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/HC-backups.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   "hoid/Nextcloud-adminpass.age".publicKeys = [ systems.hoid ] ++ rgKeys;
-  "hoid/Transmission-creds.age".publicKeys = [ systems.hoid ] ++ rgKeys;
   # - attic cfg for builders: allows pushing store paths to my cache.
   "attic-config-builder.age".publicKeys = [ systems.hoid ] ++ rgKeys;
 
