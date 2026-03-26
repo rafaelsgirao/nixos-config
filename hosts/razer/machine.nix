@@ -44,7 +44,7 @@ in
 
     # ../../modules/service/irc.nix
     # ../../modules/service/jellyfin.nix
-    # ../../modules/service/home-assistant.nix
+    ../../modules/service/home-assistant.nix
     # ../../modules/service/transmission.nix
     # ../../modules/service/actual.nix
     ../../modules/service/forgejo.nix
