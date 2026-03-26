@@ -50,23 +50,23 @@ in
     ../../modules/acme.nix
     ../../modules/attic.nix
     ../../modules/healthchecks.nix
-    ../../modules/nextcloud.nix
+    # ../../modules/nextcloud.nix
     ../../modules/caddy.nix
     ../../modules/impermanence.nix
-    ../../modules/monero.nix
+    # ../../modules/monero.nix
 
     ../../modules/virt/libvirt.nix
     ../../modules/virt/podman.nix
 
     ../../modules/headless.nix
 
-    ../../modules/service/irc.nix
-    ../../modules/service/jellyfin.nix
-    ../../modules/service/home-assistant.nix
-    ../../modules/service/actual.nix
-    ../../modules/service/forgejo.nix
-    ../../modules/service/forgejo-runner.nix
-    ../../modules/service/immich.nix
+    # ../../modules/service/irc.nix
+    # ../../modules/service/jellyfin.nix
+    # ../../modules/service/home-assistant.nix
+    # ../../modules/service/actual.nix
+    # ../../modules/service/forgejo.nix
+    # ../../modules/service/forgejo-runner.nix
+    # ../../modules/service/immich.nix
     # ../../modules/service/openthread-border-router.nix
   ];
 

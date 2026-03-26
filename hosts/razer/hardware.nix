@@ -32,6 +32,7 @@ in
   hardware.cpu.intel.updateMicrocode = true;
 
   # Storage.
+  rg.resetRootFsPoolName = poolName;
   disko.devices = {
 
     disk.nvme1 = mkDisk {

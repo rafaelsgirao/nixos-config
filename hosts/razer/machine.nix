@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (config.networking) domain;
+  inherit (config.networking) domain fqdn;
 in
 {
 
@@ -36,8 +36,7 @@ in
     # ../../modules/attic.nix
     # ../../modules/healthchecks.nix
     # ../../modules/nextcloud.nix
-    # ../../modules/caddy.nix
-    # ../../modules/gitea.nix
+    ../../modules/caddy.nix
     # ../../modules/virt/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
@@ -48,7 +47,7 @@ in
     # ../../modules/service/home-assistant.nix
     # ../../modules/service/transmission.nix
     # ../../modules/service/actual.nix
-    # ../../modules/service/forgejo.nix
+    ../../modules/service/forgejo.nix
     # ../../modules/service/immich.nix
     # ../../modules/program/steam.nix
   ];
@@ -67,12 +66,12 @@ in
   services.nextcloud.home = "/var/lib/nextcloud";
 
   #FIXME push these into each module
-  # environment.persistence."/pst".directories = [
-  #   "/var/lib/postgresql"
-  #   "/var/lib/nextcloud"
-  #   "/var/data"
-  #   "/var/music"
-  # ];
+  environment.persistence."/pst".directories = [
+    "/var/lib/postgresql"
+    "/var/lib/nextcloud"
+    "/var/data"
+    "/var/music"
+  ];
 
   # When upgrading postgres, see:
   # https://nixos.org/manual/nixos/stable/#module-services-postgres-upgrading
@@ -100,7 +99,8 @@ in
   systemd.network.enable = true;
   systemd.network.networks."10-wan" = {
     # match the interface by name
-    matchConfig.Name = "eth0";
+    # matchConfig.Name = "eth0";
+    matchConfig.MACAdress = "00:e0:4c:68:00:64";
     DHCP = "no"; # DHCPv6 will still be triggered by RA (Router Advertisements)
 
     address = [
@@ -162,49 +162,49 @@ in
   system.stateVersion = "24.11"; # Did you read the comment?
   hm.home.stateVersion = "24.11"; # Did you read the comment?
 
-  # services.caddy.virtualHosts = {
-  #   "git.${domain}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy unix//run/forgejo/forgejo.sock
-  #     '';
-  #   };
-  #   "router.${fqdn}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://192.168.40.1:80
-  #     '';
-  #   };
-  #   "cloud.${domain}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://127.0.0.1:23700
-  #     '';
-  #   };
-  #   "cloud.spy.rafael.ovh" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://127.0.0.1:23700
-  #     '';
-  #   };
-  #   "cloud.rafael.ovh" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://127.0.0.1:23700
-  #     '';
-  #   };
-  #   "cache.${domain}" = {
-  #     useACMEHost = "${domain}";
-  #     extraConfig = ''
-  #       encode zstd gzip
-  #       reverse_proxy http://127.0.0.1:33763
-  #     '';
-  #   };
-  # };
+  services.caddy.virtualHosts = {
+    "git.${domain}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy unix//run/forgejo/forgejo.sock
+      '';
+    };
+    "router.${fqdn}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://192.168.40.1:80
+      '';
+    };
+    "cloud.${domain}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:23700
+      '';
+    };
+    "cloud.spy.rafael.ovh" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:23700
+      '';
+    };
+    "cloud.rafael.ovh" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:23700
+      '';
+    };
+    "cache.${domain}" = {
+      useACMEHost = "${domain}";
+      extraConfig = ''
+        encode zstd gzip
+        reverse_proxy http://127.0.0.1:33763
+      '';
+    };
+  };
 
 }

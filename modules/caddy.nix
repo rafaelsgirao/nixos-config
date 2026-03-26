@@ -5,11 +5,6 @@
     inherit (config.security.acme.defaults) email;
   };
 
-  systemd.services.caddy = {
-    wants = [ "nebula@rgnet.service" ];
-    after = [ "nebula@rgnet.service" ];
-  };
-
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [
     443 # Caddy-Public

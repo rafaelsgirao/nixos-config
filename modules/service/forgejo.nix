@@ -1,7 +1,6 @@
 { config, ... }:
 let
   hostname = config.networking.hostName;
-  inherit (config.rg) ip;
   inherit (config.networking) fqdn domain;
   appName = "Forgejo RG";
   backupDir = "/pst/backups/forgejo";
@@ -73,7 +72,7 @@ in
           ROOT_URL = "https://git.${domain}";
           SSH_PORT = sshPort;
           DOMAIN = hostname;
-          SSH_LISTEN_HOST = ip;
+          # SSH_LISTEN_HOST = ip;
           SSH_LISTEN_PORT = sshPort;
           START_SSH_SERVER = true;
           OFFLINE_MODE = true;
