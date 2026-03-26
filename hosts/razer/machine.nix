@@ -32,7 +32,7 @@ in
 
     ../../modules/acme.nix
     ../../modules/builder.nix
-    # ../../modules/restic.nix
+    ../../modules/restic.nix
     # ../../modules/attic.nix
     # ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
@@ -40,7 +40,7 @@ in
     # ../../modules/virt/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
-    # ../../modules/monero.nix
+    ../../modules/monero.nix
 
     # ../../modules/service/irc.nix
     # ../../modules/service/jellyfin.nix

@@ -1,4 +1,4 @@
-{ config, ... }:
+_:
 let
   dataDir = "/var/lib/monero";
 in
@@ -18,7 +18,7 @@ in
     rpc = {
       restricted = true;
       port = 18081;
-      address = config.rg.ip;
+      # address = config.rg.ip;
     };
     limits = rec {
       download = 12500;
