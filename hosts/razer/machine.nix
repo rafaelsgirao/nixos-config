@@ -40,7 +40,7 @@ in
     # ../../modules/virt/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
-    ../../modules/monero.nix
+    # ../../modules/monero.nix # FIXME finish rsync
 
     # ../../modules/service/irc.nix
     # ../../modules/service/jellyfin.nix
@@ -48,7 +48,7 @@ in
     # ../../modules/service/transmission.nix
     # ../../modules/service/actual.nix
     ../../modules/service/forgejo.nix
-    # ../../modules/service/forgejo-runner.nix
+    ../../modules/service/forgejo-runner.nix
     ../../modules/service/immich.nix
     # ../../modules/program/steam.nix
   ];
