@@ -24,6 +24,7 @@
     # README: set this parameter on machines you import this file!
     initrd.kernelModules = [
       "r8169"
+      "r8152"
       "e1000e"
       "uas"
       "atkbd"
