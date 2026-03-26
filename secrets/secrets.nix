@@ -34,20 +34,19 @@ in
   "rclone-config.age".publicKeys = systemsKeys ++ rgKeys;
   "ENV-mailrise.age".publicKeys = systemsKeys ++ rgKeys;
   "ENV-mediafederation.age".publicKeys = [
-    systems.hoid
     systems.razer
   ]
   ++ rgKeys
   ++ mediaKeys;
 
-  # hoid secrets.
-  "hoid/ENV-attic.age".publicKeys = [ systems.hoid ] ++ rgKeys;
-  "hoid/ENV-forgejo-runner.age".publicKeys = [ systems.hoid ] ++ rgKeys;
-  "hoid/HC-alive.age".publicKeys = [ systems.hoid ] ++ rgKeys;
-  "hoid/HC-backups.age".publicKeys = [ systems.hoid ] ++ rgKeys;
-  "hoid/Nextcloud-adminpass.age".publicKeys = [ systems.hoid ] ++ rgKeys;
+  # razer secrets.
+  "razer/ENV-attic.age".publicKeys = [ systems.razer ] ++ rgKeys;
+  "razer/ENV-forgejo-runner.age".publicKeys = [ systems.razer ] ++ rgKeys;
+  "razer/HC-alive.age".publicKeys = [ systems.razer ] ++ rgKeys;
+  "razer/HC-backups.age".publicKeys = [ systems.razer ] ++ rgKeys;
+  "razer/Nextcloud-adminpass.age".publicKeys = [ systems.razer ] ++ rgKeys;
   # - attic cfg for builders: allows pushing store paths to my cache.
-  "attic-config-builder.age".publicKeys = [ systems.hoid ] ++ rgKeys;
+  "attic-config-builder.age".publicKeys = [ systems.razer ] ++ rgKeys;
 
   # saxton secrets.
   "saxton/ENV-ist-discord-bot.age".publicKeys = [ systems.saxton ] ++ rgKeys;
