@@ -35,7 +35,7 @@ in
     # ../../modules/restic.nix
     # ../../modules/attic.nix
     # ../../modules/healthchecks.nix
-    # ../../modules/nextcloud.nix
+    ../../modules/nextcloud.nix
     ../../modules/caddy.nix
     # ../../modules/virt/libvirt.nix
     ../../modules/impermanence.nix
@@ -48,6 +48,7 @@ in
     # ../../modules/service/transmission.nix
     # ../../modules/service/actual.nix
     ../../modules/service/forgejo.nix
+    # ../../modules/service/forgejo-runner.nix
     ../../modules/service/immich.nix
     # ../../modules/program/steam.nix
   ];
