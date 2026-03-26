@@ -33,7 +33,7 @@ in
     ../../modules/acme.nix
     ../../modules/builder.nix
     ../../modules/restic.nix
-    # ../../modules/attic.nix
+    ../../modules/attic.nix
     # ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
     ../../modules/caddy.nix
