@@ -22,8 +22,8 @@ jobs:
       - name: Push system
         # if: steps.build-needed.outputs.needs-build == '1'
         run: |
-          attic login rgnet https://cache.rsg.ovh ${{ secrets.ATTIC_TOKEN }}
-          attic push rgnet result -j 2
+          attic login rgnet2 https://cache.rsg.ovh ${{ secrets.ATTIC_TOKEN }}
+          attic push rgnet2 result -j 2
 
   build-outputs:
     runs-on: native
@@ -48,6 +48,6 @@ jobs:
       - name: Push system
         # if: steps.build-needed.outputs.needs-build == '1'
         run: |
-          attic login rgnet https://cache.rsg.ovh ${{ secrets.ATTIC_TOKEN }}
-          attic push rgnet result -j 2
+          attic login rgnet2 https://cache.rsg.ovh ${{ secrets.ATTIC_TOKEN }}
+          attic push rgnet2 result -j 2
 
