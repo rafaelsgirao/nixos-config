@@ -11,9 +11,11 @@
   #     intelBusId = "PCI:00:02:0";
   #   };
   # };
-  # services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
+    open = true;
     modesetting.enable = true;
     powerManagement = {
       enable = true;

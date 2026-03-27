@@ -37,12 +37,12 @@ in
     # ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
     ../../modules/caddy.nix
-    # ../../modules/virt/libvirt.nix
+    ../../modules/virt/libvirt.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
-    # ../../modules/monero.nix # FIXME finish rsync
+    ../../modules/monero.nix
 
-    # ../../modules/service/irc.nix
+    ../../modules/service/irc.nix
     # ../../modules/service/jellyfin.nix
     ../../modules/service/home-assistant.nix
     # ../../modules/service/transmission.nix
@@ -54,12 +54,6 @@ in
   ];
 
   services.openssh.openFirewall = lib.mkForce true;
-
-  # Support old Nextcloud URL
-  security.acme.certs."${domain}".extraDomainNames = [
-    "*.rafael.ovh"
-    "*.spy.rafael.ovh"
-  ];
 
   # Common group for library files
   users.groups.library = { };
@@ -78,14 +72,13 @@ in
   # https://nixos.org/manual/nixos/stable/#module-services-postgres-upgrading
   services.postgresql.package = pkgs.postgresql_16;
 
-  # FIXME reenable
   # #TODO: add this more generically to all hosts?
-  # services.postgresqlBackup = {
-  #   enable = true;
-  #   location = "/pst/backups/postgres";
-  #   compression = "zstd";
-  #   backupAll = true;
-  # };
+  services.postgresqlBackup = {
+    enable = true;
+    location = "/pst/backups/postgres";
+    compression = "zstd";
+    backupAll = true;
+  };
 
   rg = {
     machineId = "586da0b7ff007fbcf4e2d69e69c37e30";
@@ -130,30 +123,20 @@ in
   };
 
   #Restic Backups
-  # FIXME reenable
-  # services.restic.backups."${config.rg.backupsProvider}" = {
-  #   backupPrepareCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --on";
-  #   backupCleanupCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --off && ${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_HOID";
-  #   paths = [
-  #
-  #     "/pst"
-  #     "/state/backups"
-  #   ];
-  #   extraBackupArgs = [
-  #     "--one-file-system" # TODO: CHECK IF THIS WORKS AS INTENDED! Does it only use one filesystem per backup, or per path?
-  #     "--exclude-caches"
-  #     "--verbose"
-  #   ];
-  # };
+  services.restic.backups."${config.rg.backupsProvider}" = {
+    backupPrepareCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --on";
+    backupCleanupCommand = "/run/current-system/sw/bin/nextcloud-occ maintenance:mode --off && ${pkgs.curl}/bin/curl -m 10 --retry 5 $HC_RESTIC_HOID";
+    paths = [
 
-  # services.uptime-kuma = {
-  #   settings = {
-  #     PORT = "29377";
-  #     HOST = "127.0.0.1";
-  #   };
-  #   enable = true;
-  # };
-  #
+      "/pst"
+      "/state/backups"
+    ];
+    extraBackupArgs = [
+      "--one-file-system" # TODO: CHECK IF THIS WORKS AS INTENDED! Does it only use one filesystem per backup, or per path?
+      "--exclude-caches"
+      "--verbose"
+    ];
+  };
 
   #Hairpinning of local services.
   networking.hosts = {
