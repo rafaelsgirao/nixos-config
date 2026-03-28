@@ -10,6 +10,7 @@ jobs:
           - host: hoid
           - host: saxton
           - host: jovian
+          - host: razer
           # - host: nas24-nixos
           # - host: vin
 
