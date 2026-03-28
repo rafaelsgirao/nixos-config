@@ -33,7 +33,6 @@ in
     ../../modules/acme.nix
     ../../modules/builder.nix
     ../../modules/restic.nix
-    ../../modules/attic.nix
     ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
     ../../modules/caddy.nix
@@ -43,9 +42,7 @@ in
     ../../modules/monero.nix
 
     ../../modules/service/irc.nix
-    # ../../modules/service/jellyfin.nix
     ../../modules/service/home-assistant.nix
-    # ../../modules/service/transmission.nix
     ../../modules/service/forgejo.nix
     ../../modules/service/forgejo-runner.nix
     ../../modules/service/immich.nix

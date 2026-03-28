@@ -1,6 +1,5 @@
 {
   config,
-  secretsDir,
   inputs,
   lib,
   pkgs,
@@ -15,7 +14,6 @@ let
   #  set -euo pipefail
   #  exec ${pkgs.handlr}/bin/handlr open "$@"
   #'';
-  hmLib = config.home-manager.users."rg".lib;
   XDG_DATA_HOME = config.home-manager.users."rg".home.sessionVariables."XDG_DATA_HOME";
   inherit (lib) mkIf;
 in
@@ -30,11 +28,6 @@ in
   ];
 
   age.secrets = {
-    attic-user-config = {
-      file = "${secretsDir}/attic-config.age";
-      mode = "400";
-      owner = "rg";
-    };
   };
 
   # Custom error sound on e.g firefox when Ctrl-f search fails
@@ -50,8 +43,6 @@ in
       Inherits=freedesktop
       Directories=.
     '';
-    ".config/attic/config.toml".source =
-      hmLib.file.mkOutOfStoreSymlink "${config.age.secrets.attic-user-config.path}";
     # ".config/rclone/rclone.conf".source =
     #   hmLib.file.mkOutOfStoreSymlink "${config.age.secrets."rclone.conf".path}";
   };
@@ -373,7 +364,6 @@ in
   ];
   environment.systemPackages = with pkgs; [
     mypkgs.agenix
-    attic-client
     pamixer
     flatpak-xdg-utils
     # handlrXdg

@@ -23,17 +23,11 @@ in
       file = "${secretsDir}/SSH-config.age";
       owner = "rg";
     };
-    attic-builder-config = lib.mkIf isBuilder {
-      file = "${secretsDir}/attic-config-builder.age";
-      mode = "400";
-      owner = "rg";
-    };
   };
 
   environment.systemPackages = lib.mkIf isBuilder (
     with pkgs;
     [
-      attic-client
     ]
   );
 
@@ -106,8 +100,6 @@ in
         }
         // lib.optionalAttrs isBuilder {
 
-          ".config/attic/config.toml".source =
-            hmLib.file.mkOutOfStoreSymlink "${config'.age.secrets.attic-builder-config.path}";
         };
 
       programs.ssh = {

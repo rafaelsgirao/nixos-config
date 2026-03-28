@@ -21,7 +21,6 @@ in
   # Secrets for workstations.
   "RNLDEI-wireguard.age".publicKeys = workstationsKeys ++ rgKeys;
   "SSH-config.age".publicKeys = workstationsKeys ++ rgKeys;
-  "attic-config.age".publicKeys = workstationsKeys ++ rgKeys;
 
   # Secrets for servers.
   # empty.
@@ -40,13 +39,10 @@ in
   ++ mediaKeys;
 
   # razer secrets.
-  "razer/ENV-attic.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/ENV-forgejo-runner.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/HC-alive.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/HC-backups.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/Nextcloud-adminpass.age".publicKeys = [ systems.razer ] ++ rgKeys;
-  # - attic cfg for builders: allows pushing store paths to my cache.
-  "attic-config-builder.age".publicKeys = [ systems.razer ] ++ rgKeys;
 
   # saxton secrets.
   "saxton/ENV-ist-discord-bot.age".publicKeys = [ systems.saxton ] ++ rgKeys;

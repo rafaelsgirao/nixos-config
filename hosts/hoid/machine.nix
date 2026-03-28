@@ -48,7 +48,6 @@ in
     ../../modules/builder.nix
     ../../modules/restic.nix
     ../../modules/acme.nix
-    ../../modules/attic.nix
     ../../modules/healthchecks.nix
     # ../../modules/nextcloud.nix
     ../../modules/caddy.nix
