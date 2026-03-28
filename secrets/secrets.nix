@@ -43,6 +43,7 @@ in
   "razer/HC-alive.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/HC-backups.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/Nextcloud-adminpass.age".publicKeys = [ systems.razer ] ++ rgKeys;
+  "harmonia-server.age".publicKeys = [ systems.razer ] ++ rgKeys;
 
   # saxton secrets.
   "saxton/ENV-ist-discord-bot.age".publicKeys = [ systems.saxton ] ++ rgKeys;

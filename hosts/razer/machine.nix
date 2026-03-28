@@ -45,6 +45,7 @@ in
     ../../modules/service/home-assistant.nix
     ../../modules/service/forgejo.nix
     ../../modules/service/forgejo-runner.nix
+    ../../modules/service/harmonia.nix
     ../../modules/service/immich.nix
     # ../../modules/program/steam.nix
   ];
@@ -176,13 +177,6 @@ in
       extraConfig = ''
         encode zstd gzip
         reverse_proxy http://127.0.0.1:23700
-      '';
-    };
-    "cache.${domain}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://127.0.0.1:33763
       '';
     };
   };
