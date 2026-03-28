@@ -47,7 +47,13 @@ in
     ../../modules/service/forgejo-runner.nix
     ../../modules/service/harmonia.nix
     ../../modules/service/immich.nix
-    # ../../modules/program/steam.nix
+    ../../modules/program/steam.nix
+
+    ../../modules/workstation/chromium.nix
+    ../../modules/workstation/default.nix
+    ../../modules/workstation/gnome.nix
+    ../../modules/workstation/flatpak.nix
+    ../../modules/workstation/nextcloud-client.nix
   ];
 
   services.openssh.openFirewall = lib.mkForce true;
