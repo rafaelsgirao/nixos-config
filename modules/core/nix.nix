@@ -54,12 +54,12 @@ in
       trusted-users = [ ];
 
       substituters = [
-        "https://cache.${domain}/rgnet2"
+        "https://cache.${domain}"
       ];
-      trusted-substituters = [ "https://cache.${domain}/rgnet2" ];
+      trusted-substituters = [ "https://cache.${domain}" ];
 
       trusted-public-keys = [
-        "rgnet2:vrgVD0KkK+Dxw0jv3URsKpbIW8L52XXSYmgmXLSf2ts="
+        "cache.rsg.ovh:rqjyKgDWqeQxQMcqXF8jHfNk+7TiLwlG+hSDN+eiQRc="
       ];
 
       # Fallback quickly if substituters are not available.

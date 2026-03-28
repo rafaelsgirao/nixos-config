@@ -1,11 +1,10 @@
 {
   config,
-  lib,
   secretsDir,
   ...
 }:
 let
-  inherit (lib) toString;
+  inherit (config.networking) domain;
   port = 33763;
 in
 {
@@ -16,14 +15,14 @@ in
   };
   services.harmonia = {
     enable = true;
-    services.harmonia.signKeyPaths = [ config.age.secrets.harmonia-server.path ];
+    signKeyPaths = [ config.age.secrets.harmonia-server.path ];
     settings = {
       bind = "127.0.0.1:${toString port}";
     };
 
   };
   services.caddy.virtualHosts = {
-    "cache.${domain}" = {
+    "cache.rsg.ovh" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
