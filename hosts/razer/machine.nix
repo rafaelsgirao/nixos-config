@@ -28,13 +28,13 @@ in
     ../../modules/hardware/zfs.nix
     ../../modules/hardware/nvidia.nix
     ../../modules/hardware/zfs-unlock-initrd.nix
-    # ../../modules/core/lanzaboote.nix
+    ../../modules/core/lanzaboote.nix
 
     ../../modules/acme.nix
     ../../modules/builder.nix
     ../../modules/restic.nix
     ../../modules/attic.nix
-    # ../../modules/healthchecks.nix
+    ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
     ../../modules/caddy.nix
     ../../modules/virt/libvirt.nix
@@ -46,7 +46,6 @@ in
     # ../../modules/service/jellyfin.nix
     ../../modules/service/home-assistant.nix
     # ../../modules/service/transmission.nix
-    # ../../modules/service/actual.nix
     ../../modules/service/forgejo.nix
     ../../modules/service/forgejo-runner.nix
     ../../modules/service/immich.nix
@@ -94,7 +93,7 @@ in
   systemd.network.networks."10-wan" = {
     # match the interface by name
     # matchConfig.Name = "eth0";
-    matchConfig.MACAdress = "00:e0:4c:68:00:64";
+    matchConfig.Driver = "r8152";
     DHCP = "no"; # DHCPv6 will still be triggered by RA (Router Advertisements)
 
     address = [
