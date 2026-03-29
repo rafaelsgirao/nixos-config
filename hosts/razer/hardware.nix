@@ -27,8 +27,6 @@ in
 
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  # hardware.amdgpu.amdvlk.enable = true;
-
   hardware.cpu.intel.updateMicrocode = true;
 
   # Storage.
