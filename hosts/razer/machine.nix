@@ -74,7 +74,7 @@ in
     machineId = "586da0b7ff007fbcf4e2d69e69c37e30";
     machineType = "intel";
     class = "server";
-    isBuilder = false;
+    isBuilder = true;
     resetRootFs = true;
   };
 
@@ -151,20 +151,6 @@ in
       '';
     };
     "cloud.${domain}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://127.0.0.1:23700
-      '';
-    };
-    "cloud.spy.rafael.ovh" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://127.0.0.1:23700
-      '';
-    };
-    "cloud.rafael.ovh" = {
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
