@@ -23,8 +23,6 @@
   networking.dhcpcd.enable = !config.systemd.network.enable;
   networking.useDHCP = !config.systemd.network.enable;
 
-  programs.command-not-found.enable = lib.mkDefault false;
-
   # Since we can't manually respond to a panic, just reboot.
   boot.kernelParams = [
     "panic=120"
@@ -57,15 +55,8 @@
   # No need for fonts on a server
   fonts.fontconfig.enable = lib.mkDefault false;
 
-  # Notice this also disables --help for some commands such es nixos-rebuild
-  documentation.enable = lib.mkDefault false;
-  documentation.info.enable = lib.mkDefault false;
-  documentation.man.enable = lib.mkDefault false;
-  documentation.nixos.enable = lib.mkDefault false;
-
   # Print the URL instead on servers
   environment.variables.BROWSER = "echo";
-  # programs.command-not-found.enable = mkDefault false;
 
   #  https://github.com/CISOfy/lynis/issues/120
   services.openssh.extraConfig = ''
