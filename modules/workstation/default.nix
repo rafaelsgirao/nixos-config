@@ -101,19 +101,19 @@ in
 
   hm.home.sessionPath = [ "${XDG_DATA_HOME}/cargo/bin" ];
 
-  hm.systemd.user.services.polkit-gnome = lib.mkIf (!isGnome) {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
+  # hm.systemd.user.services.polkit-gnome = lib.mkIf (!isGnome) {
+  #   description = "polkit-gnome-authentication-agent-1";
+  #   wantedBy = [ "graphical-session.target" ];
+  #   wants = [ "graphical-session.target" ];
+  #   after = [ "graphical-session.target" ];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #     Restart = "on-failure";
+  #     RestartSec = 1;
+  #     TimeoutStopSec = 10;
+  #   };
+  # };
 
   hm.programs.kitty = {
     enable = true;

@@ -9,11 +9,6 @@ let
 in
 {
 
-  nix.settings = {
-    max-jobs = 8;
-    cores = 6;
-  };
-
   # TODO: this should be associated with the isBuilder bool.
   boot.binfmt.emulatedSystems = [
     "aarch64-linux"
@@ -26,7 +21,6 @@ in
 
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
-    ../../modules/hardware/nvidia.nix
     ../../modules/hardware/zfs-unlock-initrd.nix
     ../../modules/core/lanzaboote.nix
 
@@ -47,13 +41,6 @@ in
     ../../modules/service/forgejo-runner.nix
     ../../modules/service/harmonia.nix
     ../../modules/service/immich.nix
-    ../../modules/program/steam.nix
-
-    ../../modules/workstation/chromium.nix
-    ../../modules/workstation/default.nix
-    ../../modules/workstation/gnome.nix
-    ../../modules/workstation/flatpak.nix
-    ../../modules/workstation/nextcloud-client.nix
   ];
 
   services.openssh.openFirewall = lib.mkForce true;
@@ -96,8 +83,7 @@ in
   systemd.network.enable = true;
   systemd.network.networks."10-wan" = {
     # match the interface by name
-    # matchConfig.Name = "eth0";
-    matchConfig.Driver = "r8152";
+    matchConfig.Name = "eth0";
     DHCP = "no"; # DHCPv6 will still be triggered by RA (Router Advertisements)
 
     address = [

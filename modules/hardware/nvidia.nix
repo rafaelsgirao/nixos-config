@@ -3,14 +3,14 @@
 
   # disable intel.
   # boot.blacklistedKernelModules = lib.mkIf (config.rg.class == "server") [ "i915" ];
-  # hardware.nvidia = {
-  #   prime = {
-  #     #    offload.enable = true;
-  #     sync.enable = true;
-  #     nvidiaBusId = "PCI:01:00:0";
-  #     intelBusId = "PCI:00:02:0";
-  #   };
-  # };
+  hardware.nvidia = {
+    prime = {
+      #    offload.enable = true;
+      sync.enable = true;
+      nvidiaBusId = "PCI:01:00:0";
+      intelBusId = "PCI:00:02:0";
+    };
+  };
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -25,7 +25,7 @@
     nvidiaSettings = config.rg.class == "workstation";
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     extraPackages = [ pkgs.nvidia-vaapi-driver ];
   };
 }
