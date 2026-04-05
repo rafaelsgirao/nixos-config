@@ -82,7 +82,7 @@ in
   };
 
   services.matter-server = {
-    enable = true;
+    enable = false;
     logLevel = "debug";
     openFirewall = true;
   };
@@ -114,16 +114,22 @@ in
   environment.persistence."/pst".directories = [
     "/var/lib/hass"
     "/var/lib/matter-server"
+    "/var/lib/thread"
   ];
 
   environment.systemPackages = with pkgs; [ ffmpeg ];
   systemd.services.home-assistant.path = [ pkgs.ffmpeg ];
 
-  # Thread links:
-  #  https://openthread.io/codelabs/openthread-border-router#4
-
-  boot.kernel.sysctl = {
-    "net.ipv6.conf.eth0.accept_ra" = 2;
-    "net.ipv6.conf.eth0.accept_ra_rt_info_max_plen" = 64;
+  # OpenThread Border Router (for Thread/Matter devices)
+  services.openthread-border-router = {
+    enable = true;
+    package = pkgs.otbr.openthread-border-router;
+    backboneInterface = "eth0";
+    web.enable = true;
+    radio = {
+      device = "/dev/serial/by-id/usb-Nabu_Casa_SkyConnect_v1.0_9657e7339fb3ed11805b46aca7669f5d-if00-port0";
+      baudRate = 460800;
+      flowControl = true;
+    };
   };
 }

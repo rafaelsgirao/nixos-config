@@ -42,6 +42,7 @@ in
     ../../modules/service/forgejo-runner.nix
     ../../modules/service/harmonia.nix
     ../../modules/service/immich.nix
+    ../../modules/service/openthread-border-router.nix
   ];
 
   services.openssh.openFirewall = lib.mkForce true;
