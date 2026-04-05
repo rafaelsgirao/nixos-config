@@ -83,7 +83,7 @@ in
   systemd.network.enable = true;
   systemd.network.networks."10-wan" = {
     # match the interface by name
-    matchConfig.Name = "eth0";
+    matchConfig.Driver = "r8152";
     DHCP = "no"; # DHCPv6 will still be triggered by RA (Router Advertisements)
 
     address = [
