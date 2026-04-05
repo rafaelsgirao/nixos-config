@@ -112,7 +112,7 @@ in
 
   environment.persistence."/pst".directories = [
     "/var/lib/hass"
-    "/var/lib/matter-server"
+    # "/var/lib/matter-server"
     "/var/lib/thread"
   ];
 
