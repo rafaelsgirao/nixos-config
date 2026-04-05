@@ -43,7 +43,7 @@ in
       DNSOverTLS=opportunistic
     '';
   };
-  services.avahi.enable = false;
+  services.avahi.enable = lib.mkDefault false;
 
   networking.dhcpcd.enable = false;
 
