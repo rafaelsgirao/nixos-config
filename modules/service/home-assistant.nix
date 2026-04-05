@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -81,27 +80,27 @@ in
 
   };
 
-  services.matter-server = {
-    enable = false;
-    logLevel = "debug";
-    openFirewall = true;
-  };
-
-  systemd.services.matter-server.serviceConfig = {
-    DynamicUser = lib.mkForce false;
-    User = "matter-server";
-    Group = "matter-server";
-  };
-
-  users.groups.matter-server = { };
-
-  users.users = {
-    matter-server = {
-      group = "matter-server";
-      # extraGroups = [ "caddy" ];
-      isSystemUser = true;
-    };
-  };
+  # services.matter-server = {
+  #   enable = false;
+  #   logLevel = "debug";
+  #   openFirewall = true;
+  # };
+  #
+  # systemd.services.matter-server.serviceConfig = {
+  #   DynamicUser = lib.mkForce false;
+  #   User = "matter-server";
+  #   Group = "matter-server";
+  # };
+  #
+  # users.groups.matter-server = { };
+  #
+  # users.users = {
+  #   matter-server = {
+  #     group = "matter-server";
+  #     # extraGroups = [ "caddy" ];
+  #     isSystemUser = true;
+  #   };
+  # };
 
   services.caddy.virtualHosts."home.${domain}" = {
     useACMEHost = "${domain}";
