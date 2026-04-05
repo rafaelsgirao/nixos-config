@@ -82,7 +82,7 @@ in
   };
 
   services.matter-server = {
-    enable = false;
+    enable = true;
     logLevel = "debug";
     openFirewall = true;
   };
