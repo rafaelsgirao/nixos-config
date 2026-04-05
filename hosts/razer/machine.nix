@@ -31,6 +31,7 @@ in
     ../../modules/nextcloud.nix
     ../../modules/caddy.nix
     ../../modules/virt/libvirt.nix
+    ../../modules/virt/podman.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
     ../../modules/monero.nix
@@ -83,7 +84,7 @@ in
   systemd.network.enable = true;
   systemd.network.networks."10-wan" = {
     # match the interface by name
-    matchConfig.Driver = "r8152";
+    matchConfig.Name = "eth0";
     DHCP = "no"; # DHCPv6 will still be triggered by RA (Router Advertisements)
 
     address = [
@@ -147,7 +148,7 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        reverse_proxy http://192.168.40.1:80
+        reverse_proxy http://192.168.1.1:80
       '';
     };
     "cloud.${domain}" = {
