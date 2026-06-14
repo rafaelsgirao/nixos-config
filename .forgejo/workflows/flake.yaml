@@ -8,8 +8,8 @@ jobs:
       matrix:
         machine:
           - host: saxton
-          - host: jovian
           - host: razer
+          # - host: jovian
           # - host: hoid
           # - host: nas24-nixos
           # - host: vin
