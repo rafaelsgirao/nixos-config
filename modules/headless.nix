@@ -92,9 +92,9 @@
       #   https://utcc.utoronto.ca/~cks/space/blog/linux/SystemdShutdownWatchdog
       rebootTime = "30s";
     };
-    sleep.extraConfig = ''
-      AllowHibernation=no
-    '';
+    sleep.settings.Sleep = {
+      AllowHibernation = "no";
+    };
   };
 
   # use TCP BBR has significantly increased throughput and reduced latency for connections

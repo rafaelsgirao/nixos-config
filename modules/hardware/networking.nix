@@ -26,8 +26,6 @@ in
     "/etc/NetworkManager/system-connections"
   ];
 
-  #resolved is bad software. it just doesn't work reliably.
-  # Only keeping it in workstations for now, for mDNS/service-discovery.
   services.resolved = mkIf isWorkstation {
     enable = true;
     #LLMNR is a Microsoft standard.
@@ -39,9 +37,9 @@ in
       "9.9.9.9#dns.quad9.net"
       "2620:fe::9#dns.quad9.net"
     ];
-    extraConfig = ''
-      DNSOverTLS=opportunistic
-    '';
+    settings.Resolve = {
+      DNSOverTLS = "opportunistic";
+    };
   };
   services.avahi.enable = false;
 

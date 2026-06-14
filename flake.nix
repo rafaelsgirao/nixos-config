@@ -69,7 +69,7 @@
       url = "github:nix-community/nixvim/nixos-26.05";
       inputs = {
         #FIXME: make PR so that these lines can be uncommented
-        # nixpkgs.follows = "nixpkgs";
+        nixpkgs.follows = "nixpkgs";
         flake-parts.follows = "flake-parts";
       };
     };

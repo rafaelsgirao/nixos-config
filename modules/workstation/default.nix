@@ -193,7 +193,6 @@ in
   #   };
   # };
 
-  programs.adb.enable = true;
   hm.services.flameshot = {
     # enable = lib.mkIf (!isGnome) true;
     enable = true;
@@ -356,13 +355,14 @@ in
     shellcheck
     sonixd
     libnotify
-    nodePackages.prettier
+    prettier
     unstable.yt-dlp
     yubioath-flutter
     cargo
     exiftool
   ];
   environment.systemPackages = with pkgs; [
+    android-tools
     mypkgs.agenix
     pamixer
     flatpak-xdg-utils

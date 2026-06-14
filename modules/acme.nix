@@ -18,7 +18,7 @@ in
     defaults = {
       dnsResolver = "1.1.1.1:53";
       email = "acme-admin@${domain}";
-      credentialsFile = config.age.secrets.ACME-env.path;
+      environmentFile = config.age.secrets.ACME-env.path;
       dnsProvider = "cloudflare";
     };
   };

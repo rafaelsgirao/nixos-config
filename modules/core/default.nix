@@ -235,7 +235,7 @@ in
       jq
       duf
       lf
-      dogdns # Better dig alternative
+      doggo # Better dig alternative
       wget
       curl
       tmux
@@ -255,7 +255,7 @@ in
       fd
       python3
       openssh
-      neofetch
+      fastfetch
       sshfs
       rclone
       speedtest-cli

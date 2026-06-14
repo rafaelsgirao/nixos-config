@@ -6,7 +6,6 @@
   ...
 }:
 let
-  inherit (pkgs) callPackage;
   # Don't add this flake as an input because it's a private repo
   # and nixos-install won't run without being able to fetch all inputs.
   # a better solution would be flake.parts partitions.
@@ -24,12 +23,7 @@ rec {
   # ist-discord-bot = inputs'.ist-discord-bot.packages.default;
 
   #Packages defined in this repo.
-  fakepkg = pkgs.callPackage ./fakepkg { };
   http-cat = pkgs.callPackage ./http-cat { };
-
-  howdy = pkgs.callPackage ./howdy { };
-
-  drawj2d = callPackage ./drawj2d { };
 
   # chef-workstation = callPackage ./chef-workstation { inherit rubyNix; };
 
