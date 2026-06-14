@@ -8,6 +8,7 @@ in
 {
   services.pocket-id = {
     enable = true;
+    environmentFile = config.age.secrets.ENV-pocket-id.path;
     settings = {
       TRUST_PROXY = true;
       APP_URL = "https://id.rafael.ovh";
