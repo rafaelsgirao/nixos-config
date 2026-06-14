@@ -123,8 +123,7 @@ in
   # OpenThread Border Router (for Thread/Matter devices)
   services.openthread-border-router = {
     enable = true;
-    package = pkgs.otbr.openthread-border-router;
-    backboneInterface = "eth0";
+    backboneInterfaces = [ "eth0" ];
     web.enable = true;
     radio = {
       device = "/dev/serial/by-id/usb-Nabu_Casa_SkyConnect_v1.0_9657e7339fb3ed11805b46aca7669f5d-if00-port0";

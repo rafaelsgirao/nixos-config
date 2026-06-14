@@ -4,7 +4,6 @@
     #Important inputs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-otbr.url = "github:mrene/nixpkgs/openthread-border-router";
     # https://github.com/mrene/nixpkgs.git
     #---------------
 
@@ -427,7 +426,6 @@
               in
               {
                 unstable = import inputs.nixpkgs-unstable args;
-                otbr = import inputs.nixpkgs-otbr args;
               };
             pkgs-sets-mypkgs = final: _prev: { mypkgs = outputs.packages.${final.system}; };
             pkgs-sets-everythingmusl = _final: prev: { final = prev.pkgsMusl; };

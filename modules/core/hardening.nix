@@ -10,9 +10,7 @@
 # profile, always mention that you do.
 
 {
-  config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -22,8 +20,6 @@ with lib;
   # meta = {
   #   maintainers = [ maintainers.joachifm maintainers.emily ];
   # };
-
-  boot.kernelPackages = mkIf (!config.rg.isBuilder) (mkForce pkgs.linuxPackages_hardened);
 
   nix.settings.allowed-users = [ "@users" ];
 
