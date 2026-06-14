@@ -7,10 +7,10 @@ jobs:
       # Here we specify the matrix of our hosts and their target platform architectures
       matrix:
         machine:
-          - host: hoid
           - host: saxton
           - host: jovian
           - host: razer
+          # - host: hoid
           # - host: nas24-nixos
           # - host: vin
 
