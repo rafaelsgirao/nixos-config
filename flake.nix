@@ -2,7 +2,7 @@
   inputs = {
     #--------------
     #Important inputs.
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-otbr.url = "github:mrene/nixpkgs/openthread-border-router";
     # https://github.com/mrene/nixpkgs.git
@@ -67,7 +67,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.11";
+      url = "github:nix-community/nixvim/nixos-26.05";
       inputs = {
         #FIXME: make PR so that these lines can be uncommented
         # nixpkgs.follows = "nixpkgs";
@@ -92,7 +92,7 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     home = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jovian = {
