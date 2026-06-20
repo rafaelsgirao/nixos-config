@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -10,9 +11,10 @@
   # nixos-26.05, which ships gamescope 3.16.23 + a 3.16.23-shaped
   # shaders-path.patch that fails to apply to the 3.16.24 source ("Hunk #1
   # FAILED at 34"). Feed Jovian the unstable gamescope (already 3.16.24, with a
-  # matching patch) as its base. This overlay must precede Jovian's so that its
-  # `prev.gamescope` resolves to ours.
-  nixpkgs.overlays = [
+  # matching patch) as its base. mkBefore forces this overlay ahead of Jovian's
+  # so its `prev.gamescope` (and the gamescope-wsi/wrapper derivations it builds
+  # internally from that) all resolve to ours rather than the broken 26.05 one.
+  nixpkgs.overlays = lib.mkBefore [
     (_final: prev: {
       gamescope = inputs.nixpkgs-unstable.legacyPackages.${prev.stdenv.hostPlatform.system}.gamescope;
     })
