@@ -9,7 +9,7 @@ jobs:
         machine:
           - host: saxton
           - host: razer
-          # - host: jovian
+          - host: jovian
           # - host: hoid
           # - host: nas24-nixos
           # - host: vin
