@@ -41,7 +41,12 @@ in
       DNSOverTLS = "opportunistic";
     };
   };
-  services.avahi.enable = false;
+  # Off by default, but at a lower priority than mkDefault so modules that need
+  # mDNS can still turn it on. openthread-border-router sets `enable = mkDefault
+  # true` (for _meshcop._udp advertisement + the SRP advertising proxy); using
+  # mkDefault here would tie that priority and cause an eval conflict, while a
+  # plain `false` would override the module and break the border router.
+  services.avahi.enable = lib.mkOptionDefault false;
 
   networking.dhcpcd.enable = false;
 
