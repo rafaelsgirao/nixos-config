@@ -1,8 +1,22 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 {
+
+  # Jovian's overlay bumps gamescope's src to 3.16.24 but inherits the patch
+  # from the base nixpkgs gamescope (prev.gamescope). Our system nixpkgs is
+  # nixos-26.05, which ships gamescope 3.16.23 + a 3.16.23-shaped
+  # shaders-path.patch that fails to apply to the 3.16.24 source ("Hunk #1
+  # FAILED at 34"). Feed Jovian the unstable gamescope (already 3.16.24, with a
+  # matching patch) as its base. This overlay must precede Jovian's so that its
+  # `prev.gamescope` resolves to ours.
+  nixpkgs.overlays = [
+    (_final: prev: {
+      gamescope = inputs.nixpkgs-unstable.legacyPackages.${prev.stdenv.hostPlatform.system}.gamescope;
+    })
+  ];
 
   imports = [
     # ../../modules/core/lanzaboote.nix

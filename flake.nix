@@ -96,7 +96,11 @@
     };
     jovian = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      # Jovian is only validated against nixos-unstable. Its overlay's gamescope
+      # base comes from the *system* nixpkgs, so the gamescope fix lives in the
+      # jovian host (hosts/jovian/machine.nix); this just aligns Jovian's own
+      # internal nixpkgs with what it expects.
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # FIXME
