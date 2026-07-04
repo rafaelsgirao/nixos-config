@@ -211,3 +211,7 @@ pyrightconfig.json
 
 .direnv
 result
+.new
+node_modules
+package-lock.json
+package.json

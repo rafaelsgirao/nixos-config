@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(afplay:*)"
+      "Bash(afplay:*)",
+      "Bash(nix flake *)",
+      "Bash(nix show-config *)"
     ]
   }
 }

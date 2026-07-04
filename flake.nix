@@ -23,10 +23,6 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-    gitignore = {
-      url = "github:hercules-ci/gitignore.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -56,7 +52,6 @@
       inputs = {
         flake-compat.follows = "flake-compat";
         nixpkgs.follows = "nixpkgs";
-        gitignore.follows = "gitignore";
       };
     };
 
