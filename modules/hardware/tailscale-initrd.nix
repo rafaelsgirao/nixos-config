@@ -32,15 +32,16 @@ in
   #         > /pst/etc/ssh-initrd/tailscale-authkey
   #     OAuth client secrets don't expire (plain pre-auth keys die in <=90d).
   #
-  # Like the initrd ssh host key, the auth key is world-readable in the nix
-  # store and sits on the unencrypted ESP. Stolen, it only mints nodes tagged
-  # tag:initrd-unlock, which the grants above render harmless.
+  # The auth key rides in via boot.initrd.secrets (like the initrd ssh host
+  # key): appended to the initrd at bootloader install, never copied to the
+  # nix store — but it does sit on the unencrypted ESP. Stolen, it only mints
+  # nodes tagged tag:initrd-unlock, which the grants above render harmless.
 
   options.rg.tailscale-initrd = {
     authKeyFile = lib.mkOption {
-      type = lib.types.path;
-      default = /pst/etc/ssh-initrd/tailscale-authkey;
-      description = "OAuth client secret (with ?ephemeral=true&preauthorized=true) baked into the initrd.";
+      type = lib.types.str;
+      default = "/pst/etc/ssh-initrd/tailscale-authkey";
+      description = "Path (on the host, at bootloader-install time) to the OAuth client secret (with ?ephemeral=true&preauthorized=true).";
     };
     tag = lib.mkOption {
       type = lib.types.str;
@@ -97,6 +98,7 @@ in
           for i in $(seq 1 60); do
             if tailscale up \
               --auth-key 'file:/etc/tailscale/authkey' \
+              --hostname ${lib.escapeShellArg "${config.networking.hostName}-initrd"} \
               --advertise-tags ${lib.escapeShellArg cfg.tag} \
               --netfilter-mode=off \
               --accept-dns=false \
@@ -110,17 +112,10 @@ in
         '';
       };
 
+      # Appended to the initrd on the target machine, outside the nix store.
+      secrets."/etc/tailscale/authkey" = cfg.authKeyFile;
+
       systemd.contents = {
-        "/etc/tailscale/authkey".source = cfg.authKeyFile;
-
-        # Node name on the tailnet (tailscaled uses the OS hostname).
-        "/etc/hostname".text = "${config.networking.hostName}-initrd";
-
-        # tailscaled expects /var/run.
-        "/etc/tmpfiles.d/50-tailscale.conf".text = ''
-          L /var/run - - - - /run
-        '';
-
         # TLS to the coordination server.
         "/etc/ssl/certs/ca-certificates.crt".source = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
 
@@ -129,6 +124,9 @@ in
           DNS=${lib.concatStringsSep " " cfg.dnsServers}
         '';
       };
+
+      # tailscaled expects /var/run.
+      systemd.tmpfiles.settings."50-tailscale"."/var/run".L.argument = "/run";
 
       # Let tailscaled manage its own interface.
       systemd.network.networks."50-tailscale" = {
@@ -142,7 +140,8 @@ in
       systemd.extraBin.ping = "${pkgs.iputils}/bin/ping";
 
       # systemd-resolved in stage 1, for resolving the coordination server.
-      systemd.additionalUpstreamUnits = [ "systemd-resolved.service" ];
+      # (current nixpkgs already lists systemd-resolved.service in
+      # additionalUpstreamUnits, so don't add it again)
       systemd.users.systemd-resolve = { };
       systemd.groups.systemd-resolve = { };
       systemd.storePaths = [
