@@ -22,6 +22,7 @@ in
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
     ../../modules/hardware/zfs-unlock-initrd.nix
+    ../../modules/hardware/tailscale-initrd.nix
     ../../modules/core/lanzaboote.nix
 
     ../../modules/acme.nix
@@ -45,6 +46,14 @@ in
   ];
 
   services.openssh.openFirewall = lib.mkForce true;
+
+  # Keeps the initrd tailscale auth key (an OAuth client secret) in place;
+  # rg.tailscale-initrd bakes it into the initrd from this path at build time.
+  age.secrets.Tailscale-initrd-authkey = {
+    file = ../../secrets/razer/Tailscale-initrd-authkey.age;
+    path = "/pst/etc/ssh-initrd/tailscale-authkey";
+    symlink = false;
+  };
 
   # Common group for library files
   users.groups.library = { };
