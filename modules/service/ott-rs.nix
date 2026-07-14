@@ -2,7 +2,6 @@
   config,
   inputs,
   hostSecretsDir,
-  pkgs,
   ...
 }:
 let
@@ -20,10 +19,6 @@ in
   #   sudo systemctl start ott-rs.timer ott-rs.service
   services.ott-rs = {
     enable = true;
-
-    # ott-rs is validated against its own nixpkgs pin's ffmpeg; 26.05's
-    # ffmpeg 8.1.1 fails its finite-HLS remux behavior test.
-    ffmpegPackage = inputs.ott-rs.inputs.nixpkgs.legacyPackages.${pkgs.system}.ffmpeg;
 
     # OTT_RS_TG_API_ID, OTT_RS_TG_API_HASH and OTT_RS_TG_CHAT_ID.
     environmentFile = config.age.secrets.ENV-ott-rs.path;

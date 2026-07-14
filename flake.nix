@@ -104,9 +104,10 @@
       url = "github:ist-bot-team/bolsas-scraper";
     };
 
-    # Private repo; fetched over SSH. nixpkgs must follow unstable, not 26.05:
-    # against 26.05's ffmpeg 8.1.1 the package fails its finite-HLS remux
-    # test (EOF reconnect loop).
+    # Private repo; fetched over SSH. nixpkgs follows unstable (upstream's
+    # development target), not 26.05. NB: the package's finite-HLS remux test
+    # fails on aarch64-darwin regardless of nixpkgs pin, so only linux builds
+    # can verify it.
     ott-rs = {
       url = "git+ssh://git@github.com/carjorvaz/ott-rs.git";
       inputs = {
