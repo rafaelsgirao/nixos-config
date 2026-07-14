@@ -12,6 +12,7 @@ in
     ../../modules/core/lanzaboote.nix
 
     ../../modules/service/immich-proxy.nix
+    ../../modules/service/ott-rs.nix
     ../../modules/service/pocket-id.nix
 
     ./wc-bot.nix

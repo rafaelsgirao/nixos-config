@@ -56,4 +56,6 @@ in
   "saxton/Mailserver-pwd-rafael.age".publicKeys = [ systems.saxton ] ++ rgKeys;
   "saxton/Mailserver-pwd-machines.age".publicKeys = [ systems.saxton ] ++ rgKeys;
   "saxton/Caddy-super-secret-config.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/ENV-ott-rs.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/ott-rs-client-token.age".publicKeys = [ systems.saxton ] ++ rgKeys;
 }

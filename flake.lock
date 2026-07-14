@@ -470,6 +470,29 @@
         "type": "github"
       }
     },
+    "ott-rs": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1784056284,
+        "narHash": "sha256-u1h8CbNmCV1/S+9RzUQXrlwAf9BLmWHQCEBckMyJiC8=",
+        "ref": "refs/heads/master",
+        "rev": "23108d9eed5b7b25fd92544a52ef03243ed4409f",
+        "revCount": 73,
+        "type": "git",
+        "url": "ssh://git@github.com/carjorvaz/ott-rs.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/carjorvaz/ott-rs.git"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
@@ -513,6 +536,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixvim": "nixvim",
+        "ott-rs": "ott-rs",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "ruby-nix": "ruby-nix",
         "rust-overlay": "rust-overlay",
