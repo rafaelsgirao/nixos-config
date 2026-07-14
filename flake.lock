@@ -486,11 +486,11 @@
         "rev": "23108d9eed5b7b25fd92544a52ef03243ed4409f",
         "revCount": 73,
         "type": "git",
-        "url": "ssh://git@github.com/carjorvaz/ott-rs.git"
+        "url": "https://git.rsg.ovh/mirrors/ott-rs.git"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@github.com/carjorvaz/ott-rs.git"
+        "url": "https://git.rsg.ovh/mirrors/ott-rs.git"
       }
     },
     "pre-commit-hooks-nix": {
