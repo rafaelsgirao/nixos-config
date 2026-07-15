@@ -164,7 +164,7 @@ in
 
           url = mkIf isWorkstation {
             "git@github.com:".insteadOf = "https://github.com/";
-            "git@git.${domain}:2222".insteadOf = "https://git.${domain}/";
+            "ssh://git@git.${domain}:4222/".insteadOf = "https://git.${domain}/";
           };
 
           # SSH commit signing. See:

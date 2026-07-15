@@ -105,7 +105,8 @@
     };
 
     ott-rs = {
-      url = "git+https://git.rsg.ovh/mirrors/ott-rs.git";
+      # TODO: switch back to the default (master) once rg/i18n merges.
+      url = "git+https://git.rsg.ovh/mirrors/ott-rs.git?ref=rg/i18n";
       inputs = {
         nixpkgs.follows = "nixpkgs-unstable";
         flake-utils.follows = "flake-utils";
