@@ -61,6 +61,21 @@
         "type": "github"
       }
     },
+    "crane_2": {
+      "locked": {
+        "lastModified": 1783203018,
+        "narHash": "sha256-G6R9IT/xwFuu+CYBWDUAok6AdC4ERC4ZfPPFtEpxnZE=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "80db5bdc391be8a1794f6d8a2d56e3a84ebcede2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -472,6 +487,7 @@
     },
     "ott-rs": {
       "inputs": {
+        "crane": "crane_2",
         "flake-utils": [
           "flake-utils"
         ],
@@ -480,11 +496,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784157203,
-        "narHash": "sha256-gJnYog68yO/4IUgTx78k7Xxrb8qg3Yk4Iw4D+yQwOdg=",
+        "lastModified": 1784159161,
+        "narHash": "sha256-0wVSPj922C6aYC4/I6i+7osLzPZOSoP65LnyD8KIc+s=",
         "ref": "rg/unified-upstreams",
-        "rev": "42c8e511b217e973202e395e4a4b6698481b623a",
-        "revCount": 75,
+        "rev": "38b0b502d0ef45e94e6de834097cfd1aa794670c",
+        "revCount": 76,
         "type": "git",
         "url": "https://git.rsg.ovh/mirrors/ott-rs.git"
       },
