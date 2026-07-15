@@ -58,4 +58,5 @@ in
   "saxton/Caddy-super-secret-config.age".publicKeys = [ systems.saxton ] ++ rgKeys;
   "saxton/ENV-ott-rs.age".publicKeys = [ systems.saxton ] ++ rgKeys;
   "saxton/ott-rs-client-token.age".publicKeys = [ systems.saxton ] ++ rgKeys;
+  "saxton/ENV-oauth2-proxy.age".publicKeys = [ systems.saxton ] ++ rgKeys;
 }
