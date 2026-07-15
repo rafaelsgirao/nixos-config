@@ -480,16 +480,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1784149757,
-        "narHash": "sha256-lhDAKXg8TIGVb/cZvjJ7HUlfhUIFqzD1JGIDygPuZ5U=",
-        "ref": "rg/i18n",
-        "rev": "aed13b08ce660c90dba246499cbc523119e8b6f5",
-        "revCount": 74,
+        "lastModified": 1784157203,
+        "narHash": "sha256-gJnYog68yO/4IUgTx78k7Xxrb8qg3Yk4Iw4D+yQwOdg=",
+        "ref": "rg/unified-upstreams",
+        "rev": "42c8e511b217e973202e395e4a4b6698481b623a",
+        "revCount": 75,
         "type": "git",
         "url": "https://git.rsg.ovh/mirrors/ott-rs.git"
       },
       "original": {
-        "ref": "rg/i18n",
+        "ref": "rg/unified-upstreams",
         "type": "git",
         "url": "https://git.rsg.ovh/mirrors/ott-rs.git"
       }
