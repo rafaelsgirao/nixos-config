@@ -22,6 +22,9 @@
     };
     extraConfig = {
       oidc-issuer-url = "https://id.rafael.ovh";
+      # pocket-id has no email-verification flow, so its id_tokens always
+      # carry email_verified=false; emails there are admin-managed anyway.
+      insecure-oidc-allow-unverified-email = true;
       skip-provider-button = true;
       code-challenge-method = "S256";
       whitelist-domain = "ott.rafael.ovh";
