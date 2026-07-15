@@ -15,6 +15,8 @@
     upstream = [ "static://202" ];
     email.domains = [ "*" ];
     reverseProxy = true;
+    # Only Caddy (loopback) may supply X-Forwarded-* headers.
+    trustedProxyIP = [ "127.0.0.1/32" ];
     cookie = {
       domain = "ott.rafael.ovh";
       secure = true;
