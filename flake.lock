@@ -496,11 +496,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784212604,
-        "narHash": "sha256-SRMb64QYb7Mr69wxj4CPRB11GJGRYIGi851jiPnswFs=",
+        "lastModified": 1784217906,
+        "narHash": "sha256-IfRjYs8riUxNAaShnAY9030pPYW49yR8L3aIik2btuw=",
         "ref": "rg/unified-upstreams",
-        "rev": "e83a270066582498211f0f9837ad5cef17b8d1b8",
-        "revCount": 79,
+        "rev": "91dd71ec883725d05c64f937fe06202c3e77e067",
+        "revCount": 85,
         "type": "git",
         "url": "https://git.rsg.ovh/mirrors/ott-rs.git"
       },
