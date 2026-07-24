@@ -20,9 +20,9 @@ in
 
     #    ../../modules/ntfy-sh.nix
     # ../../modules/ist-discord-bot.nix
-    ../../modules/virt/docker.nix
+    #    ../../modules/virt/docker.nix
     ../../modules/restic.nix
-    ../../modules/sshguard.nix
+    #    ../../modules/sshguard.nix
     ../../modules/vaultwarden.nix
     # ./sirpt.nix
     ../../modules/bolsas-scraper.nix
