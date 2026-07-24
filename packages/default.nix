@@ -5,12 +5,12 @@
   system,
   ...
 }:
-let
-  # Don't add this flake as an input because it's a private repo
-  # and nixos-install won't run without being able to fetch all inputs.
-  # a better solution would be flake.parts partitions.
-  wcFlake = builtins.getFlake "git+https://git.rsg.ovh/mirrors/ist-chan-bot.git?ref=main&rev=6c5fef87f30390d6595aaae225686615f1ec892a";
-in
+#let
+# Don't add this flake as an input because it's a private repo
+# and nixos-install won't run without being able to fetch all inputs.
+# a better solution would be flake.parts partitions.
+#  wcFlake = builtins.getFlake "git+https://git.rsg.ovh/mirrors/ist-chan-bot.git?ref=main&rev=6c5fef87f30390d6595aaae225686615f1ec892a";
+#in
 rec {
   #Packages from inputs.
   agenix = inputs'.agenix.packages.default;
@@ -48,6 +48,6 @@ rec {
 // lib.optionalAttrs (system == "aarch64-darwin") {
   nix-darwin = inputs'.nix-darwin.packages.default;
 }
-// lib.optionalAttrs (system != "aarch64-darwin") {
-  wc-bot = wcFlake.packages.${pkgs.system}.default;
-}
+#// lib.optionalAttrs (system != "aarch64-darwin") {
+# wc-bot = wcFlake.packages.${pkgs.system}.default;
+#}

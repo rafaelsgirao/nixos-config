@@ -16,9 +16,9 @@ in
     ../../modules/service/ott-rs.nix
     ../../modules/service/pocket-id.nix
 
-    ./wc-bot.nix
+    #    ./wc-bot.nix
 
-    ../../modules/ntfy-sh.nix
+    #    ../../modules/ntfy-sh.nix
     # ../../modules/ist-discord-bot.nix
     ../../modules/virt/docker.nix
     ../../modules/restic.nix
