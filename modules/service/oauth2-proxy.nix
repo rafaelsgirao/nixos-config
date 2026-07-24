@@ -18,7 +18,9 @@
     # Only Caddy (loopback) may supply X-Forwarded-* headers.
     trustedProxyIP = [ "127.0.0.1/32" ];
     cookie = {
-      domain = "ott.rafael.ovh";
+      # Parent-domain cookie so the session is shared across every gated
+      # subdomain (ott, vault, ...). Callback stays on ott.rafael.ovh.
+      domain = ".rafael.ovh";
       secure = true;
       expire = "168h";
     };
@@ -29,7 +31,11 @@
       insecure-oidc-allow-unverified-email = true;
       skip-provider-button = true;
       code-challenge-method = "S256";
-      whitelist-domain = "ott.rafael.ovh";
+      # Every subdomain we redirect back to after auth.
+      whitelist-domain = [
+        "ott.rafael.ovh"
+        "vault.rafael.ovh"
+      ];
     };
   };
 

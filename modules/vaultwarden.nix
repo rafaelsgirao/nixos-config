@@ -62,10 +62,30 @@ in
       useACMEHost = "${domain}";
       extraConfig = ''
         encode zstd gzip
-        # Notifications redirected to the WebSocket server
-        reverse_proxy /notifications/hub 127.0.0.1:3012
 
-        reverse_proxy http://127.0.0.1:52378
+        # oauth2-proxy endpoints (shared instance, callback on ott.rafael.ovh).
+        handle /oauth2/* {
+          reverse_proxy http://127.0.0.1:4180
+        }
+
+        # Gate the admin panel behind OIDC (pocket-id via oauth2-proxy).
+        handle /admin* {
+          forward_auth http://127.0.0.1:4180 {
+            uri /oauth2/auth
+            @unauthorized status 401
+            handle_response @unauthorized {
+              redir * /oauth2/start?rd={scheme}://{host}{uri}
+            }
+          }
+          reverse_proxy http://127.0.0.1:52378
+        }
+
+        handle {
+          # Notifications redirected to the WebSocket server
+          reverse_proxy /notifications/hub 127.0.0.1:3012
+
+          reverse_proxy http://127.0.0.1:52378
+        }
       '';
     };
 
