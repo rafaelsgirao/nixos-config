@@ -42,6 +42,7 @@ in
     customComponents = with pkgs.unstable.home-assistant-custom-components; [
       auth_oidc
       better_thermostat
+      ha_mcp_tools
       # pkgs.mypkgs.tapo-control
     ];
     extraComponents = [
