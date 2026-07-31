@@ -13,7 +13,7 @@ in
 
     ../../modules/service/immich-proxy.nix
     ../../modules/service/oauth2-proxy.nix
-    ../../modules/service/ott-rs.nix
+    # ../../modules/service/ott-rs.nix
     ../../modules/service/pocket-id.nix
 
     #    ./wc-bot.nix
