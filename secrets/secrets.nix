@@ -40,6 +40,8 @@ in
 
   # razer secrets.
   "razer/ENV-forgejo-runner.age".publicKeys = [ systems.razer ] ++ rgKeys;
+  # "razer/ENV-ha-mcp.age".publicKeys = [ systems.razer ] ++ rgKeys; # re-enable with ha-mcp.nix
+
   "razer/Tailscale-initrd-authkey.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/HC-alive.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/HC-backups.age".publicKeys = [ systems.razer ] ++ rgKeys;

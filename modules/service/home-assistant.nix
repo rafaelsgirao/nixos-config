@@ -70,6 +70,10 @@ in
       "tplink"
       "apple_tv"
       "default_config"
+      # Built-in Model Context Protocol server (authenticated via HA bearer
+      # token). Listing it here pulls its Python deps (mcp, aiohttp-sse, anyio,
+      # hassil, home-assistant-intents) which the UI-added config entry needs.
+      "mcp_server"
       "ffmpeg"
       # "bthome"
       # "ipp"

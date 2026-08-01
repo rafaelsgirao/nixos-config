@@ -39,6 +39,8 @@ in
 
     ../../modules/service/irc.nix
     ../../modules/service/home-assistant.nix
+    # ../../modules/service/ha-mcp.nix # disabled: unauthed web mode; using built-in mcp_server instead
+
     ../../modules/service/forgejo.nix
     ../../modules/service/forgejo-runner.nix
     ../../modules/service/harmonia.nix
