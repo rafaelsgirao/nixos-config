@@ -43,6 +43,7 @@ in
       auth_oidc
       better_thermostat
       ha_mcp_tools
+      local_openai
       # pkgs.mypkgs.tapo-control
     ];
     extraComponents = [
