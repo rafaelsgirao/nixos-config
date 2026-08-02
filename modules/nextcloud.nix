@@ -30,7 +30,7 @@ in
   services.nextcloud = {
     enable = true;
     https = true;
-    package = pkgs.nextcloud33;
+    package = pkgs.nextcloud34;
     webfinger = true;
     hostName = ncHost;
     maxUploadSize = "0";
