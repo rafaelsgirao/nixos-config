@@ -31,7 +31,7 @@ in
     ../../modules/healthchecks.nix
     ../../modules/nextcloud.nix
     ../../modules/caddy.nix
-    # ../../modules/virt/libvirt.nix
+    ../../modules/virt/libvirt.nix
     ../../modules/virt/podman.nix
     ../../modules/impermanence.nix
     ../../modules/headless.nix
