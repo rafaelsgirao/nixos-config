@@ -62,10 +62,10 @@ in
           mountpoint = "/";
           postCreateHook = "zfs snapshot saxton/local/root@blank";
         };
-        "local/docker" = {
-          type = "zfs_fs";
-          mountpoint = "/var/lib/docker";
-        };
+        # "local/docker" = {
+        #   type = "zfs_fs";
+        #   mountpoint = "/var/lib/docker";
+        # };
         "local/cache" = {
           type = "zfs_fs";
           mountpoint = "/var/cache";

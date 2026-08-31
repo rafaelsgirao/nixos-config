@@ -44,6 +44,8 @@ in
     resetRootFs = true;
   };
 
+  services.tailscale.useRoutingFeatures = "both";
+
   security.acme.certs."${domain}".extraDomainNames = [
     "rafael.ovh"
     "*.rafael.ovh"
