@@ -26,8 +26,9 @@ in
   nix.daemonCPUSchedPolicy = "idle";
   nix.settings =
     let
-      nixCores = lib.max (config.rg.vCores - 2) 1;
-      nixJobs = lib.max ((config.rg.vCores - 2) / 2) 1;
+      # max-jobs * cores is capped at 2x vCores.
+      nixJobs = lib.max (config.rg.vCores / 4) 1;
+      nixCores = lib.max (2 * config.rg.vCores / nixJobs) 1;
     in
     {
       max-jobs = lib.mkDefault nixJobs;
