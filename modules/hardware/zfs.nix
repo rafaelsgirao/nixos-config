@@ -13,6 +13,10 @@ in
   #ZFS configs so pool works as root
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.devNodes = "/dev/disk/by-path";
+  # Keep forcing the root pool import: these are headless boxes with a systemd
+  # watchdog that auto-reboots on hangs, so an unclean export must not block boot.
+  # (Upstream's new 26.11 default is false; set explicitly to silence the warning.)
+  boot.zfs.forceImportRoot = true;
   boot.initrd.supportedFilesystems = [ "zfs" ];
   virtualisation.docker.storageDriver = "zfs";
 

@@ -104,10 +104,22 @@ in
 
       programs.ssh = {
         enable = true;
-        controlMaster = "auto";
-        controlPersist = "10m";
+        # The old implicit `Host *` defaults are deprecated; opt out and restate
+        # the ones we want explicitly (mirrors upstream's enableDefaultConfig block).
+        enableDefaultConfig = false;
+        settings."*" = {
+          ForwardAgent = false;
+          AddKeysToAgent = if isWorkstation then "yes" else "no";
+          Compression = false;
+          ServerAliveInterval = 0;
+          ServerAliveCountMax = 3;
+          HashKnownHosts = false;
+          UserKnownHostsFile = "~/.ssh/known_hosts";
+          ControlMaster = "auto";
+          ControlPath = "~/.ssh/master-%r@%n:%p";
+          ControlPersist = "10m";
+        };
         extraConfig = lib.mkIf isWorkstation ''
-          AddKeysToAgent yes
           Include ${config'.age.secrets.ssh-config.path}
         '';
       };
@@ -127,25 +139,25 @@ in
 
       programs.git = {
         enable = true;
-        aliases = {
-          log = "log --show-signature";
-          g = "log --all --graph --decorate --show-signature";
-          graph = "log --all --graph --decorate --show-signature";
-          s = "status";
-          d = "diff";
-        };
         lfs.enable = true;
-        settings = {
-          user.name = "Rafael Girão";
-          user.email = lib.mkDefault "git@rafael.ovh";
-        };
 
         ignores = [
           "*~"
           "*.swp"
 
         ];
-        extraConfig = {
+        settings = {
+          alias = {
+            log = "log --show-signature";
+            g = "log --all --graph --decorate --show-signature";
+            graph = "log --all --graph --decorate --show-signature";
+            s = "status";
+            d = "diff";
+          };
+
+          user.name = "Rafael Girão";
+          user.email = lib.mkDefault "git@rafael.ovh";
+
           core = {
             editor = "nvim";
             whitespace = "warn";
@@ -173,13 +185,11 @@ in
 
           commit.gpgSign = lib.mkIf isWorkstation true;
           gpg.format = "ssh";
-          user = lib.mkIf isWorkstation {
-            #`man ssh-keygen` reads:
-            # -Y sign:
-            #  The key used for signing is specified using the -f option and may refer to either a private key,
-            #  or a public key with the private half available via ssh-agent(1).
-            signingkey = "/home/rg/.ssh/id_gitsign.pub";
-          };
+          #`man ssh-keygen` reads:
+          # -Y sign:
+          #  The key used for signing is specified using the -f option and may refer to either a private key,
+          #  or a public key with the private half available via ssh-agent(1).
+          user.signingkey = lib.mkIf isWorkstation "/home/rg/.ssh/id_gitsign.pub";
         };
       };
 

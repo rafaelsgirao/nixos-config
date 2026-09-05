@@ -63,8 +63,8 @@
     nixvim = {
       url = "github:nix-community/nixvim/nixos-26.05";
       inputs = {
-        #FIXME: make PR so that these lines can be uncommented
-        nixpkgs.follows = "nixpkgs";
+        # Nixvim pins its own nixpkgs; overriding it via follows is unsupported
+        # and emits a warning, so only override flake-parts.
         flake-parts.follows = "flake-parts";
       };
     };
@@ -167,7 +167,6 @@
       nixpkgsConfig = {
         allowUnfree = true;
         # contentAddressedByDefault = true;
-        warnUndeclaredOptions = true;
 
         #Citrix Workspace
         permittedInsecurePackages = [
@@ -425,14 +424,16 @@
               final: _prev:
               let
                 args = {
-                  inherit (final) system;
+                  inherit (final.stdenv.hostPlatform) system;
                   config = nixpkgsConfig;
                 };
               in
               {
                 unstable = import inputs.nixpkgs-unstable args;
               };
-            pkgs-sets-mypkgs = final: _prev: { mypkgs = outputs.packages.${final.system}; };
+            pkgs-sets-mypkgs = final: _prev: {
+              mypkgs = outputs.packages.${final.stdenv.hostPlatform.system};
+            };
             pkgs-sets-everythingmusl = _final: prev: { final = prev.pkgsMusl; };
           }
           // myOverlays;

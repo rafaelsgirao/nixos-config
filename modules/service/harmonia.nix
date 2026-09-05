@@ -13,7 +13,7 @@ in
       file = "${secretsDir}/harmonia-server.age";
     };
   };
-  services.harmonia = {
+  services.harmonia.cache = {
     enable = true;
     signKeyPaths = [ config.age.secrets.harmonia-server.path ];
     settings = {
