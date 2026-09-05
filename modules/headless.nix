@@ -101,6 +101,18 @@
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "fq";
     "net.ipv4.tcp_congestion_control" = "bbr";
+
+    # RuntimeWatchdogSec only proves PID 1 still gets scheduled, so a kernel
+    # that is wedged everywhere else keeps the hardware watchdog fed. These
+    # promote the detectors the kernel already runs into a panic, which the
+    # panic= kernel param above then turns into a reboot.
+    "kernel.panic_on_oops" = 1;
+    "kernel.softlockup_panic" = 1;
+    "kernel.hardlockup_panic" = 1;
+    "kernel.hung_task_panic" = 1;
+    # ZFS can park a task in D state for a while under scrub/resilver load,
+    # which the 120s default is within reach of.
+    "kernel.hung_task_timeout_secs" = 300;
   };
 
   # Ensure a clean & sparkling /tmp on fresh boots.

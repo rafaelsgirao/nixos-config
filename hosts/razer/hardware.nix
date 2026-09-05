@@ -25,6 +25,20 @@ in
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  # 24 GiB of the 46 GiB installed. zfs_arc_max is a U64 module param, so the
+  # cmdline parser is kstrtou64 and takes no size suffix; "24G" is rejected and
+  # silently leaves the ARC uncapped.
+  boot.kernelParams = [ "zfs.zfs_arc_max=25769803776" ];
+
+  # Builds run in nix-daemon's cgroup, not the CI runner's, so this is the cap
+  # that bounds a compile storm. MemoryHigh throttles and reclaims; MemoryMax is
+  # the backstop. OOMPolicy=continue so a killed cc1 does not stop the daemon.
+  systemd.services.nix-daemon.serviceConfig = {
+    MemoryHigh = "12G";
+    MemoryMax = "32G";
+    OOMPolicy = "continue";
+  };
+
   nixpkgs.hostPlatform = "x86_64-linux";
 
   hardware.cpu.intel.updateMicrocode = true;

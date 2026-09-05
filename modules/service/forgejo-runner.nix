@@ -50,6 +50,11 @@
     DynamicUser = lib.mkForce false;
     User = lib.mkForce "forgejo-runner";
     CacheDirectory = "gitea-runner-default";
+
+    # Only bounds the runner and its `nix build` clients -- the build itself is
+    # nix-daemon's cgroup. capacity=3 means up to three concurrent evaluations.
+    MemoryHigh = "4G";
+    MemoryMax = "6G";
   };
 
   age.secrets.ENV-forgejo-runner = {
