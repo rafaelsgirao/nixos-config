@@ -20,6 +20,7 @@ in
   imports = [
 
     ../../modules/hardware/uefi.nix
+    ../../modules/hardware/memtest86.nix
     ../../modules/hardware/zfs.nix
     ../../modules/hardware/zfs-unlock-initrd.nix
     ../../modules/hardware/tailscale-initrd.nix
