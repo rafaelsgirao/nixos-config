@@ -15,7 +15,13 @@ in
     };
   };
 
-  environment.persistence."/state".directories = [ "/var/lib/libvirt" ];
+  environment.persistence."/state" = {
+    directories = [ "/var/lib/libvirt" ];
+    # systemd host key that decrypts libvirtd's LoadCredentialEncrypted
+    # secrets-encryption-key. Must persist alongside /var/lib/libvirt or
+    # libvirtd fails at boot with 243/CREDENTIALS after an impermanence wipe.
+    files = [ "/var/lib/systemd/credential.secret" ];
+  };
 
   # Also required for management over ssh w/ virt-manager
   users.users.rg.extraGroups = [ "libvirtd" ];
