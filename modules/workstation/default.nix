@@ -346,8 +346,8 @@ in
     gparted
     pavucontrol
     pwvucontrol
-    xorg.xlsclients
-    xorg.xeyes
+    xlsclients
+    xeyes
     playerctl
     virt-manager
     riff

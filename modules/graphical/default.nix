@@ -1,4 +1,10 @@
 { pkgs, ... }:
+let
+  gtkTheme = {
+    package = pkgs.orchis-theme;
+    name = "Orchis-Dark";
+  };
+in
 {
 
   # improve desktop responsiveness when updating the system
@@ -6,10 +12,8 @@
   # hm.services.safeeyes.enable = true;
   hm.gtk = {
     enable = true;
-    theme = {
-      package = pkgs.orchis-theme;
-      name = "Orchis-Dark";
-    };
+    theme = gtkTheme;
+    gtk4.theme = gtkTheme;
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus-Dark";

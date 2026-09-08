@@ -28,16 +28,16 @@ in
 
   services.resolved = mkIf isWorkstation {
     enable = true;
-    #LLMNR is a Microsoft standard.
-    #Microsoft is giving up on LLMNR in favour of mDNS.
-    llmnr = "false";
-    dnssec = "true";
-    fallbackDns = [
-      "1.1.1.1#one.one.one.one"
-      "9.9.9.9#dns.quad9.net"
-      "2620:fe::9#dns.quad9.net"
-    ];
     settings.Resolve = {
+      #LLMNR is a Microsoft standard.
+      #Microsoft is giving up on LLMNR in favour of mDNS.
+      LLMNR = "false";
+      DNSSEC = "true";
+      FallbackDNS = [
+        "1.1.1.1#one.one.one.one"
+        "9.9.9.9#dns.quad9.net"
+        "2620:fe::9#dns.quad9.net"
+      ];
       DNSOverTLS = "opportunistic";
     };
   };

@@ -132,7 +132,6 @@
   hm.home.packages = with pkgs; [
     unstable.brave
     appimage-run
-    unstable.citrix_workspace
     bitwarden-cli
   ];
 
