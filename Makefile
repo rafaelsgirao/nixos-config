@@ -12,7 +12,7 @@ TOPLEVEL := .\#nixosConfigurations.$(HOST).config.system.build.toplevel
 NIX_FLAGS := --no-link \
              --max-jobs 0 \
              --accept-flake-config \
-             --extra-substituters $(CACHE)
+             --substituters $(CACHE)
 
 .DEFAULT_GOAL := pull
 
