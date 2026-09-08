@@ -18,6 +18,7 @@ in
     signKeyPaths = [ config.age.secrets.harmonia-server.path ];
     settings = {
       bind = "127.0.0.1:${toString port}";
+      priority = 10;
     };
 
   };
