@@ -43,6 +43,7 @@ in
     # ../../modules/service/ha-mcp.nix # disabled: unauthed web mode; using built-in mcp_server instead
 
     ../../modules/netconsole.nix
+    ../../modules/bluetooth-pan.nix
 
     ../../modules/service/forgejo.nix
     ../../modules/service/forgejo-runner.nix
@@ -140,6 +141,15 @@ in
     enable = true;
     target = "192.168.1.147";
   };
+
+  # Paired interactively; /var/lib/bluetooth is persisted by bluetooth.nix so
+  # it survives the rootfs rollback.
+  rg.bluetoothPan = {
+    enable = true;
+    deviceFile = config.age.secrets.BT-nap-mac.path;
+  };
+
+  age.secrets.BT-nap-mac.file = ../../secrets/razer/BT-nap-mac.age;
 
   networking = {
     dhcpcd.enable = false;
