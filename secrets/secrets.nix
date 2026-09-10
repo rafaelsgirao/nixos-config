@@ -44,6 +44,7 @@ in
 
   "razer/Tailscale-initrd-authkey.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/HC-alive.age".publicKeys = [ systems.razer ] ++ rgKeys;
+  "razer/WiFi-psk.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/HC-backups.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "razer/Nextcloud-adminpass.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "harmonia-server.age".publicKeys = [ systems.razer ] ++ rgKeys;

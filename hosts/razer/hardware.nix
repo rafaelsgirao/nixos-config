@@ -28,7 +28,15 @@ in
   # 24 GiB of the 46 GiB installed. zfs_arc_max is a U64 module param, so the
   # cmdline parser is kstrtou64 and takes no size suffix; "24G" is rejected and
   # silently leaves the ARC uncapped.
-  boot.kernelParams = [ "zfs.zfs_arc_max=25769803776" ];
+  boot.kernelParams = [
+    "zfs.zfs_arc_max=25769803776"
+
+    # r8169 logs "can't disable ASPM; OS doesn't have ASPM control" at probe:
+    # firmware never yields PCIe control via _OSC, so the driver cannot turn
+    # ASPM off for a chip it knows mistrains. The link then fails to retrain
+    # after a TX timeout and 00:1c.5 detaches the NIC mid-run.
+    "pcie_aspm=off"
+  ];
 
   # Builds run in nix-daemon's cgroup, not the CI runner's, so this is the cap
   # that bounds a compile storm. MemoryHigh throttles and reclaims; MemoryMax is

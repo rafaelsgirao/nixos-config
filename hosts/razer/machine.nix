@@ -42,6 +42,8 @@ in
     ../../modules/service/home-assistant.nix
     # ../../modules/service/ha-mcp.nix # disabled: unauthed web mode; using built-in mcp_server instead
 
+    ../../modules/netconsole.nix
+
     ../../modules/service/forgejo.nix
     ../../modules/service/forgejo-runner.nix
     ../../modules/service/harmonia.nix
@@ -113,6 +115,31 @@ in
       matchConfig.Driver = "cdc_ncm";
       DHCP = "yes";
     };
+
+  # When the r8169 link fails to retrain the kernel detaches the NIC outright,
+  # so there is no wired path left to reach the box on. wlan0 is a standby for
+  # tailscale, not a general route: RouteMetric keeps eth0 preferred while it
+  # lives, and RequiredForOnline=no keeps a dead AP from stalling boot.
+  networking.wireless = {
+    enable = true;
+    interfaces = [ "wlan0" ];
+    secretsFile = config.age.secrets.WiFi-psk.path;
+    networks."Pingu 5".pskRaw = "ext:psk_home";
+  };
+
+  age.secrets.WiFi-psk.file = ../../secrets/razer/WiFi-psk.age;
+
+  systemd.network.networks."11-wlan" = {
+    matchConfig.Name = "wlan0";
+    DHCP = "yes";
+    dhcpV4Config.RouteMetric = 2048;
+    linkConfig.RequiredForOnline = "no";
+  };
+
+  rg.netconsole = {
+    enable = true;
+    target = "192.168.1.147";
+  };
 
   networking = {
     dhcpcd.enable = false;
