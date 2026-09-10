@@ -12,14 +12,14 @@
       # final.linux_jovian`, so overriding the kernel reaches the set.
       "linux_jovian"
 
-      # Attr names, not derivation names: `mesa-radv-jupiter` builds
-      # mesa-26.2.0.steamos, and plain `mesa` is a different package that
-      # substitutes from cache and never gets built here.
-      "mesa-radeonsi-jupiter"
-      "mesa-radv-jupiter"
+      # # Attr names, not derivation names: `mesa-radv-jupiter` builds
+      # # mesa-26.2.0.steamos, and plain `mesa` is a different package that
+      # # substitutes from cache and never gets built here.
+      # "mesa-radeonsi-jupiter"
+      # "mesa-radv-jupiter"
 
-      "gamescope"
-      "gamescope-wsi"
+      # "gamescope"
+      # "gamescope-wsi"
     ];
   };
 
