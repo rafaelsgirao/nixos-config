@@ -34,12 +34,53 @@
     ../../modules/hardware/laptop.nix
     ../../modules/hardware/uefi.nix
     ../../modules/hardware/zfs.nix
+    ../../modules/hardware/zfs-unlock-initrd.nix
+    ../../modules/hardware/tailscale-initrd.nix
+    ../../modules/hardware/wifi-initrd.nix
 
     ../../modules/impermanence.nix
     ../../modules/virt/podman.nix
     # ../../modules/dei.nix
     ../../modules/restic.nix
   ];
+
+  # Jupiter has no wired NIC and no keyboard, so the ZFS passphrase prompt is
+  # only answerable over the network: wlan0 comes up in stage 1, tailscale rides
+  # on it, and the unlock sshd listens on 2222.
+  rg.zfsUnlockInitrd.wolInterfaces = [ ];
+
+  rg.wifi-initrd = {
+    enable = true;
+    interface = "wlan0";
+    kernelModules = [ "rtw88_8822ce" ];
+    networks."Pingu" = "ext:psk_home";
+  };
+
+  # Stage 2 is on NetworkManager, so there is no networkd config to mirror into
+  # the initrd; wpa_supplicant only associates, addressing happens here.
+  boot.initrd.systemd.network = {
+    enable = true;
+    networks."10-wlan" = {
+      matchConfig.Name = "wlan0";
+      DHCP = "yes";
+      linkConfig.RequiredForOnline = "no";
+    };
+  };
+
+  # Keeps the initrd wifi PSK and the initrd tailscale auth key (an OAuth client
+  # secret) in place; boot.initrd.secrets appends both to the initrd at
+  # bootloader install.
+  age.secrets.WiFi-psk = {
+    file = ../../secrets/jovian/WiFi-psk.age;
+    path = "/pst/etc/ssh-initrd/wifi-psk";
+    symlink = false;
+  };
+
+  age.secrets.Tailscale-initrd-authkey = {
+    file = ../../secrets/jovian/Tailscale-initrd-authkey.age;
+    path = "/pst/etc/ssh-initrd/tailscale-authkey";
+    symlink = false;
+  };
 
   boot.kernelParams = [
     "mitigations=off"

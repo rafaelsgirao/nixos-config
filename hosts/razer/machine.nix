@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (config.networking) domain fqdn;
+  inherit (config.networking) domain;
 in
 {
 
@@ -104,9 +104,9 @@ in
 
     address = [
       # configure addresses including subnet mask
-      "192.168.1.60/24"
+      "192.168.8.60/24"
     ];
-    routes = [ { Gateway = "192.168.1.1"; } ];
+    routes = [ { Gateway = "192.168.8.1"; } ];
   };
 
   systemd.network.networks."12-usb" =
@@ -125,7 +125,7 @@ in
     enable = true;
     interfaces = [ "wlan0" ];
     secretsFile = config.age.secrets.WiFi-psk.path;
-    networks."Pingu 5".pskRaw = "ext:psk_home";
+    networks."Pingu".pskRaw = "ext:psk_home";
   };
 
   age.secrets.WiFi-psk.file = ../../secrets/razer/WiFi-psk.age;
@@ -139,7 +139,7 @@ in
 
   rg.netconsole = {
     enable = true;
-    target = "192.168.1.147";
+    target = "192.168.8.231";
   };
 
   # Paired interactively; /var/lib/bluetooth is persisted by bluetooth.nix so
@@ -191,13 +191,6 @@ in
       extraConfig = ''
         encode zstd gzip
         reverse_proxy unix//run/forgejo/forgejo.sock
-      '';
-    };
-    "router.${fqdn}" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://192.168.1.1:80
       '';
     };
     "cloud.${domain}" = {
