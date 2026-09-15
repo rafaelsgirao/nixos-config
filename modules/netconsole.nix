@@ -59,8 +59,6 @@ in
       serviceConfig = {
         Type = "oneshot";
         RemainAfterExit = true;
-        Restart = "on-failure";
-        RestartSec = 30;
       };
 
       script = ''
@@ -84,9 +82,12 @@ in
         # from the neighbour table rather than trusting a configured value.
         ping -c1 -W2 "$target" >/dev/null 2>&1 || true
         mac=$(ip neigh show "$target" dev "$iface" | sed -n 's/.*lladdr \([^ ]*\).*/\1/p' | head -1)
+        # A receiver that is asleep or off the LAN is the normal case; failing
+        # here would have systemd retry every 30s, tearing the target down and
+        # rebuilding it each time. The timer retries instead.
         if [ -z "$mac" ]; then
-          echo "$target did not answer ARP" >&2
-          exit 1
+          echo "$target did not answer ARP; leaving the current target alone"
+          exit 0
         fi
 
         if [ -d "$dir" ]; then

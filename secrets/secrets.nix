@@ -50,6 +50,10 @@ in
   "razer/Nextcloud-adminpass.age".publicKeys = [ systems.razer ] ++ rgKeys;
   "harmonia-server.age".publicKeys = [ systems.razer ] ++ rgKeys;
 
+  # jovian secrets.
+  "jovian/Tailscale-initrd-authkey.age".publicKeys = [ systems.jovian ] ++ rgKeys;
+  "jovian/WiFi-psk.age".publicKeys = [ systems.jovian ] ++ rgKeys;
+
   # saxton secrets.
   "saxton/ENV-ist-discord-bot.age".publicKeys = [ systems.saxton ] ++ rgKeys;
   "saxton/ENV-pocket-id.age".publicKeys = [ systems.saxton ] ++ rgKeys;
