@@ -100,13 +100,13 @@ in
   systemd.network.networks."10-wan" = {
     # match the interface by name
     matchConfig.Name = "eth0";
-    DHCP = "no"; # DHCPv6 will still be triggered by RA (Router Advertisements)
+    DHCP = "yes"; # DHCPv6 will still be triggered by RA (Router Advertisements)
 
-    address = [
-      # configure addresses including subnet mask
-      "192.168.8.60/24"
-    ];
-    routes = [ { Gateway = "192.168.8.1"; } ];
+    # address = [
+    #   # configure addresses including subnet mask
+    #   "192.168.8.60/24"
+    # ];
+    # routes = [ { Gateway = "192.168.8.1"; } ];
   };
 
   systemd.network.networks."12-usb" =

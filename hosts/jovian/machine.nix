@@ -63,7 +63,7 @@
     networks."10-wlan" = {
       matchConfig.Name = "wlan0";
       DHCP = "yes";
-      linkConfig.RequiredForOnline = "no";
+      # linkConfig.RequiredForOnline = "no";
     };
   };
 
