@@ -68,6 +68,25 @@ in
       '';
     };
 
+    cryptoModules = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [
+        "ccm"
+        "ctr"
+        "aes"
+        "aesni_intel"
+        "cmac"
+        "gcm"
+      ];
+      description = ''
+        Ciphers mac80211 needs to install the pairwise key. None of these are
+        built in and none are in the default initrd module set, so without them
+        association succeeds and the key install fails with "key addition
+        failed" / "Failed to set PTK to the driver". ccm+ctr+aes cover CCMP,
+        cmac covers BIP (pmf), gcm covers GCMP.
+      '';
+    };
+
     networks = lib.mkOption {
       type = lib.types.attrsOf lib.types.str;
       default = { };
@@ -103,7 +122,7 @@ in
     hardware.wirelessRegulatoryDatabase = true;
 
     boot.initrd = {
-      inherit (cfg) kernelModules;
+      kernelModules = cfg.kernelModules ++ cfg.cryptoModules;
 
       secrets.${secretsPath} = cfg.secretsFile;
 

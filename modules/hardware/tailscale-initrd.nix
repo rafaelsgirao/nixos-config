@@ -82,18 +82,30 @@ in
         ];
       };
 
+      # Stage 1 has one link that matters and no second chance, so "any link is
+      # online" is the only useful reading of network-online here, bounded so a
+      # link that is not coming back cannot hold tailscale-up forever. mkForce
+      # because hosts that mirror their stage-2 networkd into the initrd would
+      # otherwise drag stage-2 semantics in with it.
+      systemd.network.wait-online = {
+        anyInterface = lib.mkForce true;
+        timeout = lib.mkForce 30;
+      };
+
       systemd.services.tailscale-up = {
         wantedBy = [ "initrd.target" ];
         after = [
           "tailscaled.service"
           "systemd-networkd.service"
+          "network-online.target"
         ];
+        wants = [ "network-online.target" ];
         requires = [ "tailscaled.service" ];
         unitConfig.DefaultDependencies = "no";
         serviceConfig.Type = "oneshot";
         serviceConfig.RemainAfterExit = true;
-        # Loop instead of ordering after network-online: link may take a
-        # moment, and a failed `up` must not block the unlock prompt path.
+        # Still loops after network-online: wait-online gives up on a timeout,
+        # and a failed `up` must not block the unlock prompt path.
         script = ''
           for i in $(seq 1 60); do
             if tailscale up \
