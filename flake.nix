@@ -119,8 +119,6 @@
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        home-manager.follows = "home";
-        darwin.follows = "nix-darwin";
 
         # Hahahaha - keeping this line because funny
         # darwin.follows = ""; # If in the future I get a Mac (unlikely), remove this line.
