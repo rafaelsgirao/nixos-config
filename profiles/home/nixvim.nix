@@ -4,6 +4,8 @@ _: {
   # https://github.com/Pesteves2002/dotfiles/tree/nixos/profiles/nixvim
   programs.nixvim = {
     enable = true;
+    # Nixvim's pinned nixpkgs lags Hydra; host pkgs keep marksman (dotnet) cached.
+    nixpkgs.useGlobalPackages = true;
     defaultEditor = true;
     colorscheme = "catppuccin-macchiato";
     colorschemes.catppuccin = {
