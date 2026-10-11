@@ -3,6 +3,7 @@
   inputs,
   hostSecretsDir,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -10,6 +11,18 @@ let
   webPort = 8792;
   ottCfg = config.services.ott-rs;
   inherit (config.rg) domain;
+
+  # Upstream's patched FFmpeg comes from ott-rs's own nixpkgs, which the
+  # ccache overlay never reaches; rebuild the same patch on host pkgs.
+  ffmpeg = pkgs.callPackage "${inputs.ott-rs}/nix/ffmpeg.nix" {
+    ffmpeg = pkgs.ffmpeg.override { stdenv = pkgs.ccacheStdenv; };
+  };
+
+  # Upstream closes over its own FFmpeg in the wrapper and check inputs.
+  ott-rs = inputs.ott-rs.packages.${pkgs.stdenv.hostPlatform.system}.ott-rs.overrideAttrs {
+    nativeCheckInputs = [ ffmpeg ];
+    postInstall = "wrapProgram $out/bin/ott-rs --suffix PATH : ${lib.getBin ffmpeg}/bin";
+  };
 in
 {
   imports = [ inputs.ott-rs.nixosModules.default ];
@@ -22,6 +35,9 @@ in
   #   sudo systemctl start ott-rs.timer ott-rs.service
   services.ott-rs = {
     enable = true;
+
+    ffmpegPackage = ffmpeg;
+    package = ott-rs;
 
     # OTT_RS_TG_API_ID, OTT_RS_TG_API_HASH and OTT_RS_TG_CHAT_ID.
     environmentFile = config.age.secrets.ENV-ott-rs.path;
