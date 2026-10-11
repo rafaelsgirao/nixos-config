@@ -110,7 +110,7 @@
       #      url = "git+https://git.rsg.ovh/mirrors/ott-rs.git?ref=rg/unified-upstreams";
       url = "git+https://git.rsg.ovh/mirrors/ott-rs.git?ref=master";
       inputs = {
-        nixpkgs.follows = "nixpkgs-unstable";
+        #    nixpkgs.follows = "nixpkgs-unstable";
         flake-utils.follows = "flake-utils";
       };
     };
