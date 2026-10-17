@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 let
   inherit (config.networking) domain;
   baseDir = config.services.immich.mediaLocation;
@@ -17,6 +17,7 @@ in
   # https://wiki.nixos.org/wiki/Immich#Enabling_Hardware_Accelerated_Video_Transcoding
   services.immich = {
     enable = true;
+    package = pkgs.unstable.immich;
     inherit port;
     accelerationDevices = null; # null will give access to all devices.
     redis.enable = true;
