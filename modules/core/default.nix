@@ -17,6 +17,7 @@ in
   imports = [
     # ./hardening.nix
     ./nix.nix
+    ./nixos-switch.nix
     ./ssh.nix
     ./systemd-initrd.nix
     ./tailscale.nix

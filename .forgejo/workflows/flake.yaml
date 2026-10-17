@@ -19,6 +19,17 @@ jobs:
       - uses: actions/checkout@v4
       - run: nix config check
       - run: nix build .#nixosConfigurations.${{ matrix.machine.host }}.config.system.build.toplevel --keep-going --print-build-logs
+      # The runner builds into razer's store, which harmonia serves as cache.rsg.ovh.
+      # The out-link under the runner's CacheDirectory survives rootfs resets and keeps the published path from being GC'd.
+      - name: Publish to infra-keyval
+        if: ${{ github.ref == 'refs/heads/before-profiles' }}
+        run: |
+          mkdir -p /var/cache/gitea-runner-default/gcroots
+          nix build .#nixosConfigurations.${{ matrix.machine.host }}.config.system.build.toplevel \
+            --out-link /var/cache/gitea-runner-default/gcroots/nixos-system-${{ matrix.machine.host }}
+          curl --fail-with-body --url "https://keyval.rsg.ovh/nixos-system-${{ matrix.machine.host }}" \
+            --data "$(readlink /var/cache/gitea-runner-default/gcroots/nixos-system-${{ matrix.machine.host }})" \
+            -H "Authorization: ${{ secrets.INFRA_KEYVAL_TOKEN }}"
 
   build-outputs:
     runs-on: native

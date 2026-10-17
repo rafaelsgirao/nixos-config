@@ -211,6 +211,27 @@
         "type": "github"
       }
     },
+    "infra-keyval": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764120178,
+        "narHash": "sha256-gHYIGMAKy/PmS/F5RagTaocLrjX9PKUT+z8QeLu+R7w=",
+        "owner": "diogotcorreia",
+        "repo": "infra-keyval",
+        "rev": "4c2fcf28982f9169fe1fa3e0abbd70eb2eab7bfd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "diogotcorreia",
+        "ref": "v0.1.1",
+        "repo": "infra-keyval",
+        "type": "github"
+      }
+    },
     "jovian": {
       "inputs": {
         "nix-github-actions": "nix-github-actions",
@@ -549,6 +570,7 @@
         "flake-utils": "flake-utils",
         "home": "home",
         "impermanence": "impermanence",
+        "infra-keyval": "infra-keyval",
         "jovian": "jovian",
         "lanzaboote": "lanzaboote",
         "nix-darwin": "nix-darwin",

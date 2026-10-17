@@ -98,6 +98,11 @@
     # nix-darwin.url = "github:LnL7/nix-darwin/nix-darwin-25.05";
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    infra-keyval = {
+      url = "github:diogotcorreia/infra-keyval?ref=v0.1.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #TODO: dedupe darwin
 
     bolsas-scraper = {
