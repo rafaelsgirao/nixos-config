@@ -21,6 +21,9 @@ let
   # Upstream closes over its own FFmpeg in the wrapper and check inputs.
   ott-rs = inputs.ott-rs.packages.${pkgs.stdenv.hostPlatform.system}.ott-rs.overrideAttrs {
     nativeCheckInputs = [ ffmpeg ];
+    # The opt-in real-FFmpeg UHD gates race their own timeouts under razer's
+    # aarch64 binfmt emulation.
+    checkFlags = [ ];
     postInstall = "wrapProgram $out/bin/ott-rs --suffix PATH : ${lib.getBin ffmpeg}/bin";
   };
 in
