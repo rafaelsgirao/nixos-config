@@ -13,7 +13,7 @@ in
       APP_KEY_FILE = appKeyFile;
       APP_TIMEZONE = config.time.timeZone;
       DISPLAY_TIMEZONE = config.time.timeZone;
-      SPEEDTEST_SCHEDULE = "0 */2 * * *";
+      SPEEDTEST_SCHEDULE = "13,43 * * * *";
       PRUNE_RESULTS_OLDER_THAN = 365;
     };
     poolConfig."listen.group" = config.services.caddy.group;
