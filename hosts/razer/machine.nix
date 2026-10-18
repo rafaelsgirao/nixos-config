@@ -50,6 +50,7 @@ in
     ../../modules/service/harmonia.nix
     ../../modules/service/immich.nix
     ../../modules/service/infra-keyval.nix
+    ../../modules/service/speedtest-tracker.nix
   ];
 
   services.openssh.openFirewall = lib.mkForce true;

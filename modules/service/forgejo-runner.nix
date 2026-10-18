@@ -52,9 +52,11 @@
     CacheDirectory = "gitea-runner-default";
 
     # Only bounds the runner and its `nix build` clients -- the build itself is
-    # nix-daemon's cgroup. capacity=3 means up to three concurrent evaluations.
-    MemoryHigh = "4G";
-    MemoryMax = "6G";
+    # nix-daemon's cgroup. capacity=3 means up to three concurrent evaluations,
+    # each 2-3G. Past MemoryHigh the cgroup is reclaim-throttled, not killed, so
+    # an undersized cap stalls jobs indefinitely instead of failing them.
+    MemoryHigh = "10G";
+    MemoryMax = "14G";
   };
 
   age.secrets.ENV-forgejo-runner = {
