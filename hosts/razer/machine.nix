@@ -130,6 +130,19 @@ in
     networks."Pingu".pskRaw = "ext:psk_home";
   };
 
+  # nixpkgs pulls this into multi-user.target with Requires= on the device, so
+  # boot waits on wlan0 if the card never enumerates. Hang it off the device
+  # instead: it starts when wlan0 appears and stops when it goes.
+  systemd.services.wpa_supplicant-wlan0 =
+    let
+      dev = "sys-subsystem-net-devices-wlan0.device";
+    in
+    {
+      requires = lib.mkForce [ ];
+      bindsTo = [ dev ];
+      wantedBy = lib.mkForce [ dev ];
+    };
+
   age.secrets.WiFi-psk.file = ../../secrets/razer/WiFi-psk.age;
 
   systemd.network.networks."11-wlan" = {
