@@ -20,6 +20,12 @@ in
       email = "acme-admin@${domain}";
       environmentFile = config.age.secrets.ACME-env.path;
       dnsProvider = "cloudflare";
+      # The router intercepts plaintext DNS and negatively caches the TXT
+      # lookup, so lego's propagation check never sees the record.
+      extraLegoFlags = [
+        "--dns.propagation-wait"
+        "90s"
+      ];
     };
   };
 
