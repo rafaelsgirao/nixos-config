@@ -54,6 +54,35 @@
         "type": "github"
       }
     },
+    "dgx-spark": {
+      "inputs": {
+        "disko": [
+          "disko"
+        ],
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nix-gl-host": [],
+        "nixified-ai": [],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "pre-commit-hooks": []
+      },
+      "locked": {
+        "lastModified": 1792407240,
+        "narHash": "sha256-kPXXP23gw5KofCpgFxoKITPXUrMPxDoiQeQ8gRRsg6Y=",
+        "owner": "graham33",
+        "repo": "nixos-dgx-spark",
+        "rev": "c646a19a5df3316c1b0e79e2025d59f8deb704de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "graham33",
+        "repo": "nixos-dgx-spark",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -563,6 +592,7 @@
         "agenix": "agenix",
         "bolsas-scraper": "bolsas-scraper",
         "crane": "crane",
+        "dgx-spark": "dgx-spark",
         "disko": "disko",
         "flake-compat": "flake-compat",
         "flake-parts": "flake-parts_2",

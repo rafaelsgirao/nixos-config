@@ -99,6 +99,19 @@
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Only nixosModules.dgx-spark is used; the rest only feed its devShells.
+    dgx-spark = {
+      url = "github:graham33/nixos-dgx-spark";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        disko.follows = "disko";
+        nix-gl-host.follows = "";
+        pre-commit-hooks.follows = "";
+        nixified-ai.follows = "";
+      };
+    };
+
     infra-keyval = {
       url = "github:diogotcorreia/infra-keyval?ref=v0.1.1";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -353,13 +366,7 @@
           };
           pre-commit.settings.hooks = {
             treefmt.enable = true;
-            gitleaks = {
-              enable = true;
-              name = "gitleaks";
-              description = "Prevents commiting secrets";
-              entry = "${pkgs.gitleaks}/bin/gitleaks protect --verbose --redact --staged";
-              pass_filenames = false;
-            };
+            gitleaks.enable = true;
             secrets-check = {
               enable = false; # very time-consuming and highly suspect it's just broken
               name = "secrets-check";
