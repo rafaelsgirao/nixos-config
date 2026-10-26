@@ -97,24 +97,6 @@
     devices.steamdeck.enable = true;
     hardware.has.amd.gpu = true;
     decky-loader.enable = true;
-    # plugins.deckbrew.xyz returns 426 to loaders older than 3.3.0
-    decky-loader.package = pkgs.decky-loader.overridePythonAttrs (old: rec {
-      version = "3.3.0-pre1";
-      src = pkgs.fetchFromGitHub {
-        owner = "SteamDeckHomebrew";
-        repo = "decky-loader";
-        rev = "v${version}";
-        hash = "sha256-ULr5e22AuKKnc6KLIq38gL2Xu6Lrv2cm65r9XoQxXfU=";
-      };
-      pnpmDeps = pkgs.fetchPnpmDeps {
-        fetcherVersion = 4;
-        inherit (old) pname;
-        inherit version src;
-        pnpm = pkgs.pnpm_11;
-        sourceRoot = "${src.name}/frontend";
-        hash = "sha256-HYPB7usd/05ev4bM0UN6tKaBv+J2SHeooV3Hs+iS1no=";
-      };
-    });
   };
 
   rg = {
