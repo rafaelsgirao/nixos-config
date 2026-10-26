@@ -613,6 +613,7 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "ruby-nix": "ruby-nix",
         "rust-overlay": "rust-overlay",
+        "shp-proxy": "shp-proxy",
         "treefmt-nix": "treefmt-nix"
       }
     },
@@ -654,6 +655,26 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "shp-proxy": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793053397,
+        "narHash": "sha256-Dy0KJnd+8PHIrN2FtHIQjXPNzLDj1bAuH588Rod5LNI=",
+        "ref": "refs/heads/master",
+        "rev": "3ab4db9222024ddb4867e98a79c87c1e44130d88",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://git.rsg.ovh/rg/shp-proxy.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.rsg.ovh/rg/shp-proxy.git"
       }
     },
     "systems": {

@@ -133,6 +133,11 @@
       };
     };
 
+    shp-proxy = {
+      url = "git+https://git.rsg.ovh/rg/shp-proxy.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     agenix = {
       # TODO: ragenix
       url = "github:ryantm/agenix";
