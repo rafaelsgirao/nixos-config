@@ -54,6 +54,9 @@ in
       migrations = {
         ALLOW_LOCALNETWORKS = true;
       };
+      actions = {
+        ENDLESS_TASK_TIMEOUT = "6h";
+      };
       security = {
         INSTALL_LOCK = true;
       };

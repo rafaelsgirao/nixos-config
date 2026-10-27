@@ -42,6 +42,7 @@
       };
       settings.runner = {
         capacity = 3;
+        timeout = "6h";
       };
     };
   };
