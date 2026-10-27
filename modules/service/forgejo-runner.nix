@@ -60,6 +60,14 @@
     MemoryMax = "14G";
   };
 
+  # Builds run in nix-daemon, so these must be daemon settings, not runner env.
+  nix.settings = {
+    connect-timeout = lib.mkForce 30;
+    fallback = lib.mkForce false;
+    stalled-download-timeout = 900;
+    download-attempts = 10;
+  };
+
   age.secrets.ENV-forgejo-runner = {
     file = "${hostSecretsDir}/ENV-forgejo-runner.age";
     mode = "440";
