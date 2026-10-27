@@ -250,7 +250,7 @@ in
       programs.atuin = {
         enable = true;
         enableFishIntegration = config.programs.fish.enable;
-        package = pkgs.atuin;
+        package = pkgs.unstable.atuin;
         flags = [ "--disable-up-arrow" ];
         settings = {
           dialect = "uk";
@@ -282,7 +282,7 @@ in
 
         Service = {
           # Environment = "'SSH_AUTH_SOCK=%t/${socket}'";
-          ExecStart = "${pkgs.unstable.atuin}/bin/atuin daemon";
+          ExecStart = "${config.programs.atuin.package}/bin/atuin daemon";
           # Type = "simple";
         };
         Install = {
