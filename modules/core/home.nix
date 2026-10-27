@@ -250,20 +250,16 @@ in
       programs.atuin = {
         enable = true;
         enableFishIntegration = config.programs.fish.enable;
-        package = pkgs.unstable.atuin;
+        package = pkgs.atuin;
+        # Using a daemon works around timeout issues when using ZFS.
+        # https://github.com/atuinsh/atuin/issues/952
+        # Requires atuin >= 18.3.0 (which is why package is in unstable ATM)
+        daemon.enable = true;
         flags = [ "--disable-up-arrow" ];
         settings = {
           dialect = "uk";
           auto_sync = false;
           update_check = false;
-          # Using a daemon works around timeout issues when using ZFS.
-          # https://github.com/atuinsh/atuin/issues/952
-          # Requires atuin >= 18.3.0 (which is why package is in unstable ATM)
-          daemon = {
-            enabled = true;
-            # TODO: ugly hardcoded path!
-            socket_path = "/run/user/1000/atuin.sock";
-          };
           sync = {
             records = true;
           };
@@ -272,39 +268,6 @@ in
         };
       };
 
-      # https://github.com/atuinsh/atuin/pull/2172/files
-      systemd.user.services.atuin-daemon = {
-
-        Unit = {
-          Description = "atuin shell history daemon";
-          Requires = [ "atuin-daemon.socket" ];
-        };
-
-        Service = {
-          # Environment = "'SSH_AUTH_SOCK=%t/${socket}'";
-          ExecStart = "${config.programs.atuin.package}/bin/atuin daemon";
-          # Type = "simple";
-        };
-        Install = {
-          WantedBy = [ "default.target" ];
-          Also = [ "atuin-daemon.socket" ];
-        };
-      };
-
-      systemd.user.sockets."atuin-daemon" = {
-        Unit = {
-          Description = "Unix socket activation for atuin shell history daemon";
-        };
-        Socket = {
-          ListenStream = "%t/atuin.socket";
-          SocketMode = "0600";
-          # Service = e.g "ssh-tpm-agent.service"; :thinking:
-        };
-        Install = {
-          WantedBy = [ "sockets.target" ];
-        };
-
-      };
       programs.starship = {
         enable = true;
         enableFishIntegration = config.programs.fish.enable;
