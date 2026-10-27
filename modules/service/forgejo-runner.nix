@@ -41,7 +41,7 @@
         workdir_parent = "/var/cache/gitea-runner-default";
       };
       settings.runner = {
-        capacity = 3;
+        capacity = 2;
         timeout = "6h";
       };
     };
