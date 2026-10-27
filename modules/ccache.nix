@@ -1,4 +1,13 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  cfg = config.programs.ccache;
+  usesCcache = drv: drv.stdenv.cc.outPath == pkgs.ccacheWrapper.outPath;
+in
 {
 
   nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
@@ -7,16 +16,14 @@
     # Scopes ccache per-package; a global stdenv override would rehash the
     # bootstrap and lose binary cache substitution everywhere.
     packageNames = [
-      # Not `linuxPackages_jovian`: that's a package set with no .override.
-      # Jovian's overlay does `linuxPackages_jovian = linuxPackagesFor
-      # final.linux_jovian`, so overriding the kernel reaches the set.
+      # Unused; keeps the module's ccacheWrapper config enabled.
       "linux_jovian"
 
       # Attr names, not derivation names: `mesa-radv-jupiter` builds
       # mesa-26.2.0.steamos, and plain `mesa` is a different package that
       # substitutes from cache and never gets built here.
       # "mesa-radeonsi-jupiter"
-      "mesa-radv-jupiter"
+      # "mesa-radv-jupiter"
 
       # "gamescope"
       # "gamescope-wsi"
@@ -42,5 +49,38 @@
   ];
 
   environment.systemPackages = [ pkgs.ccache ];
+
+  # Jovian's packages live in the `jovianPackages` scope, which `packageNames`
+  # can't reach. mkAfter: this has to run after Jovian's overlay defines it.
+  nixpkgs.overlays = lib.mkAfter [
+    (final: prev: {
+      jovianPackages = prev.jovianPackages.overrideScope (
+        _jfinal: jprev: {
+          linux = jprev.linux.override { stdenv = final.ccacheStdenv; };
+          mesa-radv = jprev.mesa-radv.override { stdenv = final.ccacheStdenv; };
+        }
+      );
+    })
+  ];
+
+  assertions = [
+    {
+      # The module only configures ccacheWrapper while packageNames is non-empty.
+      assertion = lib.hasInfix ''CCACHE_DIR="${cfg.cacheDir}"'' pkgs.ccacheWrapper.cc.buildCommand;
+      message = "ccacheWrapper is not configured with CCACHE_DIR=${cfg.cacheDir}.";
+    }
+  ]
+  ++ lib.optionals config.jovian.devices.steamdeck.enable [
+    {
+      assertion = usesCcache config.boot.kernelPackages.kernel;
+      message = "The Steam Deck kernel is not built with ccacheStdenv.";
+    }
+    {
+      assertion =
+        builtins.elem pkgs.jovianPackages.mesa-radv config.hardware.graphics.extraPackages
+        && usesCcache pkgs.jovianPackages.mesa-radv;
+      message = "The installed jovianPackages.mesa-radv is not built with ccacheStdenv.";
+    }
+  ];
 
 }
