@@ -7,6 +7,8 @@
 let
   cfg = config.programs.ccache;
   usesCcache = drv: drv.stdenv.cc.outPath == pkgs.ccacheWrapper.outPath;
+  # The option only exists on hosts that import the dgx-spark module.
+  isDgxSpark = config.hardware.dgx-spark.enable or false;
 in
 {
 
@@ -52,16 +54,25 @@ in
 
   # Jovian's packages live in the `jovianPackages` scope, which `packageNames`
   # can't reach. mkAfter: this has to run after Jovian's overlay defines it.
-  nixpkgs.overlays = lib.mkAfter [
-    (final: prev: {
-      jovianPackages = prev.jovianPackages.overrideScope (
-        _jfinal: jprev: {
-          linux = jprev.linux.override { stdenv = final.ccacheStdenv; };
-          mesa-radv = jprev.mesa-radv.override { stdenv = final.ccacheStdenv; };
-        }
-      );
-    })
-  ];
+  nixpkgs.overlays = lib.mkAfter (
+    [
+      (final: prev: {
+        jovianPackages = prev.jovianPackages.overrideScope (
+          _jfinal: jprev: {
+            linux = jprev.linux.override { stdenv = final.ccacheStdenv; };
+            mesa-radv = jprev.mesa-radv.override { stdenv = final.ccacheStdenv; };
+          }
+        );
+      })
+    ]
+    # The DGX Spark module calls `pkgs.buildLinux` inline rather than exposing a
+    # kernel attr, so `packageNames` can't reach it; `buildLinux` takes `stdenv`.
+    ++ lib.optionals isDgxSpark [
+      (final: prev: {
+        buildLinux = attrs: prev.buildLinux ({ stdenv = final.ccacheStdenv; } // attrs);
+      })
+    ]
+  );
 
   assertions = [
     {
@@ -80,6 +91,12 @@ in
         builtins.elem pkgs.jovianPackages.mesa-radv config.hardware.graphics.extraPackages
         && usesCcache pkgs.jovianPackages.mesa-radv;
       message = "The installed jovianPackages.mesa-radv is not built with ccacheStdenv.";
+    }
+  ]
+  ++ lib.optionals isDgxSpark [
+    {
+      assertion = usesCcache config.boot.kernelPackages.kernel;
+      message = "The DGX Spark kernel is not built with ccacheStdenv.";
     }
   ];
 
