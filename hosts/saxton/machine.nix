@@ -11,7 +11,8 @@ in
     ../../modules/core/hardening.nix
     ../../modules/core/lanzaboote.nix
 
-    ../../modules/service/immich-proxy.nix
+    # ../../modules/service/immich-proxy.nix
+    ../../modules/service/shp-proxy.nix
     ../../modules/service/oauth2-proxy.nix
     ../../modules/service/ott-rs.nix
     ../../modules/service/pocket-id.nix
