@@ -6,6 +6,9 @@
 }:
 let
   inherit (config.networking) domain;
+  # saxton's tailnet address: shp-proxy there serves Nextcloud shares publicly
+  # (modules/service/shp-proxy.nix) and connects from it.
+  shpProxyAddress = "100.115.32.53";
 in
 {
 
@@ -216,5 +219,17 @@ in
       '';
     };
   };
+
+  # Let Nextcloud see share visitors' addresses and public host through
+  # shp-proxy: Caddy keeps saxton's X-Forwarded-* instead of replacing them, and
+  # Nextcloud trusts it next to Caddy. Without this, its brute-force protection
+  # throttles every share visitor as one client, and share pages link to
+  # cloud.${domain} instead of the public host.
+  services.caddy.globalConfig = ''
+    servers {
+      trusted_proxies static ${shpProxyAddress}/32
+    }
+  '';
+  services.nextcloud.settings.trusted_proxies = [ shpProxyAddress ];
 
 }
