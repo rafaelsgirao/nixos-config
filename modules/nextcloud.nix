@@ -10,7 +10,7 @@ let
   ncHost = "cloud.${domain}";
   altHosts = [
     "cloud.${fqdn}"
-    "cloud.rafael.ovh"
+    "cloud.rafael.ovh" # public share links, via shp-proxy on saxton
     "cloud.spy.rafael.ovh"
   ];
 in

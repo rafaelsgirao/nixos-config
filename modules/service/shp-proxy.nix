@@ -1,78 +1,51 @@
 {
   config,
   inputs,
-  lib,
-  pkgs,
   ...
 }:
 let
   inherit (config.networking) domain;
-  port = 16498;
-  publicHost = "fotos.rafael.ovh";
 
-  shp-proxy = inputs.shp-proxy.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  # Public hostnames, one listener each: both apps use `/s/...` share URLs.
+  # Nextcloud on razer must trust this host (see hosts/razer/machine.nix) and
+  # list `cloudHost` in its trusted_domains (modules/nextcloud.nix).
+  fotosHost = "fotos.rafael.ovh";
+  fotosPort = 16498;
+  cloudHost = "cloud.rafael.ovh";
+  cloudPort = 16499;
 
-  configFile = (pkgs.formats.toml { }).generate "shp-proxy.toml" {
-    immich = {
-      listen = "127.0.0.1:${toString port}";
-      upstream = "https://immich.${domain}";
-      public_url = "https://${publicHost}";
-    };
-    # Only safe because the listener is loopback-only behind Caddy, which
-    # overwrites X-Forwarded-For from untrusted clients.
-    client_ip.header = "x-forwarded-for";
-  };
-in
-{
-
-  services.caddy.virtualHosts.${publicHost} = {
+  vhost = port: {
     useACMEHost = "${domain}";
     extraConfig = ''
       encode zstd gzip
       reverse_proxy localhost:${toString port}
     '';
   };
+in
+{
+  imports = [ inputs.shp-proxy.nixosModules.default ];
 
-  systemd.services.shp-proxy = {
-    description = "Allowlisting reverse proxy for Immich public shares";
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = lib.escapeShellArgs [
-        (lib.getExe shp-proxy)
-        "--config"
-        configFile
-      ];
-      Restart = "on-failure";
-      RestartSec = "10s";
-      DynamicUser = true;
-      UMask = "0077";
-      NoNewPrivileges = true;
-      PrivateDevices = true;
-      PrivateTmp = true;
-      ProtectClock = true;
-      ProtectControlGroups = true;
-      ProtectHome = true;
-      ProtectHostname = true;
-      ProtectKernelLogs = true;
-      ProtectKernelModules = true;
-      ProtectKernelTunables = true;
-      ProtectSystem = "strict";
-      RestrictAddressFamilies = [
-        "AF_UNIX"
-        "AF_INET"
-        "AF_INET6"
-      ];
-      RestrictNamespaces = true;
-      RestrictRealtime = true;
-      RestrictSUIDSGID = true;
-      LockPersonality = true;
-      MemoryDenyWriteExecute = true;
-      CapabilityBoundingSet = "";
-      SystemCallArchitectures = "native";
+  services.shp-proxy = {
+    enable = true;
+    settings = {
+      immich = {
+        listen = "127.0.0.1:${toString fotosPort}";
+        upstream = "https://immich.${domain}";
+        public_url = "https://${fotosHost}";
+      };
+      nextcloud = {
+        listen = "127.0.0.1:${toString cloudPort}";
+        upstream = "https://cloud.${domain}";
+        public_url = "https://${cloudHost}";
+      };
+      # Only safe because the listeners are loopback-only behind Caddy, which
+      # overwrites X-Forwarded-For from untrusted clients.
+      client_ip.header = "x-forwarded-for";
     };
   };
 
+  services.caddy.virtualHosts = {
+    ${fotosHost} = vhost fotosPort;
+    ${cloudHost} = vhost cloudPort;
+  };
 }
