@@ -13,8 +13,8 @@ let
   shp-proxy = inputs.shp-proxy.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   configFile = (pkgs.formats.toml { }).generate "shp-proxy.toml" {
-    listen = "127.0.0.1:${toString port}";
     immich = {
+      listen = "127.0.0.1:${toString port}";
       upstream = "https://immich.${domain}";
       public_url = "https://${publicHost}";
     };
