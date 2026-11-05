@@ -6,13 +6,8 @@
   ...
 }:
 let
-  inherit (config.networking) domain fqdn;
+  inherit (config.networking) domain;
   ncHost = "cloud.${domain}";
-  altHosts = [
-    "cloud.${fqdn}"
-    "cloud.rafael.ovh" # public share links, via shp-proxy on saxton
-    "cloud.spy.rafael.ovh"
-  ];
 in
 {
 
@@ -55,7 +50,9 @@ in
     settings = {
       # "A value of 1 e.g. will only run these background jobs between 01:00am UTC and 05:00am UTC".
       maintenance_window_start = 1;
-      trusted_domains = altHosts;
+      # Besides hostName (cloud.${domain}, always trusted): public share links,
+      # via shp-proxy on saxton.
+      trusted_domains = [ "share.rafael.ovh" ];
       trusted_proxies = [
         "127.0.0.1"
       ];
