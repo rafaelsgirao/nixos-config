@@ -32,6 +32,9 @@ in
         listen = "127.0.0.1:${toString fotosPort}";
         upstream = "https://immich.${domain}";
         public_url = "https://${fotosHost}";
+        # Uploads to shares that have "Allow uploads" on in Immich (managed there).
+        # Limits use shp-proxy's defaults; see its README "Uploads".
+        uploads = { };
       };
       nextcloud = {
         listen = "127.0.0.1:${toString sharePort}";
