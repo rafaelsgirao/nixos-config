@@ -237,13 +237,6 @@ in
         reverse_proxy http://127.0.0.1:23700
       '';
     };
-    "cloud.rafael.ovh" = {
-      useACMEHost = "${domain}";
-      extraConfig = ''
-        encode zstd gzip
-        reverse_proxy http://127.0.0.1:23700
-      '';
-    };
     "cache.${domain}" = {
       useACMEHost = "${domain}";
       extraConfig = ''
