@@ -8,11 +8,11 @@ let
 
   # Public hostnames, one listener each: both apps use `/s/...` share URLs.
   # Nextcloud on razer must trust this host (see hosts/razer/machine.nix) and
-  # list `cloudHost` in its trusted_domains (modules/nextcloud.nix).
+  # list `shareHost` in its trusted_domains (modules/nextcloud.nix).
   fotosHost = "fotos.rafael.ovh";
   fotosPort = 16498;
-  cloudHost = "cloud.rafael.ovh";
-  cloudPort = 16499;
+  shareHost = "share.rafael.ovh";
+  sharePort = 16499;
 
   vhost = port: {
     useACMEHost = "${domain}";
@@ -34,9 +34,9 @@ in
         public_url = "https://${fotosHost}";
       };
       nextcloud = {
-        listen = "127.0.0.1:${toString cloudPort}";
+        listen = "127.0.0.1:${toString sharePort}";
         upstream = "https://cloud.${domain}";
-        public_url = "https://${cloudHost}";
+        public_url = "https://${shareHost}";
       };
       # Only safe because the listeners are loopback-only behind Caddy, which
       # overwrites X-Forwarded-For from untrusted clients.
@@ -46,6 +46,6 @@ in
 
   services.caddy.virtualHosts = {
     ${fotosHost} = vhost fotosPort;
-    ${cloudHost} = vhost cloudPort;
+    ${shareHost} = vhost sharePort;
   };
 }
