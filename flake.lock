@@ -664,11 +664,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793833742,
-        "narHash": "sha256-5Tb4CrlqqFfOLozSNZBPaiVzzj+m4RmaZNRO6QqGRkk=",
+        "lastModified": 1793890997,
+        "narHash": "sha256-0P43EkTKR/N1xRwEI76Gki679Yhng+bDjbtqzIfY5a4=",
         "ref": "refs/heads/master",
-        "rev": "bebffa08e1df279d27cef4831f9131431118f30d",
-        "revCount": 11,
+        "rev": "c6016e02f343b87491d8cff84a57aa82c8d282f9",
+        "revCount": 15,
         "type": "git",
         "url": "https://git.rsg.ovh/rg/shp-proxy.git"
       },
