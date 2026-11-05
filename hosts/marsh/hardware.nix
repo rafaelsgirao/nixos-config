@@ -9,6 +9,10 @@ in
 
   hardware.dgx-spark.enable = true;
 
+  # The dgx-spark module adds cache.flox.dev; these lists hold nothing else.
+  nix.settings.extra-substituters = lib.mkForce [ ];
+  nix.settings.extra-trusted-public-keys = lib.mkForce [ ];
+
   rg.vCores = 20;
 
   boot.initrd.availableKernelModules = [

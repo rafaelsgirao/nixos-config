@@ -56,14 +56,14 @@ in
 
       substituters = [
         "https://cache.${domain}"
-        # Pre-built CUDA packages; NVIDIA-sanctioned redistribution.
-        "https://cache.flox.dev"
+        # # Pre-built CUDA packages; NVIDIA-sanctioned redistribution.
+        # "https://cache.flox.dev"
       ];
       trusted-substituters = [ "https://cache.${domain}" ];
 
       trusted-public-keys = [
         "cache.rsg.ovh:rqjyKgDWqeQxQMcqXF8jHfNk+7TiLwlG+hSDN+eiQRc="
-        "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+        # "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
       ];
 
       # Fallback quickly if substituters are not available.
