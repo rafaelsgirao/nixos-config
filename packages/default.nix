@@ -15,6 +15,7 @@ rec {
   #Packages from inputs.
   agenix = inputs'.agenix.packages.default;
   disko = inputs'.disko.packages.default;
+  inherit (pkgs) nixos-anywhere;
   bolsas-scraper = inputs'.bolsas-scraper.packages.default;
 
   #TODO.
